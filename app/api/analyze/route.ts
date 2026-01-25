@@ -88,6 +88,18 @@ export async function POST(request: NextRequest) {
         stack: error.stack,
       });
 
+      // Check for common API errors
+      const errorMessage = error.message.toLowerCase();
+      if (errorMessage.includes("api key") || errorMessage.includes("authentication") || errorMessage.includes("unauthorized")) {
+        return NextResponse.json(
+          {
+            error: "Erreur de configuration API. Contactez l'administrateur.",
+            code: "API_ERROR"
+          },
+          { status: 502 }
+        );
+      }
+
       return NextResponse.json(
         {
           error: `Erreur: ${error.message}`,
@@ -98,7 +110,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { error: "Une erreur inattendue s'est produite", code: "UNKNOWN" },
+      { error: "Une erreur inattendue s'est produite. Réessayez.", code: "UNKNOWN" },
       { status: 500 }
     );
   }
