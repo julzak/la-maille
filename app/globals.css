@@ -1,27 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* LA MAILLE - Warm organic palette */
+
+    /* Background - Ecru/Wool */
+    --background: 40 33% 97%;
+    --foreground: 30 10% 16%;
+
+    /* Card */
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 16%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 16%;
+
+    /* Primary - Terra Cotta */
+    --primary: 17 47% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Sage Green */
+    --secondary: 120 10% 58%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted - Warm neutral */
+    --muted: 36 20% 90%;
+    --muted-foreground: 30 6% 40%;
+
+    /* Accent - Clay */
+    --accent: 30 50% 64%;
+    --accent-foreground: 30 10% 16%;
+
+    /* States */
+    --success: 110 16% 54%;
+    --success-foreground: 0 0% 100%;
+    --warning: 30 50% 64%;
+    --warning-foreground: 30 10% 16%;
+    --destructive: 0 50% 57%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Border - Warm */
+    --border: 36 20% 87%;
+    --input: 36 20% 87%;
+    --ring: 17 47% 56%;
+
+    /* Radius - More rounded */
+    --radius: 1rem;
+
+    /* Charts */
+    --chart-1: 17 47% 56%;
+    --chart-2: 120 10% 58%;
+    --chart-3: 30 50% 64%;
+    --chart-4: 30 10% 16%;
+    --chart-5: 30 6% 40%;
+
+    /* Typography */
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  .dark {
+    --background: 30 10% 8%;
+    --foreground: 40 20% 95%;
+    --card: 30 10% 12%;
+    --card-foreground: 40 20% 95%;
+    --popover: 30 10% 12%;
+    --popover-foreground: 40 20% 95%;
+    --primary: 17 47% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 120 10% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 30 10% 18%;
+    --muted-foreground: 30 10% 60%;
+    --accent: 30 50% 64%;
+    --accent-foreground: 30 10% 16%;
+    --success: 110 16% 54%;
+    --success-foreground: 0 0% 100%;
+    --warning: 30 50% 64%;
+    --warning-foreground: 30 10% 16%;
+    --destructive: 0 50% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 30 10% 20%;
+    --input: 30 10% 20%;
+    --ring: 17 47% 56%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: var(--font-serif);
+    font-weight: 500;
+  }
+
+  code, .font-mono, [data-type="measurement"], [data-type="calculation"] {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  /* Logo styling */
+  .logo-text {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* ===========================================
+   ANIMATIONS - Warm loading states
+   =========================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-delay-100 { animation-delay: 100ms; opacity: 0; }
+.animate-delay-200 { animation-delay: 200ms; opacity: 0; }
+.animate-delay-300 { animation-delay: 300ms; opacity: 0; }
+.animate-delay-400 { animation-delay: 400ms; opacity: 0; }
+.animate-delay-500 { animation-delay: 500ms; opacity: 0; }
+
+/* ===========================================
+   NIGHT MODE - Knit companion
+   =========================================== */
+
+.night-mode {
+  background-color: #1a1917;
+  color: #e8e4dc;
+}
+
+.night-mode .bg-card {
+  background-color: #2d2a26;
+}
+
+.night-mode .bg-background {
+  background-color: #1a1917;
+}
+
+.night-mode .border-border {
+  border-color: #3d3a36;
+}
+
+.night-mode .text-foreground {
+  color: #e8e4dc;
+}
+
+.night-mode .text-muted-foreground {
+  color: #8b8680;
+}
+
+.night-mode .bg-muted {
+  background-color: #2d2a26;
+}
+
+.night-mode .bg-muted\/50 {
+  background-color: rgba(45, 42, 38, 0.5);
+}
+
+/* ===========================================
+   PRINT STYLES - Export PDF
+   =========================================== */
+
+@media print {
+  /* Reset et base */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html, body {
+    font-size: 11pt;
+    line-height: 1.4;
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  /* Masquer les éléments non imprimables */
+  header,
+  footer,
+  .print\\:hidden,
+  [class*="print:hidden"] {
+    display: none !important;
+  }
+
+  /* Container pleine largeur */
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Page de garde */
+  .print-cover {
+    page-break-after: always;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .print-cover h1 {
+    font-size: 36pt;
+    margin-bottom: 0.5em;
+  }
+
+  .print-cover .subtitle {
+    font-size: 14pt;
+    color: #666;
+  }
+
+  /* Forcer les sauts de page */
+  .print-page-break {
+    page-break-before: always;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid;
+  }
+
+  /* Cards pour impression */
+  .card,
+  [class*="rounded-lg border"] {
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    margin-bottom: 1rem;
+    page-break-inside: avoid;
+  }
+
+  /* Sections du patron */
+  .pattern-section {
+    page-break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+
+  /* En-têtes de section */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  /* Listes et instructions */
+  ul, ol {
+    page-break-inside: avoid;
+  }
+
+  li {
+    page-break-inside: avoid;
+  }
+
+  /* Schémas SVG */
+  svg {
+    max-width: 150px !important;
+    height: auto !important;
+  }
+
+  /* Badges */
+  .badge,
+  [class*="badge"] {
+    border: 1px solid #999 !important;
+    background: #f5f5f5 !important;
+    color: #333 !important;
+  }
+
+  /* Alerts */
+  .alert,
+  [class*="alert"] {
+    border: 1px solid #ccc !important;
+    background: #fafafa !important;
+    page-break-inside: avoid;
+  }
+
+  /* Warning banner */
+  .print-disclaimer {
+    border: 2px solid #C4785B !important;
+    background: #FDF6F0 !important;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    page-break-inside: avoid;
+  }
+
+  /* Footer de page (disclaimer) */
+  @page {
+    size: A4;
+    margin: 2cm 1.5cm;
+
+    @bottom-center {
+      content: "LA MAILLE - Pattern generated automatically - Please verify your calculations";
+      font-size: 8pt;
+      color: #999;
+    }
+
+    @bottom-right {
+      content: counter(page);
+      font-size: 8pt;
+      color: #999;
+    }
+  }
+
+  /* Première page sans numéro */
+  @page :first {
+    @bottom-right {
+      content: none;
+    }
+  }
+
+  /* Liens */
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  /* Boutons masqués */
+  button {
+    display: none !important;
+  }
+
+  /* Accordion - forcer l'ouverture */
+  .accordion-content,
+  [data-state="closed"] {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Bordures colorées */
+  .border-l-accent {
+    border-left-color: #C4785B !important;
+  }
+
+  .border-l-secondary {
+    border-left-color: #8B9E8B !important;
+  }
+
+  .border-l-muted-foreground {
+    border-left-color: #999 !important;
+  }
+
+  /* Typo monospace */
+  .font-mono {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 10pt;
+  }
+
+  /* Images */
+  img {
+    max-width: 100px !important;
+    height: auto !important;
+  }
+
+  /* Grilles simplifiées */
+  .grid {
+    display: block !important;
+  }
+
+  .grid > * {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Flex en block */
+  .flex {
+    display: block !important;
+  }
+
+  .flex > * {
+    margin-bottom: 0.25rem;
+  }
+
+  /* Garder certains flex */
+  .print-flex {
+    display: flex !important;
   }
 }
