@@ -239,10 +239,18 @@ export async function analyzeGarmentImage({
       );
     }
 
-    // Unknown error
-    console.error("Unknown error during analysis:", error);
+    // Unknown error - log full details
+    console.error("Unknown error during analysis:", {
+      error,
+      errorType: error?.constructor?.name,
+      errorMessage: error instanceof Error ? error.message : String(error),
+      hasApiKey: !!process.env.ANTHROPIC_API_KEY,
+      apiKeyLength: process.env.ANTHROPIC_API_KEY?.length || 0,
+    });
+
+    const errorMsg = error instanceof Error ? error.message : "Unknown error";
     throw new AnalysisError(
-      "An unexpected error occurred during analysis",
+      `Erreur: ${errorMsg}`,
       "UNKNOWN"
     );
   }
