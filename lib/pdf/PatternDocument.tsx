@@ -19,22 +19,32 @@ export function PatternDocument({
   language,
 }: PatternDocumentProps) {
   // Détermine la difficulté
-  const getDifficulty = (): "Débutant" | "Intermédiaire" | "Avancé" => {
+  const getDifficultyLevel = (): "beginner" | "intermediate" | "advanced" => {
     const stitch = analysis.stitch?.mainPattern || "jersey";
     if (stitch === "jersey" || stitch === "mousse") {
-      return "Débutant";
+      return "beginner";
     }
     if (stitch === "cotes") {
-      return "Intermédiaire";
+      return "intermediate";
     }
-    return "Avancé";
+    return "advanced";
+  };
+
+  const getDifficultyLabel = (): string => {
+    const level = getDifficultyLevel();
+    const labels = {
+      beginner: { fr: "Débutant", en: "Beginner" },
+      intermediate: { fr: "Intermédiaire", en: "Intermediate" },
+      advanced: { fr: "Avancé", en: "Advanced" },
+    };
+    return labels[level][language];
   };
 
   // Estime le temps basé sur la complexité
   const getEstimatedTime = () => {
-    const difficulty = getDifficulty();
-    if (difficulty === "Débutant") return "12-18h";
-    if (difficulty === "Intermédiaire") return "18-25h";
+    const level = getDifficultyLevel();
+    if (level === "beginner") return "12-18h";
+    if (level === "intermediate") return "18-25h";
     return "25-35h";
   };
 
@@ -138,10 +148,11 @@ export function PatternDocument({
       <CoverPage
         garmentType={getGarmentName()}
         imageUrl={imageUrl}
-        difficulty={getDifficulty()}
+        difficulty={getDifficultyLabel()}
         estimatedTime={getEstimatedTime()}
         size={getSize()}
         createdAt={new Date().toLocaleDateString(language === "fr" ? "fr-FR" : "en-US")}
+        language={language}
       />
 
       {/* Page 2: Matériel */}
@@ -162,6 +173,7 @@ export function PatternDocument({
         }}
         accessories={accessories}
         abbreviations={abbreviations}
+        language={language}
       />
 
       {/* Pages d'instructions pour chaque pièce */}
@@ -192,6 +204,7 @@ export function PatternDocument({
           pageNumber={pageNumber++}
           totalPieces={pattern.pieces.length}
           pieceIndex={i}
+          language={language}
         />
       ))}
 
@@ -201,6 +214,7 @@ export function PatternDocument({
         blockingTips={blockingTips}
         careTips={careTips}
         pageNumber={pageNumber}
+        language={language}
       />
     </Document>
   );

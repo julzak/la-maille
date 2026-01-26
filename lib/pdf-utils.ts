@@ -34,15 +34,15 @@ export async function generatePatternPDF(
   const analysisData = analysis || pattern.analysis;
 
   // Create the PDF document element
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const doc = createElement(PatternDocument, {
     pattern,
     analysis: analysisData,
     imageUrl,
     language,
-  }) as any;
+  });
 
-  const blob = await pdf(doc).toBlob();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const blob = await pdf(doc as any).toBlob();
   return blob;
 }
 

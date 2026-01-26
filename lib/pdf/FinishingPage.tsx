@@ -6,6 +6,7 @@ interface FinishingPageProps {
   blockingTips: string[];
   careTips: string[];
   pageNumber: number;
+  language: "fr" | "en";
 }
 
 export function FinishingPage({
@@ -13,11 +14,35 @@ export function FinishingPage({
   blockingTips,
   careTips,
   pageNumber,
+  language,
 }: FinishingPageProps) {
+  const texts = {
+    fr: {
+      title: "FINITIONS",
+      subtitle: "Assemblage & Entretien",
+      assembly: "ASSEMBLAGE",
+      blocking: "BLOCAGE",
+      care: "ENTRETIEN",
+      shareTitle: "Partagez votre création !",
+      shareText: "Nous adorons voir vos réalisations. Partagez votre tricot sur Instagram avec le hashtag #LaMaille et rejoignez notre communauté de créateurs.",
+      disclaimer: "Ce patron est une ESTIMATION générée automatiquement. Vérifiez toujours vos calculs et faites un échantillon avant de commencer. La Maille ne peut être tenue responsable des erreurs de tricot.",
+    },
+    en: {
+      title: "FINISHING",
+      subtitle: "Assembly & Care",
+      assembly: "ASSEMBLY",
+      blocking: "BLOCKING",
+      care: "CARE",
+      shareTitle: "Share your creation!",
+      shareText: "We love seeing your finished projects. Share your knitting on Instagram with the hashtag #LaMaille and join our community of makers.",
+      disclaimer: "This pattern is an automatically generated ESTIMATE. Always verify your calculations and make a gauge swatch before starting. La Maille cannot be held responsible for knitting errors.",
+    },
+  };
+  const t = texts[language];
   return (
     <Page size="A4" style={styles.page}>
-      <Text style={styles.h3}>FINITIONS</Text>
-      <Text style={styles.h2}>Assemblage & Entretien</Text>
+      <Text style={styles.h3}>{t.title}</Text>
+      <Text style={styles.h2}>{t.subtitle}</Text>
       <View style={styles.dividerAccent} />
 
       {/* 2 colonnes */}
@@ -28,7 +53,7 @@ export function FinishingPage({
             <Text
               style={[styles.h3, { color: colors.primary, marginBottom: 10 }]}
             >
-              ASSEMBLAGE
+              {t.assembly}
             </Text>
             {assemblySteps.map((step, i) => (
               <View
@@ -48,7 +73,7 @@ export function FinishingPage({
             <Text
               style={[styles.h3, { color: colors.primary, marginBottom: 10 }]}
             >
-              BLOCAGE
+              {t.blocking}
             </Text>
             {blockingTips.map((tip, i) => (
               <Text key={i} style={[styles.body, { marginBottom: 3 }]}>
@@ -61,7 +86,7 @@ export function FinishingPage({
             <Text
               style={[styles.h3, { color: colors.primary, marginBottom: 10 }]}
             >
-              ENTRETIEN
+              {t.care}
             </Text>
             {careTips.map((tip, i) => (
               <Text key={i} style={[styles.body, { marginBottom: 3 }]}>
@@ -95,7 +120,7 @@ export function FinishingPage({
               marginBottom: 6,
             }}
           >
-            Partagez votre création !
+            {t.shareTitle}
           </Text>
           <Text
             style={{
@@ -105,9 +130,7 @@ export function FinishingPage({
               lineHeight: 1.5,
             }}
           >
-            Nous adorons voir vos réalisations. Partagez votre tricot sur
-            Instagram avec le hashtag #LaMaille et rejoignez notre communauté de
-            créateurs.
+            {t.shareText}
           </Text>
         </View>
         <View
@@ -143,9 +166,7 @@ export function FinishingPage({
         }}
       >
         <Text style={[styles.bodySmall, { color: colors.accent, lineHeight: 1.5 }]}>
-          Ce patron est une ESTIMATION générée automatiquement. Vérifiez toujours
-          vos calculs et faites un échantillon avant de commencer. La Maille ne
-          peut être tenue responsable des erreurs de tricot.
+          {t.disclaimer}
         </Text>
       </View>
 

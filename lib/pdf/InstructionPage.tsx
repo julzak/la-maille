@@ -16,6 +16,7 @@ interface InstructionPageProps {
   pageNumber: number;
   totalPieces?: number;
   pieceIndex?: number;
+  language: "fr" | "en";
 }
 
 export function InstructionPage({
@@ -26,7 +27,19 @@ export function InstructionPage({
   pageNumber,
   totalPieces,
   pieceIndex,
+  language,
 }: InstructionPageProps) {
+  const texts = {
+    fr: {
+      piece: "Pièce",
+      dimensions: "DIMENSIONS",
+    },
+    en: {
+      piece: "Piece",
+      dimensions: "DIMENSIONS",
+    },
+  };
+  const t = texts[language];
   return (
     <Page size="A4" style={styles.page}>
       {/* Header de section */}
@@ -39,7 +52,7 @@ export function InstructionPage({
         {pieceIndex !== undefined && totalPieces && (
           <View style={[styles.badge, { backgroundColor: colors.secondary }]}>
             <Text style={{ color: "white", fontSize: 9 }}>
-              Pièce {pieceIndex + 1}/{totalPieces}
+              {t.piece} {pieceIndex + 1}/{totalPieces}
             </Text>
           </View>
         )}
@@ -116,7 +129,7 @@ export function InstructionPage({
                   { marginBottom: 10, textAlign: "center", color: colors.primary },
                 ]}
               >
-                DIMENSIONS
+                {t.dimensions}
               </Text>
 
               {dimensions.map((dim, i) => (

@@ -14,6 +14,7 @@ interface MaterialsPageProps {
   };
   accessories: string[];
   abbreviations: { abbr: string; meaning: string }[];
+  language: "fr" | "en";
 }
 
 export function MaterialsPage({
@@ -22,12 +23,40 @@ export function MaterialsPage({
   gauge,
   accessories,
   abbreviations,
+  language,
 }: MaterialsPageProps) {
+  const texts = {
+    fr: {
+      title: "MATÉRIEL",
+      subtitle: "Ce dont vous aurez besoin",
+      yarn: "FIL",
+      needles: "AIGUILLES",
+      accessories: "ACCESSOIRES",
+      gauge: "ÉCHANTILLON ESSENTIEL",
+      gaugeWarning: "L'échantillon détermine toutes les dimensions. Sans lui, votre patron sera faux.",
+      stitches: "mailles",
+      rows: "rangs",
+      abbreviations: "ABRÉVIATIONS",
+    },
+    en: {
+      title: "MATERIALS",
+      subtitle: "What you will need",
+      yarn: "YARN",
+      needles: "NEEDLES",
+      accessories: "ACCESSORIES",
+      gauge: "ESSENTIAL GAUGE",
+      gaugeWarning: "The gauge determines all dimensions. Without it, your pattern will be wrong.",
+      stitches: "stitches",
+      rows: "rows",
+      abbreviations: "ABBREVIATIONS",
+    },
+  };
+  const t = texts[language];
   return (
     <Page size="A4" style={styles.page}>
       {/* Header */}
-      <Text style={styles.h3}>MATÉRIEL</Text>
-      <Text style={styles.h2}>Ce dont vous aurez besoin</Text>
+      <Text style={styles.h3}>{t.title}</Text>
+      <Text style={styles.h2}>{t.subtitle}</Text>
       <View style={styles.dividerAccent} />
 
       {/* Grille 2 colonnes */}
@@ -37,7 +66,7 @@ export function MaterialsPage({
           {/* Fil */}
           <View style={styles.card}>
             <Text style={[styles.h3, { color: colors.primary, marginBottom: 8 }]}>
-              FIL
+              {t.yarn}
             </Text>
             <Text style={[styles.body, { fontWeight: "bold", marginBottom: 4 }]}>
               {yarn.weight}
@@ -53,7 +82,7 @@ export function MaterialsPage({
           {/* Aiguilles */}
           <View style={styles.card}>
             <Text style={[styles.h3, { color: colors.primary, marginBottom: 8 }]}>
-              AIGUILLES
+              {t.needles}
             </Text>
             <Text style={styles.body}>{needles}</Text>
           </View>
@@ -61,7 +90,7 @@ export function MaterialsPage({
           {/* Accessoires */}
           <View style={styles.card}>
             <Text style={[styles.h3, { color: colors.primary, marginBottom: 8 }]}>
-              ACCESSOIRES
+              {t.accessories}
             </Text>
             {accessories.map((a, i) => (
               <Text key={i} style={[styles.body, { marginBottom: 2 }]}>
@@ -81,7 +110,7 @@ export function MaterialsPage({
             ]}
           >
             <Text style={{ color: "white", fontSize: 11, fontWeight: "bold", marginBottom: 8 }}>
-              ÉCHANTILLON ESSENTIEL
+              {t.gauge}
             </Text>
             <Text
               style={{
@@ -91,8 +120,7 @@ export function MaterialsPage({
                 lineHeight: 1.5,
               }}
             >
-              L&apos;échantillon détermine toutes les dimensions. Sans lui, votre
-              patron sera faux.
+              {t.gaugeWarning}
             </Text>
 
             {/* Carré visuel */}
@@ -121,9 +149,9 @@ export function MaterialsPage({
               </View>
               <View style={{ marginTop: 10, alignItems: "center" }}>
                 <Text style={[styles.mono, { marginBottom: 4 }]}>
-                  {gauge.stitches} mailles
+                  {gauge.stitches} {t.stitches}
                 </Text>
-                <Text style={styles.mono}>{gauge.rows} rangs</Text>
+                <Text style={styles.mono}>{gauge.rows} {t.rows}</Text>
               </View>
             </View>
           </View>
@@ -131,7 +159,7 @@ export function MaterialsPage({
           {/* Abréviations */}
           <View style={styles.card}>
             <Text style={[styles.h3, { color: colors.primary, marginBottom: 8 }]}>
-              ABRÉVIATIONS
+              {t.abbreviations}
             </Text>
             {abbreviations.map((a, i) => (
               <View
