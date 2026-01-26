@@ -12,16 +12,16 @@ interface LogoProps {
 // Desktop: 48px height → 68px width
 export function Logo({ className = "", showTagline = true }: LogoProps) {
   return (
-    <div className={`flex flex-col ${className}`}>
+    <div className={`flex flex-col items-center ${className}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/logo-lamaille.svg"
         alt="La Maille"
-        className="h-[40px] md:h-[48px] w-auto"
-        style={{ minHeight: '40px' }}
+        className="h-[128px] md:h-[160px] w-auto"
+        style={{ minHeight: '128px' }}
       />
       {showTagline && (
-        <span className="text-xs md:text-sm text-muted-foreground mt-1">
+        <span className="text-sm md:text-base text-muted-foreground -mt-12 text-center">
           your French knitting studio
         </span>
       )}
