@@ -1,23 +1,47 @@
-import type { GeneratedPattern } from "@/lib/types";
+import type { GeneratedPattern, GarmentAnalysis } from "@/lib/types";
 import { GARMENT_TYPE_LABELS } from "@/lib/types";
+
+interface GeneratePDFOptions {
+  pattern: GeneratedPattern;
+  analysis?: GarmentAnalysis;
+  imageUrl?: string;
+  language?: "fr" | "en";
+}
 
 /**
  * Generate a PDF blob from a pattern
  * Uses dynamic import to avoid SSR issues with @react-pdf/renderer
  */
 export async function generatePatternPDF(
-  pattern: GeneratedPattern
+  patternOrOptions: GeneratedPattern | GeneratePDFOptions
 ): Promise<Blob> {
+  // Support both old signature (just pattern) and new signature (options object)
+  const options: GeneratePDFOptions =
+    'pattern' in patternOrOptions
+      ? patternOrOptions
+      : { pattern: patternOrOptions };
+
+  const { pattern, analysis, imageUrl, language = "fr" } = options;
+
   // Dynamic imports to avoid SSR issues
-  const [{ pdf }, { createElement }, { PatternPDF }] = await Promise.all([
+  const [{ pdf }, { createElement }, { PatternDocument }] = await Promise.all([
     import("@react-pdf/renderer"),
     import("react"),
-    import("@/components/PatternPDF"),
+    import("@/lib/pdf/PatternDocument"),
   ]);
+
+  // Use analysis from options or from pattern
+  const analysisData = analysis || pattern.analysis;
 
   // Create the PDF document element
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const doc = createElement(PatternPDF, { pattern }) as any;
+  const doc = createElement(PatternDocument, {
+    pattern,
+    analysis: analysisData,
+    imageUrl,
+    language,
+  }) as any;
+
   const blob = await pdf(doc).toBlob();
   return blob;
 }

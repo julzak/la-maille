@@ -181,7 +181,12 @@ export default function PatronPage() {
     });
 
     try {
-      const blob = await generatePatternPDF(pattern);
+      const blob = await generatePatternPDF({
+        pattern,
+        analysis: pattern.analysis,
+        imageUrl: imagePreview || undefined,
+        language,
+      });
       const filename = getPatternFilename(pattern);
 
       // Create download link
@@ -205,7 +210,7 @@ export default function PatronPage() {
     } finally {
       setIsGeneratingPDF(false);
     }
-  }, [pattern, isGeneratingPDF, t]);
+  }, [pattern, isGeneratingPDF, t, imagePreview, language]);
 
   // Share PDF (mobile)
   const handleSharePDF = useCallback(async () => {
@@ -217,7 +222,12 @@ export default function PatronPage() {
     });
 
     try {
-      const blob = await generatePatternPDF(pattern);
+      const blob = await generatePatternPDF({
+        pattern,
+        analysis: pattern.analysis,
+        imageUrl: imagePreview || undefined,
+        language,
+      });
       const filename = getPatternFilename(pattern);
       const garmentTypeLabel = t(`garment.${pattern.analysis.garment.type}` as const);
 
@@ -242,7 +252,7 @@ export default function PatronPage() {
     } finally {
       setIsGeneratingPDF(false);
     }
-  }, [pattern, isGeneratingPDF, t]);
+  }, [pattern, isGeneratingPDF, t, imagePreview, language]);
 
   // Loading pendant l'hydratation
   if (!isHydrated || !pattern) {
