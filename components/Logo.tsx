@@ -13,7 +13,7 @@ interface LogoProps {
 export function Logo({ className = "", showTagline = true }: LogoProps) {
   return (
     <div className={`flex flex-col ${className}`}>
-      <div className="relative h-10 w-40">
+      <div className="relative h-8 w-28 md:h-10 md:w-36">
         <Image
           src="/logo-lamaille.svg"
           alt="La Maille"
@@ -23,7 +23,7 @@ export function Logo({ className = "", showTagline = true }: LogoProps) {
         />
       </div>
       {showTagline && (
-        <span className="text-xs text-muted-foreground -mt-1">
+        <span className="text-xs text-muted-foreground">
           your French knitting studio
         </span>
       )}
