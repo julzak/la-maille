@@ -8,16 +8,12 @@ interface LogoProps {
   showTagline?: boolean;
 }
 
-export function Logo({ variant = "dark", className = "", showTagline = true }: LogoProps) {
-  // On dark backgrounds: use the écru color (#F5F0E6)
-  // On light backgrounds: invert to show properly
-  const filterStyle = variant === "light"
-    ? { filter: "invert(1)" } // Invert for light backgrounds
-    : { filter: "brightness(0) invert(0.94) sepia(0.05) saturate(0.3)" }; // Écru for dark
-
+// SVG logo component - uses the actual logo file
+// Note: Current logo is 306KB (embedded PNG in SVG), consider getting a true vector version
+export function Logo({ className = "", showTagline = true }: LogoProps) {
   return (
     <div className={`flex flex-col ${className}`}>
-      <div className="relative h-8 w-32" style={filterStyle}>
+      <div className="relative h-10 w-40">
         <Image
           src="/logo-lamaille.svg"
           alt="La Maille"
@@ -27,7 +23,7 @@ export function Logo({ variant = "dark", className = "", showTagline = true }: L
         />
       </div>
       {showTagline && (
-        <span className="text-xs text-muted-foreground -mt-0.5">
+        <span className="text-xs text-muted-foreground -mt-1">
           your French knitting studio
         </span>
       )}
@@ -35,7 +31,8 @@ export function Logo({ variant = "dark", className = "", showTagline = true }: L
   );
 }
 
-// Simple text-based logo as fallback or for smaller sizes
+// Simple text-based logo - lightweight fallback
+// Uses brand colors: écru #F5F0E6, coral #E07A5F
 export function LogoText({
   variant = "dark",
   className = "",
