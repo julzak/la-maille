@@ -18,6 +18,11 @@ export default function Home() {
     clearProject();
     setImage(file, preview);
     setAnalysisLoading(true);
+
+    // Wait for Zustand persist to flush to sessionStorage before navigation
+    // This fixes the race condition where navigation happens before state is persisted
+    await new Promise(resolve => setTimeout(resolve, 50));
+
     router.push("/analyse");
   };
 

@@ -202,9 +202,19 @@ export const useStoreHydrated = () => {
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    // On client-side, mark as hydrated after first render
-    // This ensures we don't redirect before React has a chance to render with the actual state
-    setHydrated(true);
+    // Wait for Zustand persist to complete hydration
+    const unsubscribe = useLaMailleStore.persist.onFinishHydration(() => {
+      setHydrated(true);
+    });
+
+    // Check if already hydrated (in case hydration finished before effect ran)
+    if (useLaMailleStore.persist.hasHydrated()) {
+      setHydrated(true);
+    }
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return hydrated;

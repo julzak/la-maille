@@ -12,7 +12,7 @@ import { MeasurementsForm } from "@/components/MeasurementsForm";
 import { GarmentOverlay } from "@/components/GarmentOverlay";
 import { SaveIndicator } from "@/components/SaveIndicator";
 import { WeavingLoader } from "@/components/WeavingLoader";
-import { useLaMailleStore } from "@/lib/store";
+import { useLaMailleStore, useStoreHydrated } from "@/lib/store";
 import { generateFullPattern } from "@/lib/pattern-calculator";
 import {
   getRejectionMessage,
@@ -48,6 +48,9 @@ export default function AnalysePage() {
   const [overlayConfirmed, setOverlayConfirmed] = useState(false);
   const [projectId] = useState(() => generateProjectId());
 
+  // Wait for store hydration before making decisions
+  const isHydrated = useStoreHydrated();
+
   // Prepare project data for auto-save
   const projectData = useMemo<StoredProject | null>(() => {
     if (!imagePreview) return null;
@@ -68,15 +71,12 @@ export default function AnalysePage() {
     { enabled: !!projectData, delay: 2000 }
   );
 
-  // Guard: redirect si pas d'image après un court délai
+  // Guard: redirect si pas d'image (seulement après hydration)
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!useLaMailleStore.getState().imagePreview) {
-        router.replace("/");
-      }
-    }, 200);
-    return () => clearTimeout(timer);
-  }, [router]);
+    if (isHydrated && !useLaMailleStore.getState().imagePreview) {
+      router.replace("/");
+    }
+  }, [router, isHydrated]);
 
   // Lancer l'analyse au montage si on a une image mais pas encore d'analyse
   const runAnalysis = useCallback(async () => {
@@ -138,10 +138,11 @@ export default function AnalysePage() {
   ]);
 
   useEffect(() => {
-    if (imagePreview && !analysis && !analysisError) {
+    // Only run analysis after hydration is complete to ensure we have the image data
+    if (isHydrated && imagePreview && !analysis && !analysisError) {
       runAnalysis();
     }
-  }, [imagePreview, analysis, analysisError, runAnalysis]);
+  }, [isHydrated, imagePreview, analysis, analysisError, runAnalysis]);
 
   // Handler pour le formulaire
   const handleFormSubmit = async (data: {
