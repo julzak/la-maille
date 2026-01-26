@@ -202,18 +202,31 @@ export const useStoreHydrated = () => {
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
+    // Check if already hydrated immediately
+    if (useLaMailleStore.persist.hasHydrated()) {
+      console.log("[Store] Already hydrated");
+      setHydrated(true);
+      return;
+    }
+
     // Wait for Zustand persist to complete hydration
     const unsubscribe = useLaMailleStore.persist.onFinishHydration(() => {
+      console.log("[Store] Hydration finished");
       setHydrated(true);
     });
 
-    // Check if already hydrated (in case hydration finished before effect ran)
-    if (useLaMailleStore.persist.hasHydrated()) {
+    // Fallback: if hydration doesn't complete in 500ms, assume it's done
+    // This handles edge cases where the callback might not fire
+    const fallbackTimer = setTimeout(() => {
+      if (!useLaMailleStore.persist.hasHydrated()) {
+        console.log("[Store] Hydration fallback triggered");
+      }
       setHydrated(true);
-    }
+    }, 500);
 
     return () => {
-      unsubscribe();
+      if (unsubscribe) unsubscribe();
+      clearTimeout(fallbackTimer);
     };
   }, []);
 

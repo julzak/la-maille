@@ -146,6 +146,7 @@ export function ImageUploader({
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
+      console.log("[ImageUploader] handleChange called, file:", file?.name);
       if (file) {
         handleFile(file);
       }
@@ -153,7 +154,10 @@ export function ImageUploader({
     [handleFile]
   );
 
-  const handleClick = useCallback(() => {
+  const handleClick = useCallback((e?: React.MouseEvent) => {
+    // Stop propagation to prevent double-triggering from button + container
+    e?.stopPropagation();
+
     // Reset input value to allow selecting the same file again
     if (inputRef.current) {
       inputRef.current.value = "";

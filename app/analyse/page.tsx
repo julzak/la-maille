@@ -73,10 +73,18 @@ export default function AnalysePage() {
 
   // Guard: redirect si pas d'image (seulement après hydration)
   useEffect(() => {
-    if (isHydrated && !useLaMailleStore.getState().imagePreview) {
+    const state = useLaMailleStore.getState();
+    console.log("[Analyse] Guard check:", {
+      isHydrated,
+      hasImagePreview: !!state.imagePreview,
+      imagePreviewFromHook: !!imagePreview,
+    });
+
+    if (isHydrated && !state.imagePreview) {
+      console.log("[Analyse] Redirecting to home - no image");
       router.replace("/");
     }
-  }, [router, isHydrated]);
+  }, [router, isHydrated, imagePreview]);
 
   // Lancer l'analyse au montage si on a une image mais pas encore d'analyse
   const runAnalysis = useCallback(async () => {

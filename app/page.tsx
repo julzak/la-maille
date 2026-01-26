@@ -14,6 +14,8 @@ export default function Home() {
   const { setImage, setAnalysisLoading, analysisLoading } = useLaMailleStore();
 
   const handleImageSelected = async (file: File, preview: string) => {
+    console.log("[Home] handleImageSelected called, file:", file.name);
+
     // Clear any previous project when starting new
     clearProject();
     setImage(file, preview);
@@ -21,7 +23,14 @@ export default function Home() {
 
     // Wait for Zustand persist to flush to sessionStorage before navigation
     // This fixes the race condition where navigation happens before state is persisted
-    await new Promise(resolve => setTimeout(resolve, 50));
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    // Verify the state was set
+    const state = useLaMailleStore.getState();
+    console.log("[Home] State after setImage:", {
+      hasPreview: !!state.imagePreview,
+      previewLength: state.imagePreview?.length,
+    });
 
     router.push("/analyse");
   };
