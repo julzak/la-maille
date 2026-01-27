@@ -67,6 +67,10 @@ export const translations = {
     whyEssential: "Pourquoi c'est essentiel ?",
     gaugeExplanation:
       "L'échantillon détermine toutes les dimensions. Sans lui, le patron sera faux.",
+    whyEssentialTitle: "Pourquoi l'échantillon est essentiel",
+    whyEssentialText1: "L'échantillon est la clé d'un tricot réussi. C'est lui qui détermine toutes les dimensions de votre vêtement.",
+    whyEssentialText2: "Chaque tricoteur·se a une tension différente, et chaque fil se comporte différemment. Sans échantillon, le patron sera approximatif.",
+    whyEssentialText3: "Prenez le temps de tricoter un carré de 15x15 cm, lavez-le et bloquez-le comme vous le ferez pour le vêtement fini.",
     gaugeDescription: "Tricoté avec votre fil et vos aiguilles, lavé et bloqué",
     stitchesPer10cm: "Mailles pour 10cm",
     rowsPer10cm: "Rangs pour 10cm",
@@ -615,6 +619,10 @@ export const translations = {
     whyEssential: "Why is this essential?",
     gaugeExplanation:
       "The gauge determines all dimensions. Without it, the pattern will be wrong.",
+    whyEssentialTitle: "Why gauge is essential",
+    whyEssentialText1: "Gauge is the key to successful knitting. It determines all the dimensions of your garment.",
+    whyEssentialText2: "Every knitter has different tension, and every yarn behaves differently. Without a gauge swatch, the pattern will be approximate.",
+    whyEssentialText3: "Take the time to knit a 15x15 cm square, wash it and block it as you will for the finished garment.",
     gaugeDescription: "Knit with your yarn and needles, wash and block",
     stitchesPer10cm: "Stitches per 10cm",
     rowsPer10cm: "Rows per 10cm",
