@@ -8,9 +8,9 @@ export function Footer() {
 
   return (
     <footer className="bg-muted/30 mt-auto border-t border-border">
-      <div className="container mx-auto px-4 py-10 flex flex-col items-center">
-        <Logo showTagline={false} className="mb-4 scale-75" />
-        <p className="text-sm text-muted-foreground mb-2">
+      <div className="container mx-auto px-4 py-5 flex flex-col items-center">
+        <Logo showTagline={false} className="mb-1 scale-50" />
+        <p className="text-sm text-muted-foreground mb-1">
           Fait avec ❤️ & 🧶 à Paris
         </p>
         <p className="text-xs text-muted-foreground">
