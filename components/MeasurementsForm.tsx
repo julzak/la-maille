@@ -336,21 +336,15 @@ export function MeasurementsForm({
           <CardHeader className="pb-3 md:pb-4">
             <div className="flex items-center gap-2 flex-wrap">
               <CardTitle className="text-base md:text-lg">{t("gauge")}</CardTitle>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    type="button"
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    <span className="text-xs md:text-sm underline decoration-dotted">
-                      {t("whyEssential")}
-                    </span>
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent className="max-w-xs">
-                  <p>{t("gaugeExplanation")}</p>
-                </TooltipContent>
-              </Tooltip>
+              <button
+                type="button"
+                onClick={() => setGaugeCheckerOpen(true)}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <span className="text-xs md:text-sm underline decoration-dotted">
+                  {t("whyEssential")}
+                </span>
+              </button>
             </div>
             <CardDescription className="text-xs md:text-sm">
               {t("gaugeDescription")}

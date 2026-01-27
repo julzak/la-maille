@@ -146,14 +146,28 @@ export function GarmentOverlay({
             </div>
           </div>
 
-          {/* Right column: Schematic */}
+          {/* Right column: Schematics (Front + Back) */}
           <div>
             <p className="text-sm text-muted-foreground mb-2">{t("whatIUnderstood")}</p>
-            <div className="bg-white border rounded-lg p-4 aspect-[3/4] flex items-center justify-center">
-              <GarmentSchematic
-                analysis={analysis}
-                showUncertainty={true}
-              />
+            <div className="bg-white border rounded-lg p-4 aspect-[3/4] flex items-center justify-center gap-1 md:gap-2">
+              <div className="flex flex-col items-center flex-1 min-w-0">
+                <GarmentSchematic
+                  analysis={analysis}
+                  showUncertainty={true}
+                  view="front"
+                  className="max-w-[80px] md:max-w-[140px]"
+                />
+                <span className="text-xs text-muted-foreground mt-1">Face</span>
+              </div>
+              <div className="flex flex-col items-center flex-1 min-w-0">
+                <GarmentSchematic
+                  analysis={analysis}
+                  showUncertainty={false}
+                  view="back"
+                  className="max-w-[80px] md:max-w-[140px]"
+                />
+                <span className="text-xs text-muted-foreground mt-1">Dos</span>
+              </div>
             </div>
 
             {/* Legend under schematic */}

@@ -17,7 +17,7 @@ export function Logo({ className = "", showTagline = true }: LogoProps) {
       <img
         src="/logo-lamaille.svg"
         alt="La Maille"
-        className="h-[128px] md:h-[160px] w-auto"
+        className="logo-img h-[128px] md:h-[160px] w-auto"
         style={{ minHeight: '128px' }}
       />
       {showTagline && (

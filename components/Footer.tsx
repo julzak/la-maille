@@ -1,5 +1,6 @@
 "use client";
 
+import { Logo } from "@/components/Logo";
 import { useTranslation } from "@/lib/i18n";
 
 export function Footer() {
@@ -7,12 +8,13 @@ export function Footer() {
 
   return (
     <footer className="bg-muted/30 mt-auto border-t border-border">
-      <div className="container mx-auto px-4 py-10 text-center">
-        <p className="logo-text text-sm tracking-wider text-muted-foreground mb-2">
-          LA MAILLE
+      <div className="container mx-auto px-4 py-10 flex flex-col items-center">
+        <Logo showTagline={false} className="mb-4 scale-75" />
+        <p className="text-sm text-muted-foreground mb-2">
+          Fait avec ❤️ & 🧶 à Paris
         </p>
-        <p className="text-sm text-muted-foreground">
-          {t("footerMadeWith")} — {t("footerDisclaimer")}
+        <p className="text-xs text-muted-foreground">
+          {t("footerDisclaimer")}
         </p>
       </div>
     </footer>

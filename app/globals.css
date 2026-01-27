@@ -120,6 +120,18 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
   }
+
+  /* Logo image - disable filters on mobile for cleaner rendering */
+  .logo-img {
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (max-width: 768px) {
+    .logo-img {
+      filter: none !important;
+    }
+  }
 }
 
 @layer utilities {
