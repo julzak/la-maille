@@ -9,7 +9,7 @@ export function Footer() {
   return (
     <footer className="bg-muted/30 mt-auto border-t border-border">
       <div className="container mx-auto px-4 py-5 flex flex-col items-center">
-        <Logo showTagline={false} className="mb-1 scale-50" />
+        <Logo showTagline={false} className="mb-1" />
         <p className="text-sm text-muted-foreground mb-1">
           Fait avec ❤️ & 🧶 à Paris
         </p>
