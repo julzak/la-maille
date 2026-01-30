@@ -385,15 +385,19 @@ export const translations = {
     yarnEstimateDisclaimer: "Le métrage est une estimation. Chaque tricoteur·se a une tension différente. En cas de doute, prenez toujours une pelote de plus !",
 
     // Size presets
+    chooseYourSize: "Votre taille",
     chooseABase: "Choisir une base",
-    startFromStandardSize: "Partir d'une taille standard",
+    startFromStandardSize: "Sélectionnez votre taille pour commencer",
+    customizeMeasurements: "Personnaliser les mensurations",
+    hideDetails: "Masquer les détails",
     customMeasurements: "Mesures personnalisees",
     basedOnSize: "Base taille",
-    modified: "(modifié)",
+    modified: "(personnalisé)",
     standardValue: "Valeur standard",
     youEntered: "Vous avez saisi",
     noNeedForPrecision: "Pas besoin de précision au millimètre ! Des valeurs approximatives suffisent.",
     hipCircumference: "Tour de hanches",
+    detailedMeasurements: "Mensurations détaillées",
 
     // Image uploader
     dropImageHere: "Deposez l'image ici",
@@ -938,15 +942,19 @@ export const translations = {
     yarnEstimateDisclaimer: "Yardage is an estimate. Every knitter has different tension. When in doubt, always get one more skein!",
 
     // Size presets
+    chooseYourSize: "Your size",
     chooseABase: "Choose a base",
-    startFromStandardSize: "Start from a standard size",
+    startFromStandardSize: "Select your size to get started",
+    customizeMeasurements: "Customize measurements",
+    hideDetails: "Hide details",
     customMeasurements: "Custom measurements",
     basedOnSize: "Based on size",
-    modified: "(modified)",
+    modified: "(customized)",
     standardValue: "Standard value",
     youEntered: "You entered",
     noNeedForPrecision: "No need for millimeter precision! Approximate values are fine.",
     hipCircumference: "Hip circumference",
+    detailedMeasurements: "Detailed measurements",
 
     // Image uploader
     dropImageHere: "Drop image here",

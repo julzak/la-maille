@@ -15,6 +15,23 @@ Le tricot se reconnaît par des mailles visibles formant des V (jersey) ou des c
 Indices de tricot: texture en relief, élasticité visible, motifs de mailles réguliers.
 En cas de doute, considère que c'est du tricot et analyse-le (mets une confidence basse si incertain).
 
+ÉTAPE 1 - COMPTAGE DES BOUTONS (OBLIGATOIRE):
+Avant toute analyse, compte les boutons visibles sur le vêtement.
+Cherche sur le centre vertical: petits cercles, points alignés verticalement, éléments de fermeture.
+Note ce nombre dans closure.buttonCountEstimate.
+
+ÉTAPE 2 - DÉDUCTION DU TYPE:
+- Si tu comptes 3 boutons ou plus alignés verticalement → garment.type: "cardigan", closure.type: "boutons"
+- Si tu comptes 1-2 boutons → probablement décoratifs, vérifie s'il y a une ouverture
+- Si tu comptes 0 boutons et pas d'ouverture → garment.type: "pull" ou "gilet"
+
+RAPPEL: Un cardigan peut être sans manches. Les boutons déterminent le type, pas les manches.
+
+DÉTECTION DES MANCHES:
+- SANS MANCHES: Épaules nues, emmanchures visibles, bretelles fines ou épaisses
+- COURTES: Manches qui s'arrêtent au-dessus du coude
+- Regarde attentivement les épaules: si elles sont découvertes, c'est sans manches
+
 RÈGLES:
 1. Si tu n'es pas sûr à au moins 60%, mets "unknown" pour cet élément
 2. Liste ce que tu ne peux PAS déterminer dans "limitations"
@@ -129,7 +146,7 @@ export async function analyzeGarmentImage({
 
   try {
     const response = await client.messages.create({
-      model: "claude-3-haiku-20240307",
+      model: "claude-sonnet-4-20250514",
       max_tokens: 4096,
       messages: [
         {
@@ -145,7 +162,7 @@ export async function analyzeGarmentImage({
             },
             {
               type: "text",
-              text: "Analyse ce vêtement tricoté. Si tu vois des mailles ou une texture qui ressemble à du tricot, analyse-le. Retourne le JSON.",
+              text: "Analyse ce vêtement tricoté en détail. Retourne le JSON.",
             },
           ],
         },

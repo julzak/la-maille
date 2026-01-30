@@ -7,6 +7,7 @@ interface GarmentSchematicProps {
   analysis: GarmentAnalysis;
   className?: string;
   showUncertainty?: boolean;
+  view?: "front" | "back";
 }
 
 /**
@@ -27,14 +28,23 @@ function getStrokeProps(confidence: number, showUncertainty: boolean) {
 }
 
 /**
- * Generate neckline path based on type
+ * Generate neckline path based on type and view (front or back)
  */
 function getNecklinePath(
   type: string,
   confidence: number,
-  showUncertainty: boolean
+  showUncertainty: boolean,
+  view: "front" | "back" = "front"
 ): { path: string; strokeProps: ReturnType<typeof getStrokeProps> } {
   const strokeProps = getStrokeProps(confidence, showUncertainty);
+
+  // Back neckline is always simpler/higher
+  if (view === "back") {
+    return {
+      path: "M 70 50 Q 70 44 100 42 Q 130 44 130 50",
+      strokeProps,
+    };
+  }
 
   switch (type) {
     case "col-v":
@@ -216,11 +226,12 @@ export function GarmentSchematic({
   analysis,
   className,
   showUncertainty = true,
+  view = "front",
 }: GarmentSchematicProps) {
   const { garment, neckline, sleeves, fit, closure } = analysis;
 
   // Get all path data
-  const necklineData = getNecklinePath(neckline.type, neckline.confidence, showUncertainty);
+  const necklineData = getNecklinePath(neckline.type, neckline.confidence, showUncertainty, view);
   const bodyPath = getBodyPath(garment.type, fit.style);
   const shoulderPath = getShoulderPath(sleeves.type, fit.style);
   const sleeveData = getSleevePaths(
@@ -301,11 +312,11 @@ export function GarmentSchematic({
         </>
       )}
 
-      {/* Buttons for cardigan */}
-      {garment.type === "cardigan" && buttons}
+      {/* Buttons for cardigan (front view only) */}
+      {garment.type === "cardigan" && view === "front" && buttons}
 
-      {/* Center line for cardigan */}
-      {garment.type === "cardigan" && (
+      {/* Center line for cardigan (front view only) */}
+      {garment.type === "cardigan" && view === "front" && (
         <line
           x1="100"
           y1="70"

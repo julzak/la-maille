@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { KnittingMode } from "@/components/KnittingMode";
+import { KnitMode } from "@/components/KnitMode";
 import { useLaMailleStore } from "@/lib/store";
 import { useTranslation } from "@/lib/i18n";
 
@@ -48,5 +48,5 @@ export default function TricotPage() {
     );
   }
 
-  return <KnittingMode pattern={pattern} onExit={handleExit} />;
+  return <KnitMode pattern={pattern} onExit={handleExit} />;
 }

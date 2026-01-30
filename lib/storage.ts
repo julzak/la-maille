@@ -13,7 +13,6 @@ import type {
 // Storage keys
 export const STORAGE_KEYS = {
   CURRENT_PROJECT: "lamaille_current_project",
-  KNITTING_PROGRESS: "lamaille_knitting_progress",
   USER_PREFERENCES: "lamaille_preferences",
   GAUGE_CALIBRATION: "lamaille_gauge_calibration",
 } as const;
@@ -30,20 +29,6 @@ export interface StoredProject {
   gauge?: Gauge;
   yarn?: YarnInfo;
   pattern?: GeneratedPattern;
-}
-
-// Knitting progress interface (for knitting mode)
-export interface KnittingProgress {
-  patternId: string;
-  currentPiece: string;
-  currentRow: number;
-  markers: {
-    row: number;
-    note: string;
-    timestamp: string;
-  }[];
-  completedPieces: string[];
-  lastUpdated: string;
 }
 
 // User preferences interface
@@ -152,67 +137,6 @@ export function updateProject(updates: Partial<StoredProject>): void {
     ...current,
     ...updates,
   });
-}
-
-// ===========================================
-// Knitting Progress Storage
-// ===========================================
-
-/**
- * Get storage key for knitting progress
- */
-function getKnittingProgressKey(patternId: string): string {
-  return `${STORAGE_KEYS.KNITTING_PROGRESS}_${patternId}`;
-}
-
-/**
- * Save knitting progress
- */
-export function saveKnittingProgress(progress: KnittingProgress): void {
-  if (!isStorageAvailable()) return;
-
-  try {
-    const progressToSave = {
-      ...progress,
-      lastUpdated: new Date().toISOString(),
-    };
-    localStorage.setItem(
-      getKnittingProgressKey(progress.patternId),
-      JSON.stringify(progressToSave)
-    );
-  } catch (error) {
-    console.error("Failed to save knitting progress:", error);
-  }
-}
-
-/**
- * Load knitting progress for a specific pattern
- */
-export function loadKnittingProgress(patternId: string): KnittingProgress | null {
-  if (!isStorageAvailable()) return null;
-
-  try {
-    const stored = localStorage.getItem(getKnittingProgressKey(patternId));
-    if (!stored) return null;
-
-    return JSON.parse(stored) as KnittingProgress;
-  } catch (error) {
-    console.error("Failed to load knitting progress:", error);
-    return null;
-  }
-}
-
-/**
- * Clear knitting progress for a specific pattern
- */
-export function clearKnittingProgress(patternId: string): void {
-  if (!isStorageAvailable()) return;
-
-  try {
-    localStorage.removeItem(getKnittingProgressKey(patternId));
-  } catch (error) {
-    console.error("Failed to clear knitting progress:", error);
-  }
 }
 
 // ===========================================

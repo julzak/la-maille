@@ -250,3 +250,44 @@ export const CONFIDENCE_LABELS: Record<GarmentAnalysis["overallConfidence"], str
   low: "Faible",
   insufficient: "Insuffisante",
 };
+
+// ===========================================
+// Types pour le mode tricot (KnitMode)
+// ===========================================
+
+export interface ParsedInstruction {
+  row: number;
+  instruction: string;
+  context?: string;
+  technicalNote?: string;
+  isDecrease: boolean;
+  isIncrease: boolean;
+  isSpecial: boolean;
+  specialType?: "decrease" | "increase" | "bind-off" | "cast-on";
+}
+
+export interface ParsedPiece {
+  id: string;
+  name: string;
+  totalRows: number;
+  instructions: ParsedInstruction[];
+}
+
+export interface PieceProgress {
+  currentRow: number;
+  completed: boolean;
+  markers?: Marker[];
+}
+
+export interface Marker {
+  row: number;
+  note: string;
+  timestamp: Date;
+}
+
+export interface KnittingProgress {
+  patternId: string;
+  patternDate?: string;
+  pieces: { [pieceId: string]: PieceProgress };
+  lastUpdated: string;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,224 +12,39 @@ import {
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import type { GeneratedPattern } from "@/lib/types";
+import {
+  usePatternParsing,
+  loadProgress,
+  saveProgress,
+  initializeProgress,
+  type ParsedInstruction,
+  type KnittingProgress,
+} from "@/hooks/usePatternParsing";
 
 interface KnitModeProps {
   pattern: GeneratedPattern;
   onExit: () => void;
 }
 
-interface ParsedInstruction {
-  row: number;
-  instruction: string;
-  technicalNote?: string;
-  isSpecial: boolean;
-  specialType?: "decrease" | "increase" | "bind-off" | "cast-on";
-}
-
-interface ParsedPiece {
-  id: string;
-  name: string;
-  totalRows: number;
-  instructions: ParsedInstruction[];
-}
-
-interface PieceProgress {
-  currentRow: number;
-  completed: boolean;
-}
-
-interface KnitProgress {
-  patternId: string;
-  pieces: { [pieceName: string]: PieceProgress };
-  lastUpdated: string;
-}
-
-const STORAGE_KEY = "lamaille_knit_progress";
-
-/**
- * Parse pattern pieces into row-by-row instructions
- */
-function parsePatternToPieces(
-  pattern: GeneratedPattern,
-  language: "fr" | "en"
-): ParsedPiece[] {
-  const pieces: ParsedPiece[] = [];
-
-  for (const piece of pattern.pieces) {
-    const parsedInstructions: ParsedInstruction[] = [];
-
-    for (const instr of piece.instructions) {
-      const rowCount = instr.rowEnd - instr.rowStart + 1;
-      const instrText = instr.text;
-
-      // Detect special rows
-      const isDecrease = /diminue|decrease|rabatt|bind.?off|dec\b/i.test(instrText);
-      const isIncrease = /augment|increase|inc\b/i.test(instrText);
-      const isBindOff = /rabatt|bind.?off/i.test(instrText);
-      const isCastOn = /monter|cast.?on/i.test(instrText);
-      const isSpecial =
-        isDecrease ||
-        isIncrease ||
-        /emmanchure|armhole|encolure|neckline|epaule|shoulder/i.test(instrText);
-
-      let specialType: ParsedInstruction["specialType"];
-      if (isBindOff) specialType = "bind-off";
-      else if (isCastOn) specialType = "cast-on";
-      else if (isDecrease) specialType = "decrease";
-      else if (isIncrease) specialType = "increase";
-
-      // Add entries for each row in the range
-      for (let row = instr.rowStart; row <= instr.rowEnd; row++) {
-        const isFirstRowOfRange = row === instr.rowStart;
-
-        parsedInstructions.push({
-          row,
-          instruction: isFirstRowOfRange
-            ? instrText
-            : language === "fr"
-            ? `Continuer (rang ${row - instr.rowStart + 1}/${rowCount})`
-            : `Continue (row ${row - instr.rowStart + 1}/${rowCount})`,
-          technicalNote: instr.notes,
-          isSpecial: isFirstRowOfRange && isSpecial,
-          specialType: isFirstRowOfRange ? specialType : undefined,
-        });
-      }
-    }
-
-    // Determine piece id from name
-    const nameLower = piece.name.toLowerCase();
-    let pieceId = piece.name.replace(/\s+/g, "-").toLowerCase();
-
-    if (nameLower.includes("corps") || nameLower.includes("body")) {
-      pieceId = "body";
-    } else if (nameLower.includes("dos") || nameLower.includes("back")) {
-      pieceId = "back";
-    } else if (
-      nameLower.includes("devant gauche") ||
-      nameLower.includes("left front")
-    ) {
-      pieceId = "front-left";
-    } else if (
-      nameLower.includes("devant droit") ||
-      nameLower.includes("right front")
-    ) {
-      pieceId = "front-right";
-    } else if (nameLower.includes("devant") || nameLower.includes("front")) {
-      pieceId = "front";
-    } else if (nameLower.includes("manche") || nameLower.includes("sleeve")) {
-      const existingSleeve = pieces.find((p) => p.id === "sleeve-left");
-      pieceId = existingSleeve ? "sleeve-right" : "sleeve-left";
-    } else if (
-      nameLower.includes("empiecement") ||
-      nameLower.includes("yoke")
-    ) {
-      pieceId = "yoke";
-    } else if (
-      nameLower.includes("encolure") ||
-      nameLower.includes("neckline") ||
-      nameLower.includes("neck")
-    ) {
-      pieceId = "neckline";
-    }
-
-    if (parsedInstructions.length > 0) {
-      pieces.push({
-        id: pieceId,
-        name: piece.name,
-        totalRows: piece.totalRows || parsedInstructions.length,
-        instructions: parsedInstructions,
-      });
-    }
-  }
-
-  // Fallback if no pieces
-  if (pieces.length === 0) {
-    pieces.push({
-      id: "pattern",
-      name: language === "fr" ? "Patron" : "Pattern",
-      totalRows: 1,
-      instructions: [
-        {
-          row: 1,
-          instruction:
-            language === "fr"
-              ? "Aucune instruction disponible"
-              : "No instructions available",
-          isSpecial: false,
-        },
-      ],
-    });
-  }
-
-  return pieces;
-}
-
-/**
- * Load progress from localStorage
- */
-function loadProgress(patternId: string): KnitProgress | null {
-  if (typeof window === "undefined") return null;
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved) as KnitProgress;
-      if (parsed.patternId === patternId) {
-        return parsed;
-      }
-    }
-  } catch {
-    // Ignore errors
-  }
-  return null;
-}
-
-/**
- * Save progress to localStorage
- */
-function saveProgress(progress: KnitProgress): void {
-  if (typeof window === "undefined") return;
-  try {
-    progress.lastUpdated = new Date().toISOString();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-  } catch {
-    // Ignore errors
-  }
-}
-
 export function KnitMode({ pattern, onExit }: KnitModeProps) {
   const { t, language } = useTranslation();
 
-  // Parse pattern into pieces - memoize to prevent infinite loops
-  const pieces = useMemo(
-    () => parsePatternToPieces(pattern, language),
-    [pattern, language]
-  );
+  // Parse pattern into pieces using shared hook
+  const { pieces } = usePatternParsing(pattern, language);
 
   // State
   const [currentPieceIndex, setCurrentPieceIndex] = useState(0);
-  const [progress, setProgress] = useState<KnitProgress | null>(null);
+  const [progress, setProgress] = useState<KnittingProgress | null>(null);
   const [nightMode, setNightMode] = useState(false);
   const [showResumeDialog, setShowResumeDialog] = useState(false);
-  const [savedProgress, setSavedProgress] = useState<KnitProgress | null>(null);
+  const [savedProgress, setSavedProgress] = useState<KnittingProgress | null>(null);
 
   const currentPiece = pieces[currentPieceIndex];
   const patternId = pattern.id;
 
-  // Initialize progress
-  const initializeProgress = useCallback(() => {
-    const newProgress: KnitProgress = {
-      patternId,
-      pieces: {},
-      lastUpdated: new Date().toISOString(),
-    };
-
-    for (const piece of pieces) {
-      newProgress.pieces[piece.id] = {
-        currentRow: 1,
-        completed: false,
-      };
-    }
-
+  // Initialize fresh progress
+  const initProgress = useCallback(() => {
+    const newProgress = initializeProgress(patternId, pieces);
     setProgress(newProgress);
     saveProgress(newProgress);
   }, [patternId, pieces]);
@@ -249,9 +64,9 @@ export function KnitMode({ pattern, onExit }: KnitModeProps) {
         setProgress(saved);
       }
     } else {
-      initializeProgress();
+      initProgress();
     }
-  }, [patternId, initializeProgress]);
+  }, [patternId, initProgress]);
 
   // Resume from saved progress
   const handleResume = () => {
@@ -271,7 +86,7 @@ export function KnitMode({ pattern, onExit }: KnitModeProps) {
 
   // Start over
   const handleStartOver = () => {
-    initializeProgress();
+    initProgress();
     setShowResumeDialog(false);
   };
 
