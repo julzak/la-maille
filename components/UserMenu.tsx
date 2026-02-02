@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { LogOut, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
@@ -27,7 +26,6 @@ import {
 } from "@/components/ui/alert-dialog";
 
 export function UserMenu() {
-  const router = useRouter();
   const { t } = useTranslation();
   const { user, profile, isLoading, openAuthModal, logout } = useAuthStore();
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);

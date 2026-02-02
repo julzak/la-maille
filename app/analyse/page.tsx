@@ -32,7 +32,6 @@ export default function AnalysePage() {
     imagePreviews,
     imagePreview,
     imageName,
-    imageType,
     analysis,
     analysisLoading,
     analysisError,
