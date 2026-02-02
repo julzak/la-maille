@@ -767,6 +767,7 @@ function PatronPageContent() {
               {t("restart")}
             </Button>
 
+{/* Bouton masqué temporairement - réactiver quand email contact configuré
             <Button
               variant="ghost"
               onClick={() => {
@@ -779,6 +780,7 @@ function PatronPageContent() {
             >
               {t("reportProblem")}
             </Button>
+            */}
           </div>
 
         </div>
