@@ -291,3 +291,16 @@ export interface KnittingProgress {
   pieces: { [pieceId: string]: PieceProgress };
   lastUpdated: string;
 }
+
+// ===========================================
+// User Profile (Supabase Auth)
+// ===========================================
+
+export interface UserProfile {
+  id: string;
+  email: string;
+  username: string;
+  avatar_url: string | null;
+  created_at: string;
+  updated_at: string;
+}

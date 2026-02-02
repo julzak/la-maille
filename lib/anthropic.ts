@@ -113,9 +113,13 @@ function extractJSON(text: string): object | null {
   }
 }
 
-export interface AnalyzeImageOptions {
+export interface ImageData {
   imageBase64: string;
   mediaType: ImageMediaType;
+}
+
+export interface AnalyzeImageOptions {
+  images: ImageData[];
 }
 
 export class AnalysisError extends Error {
@@ -129,8 +133,7 @@ export class AnalysisError extends Error {
 }
 
 export async function analyzeGarmentImage({
-  imageBase64,
-  mediaType,
+  images,
 }: AnalyzeImageOptions): Promise<GarmentAnalysis> {
   if (!process.env.ANTHROPIC_API_KEY) {
     throw new AnalysisError(
@@ -139,32 +142,50 @@ export async function analyzeGarmentImage({
     );
   }
 
-  // Validate base64
-  if (!imageBase64 || imageBase64.length === 0) {
-    throw new AnalysisError("Image data is empty", "INVALID_IMAGE");
+  // Validate images
+  if (!images || images.length === 0) {
+    throw new AnalysisError("No images provided", "INVALID_IMAGE");
+  }
+
+  for (const img of images) {
+    if (!img.imageBase64 || img.imageBase64.length === 0) {
+      throw new AnalysisError("Image data is empty", "INVALID_IMAGE");
+    }
   }
 
   try {
+    // Build content array with all images
+    const content: Anthropic.MessageCreateParams["messages"][0]["content"] = [];
+
+    // Add all images
+    for (const img of images) {
+      content.push({
+        type: "image",
+        source: {
+          type: "base64",
+          media_type: img.mediaType,
+          data: img.imageBase64,
+        },
+      });
+    }
+
+    // Add the text prompt
+    const textPrompt = images.length > 1
+      ? `Analyse ce vêtement tricoté en détail. Tu as ${images.length} photos du même vêtement sous différents angles pour t'aider à mieux l'analyser. Retourne le JSON.`
+      : "Analyse ce vêtement tricoté en détail. Retourne le JSON.";
+
+    content.push({
+      type: "text",
+      text: textPrompt,
+    });
+
     const response = await client.messages.create({
       model: "claude-sonnet-4-20250514",
       max_tokens: 4096,
       messages: [
         {
           role: "user",
-          content: [
-            {
-              type: "image",
-              source: {
-                type: "base64",
-                media_type: mediaType,
-                data: imageBase64,
-              },
-            },
-            {
-              type: "text",
-              text: "Analyse ce vêtement tricoté en détail. Retourne le JSON.",
-            },
-          ],
+          content,
         },
       ],
       system: SYSTEM_PROMPT,

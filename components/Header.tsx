@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { Logo } from "@/components/Logo";
+import { UserMenu } from "@/components/UserMenu";
 
 export function Header() {
   return (
@@ -12,7 +13,10 @@ export function Header() {
           <Logo />
         </Link>
 
-        <LanguageSelector />
+        <div className="flex items-center gap-3">
+          <LanguageSelector />
+          <UserMenu />
+        </div>
       </div>
     </header>
   );

@@ -3,6 +3,7 @@ import {
   analyzeGarmentImage,
   AnalysisError,
   type ImageMediaType,
+  type ImageData,
 } from "@/lib/anthropic";
 
 const ALLOWED_TYPES: ImageMediaType[] = [
@@ -11,53 +12,77 @@ const ALLOWED_TYPES: ImageMediaType[] = [
   "image/webp",
 ];
 
-const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+const MAX_SIZE = 10 * 1024 * 1024; // 10MB per image
+const MAX_IMAGES = 5;
 
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
-    const file = formData.get("image") as File | null;
+
+    // Support both single "image" and multiple "images" fields
+    const singleFile = formData.get("image") as File | null;
+    const multipleFiles = formData.getAll("images") as File[];
+
+    const files: File[] = singleFile ? [singleFile] : multipleFiles;
 
     // Validate file presence
-    if (!file) {
+    if (files.length === 0) {
       return NextResponse.json(
         { error: "No image provided", code: "INVALID_IMAGE" },
         { status: 400 }
       );
     }
 
-    // Validate file type
-    if (!ALLOWED_TYPES.includes(file.type as ImageMediaType)) {
+    // Validate number of files
+    if (files.length > MAX_IMAGES) {
       return NextResponse.json(
         {
-          error: "Format non supporté. Utilisez JPG, PNG ou WebP.",
+          error: `Trop d'images. Maximum ${MAX_IMAGES} photos.`,
           code: "INVALID_IMAGE",
         },
         { status: 400 }
       );
     }
 
-    // Validate file size
-    if (file.size > MAX_SIZE) {
-      return NextResponse.json(
-        {
-          error: "Image trop lourde. Maximum 10MB.",
-          code: "INVALID_IMAGE",
-        },
-        { status: 400 }
-      );
-    }
+    // Validate each file and convert to ImageData
+    const images: ImageData[] = [];
 
-    // Convert file to base64
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-    const base64 = buffer.toString("base64");
+    for (const file of files) {
+      // Validate file type
+      if (!ALLOWED_TYPES.includes(file.type as ImageMediaType)) {
+        return NextResponse.json(
+          {
+            error: "Format non supporté. Utilisez JPG, PNG ou WebP.",
+            code: "INVALID_IMAGE",
+          },
+          { status: 400 }
+        );
+      }
+
+      // Validate file size
+      if (file.size > MAX_SIZE) {
+        return NextResponse.json(
+          {
+            error: "Image trop lourde. Maximum 10MB par image.",
+            code: "INVALID_IMAGE",
+          },
+          { status: 400 }
+        );
+      }
+
+      // Convert file to base64
+      const arrayBuffer = await file.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      const base64 = buffer.toString("base64");
+
+      images.push({
+        imageBase64: base64,
+        mediaType: file.type as ImageMediaType,
+      });
+    }
 
     // Analyze with Claude
-    const analysis = await analyzeGarmentImage({
-      imageBase64: base64,
-      mediaType: file.type as ImageMediaType,
-    });
+    const analysis = await analyzeGarmentImage({ images });
 
     return NextResponse.json({
       success: true,

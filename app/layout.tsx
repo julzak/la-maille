@@ -3,6 +3,7 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   title: "LA MAILLE — Your French Knitting Studio",
@@ -31,18 +32,20 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            className: "font-sans",
-            duration: 4000,
-          }}
-          richColors
-          closeButton
-        />
+        <AuthProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              className: "font-sans",
+              duration: 4000,
+            }}
+            richColors
+            closeButton
+          />
+        </AuthProvider>
       </body>
     </html>
   );

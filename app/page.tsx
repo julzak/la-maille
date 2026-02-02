@@ -11,14 +11,14 @@ import { clearProject } from "@/lib/storage";
 export default function Home() {
   const router = useRouter();
   const { t } = useTranslation();
-  const { setImage, setAnalysisLoading, analysisLoading } = useLaMailleStore();
+  const { setImages, setAnalysisLoading, analysisLoading } = useLaMailleStore();
 
-  const handleImageSelected = async (file: File, preview: string) => {
-    console.log("[Home] handleImageSelected called, file:", file.name);
+  const handleImagesSelected = async (files: File[], previews: string[]) => {
+    console.log("[Home] handleImagesSelected called, files:", files.map(f => f.name));
 
     // Clear any previous project when starting new
     clearProject();
-    setImage(file, preview);
+    setImages(files, previews);
     setAnalysisLoading(true);
 
     // Wait for Zustand persist to flush to sessionStorage before navigation
@@ -27,9 +27,9 @@ export default function Home() {
 
     // Verify the state was set
     const state = useLaMailleStore.getState();
-    console.log("[Home] State after setImage:", {
+    console.log("[Home] State after setImages:", {
+      previewCount: state.imagePreviews.length,
       hasPreview: !!state.imagePreview,
-      previewLength: state.imagePreview?.length,
     });
 
     router.push("/analyse");
@@ -56,7 +56,7 @@ export default function Home() {
       <section className="px-4 pb-20">
         <div className="container mx-auto max-w-2xl">
           <ImageUploader
-            onImageSelected={handleImageSelected}
+            onImagesSelected={handleImagesSelected}
             isLoading={analysisLoading}
           />
         </div>

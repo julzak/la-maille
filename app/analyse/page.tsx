@@ -29,6 +29,7 @@ export default function AnalysePage() {
   const router = useRouter();
   const { t, language } = useTranslation();
   const {
+    imagePreviews,
     imagePreview,
     imageName,
     imageType,
@@ -53,16 +54,16 @@ export default function AnalysePage() {
 
   // Prepare project data for auto-save
   const projectData = useMemo<StoredProject | null>(() => {
-    if (!imagePreview) return null;
+    if (imagePreviews.length === 0) return null;
     return {
       id: projectId,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       step: analysis ? "measurements" : "analysis",
-      imagePreview: imagePreview,
+      imagePreview: imagePreviews[0], // Store first image for compatibility
       analysis: analysis || undefined,
     };
-  }, [projectId, imagePreview, analysis]);
+  }, [projectId, imagePreviews, analysis]);
 
   // Auto-save project data
   const { status: saveStatus } = useAutoSave(
@@ -71,42 +72,51 @@ export default function AnalysePage() {
     { enabled: !!projectData, delay: 2000 }
   );
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
   // Guard: redirect si pas d'image (seulement après hydration)
   useEffect(() => {
     const state = useLaMailleStore.getState();
     console.log("[Analyse] Guard check:", {
       isHydrated,
-      hasImagePreview: !!state.imagePreview,
-      imagePreviewFromHook: !!imagePreview,
+      hasImagePreviews: state.imagePreviews.length > 0,
+      imagePreviewsFromHook: imagePreviews.length,
     });
 
-    if (isHydrated && !state.imagePreview) {
-      console.log("[Analyse] Redirecting to home - no image");
+    if (isHydrated && state.imagePreviews.length === 0) {
+      console.log("[Analyse] Redirecting to home - no images");
       router.replace("/");
     }
-  }, [router, isHydrated, imagePreview]);
+  }, [router, isHydrated, imagePreviews]);
 
   // Lancer l'analyse au montage si on a une image mais pas encore d'analyse
   const runAnalysis = useCallback(async () => {
-    if (!imagePreview || !imageType || analysis) return;
+    if (imagePreviews.length === 0 || analysis) return;
 
     setAnalysisLoading(true);
     setAnalysisError(null);
 
     try {
-      // Convert base64 data URL to File
-      const base64Data = imagePreview.split(",")[1];
-      const byteCharacters = atob(base64Data);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: imageType });
-      const file = new File([blob], imageName || "image", { type: imageType });
-
       const formData = new FormData();
-      formData.append("image", file);
+
+      // Convert all base64 data URLs to Files and append to form
+      for (let i = 0; i < imagePreviews.length; i++) {
+        const preview = imagePreviews[i];
+        const base64Data = preview.split(",")[1];
+        const mimeType = preview.split(";")[0].split(":")[1] || "image/jpeg";
+        const byteCharacters = atob(base64Data);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let j = 0; j < byteCharacters.length; j++) {
+          byteNumbers[j] = byteCharacters.charCodeAt(j);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: mimeType });
+        const file = new File([blob], `image-${i + 1}`, { type: mimeType });
+        formData.append("images", file);
+      }
 
       const response = await fetch("/api/analyze", {
         method: "POST",
@@ -136,9 +146,7 @@ export default function AnalysePage() {
       });
     }
   }, [
-    imagePreview,
-    imageType,
-    imageName,
+    imagePreviews,
     analysis,
     setAnalysis,
     setAnalysisLoading,
@@ -147,10 +155,10 @@ export default function AnalysePage() {
 
   useEffect(() => {
     // Only run analysis after hydration is complete to ensure we have the image data
-    if (isHydrated && imagePreview && !analysis && !analysisError) {
+    if (isHydrated && imagePreviews.length > 0 && !analysis && !analysisError) {
       runAnalysis();
     }
-  }, [isHydrated, imagePreview, analysis, analysisError, runAnalysis]);
+  }, [isHydrated, imagePreviews, analysis, analysisError, runAnalysis]);
 
   // Handler pour le formulaire
   const handleFormSubmit = async (data: {
@@ -196,7 +204,7 @@ export default function AnalysePage() {
   };
 
   // Loading state pendant l'hydratation
-  if (!imagePreview) {
+  if (imagePreviews.length === 0) {
     return (
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
@@ -243,11 +251,15 @@ export default function AnalysePage() {
         <div className="grid lg:grid-cols-5 gap-6 md:gap-8">
           {/* Colonne gauche - Image & Analyse (2/5) */}
           <div className="lg:col-span-2 space-y-4 md:space-y-6">
-            {/* Aperçu image */}
+            {/* Aperçu image(s) */}
             <Card>
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-base">{t("sourceImage")}</CardTitle>
+                  <CardTitle className="text-base">
+                    {imagePreviews.length > 1
+                      ? `${t("sourceImage")} (${imagePreviews.length})`
+                      : t("sourceImage")}
+                  </CardTitle>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -260,22 +272,44 @@ export default function AnalysePage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="rounded-lg overflow-hidden bg-muted">
-                  <Image
-                    src={imagePreview}
-                    alt="Vêtement à analyser"
-                    width={400}
-                    height={400}
-                    className="w-full h-auto object-contain max-h-64"
-                    priority
-                  />
-                </div>
-                <p
-                  className="text-xs text-muted-foreground mt-2 truncate"
-                  title={imageName || undefined}
-                >
-                  {imageName}
-                </p>
+                {imagePreviews.length === 1 ? (
+                  <div className="rounded-lg overflow-hidden bg-muted">
+                    <Image
+                      src={imagePreviews[0]}
+                      alt="Vêtement à analyser"
+                      width={400}
+                      height={400}
+                      className="w-full h-auto object-contain max-h-64"
+                      priority
+                    />
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-2">
+                    {imagePreviews.map((preview, index) => (
+                      <div
+                        key={index}
+                        className="rounded-lg overflow-hidden bg-muted aspect-square"
+                      >
+                        <Image
+                          src={preview}
+                          alt={`Photo ${index + 1}`}
+                          width={200}
+                          height={200}
+                          className="w-full h-full object-cover"
+                          priority={index === 0}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {imageName && imagePreviews.length === 1 && (
+                  <p
+                    className="text-xs text-muted-foreground mt-2 truncate"
+                    title={imageName}
+                  >
+                    {imageName}
+                  </p>
+                )}
               </CardContent>
             </Card>
 

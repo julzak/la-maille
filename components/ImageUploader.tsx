@@ -1,16 +1,24 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ERROR_MESSAGES } from "@/lib/messages";
 import { useTranslation } from "@/lib/i18n";
 
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
-const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+const MAX_SIZE = 10 * 1024 * 1024; // 10MB per image
+const MAX_IMAGES = 5;
+
+interface SelectedImage {
+  file: File;
+  preview: string;
+  id: string;
+}
 
 interface ImageUploaderProps {
-  onImageSelected: (file: File, preview: string) => void;
+  onImagesSelected: (files: File[], previews: string[]) => void;
   isLoading?: boolean;
 }
 
@@ -61,13 +69,12 @@ function TipAlone() {
 }
 
 export function ImageUploader({
-  onImageSelected,
+  onImagesSelected,
   isLoading = false,
 }: ImageUploaderProps) {
   const { t } = useTranslation();
   const [state, setState] = useState<UploaderState>("idle");
-  const [preview, setPreview] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedImages, setSelectedImages] = useState<SelectedImage[]>([]);
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -81,29 +88,53 @@ export function ImageUploader({
     return null;
   }, []);
 
-  const handleFile = useCallback(
-    (file: File) => {
-      const validationError = validateFile(file);
+  const handleFiles = useCallback(
+    (files: FileList | File[]) => {
+      const fileArray = Array.from(files);
+      const remainingSlots = MAX_IMAGES - selectedImages.length;
+      const filesToProcess = fileArray.slice(0, remainingSlots);
 
-      if (validationError) {
-        setError(validationError);
+      let hasError = false;
+      const newImages: SelectedImage[] = [];
+
+      for (const file of filesToProcess) {
+        const validationError = validateFile(file);
+        if (validationError) {
+          setError(validationError);
+          hasError = true;
+          break;
+        }
+      }
+
+      if (hasError) {
         setState("error");
-        setPreview(null);
-        setSelectedFile(null);
         return;
       }
 
       setError(null);
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const url = e.target?.result as string;
-        setPreview(url);
-        setSelectedFile(file);
-        setState("selected");
-      };
-      reader.readAsDataURL(file);
+
+      // Process each file
+      let processed = 0;
+      for (const file of filesToProcess) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const url = e.target?.result as string;
+          newImages.push({
+            file,
+            preview: url,
+            id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          });
+          processed++;
+
+          if (processed === filesToProcess.length) {
+            setSelectedImages((prev) => [...prev, ...newImages]);
+            setState("selected");
+          }
+        };
+        reader.readAsDataURL(file);
+      }
     },
-    [validateFile]
+    [validateFile, selectedImages.length]
   );
 
   const handleDrop = useCallback(
@@ -111,54 +142,52 @@ export function ImageUploader({
       e.preventDefault();
       e.stopPropagation();
 
-      const file = e.dataTransfer.files[0];
-      if (file) {
-        handleFile(file);
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        handleFiles(files);
       } else {
-        setState("idle");
+        if (selectedImages.length === 0) {
+          setState("idle");
+        }
       }
     },
-    [handleFile]
+    [handleFiles, selectedImages.length]
   );
 
   const handleDragOver = useCallback(
     (e: React.DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      if (state !== "selected") {
-        setState("dragover");
-      }
+      setState("dragover");
     },
-    [state]
+    []
   );
 
   const handleDragLeave = useCallback(
     (e: React.DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      if (state !== "selected") {
+      if (selectedImages.length > 0) {
+        setState("selected");
+      } else {
         setState("idle");
       }
     },
-    [state]
+    [selectedImages.length]
   );
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      console.log("[ImageUploader] handleChange called, file:", file?.name);
-      if (file) {
-        handleFile(file);
+      const files = e.target.files;
+      if (files && files.length > 0) {
+        handleFiles(files);
       }
     },
-    [handleFile]
+    [handleFiles]
   );
 
   const handleClick = useCallback((e?: React.MouseEvent) => {
-    // Stop propagation to prevent double-triggering from button + container
     e?.stopPropagation();
-
-    // Reset input value to allow selecting the same file again
     if (inputRef.current) {
       inputRef.current.value = "";
       inputRef.current.click();
@@ -175,9 +204,18 @@ export function ImageUploader({
     [handleClick]
   );
 
+  const handleRemoveImage = useCallback((id: string) => {
+    setSelectedImages((prev) => {
+      const updated = prev.filter((img) => img.id !== id);
+      if (updated.length === 0) {
+        setState("idle");
+      }
+      return updated;
+    });
+  }, []);
+
   const handleReset = useCallback(() => {
-    setPreview(null);
-    setSelectedFile(null);
+    setSelectedImages([]);
     setError(null);
     setState("idle");
     if (inputRef.current) {
@@ -186,10 +224,12 @@ export function ImageUploader({
   }, []);
 
   const handleAnalyze = useCallback(() => {
-    if (selectedFile && preview) {
-      onImageSelected(selectedFile, preview);
+    if (selectedImages.length > 0) {
+      const files = selectedImages.map((img) => img.file);
+      const previews = selectedImages.map((img) => img.preview);
+      onImagesSelected(files, previews);
     }
-  }, [selectedFile, preview, onImageSelected]);
+  }, [selectedImages, onImagesSelected]);
 
   const getContainerClasses = () => {
     const base = "relative rounded-xl transition-all duration-200";
@@ -215,22 +255,37 @@ export function ImageUploader({
         {t("maxSize")}
       </p>
 
+      {/* Tips for multiple photos - shown in idle state */}
+      {state === "idle" && (
+        <Card className="bg-accent/5 border-accent/20">
+          <CardContent className="py-4 space-y-2">
+            <p className="text-sm text-foreground">
+              💡 {t("multiPhotoTip")}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {t("multiPhotoTip2")}
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        onClick={state !== "selected" ? handleClick : undefined}
-        onKeyDown={state !== "selected" ? handleKeyDown : undefined}
+        onClick={state === "idle" ? handleClick : undefined}
+        onKeyDown={state === "idle" ? handleKeyDown : undefined}
         className={getContainerClasses()}
-        role={state !== "selected" ? "button" : undefined}
-        tabIndex={state !== "selected" ? 0 : undefined}
-        aria-label={state !== "selected" ? t("dropZoneLabel") : undefined}
-        aria-describedby={state !== "selected" ? instructionsId : undefined}
+        role={state === "idle" ? "button" : undefined}
+        tabIndex={state === "idle" ? 0 : undefined}
+        aria-label={state === "idle" ? t("dropZoneLabel") : undefined}
+        aria-describedby={state === "idle" ? instructionsId : undefined}
       >
         <input
           ref={inputRef}
           type="file"
           accept=".jpg,.jpeg,.png,.webp"
+          multiple
           onChange={handleChange}
           className="hidden"
           aria-label={t("browseFiles")}
@@ -238,57 +293,81 @@ export function ImageUploader({
           id="image-upload"
         />
 
-        {state === "selected" && preview && selectedFile ? (
+        {state === "selected" && selectedImages.length > 0 ? (
           <div className="p-4 md:p-6">
-            <div className="flex flex-col items-center gap-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={preview}
-                alt="Aperçu de l'image sélectionnée"
-                className="max-h-[250px] md:max-h-[300px] w-auto rounded-lg shadow-sm"
-              />
-              <p
-                className="text-sm text-muted-foreground truncate max-w-full px-4"
-                title={selectedFile.name}
-              >
-                {selectedFile.name}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <Button
-                  variant="outline"
-                  size="default"
-                  onClick={handleReset}
-                  disabled={isLoading}
-                  className="w-full sm:w-auto min-h-[44px]"
-                  aria-label={t("changeImageBtn")}
-                >
-                  {t("changeImageBtn")}
-                </Button>
-                <Button
-                  onClick={handleAnalyze}
-                  disabled={isLoading}
-                  className="bg-accent hover:bg-accent/90 w-full sm:w-auto min-h-[44px]"
-                  aria-label={
-                    isLoading ? t("analyzingBtn") : t("analyzeThisImage")
-                  }
-                  aria-busy={isLoading}
-                >
-                  {isLoading ? (
-                    <>
-                      <span
-                        className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"
-                        aria-hidden="true"
-                      />
-                      {t("analyzingBtn")}
-                    </>
-                  ) : (
-                    t("analyzeThisImage")
-                  )}
-                </Button>
+            <div className="space-y-4">
+              {/* Image grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {selectedImages.map((img) => (
+                  <div key={img.id} className="relative group">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img.preview}
+                      alt={img.file.name}
+                      className="w-full aspect-square object-cover rounded-lg shadow-sm"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveImage(img.id)}
+                      className="absolute top-1 right-1 p-1 bg-background/80 hover:bg-background rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                      aria-label={t("removePhoto")}
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+
+                {/* Add more photos button */}
+                {selectedImages.length < MAX_IMAGES && (
+                  <button
+                    type="button"
+                    onClick={handleClick}
+                    className="aspect-square rounded-lg border-2 border-dashed border-muted-foreground/30 hover:border-accent/50 hover:bg-accent/5 flex flex-col items-center justify-center gap-2 transition-colors"
+                  >
+                    <span className="text-2xl">+</span>
+                    <span className="text-xs text-muted-foreground">{t("addMorePhotos")}</span>
+                  </button>
+                )}
+              </div>
+
+              {/* Count and actions */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p className="text-sm text-muted-foreground">
+                  {t("photosSelected").replace("{count}", String(selectedImages.length))}
+                </p>
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    size="default"
+                    onClick={handleReset}
+                    disabled={isLoading}
+                    className="min-h-[44px]"
+                  >
+                    {t("changeImageBtn")}
+                  </Button>
+                  <Button
+                    onClick={handleAnalyze}
+                    disabled={isLoading}
+                    className="bg-accent hover:bg-accent/90 min-h-[44px]"
+                    aria-busy={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <span
+                          className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"
+                          aria-hidden="true"
+                        />
+                        {t("analyzingBtn")}
+                      </>
+                    ) : (
+                      t("analyzeThisImage")
+                    )}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        ) : (
+        ) : state !== "error" ? (
           <div className="p-8 md:p-12 text-center">
             <div
               className="text-4xl md:text-5xl mb-4"
@@ -316,7 +395,7 @@ export function ImageUploader({
               {t("maxSize")}
             </p>
           </div>
-        )}
+        ) : null}
       </div>
 
       {/* Status announcement for screen readers */}

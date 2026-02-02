@@ -4,11 +4,15 @@ import type { GarmentAnalysis, Gauge, Measurements, YarnInfo, GeneratedPattern }
 import type { Language } from "./i18n";
 
 interface LaMailleState {
-  // Image
+  // Images (multiple)
+  imageFiles: File[];
+  imagePreviews: string[];
+  // Keep single image accessors for backward compatibility
   imageFile: File | null;
   imagePreview: string | null;
   imageName: string | null;
   imageType: string | null;
+  setImages: (files: File[], previews: string[]) => void;
   setImage: (file: File, preview: string) => void;
   clearImage: () => void;
 
@@ -45,11 +49,14 @@ interface LaMailleState {
 }
 
 const initialState = {
-  // Image
-  imageFile: null,
-  imagePreview: null,
-  imageName: null,
-  imageType: null,
+  // Images (multiple)
+  imageFiles: [] as File[],
+  imagePreviews: [] as string[],
+  // Single image (backward compat, derived from arrays)
+  imageFile: null as File | null,
+  imagePreview: null as string | null,
+  imageName: null as string | null,
+  imageType: null as string | null,
 
   // Analyse
   analysis: null,
@@ -74,8 +81,26 @@ export const useLaMailleStore = create<LaMailleState>()(
       ...initialState,
 
       // Image actions
+      setImages: (files: File[], previews: string[]) =>
+        set({
+          imageFiles: files,
+          imagePreviews: previews,
+          // Backward compat: first image
+          imageFile: files[0] || null,
+          imagePreview: previews[0] || null,
+          imageName: files[0]?.name || null,
+          imageType: files[0]?.type || null,
+          // Clear previous analysis when new images are set
+          analysis: null,
+          analysisError: null,
+          pattern: null,
+          patternError: null,
+        }),
+
       setImage: (file: File, preview: string) =>
         set({
+          imageFiles: [file],
+          imagePreviews: [preview],
           imageFile: file,
           imagePreview: preview,
           imageName: file.name,
@@ -89,6 +114,8 @@ export const useLaMailleStore = create<LaMailleState>()(
 
       clearImage: () =>
         set({
+          imageFiles: [],
+          imagePreviews: [],
           imageFile: null,
           imagePreview: null,
           imageName: null,
@@ -168,6 +195,7 @@ export const useLaMailleStore = create<LaMailleState>()(
       storage: createJSONStorage(() => sessionStorage),
       // Ne pas persister les objets File (non sérialisables) ni les états de chargement
       partialize: (state) => ({
+        imagePreviews: state.imagePreviews,
         imagePreview: state.imagePreview,
         imageName: state.imageName,
         imageType: state.imageType,
@@ -184,7 +212,8 @@ export const useLaMailleStore = create<LaMailleState>()(
         return {
           ...currentState,
           ...(persisted || {}),
-          // Prefer current state's image if it exists (freshly set)
+          // Prefer current state's images if they exist (freshly set)
+          imagePreviews: currentState.imagePreviews?.length ? currentState.imagePreviews : persisted?.imagePreviews || [],
           imagePreview: currentState.imagePreview || persisted?.imagePreview || null,
           imageName: currentState.imageName || persisted?.imageName || null,
           imageType: currentState.imageType || persisted?.imageType || null,

@@ -30,11 +30,12 @@ import {
   canShareFiles,
 } from "@/lib/pdf-utils";
 import { YarnCalculator } from "@/components/YarnCalculator";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { useAutoSave } from "@/hooks/useAutoSave";
 import type { StoredProject } from "@/lib/storage";
 import type { YarnStock } from "@/lib/yarn-calculator";
 
-export default function PatronPage() {
+function PatronPageContent() {
   const router = useRouter();
   const { t, language } = useTranslation();
   const {
@@ -152,18 +153,20 @@ export default function PatronPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // Afficher un toast d'avertissement pour les points complexes
+  // Afficher un toast d'avertissement pour les points complexes (une seule fois)
+  const [toastShown, setToastShown] = useState(false);
   useEffect(() => {
-    if (pattern?.analysis.stitch.mainPattern) {
+    if (pattern?.analysis.stitch.mainPattern && !toastShown) {
       const warning = getStitchWarning(pattern.analysis.stitch.mainPattern);
       if (warning) {
         toast.warning(t("complexStitchDetected"), {
           description: warning,
           duration: 8000,
         });
+        setToastShown(true);
       }
     }
-  }, [pattern?.analysis.stitch.mainPattern, t]);
+  }, [pattern?.analysis.stitch.mainPattern, t, toastShown]);
 
   const handleReset = () => {
     resetAll();
@@ -781,5 +784,13 @@ export default function PatronPage() {
         />
       )}
     </div>
+  );
+}
+
+export default function PatronPage() {
+  return (
+    <ProtectedRoute>
+      <PatronPageContent />
+    </ProtectedRoute>
   );
 }
