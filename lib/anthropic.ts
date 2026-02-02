@@ -36,9 +36,11 @@ ANALYSE DE LA BORDURE D'ENCOLURE (neckband) - OBLIGATOIRE:
 Examine attentivement la zone de transition entre le corps et l'encolure:
 
 1. Construction:
-   - "picked-up": Ligne de démarcation visible, mailles relevées perpendiculaires au corps
-   - "sewn-on": Col visiblement cousu/assemblé séparément
-   - "integrated": Texture qui émerge directement du corps sans couture visible (top-down ou construction continue)
+   - "picked-up": LE PLUS COURANT. Ligne de démarcation/ridge visible où les mailles ont été relevées. Les côtes du col sont perpendiculaires au jersey du corps. On voit souvent une légère "couture" ou changement de texture à la jonction.
+   - "sewn-on": Col tricoté séparément puis cousu. Couture visible, col qui semble "ajouté".
+   - "integrated": RARE. Les mailles du col et du corps sont en continuité parfaite, AUCUNE ligne de transition visible. Utilisé seulement dans certaines constructions spécifiques.
+
+ATTENTION: "top-down" ne signifie PAS "col intégré" ! La plupart des pulls top-down ont quand même des mailles relevées pour le col à la fin. Regarde la JONCTION col/corps, pas la méthode de construction.
 
 2. Hauteur:
    - "basse": ~2cm (simple bordure)
