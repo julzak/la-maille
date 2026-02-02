@@ -1242,27 +1242,50 @@ export function generateFullPattern(
 
   // Instructions d'assemblage adaptées
   const assembly: string[] = [];
+  let stepNum = 1;
 
   if (construction === "seamless") {
-    assembly.push("1. " + tp(lang, "pattern.seamlessNote1"));
-    assembly.push("2. " + tp(lang, "pattern.seamlessNote2"));
-    assembly.push("3. " + tp(lang, "pattern.seamlessNote3"));
-    if (analysis.garment.type !== "cardigan") {
-      assembly.push("4. " + tp(lang, "pattern.seamlessNote4"));
+    assembly.push(`${stepNum}. ` + tp(lang, "pattern.seamlessNote1"));
+    stepNum++;
+    assembly.push(`${stepNum}. ` + tp(lang, "pattern.seamlessNote2"));
+    stepNum++;
+    assembly.push(`${stepNum}. ` + tp(lang, "pattern.seamlessNote3"));
+    stepNum++;
+    // Ajouter étape bordure d'encolure si présente
+    if (neckband) {
+      if (analysis.garment.type === "cardigan") {
+        assembly.push(`${stepNum}. ` + tp(lang, "pattern.neckbandAssemblyCardigan"));
+      } else {
+        assembly.push(`${stepNum}. ` + tp(lang, "pattern.neckbandAssembly"));
+      }
+      stepNum++;
     }
+    assembly.push(`${stepNum}. ` + tp(lang, "pattern.seamlessNote4"));
   } else {
-    assembly.push("1. " + tp(lang, "pattern.flatNote1"));
-    assembly.push("2. " + tp(lang, "pattern.flatNote2"));
+    assembly.push(`${stepNum}. ` + tp(lang, "pattern.flatNote1"));
+    stepNum++;
+    assembly.push(`${stepNum}. ` + tp(lang, "pattern.flatNote2"));
+    stepNum++;
     const hasSleeves = pieces.some(p => p.name.includes(tp(lang, "pattern.sleeveX2")) || p.name.includes("Manche") || p.name.includes("Sleeve"));
     if (hasSleeves) {
-      assembly.push("3. " + tp(lang, "pattern.flatNote3Sleeves"));
-      assembly.push("4. " + tp(lang, "pattern.flatNote4Sleeves"));
+      assembly.push(`${stepNum}. ` + tp(lang, "pattern.flatNote3Sleeves"));
+      stepNum++;
+      assembly.push(`${stepNum}. ` + tp(lang, "pattern.flatNote4Sleeves"));
+      stepNum++;
     } else {
-      assembly.push("3. " + tp(lang, "pattern.flatNote3NoSleeves"));
+      assembly.push(`${stepNum}. ` + tp(lang, "pattern.flatNote3NoSleeves"));
+      stepNum++;
     }
-    if (analysis.garment.type !== "cardigan") {
-      assembly.push("5. " + tp(lang, "pattern.flatNote5"));
+    // Ajouter étape bordure d'encolure si présente
+    if (neckband) {
+      if (analysis.garment.type === "cardigan") {
+        assembly.push(`${stepNum}. ` + tp(lang, "pattern.neckbandAssemblyCardigan"));
+      } else {
+        assembly.push(`${stepNum}. ` + tp(lang, "pattern.neckbandAssembly"));
+      }
+      stepNum++;
     }
+    assembly.push(`${stepNum}. ` + tp(lang, "pattern.flatNote5"));
   }
 
   // Finitions

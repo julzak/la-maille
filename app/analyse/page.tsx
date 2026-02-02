@@ -419,6 +419,15 @@ export default function AnalysePage() {
                         confidence={analysis.neckline.confidence}
                       />
                     </div>
+                    {analysis.neckband && (
+                      <div className="animate-fade-in-up animate-delay-350">
+                        <AnalysisItem
+                          label={t("neckbandLabel")}
+                          value={`${t(`neckband.${analysis.neckband.construction}` as const)} - ${t(`neckband.height.${analysis.neckband.height}` as const)}`}
+                          confidence={analysis.neckband.confidence}
+                        />
+                      </div>
+                    )}
                     <div className="animate-fade-in-up animate-delay-400">
                       <AnalysisItem
                         label={t("sleeves")}

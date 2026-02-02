@@ -641,6 +641,8 @@ export const translations = {
     "pattern.flatNote4Sleeves": "Coudre les cotes du corps et les dessous de manches en une seule couture.",
     "pattern.flatNote3NoSleeves": "Coudre les cotes du corps.",
     "pattern.flatNote5": "Relever les mailles de l'encolure et tricoter la bordure.",
+    "pattern.neckbandAssembly": "Tricoter la bordure d'encolure selon les instructions de la piece 'Bordure d'encolure'.",
+    "pattern.neckbandAssemblyCardigan": "Tricoter la bordure d'encolure et les bandes de boutonnage.",
 
     // Finishing
     "pattern.weavEnds": "Rentrer tous les fils soigneusement.",
@@ -1280,6 +1282,8 @@ export const translations = {
     "pattern.flatNote4Sleeves": "Seam body sides and underarms in one continuous seam.",
     "pattern.flatNote3NoSleeves": "Seam body sides.",
     "pattern.flatNote5": "Pick up neckline stitches and work border.",
+    "pattern.neckbandAssembly": "Work the neckband following the instructions in the 'Neckband' piece.",
+    "pattern.neckbandAssemblyCardigan": "Work the neckband and button bands.",
 
     // Finishing
     "pattern.weavEnds": "Weave in all ends carefully.",
