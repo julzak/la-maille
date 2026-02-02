@@ -31,6 +31,7 @@ import {
 } from "@/lib/pdf-utils";
 import { YarnCalculator } from "@/components/YarnCalculator";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { SavePatternButton } from "@/components/SavePatternButton";
 import { useAutoSave } from "@/hooks/useAutoSave";
 import type { StoredProject } from "@/lib/storage";
 import type { YarnStock } from "@/lib/yarn-calculator";
@@ -706,6 +707,13 @@ function PatronPageContent() {
 
           {/* 6. ACTIONS */}
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 animate-fade-in-up animate-delay-500">
+            {/* Save pattern button */}
+            <SavePatternButton
+              pattern={pattern}
+              imagePreview={imagePreview}
+              className="min-h-[44px] w-full sm:w-auto"
+            />
+
             {canShare ? (
               <Button
                 onClick={handleSharePDF}

@@ -73,3 +73,50 @@ CREATE TRIGGER on_profile_updated
 
 -- Create index for username lookups
 CREATE INDEX IF NOT EXISTS profiles_username_idx ON public.profiles (username);
+
+-- ===========================================
+-- SAVED PATTERNS TABLE
+-- ===========================================
+
+-- Create saved_patterns table
+CREATE TABLE IF NOT EXISTS public.saved_patterns (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
+  pattern_id TEXT NOT NULL,
+  name TEXT,
+  thumbnail_url TEXT,
+  pattern_data JSONB NOT NULL,
+  garment_type TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable Row Level Security
+ALTER TABLE public.saved_patterns ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies: Users can only access their own patterns
+CREATE POLICY "Users can view own patterns" ON public.saved_patterns
+  FOR SELECT
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert own patterns" ON public.saved_patterns
+  FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete own patterns" ON public.saved_patterns
+  FOR DELETE
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can update own patterns" ON public.saved_patterns
+  FOR UPDATE
+  USING (auth.uid() = user_id);
+
+-- Indexes for performance
+CREATE INDEX IF NOT EXISTS saved_patterns_user_id_idx ON public.saved_patterns (user_id);
+CREATE INDEX IF NOT EXISTS saved_patterns_created_at_idx ON public.saved_patterns (created_at DESC);
+
+-- Auto-update timestamp trigger
+DROP TRIGGER IF EXISTS on_saved_pattern_updated ON public.saved_patterns;
+CREATE TRIGGER on_saved_pattern_updated
+  BEFORE UPDATE ON public.saved_patterns
+  FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();

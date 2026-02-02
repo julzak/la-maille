@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { toast } from "sonner";
-import { LogOut, Loader2 } from "lucide-react";
+import { LogOut, Loader2, Bookmark } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useAuthStore } from "@/lib/auth-store";
 import { useTranslation } from "@/lib/i18n";
@@ -131,6 +132,13 @@ export function UserMenu() {
               {user.email}
             </p>
           </div>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem asChild className="cursor-pointer">
+            <Link href="/mes-patrons">
+              <Bookmark className="mr-2 h-4 w-4" />
+              {t("savedPatterns.title")}
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => setShowLogoutDialog(true)}

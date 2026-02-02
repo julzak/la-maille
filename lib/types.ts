@@ -304,3 +304,36 @@ export interface UserProfile {
   created_at: string;
   updated_at: string;
 }
+
+// ===========================================
+// Saved Patterns (Supabase)
+// ===========================================
+
+export interface SavedPattern {
+  id: string;
+  user_id: string;
+  pattern_id: string;
+  name: string | null;
+  thumbnail_url: string | null;
+  pattern_data: GeneratedPattern;
+  garment_type: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface SavedPatternInsert {
+  pattern_id: string;
+  name?: string;
+  thumbnail_url?: string;
+  pattern_data: GeneratedPattern;
+  garment_type: string;
+}
+
+export interface SavedPatternSummary {
+  id: string;
+  pattern_id: string;
+  name: string | null;
+  thumbnail_url: string | null;
+  garment_type: string;
+  created_at: string;
+}
