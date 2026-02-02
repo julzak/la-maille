@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const ADMIN_EMAIL = "jzakoian@gmail.com";
 
 interface WebhookPayload {
   type: "INSERT" | "UPDATE" | "DELETE";
@@ -94,7 +95,7 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "La Maille <onboarding@resend.dev>", // TODO: changer pour bonjour@la-maille.com quand domaine vérifié
+        from: "La Maille <hello@la-maille.com>",
         to: [email],
         subject: `Bienvenue sur La Maille, ${username} !`,
         html: emailHtml,
@@ -110,6 +111,40 @@ const handler = async (req: Request): Promise<Response> => {
         headers: { "Content-Type": "application/json" },
       });
     }
+
+    // Send notification to admin
+    const adminNotificationHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <div style="max-width: 500px; margin: 0 auto; background: #f9f9f9; border-radius: 8px; padding: 24px;">
+    <h2 style="margin: 0 0 16px; color: #1a1a1a;">🧶 Nouveau compte La Maille</h2>
+    <p style="color: #444; line-height: 1.6; margin: 0 0 12px;">
+      <strong>Pseudo :</strong> ${username}<br>
+      <strong>Email :</strong> ${email}<br>
+      <strong>Date :</strong> ${new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })}
+    </p>
+  </div>
+</body>
+</html>
+    `;
+
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "La Maille <hello@la-maille.com>",
+        to: [ADMIN_EMAIL],
+        subject: `🧶 Nouveau compte : ${username}`,
+        html: adminNotificationHtml,
+      }),
+    });
 
     return new Response(JSON.stringify({ success: true, data }), {
       status: 200,

@@ -194,6 +194,25 @@ export const translations = {
     "sleeve.sans-manches": "Sans manches",
     "sleeve.unknown": "Non identifié",
 
+    // Neckband construction
+    "neckband.picked-up": "Mailles relevees",
+    "neckband.sewn-on": "Col assemble",
+    "neckband.integrated": "Col integre",
+    "neckband.unknown": "Non identifie",
+    "neckband.height.basse": "Basse (~2cm)",
+    "neckband.height.moyenne": "Moyenne (~4cm)",
+    "neckband.height.haute": "Haute (6cm+)",
+    "neckband.height.unknown": "Non identifiee",
+    "neckband.stitch.cotes-1x1": "Cotes 1/1",
+    "neckband.stitch.cotes-2x2": "Cotes 2/2",
+    "neckband.stitch.jersey": "Jersey",
+    "neckband.stitch.mousse": "Point mousse",
+    "neckband.stitch.autre": "Autre",
+    "neckband.stitch.unknown": "Non identifie",
+    "neckband.doubled.true": "Col double",
+    "neckband.doubled.false": "Col simple",
+    neckbandLabel: "Bordure d'encolure",
+
     // Sleeve lengths
     "sleeve-length.longues": "Longues",
     "sleeve-length.3-4": "3/4",
@@ -813,6 +832,25 @@ export const translations = {
     "sleeve.marteau": "Drop shoulder",
     "sleeve.sans-manches": "Sleeveless",
     "sleeve.unknown": "Unknown",
+
+    // Neckband construction
+    "neckband.picked-up": "Picked up",
+    "neckband.sewn-on": "Sewn on",
+    "neckband.integrated": "Integrated",
+    "neckband.unknown": "Unknown",
+    "neckband.height.basse": "Low (~2cm)",
+    "neckband.height.moyenne": "Medium (~4cm)",
+    "neckband.height.haute": "High (6cm+)",
+    "neckband.height.unknown": "Unknown",
+    "neckband.stitch.cotes-1x1": "1x1 Rib",
+    "neckband.stitch.cotes-2x2": "2x2 Rib",
+    "neckband.stitch.jersey": "Stockinette",
+    "neckband.stitch.mousse": "Garter stitch",
+    "neckband.stitch.autre": "Other",
+    "neckband.stitch.unknown": "Unknown",
+    "neckband.doubled.true": "Doubled collar",
+    "neckband.doubled.false": "Single collar",
+    neckbandLabel: "Neckband",
 
     // Sleeve lengths
     "sleeve-length.longues": "Long",

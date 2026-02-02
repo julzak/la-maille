@@ -32,6 +32,26 @@ DÉTECTION DES MANCHES:
 - COURTES: Manches qui s'arrêtent au-dessus du coude
 - Regarde attentivement les épaules: si elles sont découvertes, c'est sans manches
 
+ANALYSE DE LA BORDURE D'ENCOLURE (neckband) - OBLIGATOIRE:
+Examine attentivement la zone de transition entre le corps et l'encolure:
+
+1. Construction:
+   - "picked-up": Ligne de démarcation visible, mailles relevées perpendiculaires au corps
+   - "sewn-on": Col visiblement cousu/assemblé séparément
+   - "integrated": Texture qui émerge directement du corps sans couture visible (top-down ou construction continue)
+
+2. Hauteur:
+   - "basse": ~2cm (simple bordure)
+   - "moyenne": ~4cm (col standard)
+   - "haute": 6cm+ (col roulé, col montant)
+
+3. Point utilisé: côtes 1x1, côtes 2x2, jersey, mousse, autre
+
+4. Col double: Le col semble-t-il replié vers l'intérieur (double épaisseur) ?
+
+IMPORTANT: La bordure d'encolure (neckband) est une pièce DISTINCTE de l'empiècement (yoke).
+Ne fusionne JAMAIS ces informations.
+
 RÈGLES:
 1. Si tu n'es pas sûr à au moins 60%, mets "unknown" pour cet élément
 2. Liste ce que tu ne peux PAS déterminer dans "limitations"
@@ -50,6 +70,7 @@ Retourne UNIQUEMENT un JSON valide avec cette structure exacte :
   "garment": { "type": string, "confidence": number },
   "construction": { "method": string, "confidence": number, "reasoning": string },
   "neckline": { "type": string, "confidence": number },
+  "neckband": { "construction": string, "height": string, "stitch": string, "doubled": boolean | null, "confidence": number },
   "sleeves": { "type": string, "length": string, "confidence": number },
   "stitch": { "mainPattern": string, "confidence": number, "notes": string | null },
   "closure": { "type": string, "buttonCountEstimate": number | null, "confidence": number },
@@ -63,6 +84,10 @@ Types valides pour chaque champ :
 - garment.type: "pull" | "cardigan" | "gilet" | "autre" | "unknown"
 - construction.method: "pieces-assemblees" | "top-down" | "bottom-up" | "side-to-side" | "unknown"
 - neckline.type: "ras-du-cou" | "col-v" | "bateau" | "ouvert-cardigan" | "capuche" | "unknown"
+- neckband.construction: "picked-up" | "sewn-on" | "integrated" | "unknown"
+- neckband.height: "basse" | "moyenne" | "haute" | "unknown"
+- neckband.stitch: "cotes-1x1" | "cotes-2x2" | "jersey" | "mousse" | "autre" | "unknown"
+- neckband.doubled: true | false | null (si impossible a determiner)
 - sleeves.type: "montees" | "raglan" | "marteau" | "sans-manches" | "unknown"
 - sleeves.length: "longues" | "3-4" | "courtes" | "sans" | "unknown"
 - stitch.mainPattern: "jersey" | "mousse" | "cotes" | "torsades" | "jacquard" | "dentelle" | "autre" | "unknown"

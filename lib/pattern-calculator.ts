@@ -976,6 +976,159 @@ export function generateNeckline(
 }
 
 // ===========================================
+// GÉNÉRATION BORDURE D'ENCOLURE (NECKBAND)
+// ===========================================
+
+/**
+ * Génère la bordure d'encolure comme pièce séparée
+ */
+function generateNeckbandPiece(
+  measurements: Measurements,
+  gauge: Gauge,
+  analysis: GarmentAnalysis,
+  lang: Language
+): PatternPiece | null {
+  log("Generating neckband piece...");
+
+  // Pas de bordure pour capuche ou col ouvert cardigan (traitée différemment)
+  if (analysis.neckline.type === "capuche") {
+    return null;
+  }
+
+  const calculations: CalculationStep[] = [];
+  const instructions: PatternInstruction[] = [];
+  const warnings: string[] = [];
+
+  // Calcul de la circonférence d'encolure approximative
+  const neckCircumference = analysis.neckline.type === "bateau"
+    ? measurements.shoulderWidth + 5
+    : analysis.neckline.type === "col-v"
+      ? 55 // Col V plus long à cause des côtés
+      : 40; // Ras du cou standard
+
+  const neckStsCalc = stitchesForCm(neckCircumference, gauge, lang);
+  calculations.push(neckStsCalc);
+  const neckSts = roundToMultiple(neckStsCalc.rounded, 4, "nearest");
+
+  // Hauteur de la bordure selon l'analyse
+  let neckbandHeight = 3; // défaut
+  const neckband = analysis.neckband;
+  if (neckband) {
+    if (neckband.height === "basse") neckbandHeight = 2;
+    else if (neckband.height === "moyenne") neckbandHeight = 4;
+    else if (neckband.height === "haute") neckbandHeight = 6;
+  }
+
+  // Doubler si col double
+  const isDoubled = neckband?.doubled === true;
+  const actualHeight = isDoubled ? neckbandHeight * 2 : neckbandHeight;
+
+  const neckRowsCalc = rowsForCm(actualHeight, gauge, lang);
+  calculations.push(neckRowsCalc);
+  const neckRows = neckRowsCalc.rounded;
+
+  // Déterminer le point
+  let stitchPattern = "cotes 1/1";
+  if (neckband?.stitch === "cotes-2x2") stitchPattern = "cotes 2/2";
+  else if (neckband?.stitch === "jersey") stitchPattern = "jersey";
+  else if (neckband?.stitch === "mousse") stitchPattern = "point mousse";
+
+  let currentRow = 1;
+
+  // Construction: picked-up vs sewn-on
+  const isPickedUp = !neckband || neckband.construction !== "sewn-on";
+
+  if (isPickedUp) {
+    // Mailles relevées (le plus courant)
+    const pickUpText = lang === "fr"
+      ? `Relever ${neckSts} mailles tout autour de l'encolure. Joindre en rond si travail en rond, ou tricoter en allers-retours.`
+      : `Pick up ${neckSts} stitches around the neckline. Join in the round if working circularly, or work back and forth.`;
+
+    instructions.push({
+      rowStart: currentRow,
+      rowEnd: currentRow,
+      text: pickUpText,
+      notes: lang === "fr"
+        ? "Relever environ 3 mailles pour 4 rangs le long des côtés, et 1 maille par maille rabattue."
+        : "Pick up approximately 3 stitches for every 4 rows along the sides, and 1 stitch per bound-off stitch.",
+    });
+    currentRow++;
+  } else {
+    // Col tricoté séparément puis cousu
+    const castOnText = lang === "fr"
+      ? `Monter ${neckSts} mailles. Ce col sera cousu à l'encolure une fois terminé.`
+      : `Cast on ${neckSts} stitches. This collar will be sewn to the neckline when finished.`;
+
+    instructions.push({
+      rowStart: currentRow,
+      rowEnd: currentRow,
+      text: castOnText,
+    });
+    currentRow++;
+  }
+
+  // Tricoter la bordure
+  const knitText = lang === "fr"
+    ? `Tricoter ${neckRows} rangs en ${stitchPattern}.`
+    : `Work ${neckRows} rows in ${stitchPattern.replace("cotes", "rib")}.`;
+
+  instructions.push({
+    rowStart: currentRow,
+    rowEnd: currentRow + neckRows - 1,
+    text: knitText,
+    notes: lang === "fr"
+      ? `Hauteur finale: environ ${neckbandHeight} cm${isDoubled ? " (col double)" : ""}`
+      : `Final height: approximately ${neckbandHeight} cm${isDoubled ? " (doubled collar)" : ""}`,
+  });
+  currentRow += neckRows;
+
+  // Rabattage
+  if (isDoubled) {
+    const foldText = lang === "fr"
+      ? "Replier le col vers l'intérieur et coudre les mailles vivantes à la base du col (grafting ou couture invisible)."
+      : "Fold the collar inward and sew the live stitches to the base of the collar (grafting or invisible seam).";
+    instructions.push({
+      rowStart: currentRow,
+      rowEnd: currentRow,
+      text: foldText,
+    });
+  } else {
+    const bindOffText = lang === "fr"
+      ? "Rabattre souplement en suivant le point (ne pas serrer pour garder l'élasticité)."
+      : "Bind off loosely in pattern (don't tighten to maintain elasticity).";
+    instructions.push({
+      rowStart: currentRow,
+      rowEnd: currentRow,
+      text: bindOffText,
+    });
+  }
+
+  // Avertissements
+  if (analysis.neckline.type === "col-v") {
+    warnings.push(lang === "fr"
+      ? "Pour un col V, faire des diminutions à la pointe du V pour un angle net."
+      : "For a V-neck, work decreases at the V point for a clean angle.");
+  }
+
+  if (!isPickedUp) {
+    warnings.push(lang === "fr"
+      ? "Coudre le col en alignant le centre dos avec la couture d'épaule."
+      : "Sew the collar aligning the center back with the shoulder seam.");
+  }
+
+  const pieceName = lang === "fr" ? "Bordure d'encolure" : "Neckband";
+
+  return {
+    name: pieceName,
+    castOn: neckSts,
+    totalRows: neckRows,
+    instructions,
+    calculations,
+    warnings,
+  };
+}
+
+// ===========================================
 // ESTIMATION MÉTRAGE
 // ===========================================
 
@@ -1079,6 +1232,12 @@ export function generateFullPattern(
     if (sleeves.castOn > 0) {
       pieces.push(sleeves);
     }
+  }
+
+  // Ajouter la bordure d'encolure comme pièce séparée
+  const neckband = generateNeckbandPiece(measurements, gauge, analysis, lang);
+  if (neckband) {
+    pieces.push(neckband);
   }
 
   // Instructions d'assemblage adaptées

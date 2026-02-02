@@ -34,6 +34,14 @@ export interface GarmentAnalysis {
     confidence: number;
   };
 
+  neckband: {
+    construction: "picked-up" | "sewn-on" | "integrated" | "unknown";
+    height: "basse" | "moyenne" | "haute" | "unknown"; // ~2cm, ~4cm, ~6cm+
+    stitch: "cotes-1x1" | "cotes-2x2" | "jersey" | "mousse" | "autre" | "unknown";
+    doubled: boolean | null; // col double (replie) ou simple
+    confidence: number;
+  };
+
   sleeves: {
     type: "montees" | "raglan" | "marteau" | "sans-manches" | "unknown";
     length: "longues" | "3-4" | "courtes" | "sans" | "unknown";
