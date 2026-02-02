@@ -34,7 +34,7 @@ interface PatternCardProps {
 export function PatternCard({ pattern, onDelete }: PatternCardProps) {
   const { t, language } = useTranslation();
   const router = useRouter();
-  const { setPattern, setImage } = useLaMailleStore();
+  const { setPattern } = useLaMailleStore();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);

@@ -452,6 +452,12 @@ export const translations = {
     laceLimit: "Dentelle complexe",
     experimentalLimit: "Constructions experimentales",
 
+    // Privacy & Terms
+    "privacy.title": "Politique de confidentialite",
+    "privacy.lastUpdated": "Derniere mise a jour",
+    "terms.title": "Conditions d'utilisation",
+    "terms.lastUpdated": "Derniere mise a jour",
+
     // Saved patterns
     "savedPatterns.title": "Mes patrons",
     "savedPatterns.empty": "Vous n'avez pas encore de patron sauvegarde",
@@ -1065,6 +1071,12 @@ export const translations = {
     colorworkLimit: "Colorwork: shape yes, design no",
     laceLimit: "Complex lace",
     experimentalLimit: "Experimental constructions",
+
+    // Privacy & Terms
+    "privacy.title": "Privacy Policy",
+    "privacy.lastUpdated": "Last updated",
+    "terms.title": "Terms of Service",
+    "terms.lastUpdated": "Last updated",
 
     // Saved patterns
     "savedPatterns.title": "My patterns",
