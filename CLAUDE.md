@@ -72,6 +72,35 @@ if (!user) {
 }
 ```
 
+### 6. Modifier backend ET frontend ensemble
+Quand tu ajoutes une nouvelle donnée (ex: neckband dans l'analyse) :
+1. Ajouter dans le prompt API (`lib/anthropic.ts`)
+2. Ajouter le type (`lib/types.ts`)
+3. Ajouter dans le générateur (`lib/pattern-calculator.ts`)
+4. **NE PAS OUBLIER** : Ajouter l'affichage UI (`app/analyse/page.tsx`, etc.)
+
+Vérifier la chaîne complète : API → Types → Logique → UI
+
+### 7. Prompt Anthropic - Ne pas confondre les concepts
+Dans le prompt d'analyse d'image, être PRÉCIS sur les distinctions :
+- "top-down" = méthode de construction (du haut vers le bas)
+- "col intégré" = le col et le corps sont tricotés en continuité parfaite
+
+Ces deux concepts sont INDÉPENDANTS ! La plupart des pulls top-down ont des mailles relevées pour le col.
+
+### 8. Git commits multi-lignes
+Ne PAS utiliser heredoc dans bash (erreurs de syntaxe). Utiliser plusieurs `-m` :
+```bash
+# BON
+git commit -m "Titre" -m "Description ligne 1" -m "Co-Authored-By: ..."
+
+# MAUVAIS - erreur de syntaxe
+git commit -m "$(cat <<'EOF'
+...
+EOF
+)"
+```
+
 ## Structure des fichiers clés
 - `lib/types.ts` - Types TypeScript
 - `lib/i18n.ts` - Traductions FR/EN
