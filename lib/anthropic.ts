@@ -159,6 +159,141 @@ export class AnalysisError extends Error {
   }
 }
 
+/**
+ * Normalize confidence values to 0-1 range
+ */
+function normalizeConfidence(value: number): number {
+  if (typeof value !== "number" || isNaN(value)) return 0.5;
+  // If > 1, assume 0-100 scale
+  if (value > 1) return Math.min(value / 100, 1);
+  return Math.max(0, Math.min(value, 1));
+}
+
+/**
+ * Map common API response values to valid enum values
+ */
+const VALUE_MAPPINGS: Record<string, Record<string, string>> = {
+  "garment.type": {
+    sweater: "pull", pullover: "pull", jumper: "pull",
+    vest: "gilet", "sans-manches": "gilet",
+    other: "autre",
+  },
+  "neckline.type": {
+    "crew-neck": "ras-du-cou", "crew": "ras-du-cou", "round": "ras-du-cou",
+    "col-rond": "ras-du-cou", "round-neck": "ras-du-cou",
+    "v-neck": "col-v", "v": "col-v",
+    "boat": "bateau", "boat-neck": "bateau", "col-bateau": "bateau",
+    "turtleneck": "col-roule", "col-roule": "col-roule", "mock-neck": "col-roule",
+    "hood": "capuche", "hooded": "capuche",
+    "open": "ouvert-cardigan", "cardigan": "ouvert-cardigan",
+  },
+  "sleeves.type": {
+    "set-in": "montees", "setin": "montees", "set_in": "montees",
+    "drop-shoulder": "marteau", "drop": "marteau", "dropped": "marteau",
+    "sleeveless": "sans-manches", "none": "sans-manches",
+  },
+  "sleeves.length": {
+    long: "longues", "full": "longues", "full-length": "longues",
+    short: "courtes", "cap": "courtes",
+    "three-quarter": "3-4", "3/4": "3-4",
+    none: "sans", sleeveless: "sans",
+  },
+  "construction.method": {
+    "flat": "pieces-assemblees", "seamed": "pieces-assemblees", "in-pieces": "pieces-assemblees",
+    "in-the-round": "en-rond", "seamless": "en-rond", "circular": "en-rond",
+    "top-down": "top-down", "topdown": "top-down",
+    "bottom-up": "bottom-up", "bottomup": "bottom-up",
+  },
+  "stitch.mainPattern": {
+    stockinette: "jersey", "stocking": "jersey",
+    garter: "mousse", "garter-stitch": "mousse",
+    rib: "cotes", ribbing: "cotes", ribs: "cotes",
+    cable: "torsades", cables: "torsades",
+    lace: "dentelle",
+    colorwork: "jacquard", stranded: "jacquard", fairisle: "jacquard",
+    other: "autre",
+  },
+  "fit.style": {
+    slim: "ajuste", fitted: "ajuste", close: "ajuste",
+    standard: "regular", normal: "regular", classic: "regular",
+    loose: "oversized", relaxed: "oversized", boxy: "oversized",
+  },
+  "neckband.construction": {
+    "picked_up": "picked-up", "pickedup": "picked-up",
+    "sewn": "sewn-on", "sewn_on": "sewn-on",
+    "knit-in": "integrated", "continuous": "integrated",
+  },
+  "neckband.height": {
+    low: "basse", short: "basse",
+    medium: "moyenne", mid: "moyenne",
+    high: "haute", tall: "haute",
+  },
+};
+
+function mapValue(field: string, value: string): string {
+  if (!value || typeof value !== "string") return "unknown";
+  const lower = value.toLowerCase().trim();
+  return VALUE_MAPPINGS[field]?.[lower] || value;
+}
+
+/**
+ * Normalize the full analysis response from Claude
+ */
+function normalizeAnalysis(analysis: GarmentAnalysis): GarmentAnalysis {
+  if (!analysis.analysable) return analysis;
+
+  // Normalize garment
+  if (analysis.garment) {
+    analysis.garment.type = mapValue("garment.type", analysis.garment.type) as GarmentAnalysis["garment"]["type"];
+    analysis.garment.confidence = normalizeConfidence(analysis.garment.confidence);
+  }
+
+  // Normalize neckline
+  if (analysis.neckline) {
+    analysis.neckline.type = mapValue("neckline.type", analysis.neckline.type) as GarmentAnalysis["neckline"]["type"];
+    analysis.neckline.confidence = normalizeConfidence(analysis.neckline.confidence);
+  }
+
+  // Normalize sleeves
+  if (analysis.sleeves) {
+    analysis.sleeves.type = mapValue("sleeves.type", analysis.sleeves.type) as GarmentAnalysis["sleeves"]["type"];
+    analysis.sleeves.length = mapValue("sleeves.length", analysis.sleeves.length) as GarmentAnalysis["sleeves"]["length"];
+    analysis.sleeves.confidence = normalizeConfidence(analysis.sleeves.confidence);
+  }
+
+  // Normalize construction
+  if (analysis.construction) {
+    analysis.construction.method = mapValue("construction.method", analysis.construction.method) as GarmentAnalysis["construction"]["method"];
+    analysis.construction.confidence = normalizeConfidence(analysis.construction.confidence);
+  }
+
+  // Normalize stitch
+  if (analysis.stitch) {
+    analysis.stitch.mainPattern = mapValue("stitch.mainPattern", analysis.stitch.mainPattern) as GarmentAnalysis["stitch"]["mainPattern"];
+    analysis.stitch.confidence = normalizeConfidence(analysis.stitch.confidence);
+  }
+
+  // Normalize fit
+  if (analysis.fit) {
+    analysis.fit.style = mapValue("fit.style", analysis.fit.style) as GarmentAnalysis["fit"]["style"];
+    analysis.fit.confidence = normalizeConfidence(analysis.fit.confidence);
+  }
+
+  // Normalize neckband
+  if (analysis.neckband) {
+    analysis.neckband.construction = mapValue("neckband.construction", analysis.neckband.construction) as GarmentAnalysis["neckband"]["construction"];
+    analysis.neckband.height = mapValue("neckband.height", analysis.neckband.height) as GarmentAnalysis["neckband"]["height"];
+    analysis.neckband.confidence = normalizeConfidence(analysis.neckband.confidence);
+  }
+
+  // Normalize closure
+  if (analysis.closure) {
+    analysis.closure.confidence = normalizeConfidence(analysis.closure.confidence);
+  }
+
+  return analysis;
+}
+
 export async function analyzeGarmentImage({
   images,
 }: AnalyzeImageOptions): Promise<GarmentAnalysis> {
@@ -241,7 +376,7 @@ export async function analyzeGarmentImage({
       );
     }
 
-    const analysis = parsed as GarmentAnalysis;
+    const analysis = normalizeAnalysis(parsed as GarmentAnalysis);
 
     // Validate required fields
     if (typeof analysis.analysable !== "boolean") {

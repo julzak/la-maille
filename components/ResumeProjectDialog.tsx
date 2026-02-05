@@ -10,8 +10,9 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "@/lib/i18n";
+import { useTranslation, useI18n } from "@/lib/i18n";
 import { loadProject, clearProject, type StoredProject } from "@/lib/storage";
+import { useLaMailleStore } from "@/lib/store";
 
 interface ResumeProjectDialogProps {
   onResume?: (project: StoredProject) => void;
@@ -43,21 +44,40 @@ export function ResumeProjectDialog({
 
     if (onResume) {
       onResume(project);
-    } else {
-      // Navigate to appropriate page based on project step
-      switch (project.step) {
-        case "analysis":
-          router.push("/analyse");
-          break;
-        case "measurements":
-          router.push("/analyse");
-          break;
-        case "pattern":
-          router.push("/patron");
-          break;
-        default:
-          router.push("/analyse");
-      }
+      return;
+    }
+
+    // Restore Zustand state from stored project
+    const store = useLaMailleStore.getState();
+
+    // Restore image preview
+    if (project.imagePreview) {
+      store.setImages([], [project.imagePreview]);
+    }
+
+    // Restore analysis if available
+    if (project.analysis) {
+      store.setAnalysis(project.analysis);
+    }
+
+    // Restore form data if available
+    if (project.gauge && project.measurements && project.yarn) {
+      store.setFormData(project.gauge, project.measurements, project.yarn);
+    }
+
+    // Restore pattern if available
+    if (project.pattern) {
+      const lang = useI18n.getState().language;
+      store.setPattern(project.pattern, lang);
+    }
+
+    // Navigate to appropriate page based on project step
+    switch (project.step) {
+      case "pattern":
+        router.push("/patron");
+        break;
+      default:
+        router.push("/analyse");
     }
   };
 

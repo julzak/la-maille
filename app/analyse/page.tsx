@@ -554,7 +554,8 @@ function AnalysisItem({
   value: string;
   confidence: number;
 }) {
-  const confidencePercent = Math.round(confidence * 100);
+  // Handle confidence as 0-1 or 0-100 (API sometimes returns either)
+  const confidencePercent = Math.round(confidence > 1 ? confidence : confidence * 100);
   const confidenceColor =
     confidencePercent >= 80
       ? "text-success"

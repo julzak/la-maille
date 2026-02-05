@@ -1087,7 +1087,7 @@ export const translations = {
     saved: "Saved",
     projectInProgress: "Project in progress",
     resumeProjectQuestion: "You have a project in progress. Do you want to resume it?",
-    resumeProject: "Resume",
+    resumeProject: "Continue",
     newProject: "New project",
 
     // Home page steps
