@@ -60,9 +60,11 @@ function getConfidenceDisplay(
  * Get confidence indicator for individual analysis items
  */
 function getItemConfidenceIndicator(confidence: number) {
-  if (confidence >= 0.8) {
+  // Handle confidence as 0-1 or 0-100
+  const normalized = confidence > 1 ? confidence / 100 : confidence;
+  if (normalized >= 0.8) {
     return { color: "bg-green-500", textColor: "text-green-700" };
-  } else if (confidence >= 0.6) {
+  } else if (normalized >= 0.6) {
     return { color: "bg-orange-400", textColor: "text-orange-700" };
   } else {
     return { color: "bg-red-400", textColor: "text-red-700" };
@@ -157,7 +159,7 @@ export function GarmentOverlay({
                   view="front"
                   className="max-w-[80px] md:max-w-[140px]"
                 />
-                <span className="text-xs text-muted-foreground mt-1">Face</span>
+                <span className="text-xs text-muted-foreground mt-1">{t("viewFront")}</span>
               </div>
               <div className="flex flex-col items-center flex-1 min-w-0">
                 <GarmentSchematic
@@ -166,7 +168,7 @@ export function GarmentOverlay({
                   view="back"
                   className="max-w-[80px] md:max-w-[140px]"
                 />
-                <span className="text-xs text-muted-foreground mt-1">Dos</span>
+                <span className="text-xs text-muted-foreground mt-1">{t("viewBack")}</span>
               </div>
             </div>
 
