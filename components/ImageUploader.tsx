@@ -309,7 +309,7 @@ export function ImageUploader({
                     <button
                       type="button"
                       onClick={() => handleRemoveImage(img.id)}
-                      className="absolute top-1 right-1 p-1 bg-background/80 hover:bg-background rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="absolute top-1 right-1 p-1.5 bg-background/80 hover:bg-background rounded-full shadow-sm opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity touch-manipulation"
                       aria-label={t("removePhoto")}
                     >
                       <X className="h-4 w-4" />
@@ -341,14 +341,14 @@ export function ImageUploader({
                     size="default"
                     onClick={handleReset}
                     disabled={isLoading}
-                    className="min-h-[44px]"
+                    className="min-h-[44px] touch-manipulation"
                   >
                     {t("changeImageBtn")}
                   </Button>
                   <Button
                     onClick={handleAnalyze}
                     disabled={isLoading}
-                    className="bg-accent hover:bg-accent/90 min-h-[44px]"
+                    className="bg-accent hover:bg-accent/90 min-h-[44px] touch-manipulation"
                     aria-busy={isLoading}
                   >
                     {isLoading ? (

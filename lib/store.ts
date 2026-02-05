@@ -192,7 +192,27 @@ export const useLaMailleStore = create<LaMailleState>()(
     }),
     {
       name: "lamaille-storage",
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => ({
+        getItem(name: string) {
+          try { return sessionStorage.getItem(name); } catch { return null; }
+        },
+        setItem(name: string, value: string) {
+          try {
+            sessionStorage.setItem(name, value);
+          } catch {
+            // QuotaExceededError - clear old data and retry once
+            try {
+              sessionStorage.removeItem("lamaille-storage");
+              sessionStorage.setItem(name, value);
+            } catch {
+              // Still too large - skip persistence, in-memory state still works
+            }
+          }
+        },
+        removeItem(name: string) {
+          try { sessionStorage.removeItem(name); } catch { /* ignore */ }
+        },
+      })),
       // Ne pas persister les objets File (non sérialisables) ni les états de chargement
       partialize: (state) => ({
         imagePreviews: state.imagePreviews,

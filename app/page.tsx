@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { ImageUploader } from "@/components/ImageUploader";
@@ -13,26 +14,31 @@ export default function Home() {
   const { t } = useTranslation();
   const { setImages, setAnalysisLoading, analysisLoading } = useLaMailleStore();
 
+  // Reset loading state when returning to home page (prevents stuck disabled button)
+  useEffect(() => {
+    if (analysisLoading) {
+      setAnalysisLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleImagesSelected = async (files: File[], previews: string[]) => {
-    console.log("[Home] handleImagesSelected called, files:", files.map(f => f.name));
+    try {
+      // Clear any previous project when starting new
+      clearProject();
+      setImages(files, previews);
+      setAnalysisLoading(true);
 
-    // Clear any previous project when starting new
-    clearProject();
-    setImages(files, previews);
-    setAnalysisLoading(true);
+      // Wait for Zustand persist to flush to sessionStorage before navigation
+      await new Promise(resolve => setTimeout(resolve, 100));
 
-    // Wait for Zustand persist to flush to sessionStorage before navigation
-    // This fixes the race condition where navigation happens before state is persisted
-    await new Promise(resolve => setTimeout(resolve, 100));
-
-    // Verify the state was set
-    const state = useLaMailleStore.getState();
-    console.log("[Home] State after setImages:", {
-      previewCount: state.imagePreviews.length,
-      hasPreview: !!state.imagePreview,
-    });
-
-    router.push("/analyse");
+      router.push("/analyse");
+    } catch (err) {
+      console.error("[Home] Error in handleImagesSelected:", err);
+      // Even if persist fails, force navigation with in-memory state
+      setAnalysisLoading(true);
+      router.push("/analyse");
+    }
   };
 
   return (
