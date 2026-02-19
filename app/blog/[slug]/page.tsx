@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: article.publishedAt,
       url: `https://la-maille.com/blog/${article.slug}`,
+      images: [{ url: "https://la-maille.com/og-image.png", width: 1200, height: 630 }],
     },
   };
 }
@@ -37,6 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function renderMarkdown(content: string) {
   const lines = content.split("\n");
   const elements: React.ReactNode[] = [];
+  let keyCounter = 0;
   let currentParagraph: string[] = [];
   let inList = false;
   let listItems: string[] = [];
@@ -47,7 +49,7 @@ function renderMarkdown(content: string) {
       if (text.trim()) {
         elements.push(
           <p
-            key={elements.length}
+            key={keyCounter++}
             className="text-muted-foreground leading-relaxed mb-4"
             dangerouslySetInnerHTML={{ __html: formatInline(text) }}
           />
@@ -61,7 +63,7 @@ function renderMarkdown(content: string) {
     if (listItems.length > 0) {
       elements.push(
         <ul
-          key={elements.length}
+          key={keyCounter++}
           className="list-disc pl-6 mb-4 space-y-1 text-muted-foreground"
         >
           {listItems.map((item, i) => (
@@ -91,7 +93,7 @@ function renderMarkdown(content: string) {
       flushParagraph();
       elements.push(
         <h3
-          key={elements.length}
+          key={keyCounter++}
           className="font-serif text-lg font-medium mt-8 mb-3"
         >
           {trimmed.slice(4)}
@@ -102,7 +104,7 @@ function renderMarkdown(content: string) {
       flushParagraph();
       elements.push(
         <h2
-          key={elements.length}
+          key={keyCounter++}
           className="font-serif text-2xl font-medium mt-10 mb-4"
         >
           {trimmed.slice(3)}
@@ -124,13 +126,34 @@ function renderMarkdown(content: string) {
   return elements;
 }
 
-function formatInline(text: string): string {
+function sanitizeUrl(url: string): string {
+  try {
+    const parsed = new URL(url, "https://la-maille.com");
+    if (parsed.protocol === "https:" || parsed.protocol === "http:") {
+      return parsed.href;
+    }
+    return "#";
+  } catch {
+    return "#";
+  }
+}
+
+function escapeHtml(text: string): string {
   return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function formatInline(text: string): string {
+  return escapeHtml(text)
     .replace(/\*\*(.+?)\*\*/g, "<strong class='text-foreground'>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
     .replace(
       /\[(.+?)\]\((.+?)\)/g,
-      '<a href="$2" class="text-primary hover:underline">$1</a>'
+      (_, label, url) =>
+        `<a href="${sanitizeUrl(url)}" class="text-primary hover:underline">${label}</a>`
     );
 }
 

@@ -33,12 +33,10 @@ export function UserMenu() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleSignOut = async () => {
-    console.log("Starting sign out...");
     setIsLoggingOut(true);
     setShowLogoutDialog(false);
 
     const forceLogout = () => {
-      console.log("Force logout - clearing all state...");
       logout();
       localStorage.removeItem("lamaille-auth");
 
@@ -56,27 +54,17 @@ export function UserMenu() {
 
     // Set a timeout in case signOut hangs
     const timeoutId = setTimeout(() => {
-      console.warn("SignOut timeout - forcing logout");
       forceLogout();
     }, 3000);
 
     try {
       const supabase = createClient();
-      console.log("Calling supabase.auth.signOut()...");
-
-      const { error } = await supabase.auth.signOut({ scope: 'local' });
-
+      await supabase.auth.signOut({ scope: 'local' });
       clearTimeout(timeoutId);
-      console.log("SignOut result:", { error });
-
-      if (error) {
-        console.error("Supabase signOut error:", error);
-      }
 
       forceLogout();
-    } catch (error) {
+    } catch {
       clearTimeout(timeoutId);
-      console.error("Error signing out:", error);
       forceLogout();
     }
   };

@@ -13,7 +13,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Safety timeout - if auth takes more than 5s, stop loading
     const timeout = setTimeout(() => {
-      console.warn("Auth initialization timeout - stopping loading state");
       setIsLoading(false);
     }, 5000);
 
@@ -22,14 +21,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         const {
           data: { user },
-          error: userError,
         } = await supabase.auth.getUser();
 
-        if (userError) {
-          // AuthSessionMissingError is expected when not logged in - don't log it
-          if (userError.name !== "AuthSessionMissingError") {
-            console.error("Error getting user:", userError);
-          }
+        if (!user) {
           setUser(null);
           setIsLoading(false);
           clearTimeout(timeout);
@@ -40,19 +34,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         if (user) {
           // Fetch user profile
-          const { data: profile, error: profileError } = await supabase
+          const { data: profile } = await supabase
             .from("profiles")
             .select("*")
             .eq("id", user.id)
             .single();
 
-          if (profileError) {
-            console.error("Error fetching profile:", profileError);
-          }
           setProfile(profile as UserProfile | null);
         }
-      } catch (error) {
-        console.error("Error initializing auth:", error);
+      } catch {
+        // Auth initialization failed silently
       } finally {
         clearTimeout(timeout);
         setIsLoading(false);
@@ -65,8 +56,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log("Auth state changed:", event, session?.user?.email || "no user");
-
       if (event === "SIGNED_OUT" || event === "INITIAL_SESSION" && !session) {
         // User signed out or no initial session
         setUser(null);
