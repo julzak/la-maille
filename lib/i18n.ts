@@ -473,6 +473,12 @@ export const translations = {
     laceLimit: "Dentelle complexe",
     experimentalLimit: "Constructions experimentales",
 
+    // SEO pages CTAs
+    "seo.tryFree": "Essayer gratuitement",
+    "seo.uploadPhoto": "Uploader une photo",
+    "seo.getStarted": "Commencer",
+    "seo.learnHow": "Comment ça marche",
+
     // Privacy & Terms
     "privacy.title": "Politique de confidentialite",
     "privacy.lastUpdated": "Derniere mise a jour",
@@ -1115,6 +1121,12 @@ export const translations = {
     colorworkLimit: "Colorwork: shape yes, design no",
     laceLimit: "Complex lace",
     experimentalLimit: "Experimental constructions",
+
+    // SEO pages CTAs
+    "seo.tryFree": "Try it free",
+    "seo.uploadPhoto": "Upload a photo",
+    "seo.getStarted": "Get started",
+    "seo.learnHow": "How it works",
 
     // Privacy & Terms
     "privacy.title": "Privacy Policy",
