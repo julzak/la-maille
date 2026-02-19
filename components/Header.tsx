@@ -20,6 +20,12 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-3">
+          <Link
+            href="/blog"
+            className="hidden sm:flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Blog
+          </Link>
           {/* Mes patrons link - only shown when logged in */}
           {!isLoading && user && (
             <Link

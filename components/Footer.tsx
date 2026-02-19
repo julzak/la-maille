@@ -35,6 +35,12 @@ export function Footer() {
               Photo to Pattern
             </Link>
             <Link
+              href="/blog"
+              className="hover:text-foreground transition-colors"
+            >
+              Blog
+            </Link>
+            <Link
               href="/privacy"
               className="hover:text-foreground transition-colors"
             >
