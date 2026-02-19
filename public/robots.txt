@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /auth/
+Disallow: /analyse
+Disallow: /patron
+Disallow: /tricot
+Disallow: /mes-patrons
+
+Sitemap: https://la-maille.com/sitemap.xml
