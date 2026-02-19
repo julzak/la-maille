@@ -17,12 +17,12 @@ export function Logo({ className = "", showTagline = true }: LogoProps) {
       <img
         src="/logo-lamaille.svg"
         alt="La Maille"
-        className="logo-img h-[128px] md:h-[160px] w-auto"
-        style={{ minHeight: '128px' }}
+        className="logo-img h-[80px] md:h-[100px] w-auto"
+        style={{ minHeight: '80px' }}
       />
       {showTagline && (
-        <span className="text-sm md:text-base text-muted-foreground -mt-12 text-center">
-          your French knitting studio
+        <span className="text-xs md:text-sm text-muted-foreground -mt-6 text-center">
+          your French knitting companion
         </span>
       )}
     </div>
@@ -50,7 +50,7 @@ export function LogoText({
       </span>
       {showTagline && (
         <span className="text-xs text-muted-foreground -mt-0.5">
-          your French knitting studio
+          your French knitting companion
         </span>
       )}
     </div>

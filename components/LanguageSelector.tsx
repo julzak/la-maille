@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslation, type Language } from "@/lib/i18n";
-import { Button } from "@/components/ui/button";
 
 export function LanguageSelector() {
   const { language, setLanguage } = useTranslation();
@@ -12,14 +11,19 @@ export function LanguageSelector() {
   };
 
   return (
-    <Button
-      variant="ghost"
-      size="sm"
+    <button
       onClick={toggleLanguage}
-      className="text-xs font-medium px-2 h-8"
+      className="flex items-center gap-1.5 text-xs font-medium px-2 h-8 rounded-md hover:bg-muted transition-colors"
       aria-label={language === "fr" ? "Switch to English" : "Passer en francais"}
     >
-      {language === "fr" ? "EN" : "FR"}
-    </Button>
+      <span aria-hidden="true">🌐</span>
+      <span className={language === "en" ? "font-semibold text-foreground" : "text-muted-foreground"}>
+        EN
+      </span>
+      <span className="text-muted-foreground/50">/</span>
+      <span className={language === "fr" ? "font-semibold text-foreground" : "text-muted-foreground"}>
+        FR
+      </span>
+    </button>
   );
 }

@@ -12,6 +12,9 @@ export function Footer() {
       <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col items-center gap-4">
           <Logo showTagline={false} />
+          <p className="text-sm text-muted-foreground">
+            Made with ❤️ &amp; 🧶 in Paris
+          </p>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
             <Link
               href="/knitting-pattern-generator"

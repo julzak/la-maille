@@ -377,9 +377,14 @@ export function ImageUploader({
               {state === "dragover" ? "📥" : "📤"}
             </div>
             <p className="text-base md:text-lg font-medium mb-2">
-              {state === "dragover"
-                ? t("dropImageHere")
-                : t("dragPhotoHere")}
+              {state === "dragover" ? (
+                t("dropImageHere")
+              ) : (
+                <>
+                  <span className="hidden md:inline">{t("dragPhotoHere")}</span>
+                  <span className="md:hidden">{t("tapToUpload")}</span>
+                </>
+              )}
             </p>
             <p className="text-sm text-muted-foreground mb-4">{t("or")}</p>
             <Button
@@ -394,6 +399,13 @@ export function ImageUploader({
             <p className="text-xs text-muted-foreground mt-4">
               {t("maxSize")}
             </p>
+            <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mt-3">
+              <span>📤 Upload</span>
+              <span aria-hidden="true">→</span>
+              <span>📏 Measure</span>
+              <span aria-hidden="true">→</span>
+              <span>🧶 Pattern in ~2 min</span>
+            </div>
           </div>
         ) : null}
       </div>

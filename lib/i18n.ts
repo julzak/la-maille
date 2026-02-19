@@ -28,7 +28,7 @@ export const translations = {
     tagline: "De la photo au patron",
 
     // Home page
-    homeTitle: "De la photo au patron",
+    homeTitle: "Transformez n'importe quel pull en VOTRE patron",
     homeSubtitle:
       "Uploadez une photo de n'importe quel vêtement tricoté. La Maille la lit et crée un patron sur-mesure pour vous.",
     homeUploadTitle: "Glissez votre photo ici",
@@ -423,6 +423,7 @@ export const translations = {
     // Image uploader
     dropImageHere: "Deposez vos images ici",
     dragPhotoHere: "Glissez vos photos ici",
+    tapToUpload: "Appuyez pour uploader votre photo",
     or: "ou",
     browseFiles: "Parcourir les fichiers",
     maxSize: "JPG, PNG ou WebP - Max 10 Mo par image",
@@ -464,12 +465,12 @@ export const translations = {
 
     // Capabilities
     whatICanDo: "Ce que je sais faire",
-    myLimits: "Mes limites (pour l'instant)",
+    myLimits: "Bientôt disponible",
     basicSweaters: "Pulls et cardigans basiques",
     basicStitches: "Jersey, côtes, point mousse",
     adaptedCalcs: "Calculs adaptés à VOTRE échantillon",
-    cablesLimit: "Torsades : je les repère mais ne reproduis pas la grille",
-    colorworkLimit: "Jacquard : forme oui, dessin non",
+    cablesLimit: "Reproduction de grilles de torsades",
+    colorworkLimit: "Motifs jacquard",
     laceLimit: "Dentelle complexe",
     experimentalLimit: "Constructions experimentales",
 
@@ -677,7 +678,7 @@ export const translations = {
     tagline: "From photo to pattern",
 
     // Home page
-    homeTitle: "From photo to pattern",
+    homeTitle: "Turn any sweater into YOUR pattern",
     homeSubtitle:
       "Upload a photo of any knitted garment. La Maille reads it and creates a custom pattern just for you.",
     homeUploadTitle: "Drop your photo here",
@@ -1072,6 +1073,7 @@ export const translations = {
     // Image uploader
     dropImageHere: "Drop your images here",
     dragPhotoHere: "Drag your photos here",
+    tapToUpload: "Tap to upload your photo",
     or: "or",
     browseFiles: "Browse files",
     maxSize: "JPG, PNG or WebP - Max 10 MB per image",
@@ -1113,12 +1115,12 @@ export const translations = {
 
     // Capabilities
     whatICanDo: "What I can do",
-    myLimits: "My limits (for now)",
+    myLimits: "Coming soon",
     basicSweaters: "Basic sweaters and cardigans",
     basicStitches: "Stockinette, ribbing, garter stitch",
     adaptedCalcs: "Calculations adapted to YOUR gauge",
-    cablesLimit: "Cables: I spot them but can't reproduce the chart",
-    colorworkLimit: "Colorwork: shape yes, design no",
+    cablesLimit: "Cable chart reproduction",
+    colorworkLimit: "Colorwork designs",
     laceLimit: "Complex lace",
     experimentalLimit: "Experimental constructions",
 

@@ -47,7 +47,7 @@ export default function Home() {
       <ResumeProjectDialog />
 
       {/* HERO SECTION */}
-      <section className="text-center py-16 md:py-24 px-4">
+      <section className="text-center py-8 md:py-16 lg:py-24 px-4">
         <div className="container mx-auto max-w-3xl">
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 text-balance">
             {t("homeTitle")}
@@ -59,7 +59,7 @@ export default function Home() {
       </section>
 
       {/* ZONE UPLOAD */}
-      <section className="px-4 pb-20">
+      <section className="px-4 pb-8 md:pb-12">
         <div className="container mx-auto max-w-2xl">
           <ImageUploader
             onImagesSelected={handleImagesSelected}
@@ -68,8 +68,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SOCIAL PROOF */}
+      <section className="py-6 md:py-8 px-4">
+        <div className="container mx-auto max-w-2xl text-center">
+          <p className="text-sm text-muted-foreground">
+            🧶 Join <span className="font-medium text-foreground">100+ knitters</span> who use La Maille — <span className="font-medium text-foreground">free while in beta</span>
+          </p>
+        </div>
+      </section>
+
       {/* COMMENT CA MARCHE */}
-      <section className="py-20 px-4 bg-muted/30">
+      <section className="py-12 md:py-20 px-4 bg-muted/30">
         <div className="container mx-auto max-w-4xl">
           <h2 className="font-serif text-3xl text-center mb-12">
             {t("homeHowItWorks")}
@@ -107,12 +116,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION HONNETETE */}
-      <section className="py-20 px-4">
+      {/* SEE IT IN ACTION */}
+      <section className="py-12 md:py-20 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="font-serif text-3xl text-center mb-12">
+            See it in action
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6 md:gap-10 items-start">
+            {/* Your photo */}
+            <div>
+              <p className="text-sm font-medium text-muted-foreground mb-3 text-center">Your photo</p>
+              <div className="aspect-[4/5] rounded-xl border-2 border-dashed border-border bg-muted/20 flex flex-col items-center justify-center gap-4 p-8">
+                <span className="text-6xl" aria-hidden="true">📸</span>
+                <div className="text-center">
+                  <p className="font-serif text-lg mb-1">Upload any sweater photo</p>
+                  <p className="text-sm text-muted-foreground">Front view, well-lit</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Your pattern */}
+            <div>
+              <p className="text-sm font-medium text-muted-foreground mb-3 text-center">Your pattern</p>
+              <div className="aspect-[4/5] rounded-xl border border-border bg-card p-6 md:p-8 flex flex-col">
+                <div className="text-xs text-muted-foreground mb-4 uppercase tracking-wider">La Maille — Custom Pattern</div>
+                <div className="font-mono text-xs md:text-sm text-muted-foreground space-y-3 flex-1">
+                  <p><span className="text-foreground font-medium">Cast on</span> 84 stitches on circular needles.</p>
+                  <p><span className="text-foreground font-medium">Rows 1-20:</span> *K2, P2* ribbing</p>
+                  <p><span className="text-foreground font-medium">Row 21:</span> Knit all stitches (stockinette)</p>
+                  <p><span className="text-foreground font-medium">Continue</span> in stockinette for 38 cm</p>
+                  <p className="text-primary">↓ Armhole shaping</p>
+                  <p><span className="text-foreground font-medium">Next row:</span> Bind off 4 sts, knit to end</p>
+                  <p><span className="text-foreground font-medium">Dec row:</span> K1, SSK, knit to last 3 sts, K2tog, K1</p>
+                  <p className="text-muted-foreground/50">...</p>
+                </div>
+                <div className="text-xs text-muted-foreground mt-4 pt-3 border-t border-border">
+                  Adapted to your gauge &amp; measurements
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="text-center text-sm text-muted-foreground mt-6 md:hidden">
+            📸 → 🧶 From photo to pattern
+          </p>
+        </div>
+      </section>
+
+      {/* SECTION HONNETETE - redesigned */}
+      <section className="py-12 md:py-20 px-4 bg-muted/30">
         <div className="container mx-auto max-w-4xl">
           <Card className="bg-primary/5 border-primary/20">
-            <CardContent className="p-8 md:p-12">
-              <div className="grid md:grid-cols-2 gap-12">
+            <CardContent className="p-6 md:p-10">
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12">
                 {/* Ce que je sais faire */}
                 <div>
                   <h3 className="font-serif text-xl mb-6">{t("whatICanDo")}</h3>
@@ -132,24 +187,24 @@ export default function Home() {
                   </ul>
                 </div>
 
-                {/* Mes limites */}
-                <div>
-                  <h3 className="font-serif text-xl mb-6">{t("myLimits")}</h3>
-                  <ul className="space-y-3">
+                {/* Coming soon */}
+                <div className="opacity-75">
+                  <h3 className="font-serif text-lg mb-6">{t("myLimits")}</h3>
+                  <ul className="space-y-3 text-sm">
                     <li className="flex items-start gap-3">
-                      <span className="text-warning mt-0.5" aria-hidden="true">!</span>
+                      <span className="mt-0.5" aria-hidden="true">🔜</span>
                       <span>{t("cablesLimit")}</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-warning mt-0.5" aria-hidden="true">!</span>
+                      <span className="mt-0.5" aria-hidden="true">🔜</span>
                       <span>{t("colorworkLimit")}</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-destructive mt-0.5" aria-hidden="true">✗</span>
+                      <span className="mt-0.5" aria-hidden="true">🔜</span>
                       <span>{t("laceLimit")}</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-destructive mt-0.5" aria-hidden="true">✗</span>
+                      <span className="mt-0.5" aria-hidden="true">🔜</span>
                       <span>{t("experimentalLimit")}</span>
                     </li>
                   </ul>
