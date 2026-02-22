@@ -178,7 +178,7 @@ export default function BlogArticlePage({ params }: Props) {
           {article.title}
         </h1>
         <div className="flex items-center gap-3 text-sm text-muted-foreground">
-          <span>La Maille Team</span>
+          <span>Dominique from La Maille</span>
           <span aria-hidden="true">&middot;</span>
           <time dateTime={article.publishedAt}>
             {new Date(article.publishedAt).toLocaleDateString("en-US", {
