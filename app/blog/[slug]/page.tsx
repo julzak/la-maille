@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Metadata } from "next";
 import { getArticleBySlug, getAllArticles } from "@/lib/blog-data";
@@ -114,6 +115,27 @@ function renderMarkdown(content: string) {
       flushParagraph();
       inList = true;
       listItems.push(trimmed.slice(2));
+    } else if (trimmed.match(/^!\[.*\]\(.*\)$/)) {
+      if (inList) flushList();
+      flushParagraph();
+      const match = trimmed.match(/^!\[(.*?)\]\((.*?)\)$/);
+      if (match) {
+        const [, alt, src] = match;
+        elements.push(
+          <figure key={keyCounter++} className="my-8">
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg">
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 700px"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+        );
+      }
     } else {
       if (inList) flushList();
       currentParagraph.push(trimmed);

@@ -25,6 +25,8 @@ export const articles: Article[] = [
     content: `
 Yes, you can recreate any sweater from just a photo. With the right measurements, gauge swatch, and either manual calculations or AI pattern generation tools like La Maille, knitters routinely turn inspiration photos into complete, custom-fitted patterns. This guide covers both traditional reverse-engineering methods and modern AI-assisted approaches — so you can knit that sweater you've been admiring.
 
+![Process diagram showing photo upload, measurements input, and generated knitting pattern output](/images/blog/how-to-recreate-sweater-from-photo/photo-to-pattern-process-overview.webp)
+
 ## Why Recreate Instead of Buy a Pattern?
 
 Sometimes the perfect pattern simply doesn't exist. Maybe the sweater is vintage, discontinued, or a one-of-a-kind handmade piece. Or perhaps you've found a commercial sweater you love but want to knit it yourself in better yarn.
@@ -32,6 +34,8 @@ Sometimes the perfect pattern simply doesn't exist. Maybe the sweater is vintage
 Recreating from a photo gives you complete control over the fit, the yarn, and the details. You're not locked into someone else's sizing or gauge.
 
 ## What You Need to Get Started
+
+![Knitting gauge swatch with ruler showing stitch and row count measurement](/images/blog/how-to-recreate-sweater-from-photo/gauge-swatch-measurement.webp)
 
 Before you begin, gather these essentials:
 
@@ -42,6 +46,8 @@ Before you begin, gather these essentials:
 **Your gauge swatch.** Knit a 4x4 inch swatch in your chosen yarn and needles. Count your stitches and rows per inch — this is crucial for accurate sizing.
 
 ## The Traditional Method: Manual Reverse Engineering
+
+![Diagram showing raglan, set-in sleeve, and drop shoulder sweater construction types](/images/blog/how-to-recreate-sweater-from-photo/sweater-construction-types.webp)
 
 Experienced knitters have been recreating patterns for decades using careful observation and math. Here's the basic process:
 
@@ -62,6 +68,8 @@ New tools like La Maille can automate much of this process. You upload a photo, 
 This approach is particularly useful for knitters who love the idea of custom patterns but don't have time for complex calculations — or who want to knit a sweater they saw without spending hours figuring out the construction.
 
 ## Tips for Better Results
+
+![Comparison of clear well-lit sweater photo versus blurry dark photo for pattern generation](/images/blog/how-to-recreate-sweater-from-photo/good-vs-bad-source-photo.webp)
 
 **Choose clear, well-lit photos.** Blurry or dark images make it harder to identify stitch patterns and construction details.
 
@@ -142,6 +150,8 @@ Let's break down each element.
 
 ## Step 1: Analyze the Construction
 
+![Annotated sweater photo showing seam lines, neckline shape, and sleeve construction details](/images/blog/photo-to-knitting-pattern-complete-guide/sweater-construction-analysis.webp)
+
 Look at your photo and ask these questions:
 
 **Seams or seamless?** Look for visible seam lines along the sides and shoulders. If you can see them, the sweater was knit in pieces and sewn together. If the fabric flows continuously, it's likely seamless.
@@ -154,6 +164,8 @@ Look at your photo and ask these questions:
 - *Drop shoulder*: The shoulder seam sits below the natural shoulder line
 
 ## Step 2: Identify Stitch Patterns
+
+![Grid showing stockinette, ribbing, garter, cables, and colorwork stitch pattern examples](/images/blog/photo-to-knitting-pattern-complete-guide/common-stitch-patterns-grid.webp)
 
 Zoom in on your photo if possible. Common stitch patterns include:
 
@@ -168,6 +180,8 @@ Zoom in on your photo if possible. Common stitch patterns include:
 If you can't identify a stitch pattern from the photo, try searching for similar textures in stitch dictionaries or on Ravelry.
 
 ## Step 3: Take Your Measurements
+
+![Human figure diagram with labeled measurement points for bust, waist, hip, shoulder, and arm](/images/blog/photo-to-knitting-pattern-complete-guide/body-measurements-diagram.webp)
 
 You'll need accurate body measurements to create a pattern that fits. Essential measurements include:
 
@@ -191,6 +205,8 @@ Then measure: how many stitches per inch? How many rows per inch?
 
 ## Step 5: Calculate Your Pattern
 
+![Example calculation showing bust measurement times gauge equals stitch count](/images/blog/photo-to-knitting-pattern-complete-guide/pattern-calculation-example.webp)
+
 Now comes the math. Using your measurements and gauge, calculate:
 
 **Cast-on stitches**: Body circumference × stitches per inch = total stitches
@@ -202,6 +218,8 @@ Now comes the math. Using your measurements and gauge, calculate:
 For example, if you want a 40-inch bust with 5 stitches per inch, you need 200 stitches. If you're knitting in the round, that's 200 stitches. If knitting flat in pieces, that's 100 stitches for the front and 100 for the back.
 
 ## The AI Shortcut
+
+![Screenshot or diagram of La Maille interface showing photo upload and pattern generation flow](/images/blog/photo-to-knitting-pattern-complete-guide/la-maille-pattern-generation-flow.webp)
 
 All of this analysis and calculation can be done manually — and many experienced knitters enjoy the process. But if you want faster results, AI tools like La Maille can analyze your photo and generate a complete pattern automatically.
 
@@ -285,11 +303,15 @@ Ready to turn your photo into a pattern? Try La Maille and generate your custom 
     content: `
 AI knitting pattern generators create complete, custom-fitted patterns in under 5 minutes — a process that traditionally takes 2-6 hours of manual calculation. Among the 53+ million knitters in the US alone, tools like La Maille are changing how custom patterns are created. Here's an honest comparison of both approaches to help you decide which is right for your projects.
 
+![Split image comparing traditional pattern design with calculator and paper versus AI pattern generator interface](/images/blog/ai-knitting-pattern-generator-vs-traditional/traditional-vs-ai-pattern-design.webp)
+
 ## Traditional Pattern Creation: The Craft Approach
 
 For decades, knitters who wanted custom patterns had two options: buy a published pattern and modify it, or design from scratch using math and experience.
 
 ### How Traditional Pattern Design Works
+
+![Example of knitting pattern spreadsheet with gauge calculations and stitch counts](/images/blog/ai-knitting-pattern-generator-vs-traditional/pattern-modification-spreadsheet.webp)
 
 **Modification approach**: Start with an existing pattern close to what you want. Adjust stitch counts for different sizes, change the neckline, add length, or swap stitch patterns. This requires understanding how the pattern is constructed so changes don't throw off the proportions.
 
@@ -320,6 +342,8 @@ For decades, knitters who wanted custom patterns had two options: buy a publishe
 AI pattern generators like La Maille use machine learning to analyze images and create patterns automatically. You provide a photo, your measurements, and your gauge — the AI handles the rest.
 
 ### How AI Pattern Generation Works
+
+![Four-step process: upload photo, enter measurements, input gauge, receive pattern](/images/blog/ai-knitting-pattern-generator-vs-traditional/ai-pattern-generation-steps.webp)
 
 **Image analysis**: The AI examines your photo to identify construction type, silhouette, and proportions.
 
@@ -429,6 +453,8 @@ But traditional pattern design isn't going anywhere. The deep understanding it p
 
 ## Making Your Choice
 
+![Visual comparison table of traditional versus AI pattern generation methods](/images/blog/ai-knitting-pattern-generator-vs-traditional/comparison-table-visual.webp)
+
 There's no wrong answer. Your choice depends on:
 
 - How much time you have
@@ -486,6 +512,8 @@ This tells you that the designer, using specific yarn and needles, got exactly t
 
 ## Why Gauge Matters
 
+![Three sweaters showing how half-stitch gauge difference creates 4-inch size variation](/images/blog/understanding-knitting-gauge-complete-guide/gauge-impact-sweater-size.webp)
+
 Here's a simple example that shows why gauge is critical:
 
 Imagine you're knitting a sweater with a 40-inch bust. The pattern assumes 5 stitches per inch, so it tells you to knit 200 stitches around.
@@ -497,6 +525,8 @@ Or maybe you knit loosely at 4.5 stitches per inch. Your 200 stitches become a 4
 **A half-stitch difference per inch can mean a garment that's multiple sizes off.**
 
 ## How to Make a Gauge Swatch
+
+![Step-by-step photos of casting on, knitting, binding off, and blocking a gauge swatch](/images/blog/understanding-knitting-gauge-complete-guide/gauge-swatch-knitting-steps.webp)
 
 A gauge swatch is a sample of knitting used to measure your gauge before starting a project. Here's how to do it right:
 
@@ -529,6 +559,8 @@ Give your blocked swatch at least a few hours (ideally overnight) to fully dry a
 
 ## How to Measure Gauge
 
+![Close-up of gauge swatch with ruler showing proper measurement technique in center of fabric](/images/blog/understanding-knitting-gauge-complete-guide/measuring-gauge-correctly.webp)
+
 Now measure your dry, blocked swatch:
 
 **For stitch gauge**: Place a ruler horizontally across the middle of your swatch (not at the edges). Count how many stitches fit in 4 inches. Include half-stitches if applicable — precision matters.
@@ -544,6 +576,8 @@ Some knitters prefer to measure over 2 inches and multiply by 2, which can be ea
 - **Phone apps**: Some can analyze photos of your swatch
 
 ## What If Your Gauge Doesn't Match?
+
+![Needle size comparison showing larger needles for loose knitters, smaller for tight](/images/blog/understanding-knitting-gauge-complete-guide/gauge-troubleshooting-needles.webp)
 
 Don't panic — this is normal. Here's what to do:
 
@@ -580,6 +614,8 @@ This is different from buying a published pattern, which assumes standard gauges
 **Assuming past experience applies**: Your gauge can vary by yarn, needle material, time of day, and even your mood. Swatch for every new project.
 
 ## Gauge and Different Stitch Patterns
+
+![Comparison of gauge swatches in stockinette, ribbing, and cable patterns](/images/blog/understanding-knitting-gauge-complete-guide/stitch-pattern-gauge-differences.webp)
 
 Your gauge changes with different stitch patterns, even using the same yarn and needles:
 
@@ -655,6 +691,8 @@ You can identify most knitting stitches from a photo by looking for key visual c
 
 ## The Foundation: Knit and Purl
 
+![Close-up comparison of knit stitch V-shapes and purl stitch bumps in knitted fabric](/images/blog/how-to-identify-knitting-stitches-from-photos/knit-vs-purl-stitch-closeup.webp)
+
 Every stitch pattern is built from two basic stitches: knit and purl.
 
 **Knit stitches** look like small Vs stacked on top of each other. When you see smooth, V-shaped fabric, you're looking at the knit side.
@@ -664,6 +702,8 @@ Every stitch pattern is built from two basic stitches: knit and purl.
 Understanding this is key to identifying everything else.
 
 ## Stockinette Stitch
+
+![Side-by-side comparison of stockinette stitch smooth surface and garter stitch ridges](/images/blog/how-to-identify-knitting-stitches-from-photos/stockinette-garter-comparison.webp)
 
 **What it looks like**: Smooth fabric with columns of V-shaped stitches on one side, horizontal bumps on the other.
 
@@ -693,6 +733,8 @@ Understanding this is key to identifying everything else.
 
 ## Ribbing
 
+![Examples of 1x1 ribbing and 2x2 ribbing showing vertical column patterns](/images/blog/how-to-identify-knitting-stitches-from-photos/ribbing-types-1x1-2x2.webp)
+
 **What it looks like**: Vertical columns of knit and purl stitches creating raised ridges.
 
 **Where you'll see it**: Cuffs, hems, necklines — anywhere you need stretch and grip. Sometimes used for entire fitted garments.
@@ -716,6 +758,8 @@ Understanding this is key to identifying everything else.
 
 ## Cables
 
+![Various cable knitting patterns from simple twist to complex honeycomb](/images/blog/how-to-identify-knitting-stitches-from-photos/cable-knitting-examples.webp)
+
 **What it looks like**: Twisted rope-like patterns where stitches cross over each other.
 
 **Where you'll see it**: Aran sweaters, cardigans, traditional fisherman knits, accent panels.
@@ -735,6 +779,8 @@ Understanding this is key to identifying everything else.
 **Key difference from dropped stitches**: Lace holes are consistent and form a pattern; dropped stitches are random mistakes.
 
 ## Colorwork
+
+![Comparison of stranded colorwork Fair Isle and intarsia techniques](/images/blog/how-to-identify-knitting-stitches-from-photos/colorwork-types-stranded-intarsia.webp)
 
 ### Stranded (Fair Isle)
 
@@ -829,6 +875,8 @@ Ready to turn a photo into a pattern? La Maille can analyze your image and gener
     content: `
 Accurate body measurements are the single most important factor in knitting a sweater that fits well. Standard sweater ease ranges from 2-4 inches for a comfortable fit, which means even small measurement errors compound into noticeable fit problems. Whether you're following a published pattern or generating a custom one with La Maille, your measurements are the foundation of every stitch count. Here's exactly how to measure yourself correctly.
 
+![Front view body diagram showing bust, waist, hip, and shoulder measurement locations](/images/blog/how-to-measure-yourself-for-knitted-sweater/sweater-measurements-diagram-front.webp)
+
 ## Why Measurements Matter More Than Size Charts
 
 Pattern sizes (S, M, L) are based on standardized body measurements that may not match your body at all. The "medium" in one pattern might fit a 36-inch bust; in another, it's designed for 40 inches.
@@ -843,6 +891,8 @@ Your actual measurements tell the truth. When you know your numbers, you can:
 You'll need these core measurements for most sweater patterns:
 
 ### Bust/Chest Circumference
+
+![Photo demonstrating correct tape measure position for bust circumference measurement](/images/blog/how-to-measure-yourself-for-knitted-sweater/bust-measurement-technique.webp)
 
 **How to measure**: Wrap the tape measure around the fullest part of your bust/chest, keeping it parallel to the floor. Don't pull tight — the tape should be snug but not compressing.
 
@@ -867,6 +917,8 @@ You'll need these core measurements for most sweater patterns:
 **Why it matters**: Determines where sleeves attach and affects overall fit through the upper body.
 
 ### Arm Length
+
+![Side view showing arm length and body length measurement technique](/images/blog/how-to-measure-yourself-for-knitted-sweater/sweater-measurements-diagram-side.webp)
 
 **How to measure**: Bend your elbow slightly. Measure from the edge of your shoulder, down over your elbow, to your wrist bone.
 
@@ -928,6 +980,8 @@ You'll need these core measurements for most sweater patterns:
 
 ## Common Measurement Mistakes
 
+![Comparison showing incorrect measurement over bulky clothes vs correct close-to-body technique](/images/blog/how-to-measure-yourself-for-knitted-sweater/common-measurement-mistakes.webp)
+
 **Measuring over bulky clothes**: Adds 1-2 inches to every measurement. Always measure close to the body.
 
 **Holding your breath**: Breathe normally. A sweater you can only wear while not breathing isn't practical.
@@ -958,6 +1012,8 @@ Keep your measurements somewhere permanent:
 Update them annually or when your body changes significantly. Bodies change — that's normal and nothing to worry about.
 
 ## Measurements for Different Fit Styles
+
+![Same person wearing close-fit 2-inch ease versus oversized 6-inch ease sweater](/images/blog/how-to-measure-yourself-for-knitted-sweater/ease-comparison-fitted-oversized.webp)
 
 The same body measurements can produce different fits depending on ease:
 
@@ -1012,6 +1068,8 @@ Try La Maille — enter your measurements and gauge, upload a photo of any sweat
     content: `
 Raglan sleeves are knit seamlessly with diagonal shaping lines, while set-in sleeves use curved armholes and shaped sleeve caps for a tailored look. Top-down raglan construction became popular in the 1980s with Elizabeth Zimmermann's innovations, and today both methods are widely supported by pattern tools like La Maille. This guide compares construction, difficulty, fit, and aesthetics to help you choose the right sleeve type for your next project.
 
+![Technical diagram comparing raglan diagonal seam lines with set-in sleeve curved armhole](/images/blog/raglan-vs-set-in-sleeves-which-to-choose/raglan-vs-setin-construction-diagram.webp)
+
 ## What's the Difference?
 
 **Raglan sleeves** have diagonal seam lines that run from the underarm to the neckline. The sleeve and body are shaped together, usually knit seamlessly from the top down or bottom up.
@@ -1021,6 +1079,8 @@ Raglan sleeves are knit seamlessly with diagonal shaping lines, while set-in sle
 These aren't just construction differences — they affect fit, appearance, and the knitting process itself.
 
 ## Raglan Sleeves: Pros and Cons
+
+![Raglan sweater showing characteristic diagonal seam lines from underarm to neckline](/images/blog/raglan-vs-set-in-sleeves-which-to-choose/raglan-sleeve-sweater-example.webp)
 
 ### Advantages
 
@@ -1046,6 +1106,8 @@ These aren't just construction differences — they affect fit, appearance, and 
 
 ## Set-In Sleeves: Pros and Cons
 
+![Set-in sleeve sweater showing tailored shoulder line and curved armhole seam](/images/blog/raglan-vs-set-in-sleeves-which-to-choose/setin-sleeve-sweater-example.webp)
+
 ### Advantages
 
 **Tailored appearance**: Set-in sleeves create a defined shoulder line for a more polished, structured look.
@@ -1068,6 +1130,8 @@ These aren't just construction differences — they affect fit, appearance, and 
 
 ## How to Choose
 
+![Visual guide showing which sleeve construction flatters different body types](/images/blog/raglan-vs-set-in-sleeves-which-to-choose/body-type-sleeve-choice-guide.webp)
+
 Consider these factors when deciding:
 
 ### Your Body Type
@@ -1089,6 +1153,8 @@ Consider these factors when deciding:
 **Set-in suits**: Dressy cardigans, structured pullovers, vintage styles, garments with yoke colorwork or texture.
 
 ## A Third Option: Drop Shoulders
+
+![Drop shoulder sweater showing straight body edge where sleeve attaches](/images/blog/raglan-vs-set-in-sleeves-which-to-choose/drop-shoulder-construction.webp)
 
 Worth mentioning: drop shoulder construction is even simpler than raglan. The body is a straight tube, and sleeves attach without any shaping. Very easy to knit, but creates a boxy, oversized fit.
 
@@ -1177,6 +1243,8 @@ You'll need:
 
 ## The Basic Principle
 
+![Formula diagram: desired inches times stitches per inch equals stitches needed](/images/blog/how-to-resize-knitting-pattern/pattern-resize-calculation.webp)
+
 Resizing works on a simple principle: if you know how many stitches make one inch, you can calculate how many stitches make any measurement.
 
 **Stitches needed = Desired inches × Stitches per inch**
@@ -1194,6 +1262,8 @@ Start with your body measurements and add ease for the fit you want:
 Example: Your bust is 38 inches and you want a standard fit. Target bust = 38 + 3 = 41 inches.
 
 ## Step 2: Calculate New Stitch Counts
+
+![Schematic showing original pattern width vs adjusted width with recalculated stitch counts](/images/blog/how-to-resize-knitting-pattern/body-width-adjustment-diagram.webp)
 
 Using your gauge, calculate the number of stitches for each measurement.
 
@@ -1213,6 +1283,8 @@ Here's where resizing gets more complex. You need to adjust shaping to match you
 
 ### Waist Shaping
 
+![Diagram showing how waist shaping changes when resizing bust stitch count](/images/blog/how-to-resize-knitting-pattern/waist-shaping-recalculation.webp)
+
 If the original pattern decreases 4 stitches at the waist:
 1. Calculate how many stitches you need at the waist (waist measurement × gauge)
 2. Subtract from bust stitches to find how many to decrease
@@ -1229,6 +1301,8 @@ Look at the pattern's armhole depth and bind-off amounts. You may need to:
 A useful guideline: armhole depth is typically 7-10 inches for adults, depending on size and style.
 
 ### Sleeve Shaping
+
+![Visual showing cuff-to-upper-arm increase distribution over sleeve length](/images/blog/how-to-resize-knitting-pattern/sleeve-increase-calculation.webp)
 
 Sleeves need resizing at:
 - **Upper arm**: Calculate stitches for your upper arm measurement + ease
@@ -1305,6 +1379,8 @@ In these cases, consider:
 
 ## The Grading Approach
 
+![Pattern schematic showing interpolation between two sizes](/images/blog/how-to-resize-knitting-pattern/grading-between-sizes.webp)
+
 Professional pattern designers use "grading" — a system where they calculate exactly how much to add or remove between sizes. Each measurement changes by consistent amounts.
 
 If your target size is between two sizes in a pattern, you can sometimes interpolate:
@@ -1361,11 +1437,15 @@ Ready to skip the resizing math? Try La Maille — upload a photo, enter your me
     content: `
 Top-down sweaters start at the neckline and work toward the hem, letting you try on as you go. Bottom-up sweaters start at the hem and work upward, following the traditional construction method. Top-down construction became popular in the 1980s with Elizabeth Zimmermann's innovations, and today both methods are fully supported by AI pattern generators like La Maille. Here's how to choose the right direction for your project.
 
+![Arrow diagrams showing top-down knitting direction from neck to hem and bottom-up from hem to shoulders](/images/blog/top-down-vs-bottom-up-sweaters/topdown-vs-bottomup-direction.webp)
+
 ## Top-Down Construction
 
 In top-down construction, you cast on at the neckline and work your way down to the hem. The body and sleeves are usually separated at the underarm and finished individually.
 
 ### How It Works
+
+![Progress photos of top-down sweater at yoke, body separation, and completed stages](/images/blog/top-down-vs-bottom-up-sweaters/topdown-construction-stages.webp)
 
 1. Cast on stitches for the neckline
 2. Work the yoke, increasing to create shoulder and upper body width
@@ -1374,6 +1454,8 @@ In top-down construction, you cast on at the neckline and work your way down to 
 5. Pick up sleeve stitches and knit sleeves down to the cuffs
 
 ### Advantages of Top-Down
+
+![Photo of knitter trying on top-down sweater in progress to check fit](/images/blog/top-down-vs-bottom-up-sweaters/tryon-topdown-advantage.webp)
 
 **Try-on as you go**: You can slip the work over your head at any point to check fit. This is huge for ensuring the sweater actually fits before you finish.
 
@@ -1400,6 +1482,8 @@ In top-down construction, you cast on at the neckline and work your way down to 
 In bottom-up construction, you start at the hem and work up to the shoulders. Pieces are often worked separately and seamed together.
 
 ### How It Works (Pieced)
+
+![Flat-lay of bottom-up sweater pieces front back two sleeves before assembly](/images/blog/top-down-vs-bottom-up-sweaters/bottomup-pieces-before-seaming.webp)
 
 1. Knit the back from hem to shoulders
 2. Knit the front from hem to shoulders
@@ -1513,6 +1597,8 @@ Ready to knit your next sweater? Try La Maille — upload a photo of any style a
     content: `
 Ease in knitting is the difference between your body measurement and the finished garment measurement — a 38-inch bust wearing a 42-inch sweater has 4 inches of positive ease. Standard sweater ease ranges from 2-4 inches for a comfortable fit, making it one of the most important decisions in pattern sizing. Understanding ease is essential whether you're choosing a pattern size or using La Maille to generate a custom-fitted pattern.
 
+![Diagram showing body measurement, garment measurement, and the ease difference between them](/images/blog/what-is-ease-in-knitting/ease-diagram-body-vs-garment.webp)
+
 ## What Is Ease?
 
 Ease is the difference between your body measurements and the finished garment measurements.
@@ -1522,6 +1608,8 @@ If your bust measures 38 inches and your sweater's finished bust is 42 inches, t
 Simple math, but the implications for fit are enormous.
 
 ## Types of Ease
+
+![Same sweater pattern shown with 0, 2, 4, and 6 inches of ease on body form](/images/blog/what-is-ease-in-knitting/ease-amounts-visual-comparison.webp)
 
 ### Positive Ease
 
@@ -1540,6 +1628,8 @@ Zero ease means the garment measures exactly the same as your body. In knitting,
 A sweater with zero ease will feel snug when first put on but will be comfortable due to the fabric's natural give.
 
 ### Negative Ease
+
+![Ribbed garment demonstrating negative ease stretching to fit body](/images/blog/what-is-ease-in-knitting/negative-ease-ribbing-example.webp)
 
 Negative ease means the garment is smaller than your body measurements. It relies on the stretch of the fabric to fit.
 
@@ -1603,6 +1693,8 @@ What will you do while wearing it?
 - Layering over other clothes: Add extra ease
 
 ## How to Determine Ease in a Pattern
+
+![Pattern size chart with finished measurements highlighted showing ease built in](/images/blog/what-is-ease-in-knitting/pattern-ease-calculation.webp)
 
 **Method 1: Read the pattern notes**
 
@@ -1695,6 +1787,8 @@ Ready to get the perfect fit? Try La Maille — enter your measurements and desi
     content: `
 The key to knitting a sweater that fits is accurate gauge swatching, honest body measurements, and choosing pattern size by finished measurements — not size labels. A half-stitch-per-inch gauge difference can result in a garment 2-4 inches off target size, which is the most common cause of fit problems. Whether you're using a published pattern or generating a custom one with La Maille, these fundamentals determine your success.
 
+![Common fit issues: too tight across bust, shoulders too wide, body too long](/images/blog/how-to-knit-sweater-that-fits/sweater-fit-problems-examples.webp)
+
 ## Why Sweaters Don't Fit
 
 Before we fix the problem, let's understand why it happens:
@@ -1711,6 +1805,8 @@ Let's fix each of these.
 
 ## Step 1: Know Your Measurements
 
+![Checklist graphic of all measurements needed for sweater fitting](/images/blog/how-to-knit-sweater-that-fits/measurement-checklist-visual.webp)
+
 Not your size. Not what you wore last year. Your actual body measurements, taken accurately.
 
 At minimum:
@@ -1725,6 +1821,8 @@ At minimum:
 Write these down. Reference them for every project.
 
 ## Step 2: Understand the Pattern Measurements
+
+![Side-by-side comparison of body measurement schematic and pattern finished measurements schematic](/images/blog/how-to-knit-sweater-that-fits/finished-vs-body-measurements.webp)
 
 Don't just look at size labels. Find the finished measurements schematic and study it:
 
@@ -1773,6 +1871,8 @@ Common modifications that improve fit:
 
 ### For a Fuller Bust
 
+![Diagram showing short row placement for full bust adjustment in sweater front](/images/blog/how-to-knit-sweater-that-fits/short-row-bust-shaping.webp)
+
 Add short rows across the front chest to create room without adding width everywhere. Standard short row bust shaping adds 1-2 inches of length at center front.
 
 ### For Broad Shoulders
@@ -1788,6 +1888,8 @@ Add or remove length between the underarm and waist (or waist and hem) before an
 Adjust sleeve increases to reach your upper arm circumference. More increases = wider sleeve. Spread them over the same length.
 
 ## Step 7: Try On Early and Often (If Possible)
+
+![Knitter trying on top-down sweater in progress to check shoulder and bust fit](/images/blog/how-to-knit-sweater-that-fits/topdown-tryon-fit-check.webp)
 
 Top-down construction lets you try on as you go. Use this advantage:
 
@@ -1878,6 +1980,8 @@ Ready to knit something that fits? Try La Maille — upload a photo of any sweat
     content: `
 The best yarn for a first sweater is worsted or DK weight wool in a light-to-medium solid color — it blocks well, forgives tension variations, and rips back cleanly when you need to fix mistakes. Worsted weight yarn typically knits at 4-5 stitches per inch, making it fast enough to see progress while still being manageable for beginners. Once you've chosen your yarn, tools like La Maille can generate a pattern matched to your exact gauge and measurements.
 
+![Yarn weight samples from fingering to bulky showing relative thickness and gauge](/images/blog/best-yarn-for-first-sweater/yarn-weight-comparison.webp)
+
 ## What Makes Yarn "Beginner-Friendly"?
 
 Not all yarn is created equal, especially for learning. The best first-sweater yarn has:
@@ -1891,6 +1995,8 @@ Not all yarn is created equal, especially for learning. The best first-sweater y
 **Durability**: Stands up to being ripped out and re-knit (it will happen).
 
 ## The Best Fiber: Wool (or Mostly Wool)
+
+![Knitted wool swatch before and after blocking showing how wool evens out tension](/images/blog/best-yarn-for-first-sweater/wool-swatch-blocking-before-after.webp)
 
 For a first sweater, wool is hard to beat. Here's why:
 
@@ -1943,6 +2049,8 @@ Yarn weight (thickness) significantly affects your knitting experience.
 
 ## Color Matters
 
+![Same stitch pattern in light, medium, and dark yarn showing stitch visibility differences](/images/blog/best-yarn-for-first-sweater/yarn-color-stitch-visibility.webp)
+
 Your first sweater should be a light to medium solid color:
 
 **Light colors**: Show your stitches clearly. You can see what you're doing and catch mistakes early.
@@ -1956,6 +2064,8 @@ Your first sweater should be a light to medium solid color:
 Save the dramatic colors for later projects when you're more confident.
 
 ## Recommended Yarns for First Sweaters
+
+![Photo grid of recommended beginner sweater yarns with names and details](/images/blog/best-yarn-for-first-sweater/recommended-beginner-yarns.webp)
 
 These are widely available, reasonably priced, and beginner-friendly:
 
@@ -2061,6 +2171,8 @@ Reading a knitting pattern means understanding abbreviations (K = knit, P = purl
 
 ## Anatomy of a Pattern
 
+![Knitting pattern page with labeled sections: gauge, materials, sizes, instructions, schematic](/images/blog/how-to-read-knitting-pattern-beginners/pattern-anatomy-labeled.webp)
+
 Most patterns follow a similar structure:
 
 ### Header Information
@@ -2091,6 +2203,8 @@ Most patterns follow a similar structure:
 
 ## Essential Abbreviations
 
+![Visual cheat sheet of common knitting abbreviations: K, P, YO, K2tog, SSK, PM](/images/blog/how-to-read-knitting-pattern-beginners/abbreviations-cheat-sheet.webp)
+
 These appear in almost every pattern:
 
 **K** = Knit
@@ -2120,6 +2234,8 @@ These appear in almost every pattern:
 ## Reading Pattern Instructions
 
 ### Parentheses ( )
+
+![Pattern text showing how to highlight your size among multiple size options in parentheses](/images/blog/how-to-read-knitting-pattern-beginners/parentheses-size-highlighting.webp)
 
 Usually indicate size variations or repetitions.
 
@@ -2155,6 +2271,8 @@ Shaping creates the curves and angles in your garment. Common shaping language:
 
 ## Reading Charts
 
+![Chart diagram showing RS rows read right-to-left, WS rows left-to-right with arrows](/images/blog/how-to-read-knitting-pattern-beginners/knitting-chart-reading-direction.webp)
+
 Charts are visual representations of stitch patterns. Each square represents one stitch.
 
 **Reading direction**:
@@ -2179,6 +2297,8 @@ If your gauge doesn't match:
 Always make a gauge swatch before starting. Change needle sizes until your gauge matches, or accept that your finished measurements will differ.
 
 ## Working Through a Pattern Section
+
+![Example row instruction broken down step by step with annotations](/images/blog/how-to-read-knitting-pattern-beginners/pattern-row-decode-example.webp)
 
 Let's decode a real example:
 
@@ -2289,6 +2409,8 @@ Always swatch. Measure your swatch after washing and blocking. Check your gauge 
 
 ## Dropped Stitches
 
+![Step-by-step photos showing crochet hook technique to fix dropped stitch ladder](/images/blog/common-sweater-knitting-mistakes-and-fixes/dropped-stitch-ladder-fix.webp)
+
 ### The Problem
 
 A stitch slips off your needle and starts to ladder down.
@@ -2311,6 +2433,8 @@ Check your stitch count regularly. Use lifelines (a thread run through all stitc
 
 ## Twisted Stitches
 
+![Close-up comparing correctly mounted stitch versus twisted stitch on needle](/images/blog/common-sweater-knitting-mistakes-and-fixes/twisted-stitch-comparison.webp)
+
 ### The Problem
 
 Stitches are mounted backwards on the needle, creating a twisted appearance when knit.
@@ -2330,6 +2454,8 @@ Twisted stitches look tighter and have a slightly different texture. The legs of
 Learn to recognize proper stitch mount. When picking up stitches or working from holders, check orientation before knitting.
 
 ## Accidental Yarn Overs
+
+![Knitted fabric showing accidental yarn over creating unwanted hole](/images/blog/common-sweater-knitting-mistakes-and-fixes/accidental-yarnover-identification.webp)
 
 ### The Problem
 
@@ -2372,6 +2498,8 @@ Visible holes or loose stitches at short row turning points.
 Practice your preferred short row method on a swatch first. German short rows and shadow wraps tend to be cleaner than wrap-and-turn for many knitters.
 
 ## Joining in the Round Twist
+
+![Photo showing twisted cast-on creating mobius strip instead of tube](/images/blog/common-sweater-knitting-mistakes-and-fixes/twisted-join-mobius-problem.webp)
 
 ### The Problem
 
@@ -2455,6 +2583,8 @@ Measure your body accurately. Calculate ease deliberately. Check finished measur
 
 ## The Nuclear Option: Ripping Back
 
+![Knitting on needles with lifeline thread running through a row](/images/blog/common-sweater-knitting-mistakes-and-fixes/lifeline-placement-technique.webp)
+
 Sometimes the only real fix is to rip out and re-knit. This is frustrating but normal.
 
 **Make it easier**:
@@ -2505,6 +2635,8 @@ Ready to knit a sweater that fits? Try La Maille and generate a pattern designed
     content: `
 You can adapt any knitting pattern to your size by comparing your measurements plus ease to the pattern's finished measurements, then adjusting stitch counts proportionally. With the global yarn market valued at $5.3 billion and growing, more knitters than ever need patterns that fit their unique bodies. This guide covers length adjustments, width modifications, and size blending — or you can use La Maille to generate a pattern for your exact measurements from the start.
 
+![Flowchart: Measure, Compare to pattern, Calculate changes, Document modifications](/images/blog/how-to-adapt-knitting-pattern-to-your-size/pattern-adaptation-workflow.webp)
+
 ## Understanding What Needs to Change
 
 Before modifying anything, analyze the gap between the pattern and your body:
@@ -2522,6 +2654,8 @@ Before modifying anything, analyze the gap between the pattern and your body:
 - Is it a shaping issue (most complex)?
 
 ## Length Adjustments: The Easiest Modifications
+
+![Sweater schematic showing where to add or remove rows for length modifications](/images/blog/how-to-adapt-knitting-pattern-to-your-size/length-adjustment-diagram.webp)
 
 Length changes are straightforward because they don't affect stitch counts within rows.
 
@@ -2554,6 +2688,8 @@ If you're long-waisted or short-waisted:
 - This changes where waist shaping hits your body
 
 ## Width Adjustments: More Complex
+
+![Before and after stitch count comparison with proportional shaping recalculation](/images/blog/how-to-adapt-knitting-pattern-to-your-size/width-adjustment-calculation.webp)
 
 Changing width affects stitch counts, which means recalculating shaping.
 
@@ -2601,6 +2737,8 @@ This is one of the more complex adjustments. If set-in sleeves intimidate you, c
 
 ## Working Between Sizes
 
+![Pattern schematic highlighting different sizes used for different body sections](/images/blog/how-to-adapt-knitting-pattern-to-your-size/size-blending-schematic.webp)
+
 Often your measurements fall between two pattern sizes. Options:
 
 ### Blend Sizes
@@ -2616,6 +2754,8 @@ If Medium is 200 stitches and Large is 220, and you need something in between, c
 Adjust all proportional instructions the same way.
 
 ## Documenting Your Changes
+
+![Example of documented pattern modifications with notes and calculations](/images/blog/how-to-adapt-knitting-pattern-to-your-size/modification-notes-template.webp)
 
 Before knitting, write out your modifications:
 - New stitch counts for each section
