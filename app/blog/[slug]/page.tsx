@@ -43,6 +43,9 @@ function renderMarkdown(content: string) {
   let currentParagraph: string[] = [];
   let inList = false;
   let listItems: string[] = [];
+  let inTable = false;
+  let tableRows: string[][] = [];
+  let tableHasHeader = false;
 
   const flushParagraph = () => {
     if (currentParagraph.length > 0) {
@@ -80,10 +83,53 @@ function renderMarkdown(content: string) {
     }
   };
 
+  const flushTable = () => {
+    if (tableRows.length > 0) {
+      const headerRow = tableHasHeader ? tableRows[0] : null;
+      const bodyRows = tableHasHeader ? tableRows.slice(1) : tableRows;
+      elements.push(
+        <div key={keyCounter++} className="overflow-x-auto mb-6 mt-4">
+          <table className="w-full text-sm border-collapse">
+            {headerRow && (
+              <thead>
+                <tr className="border-b border-border">
+                  {headerRow.map((cell, i) => (
+                    <th
+                      key={i}
+                      className="text-left py-2 px-3 font-medium text-foreground"
+                      dangerouslySetInnerHTML={{ __html: formatInline(cell) }}
+                    />
+                  ))}
+                </tr>
+              </thead>
+            )}
+            <tbody>
+              {bodyRows.map((row, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  {row.map((cell, j) => (
+                    <td
+                      key={j}
+                      className="py-2 px-3 text-muted-foreground"
+                      dangerouslySetInnerHTML={{ __html: formatInline(cell) }}
+                    />
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      tableRows = [];
+      inTable = false;
+      tableHasHeader = false;
+    }
+  };
+
   for (const line of lines) {
     const trimmed = line.trim();
 
     if (trimmed === "") {
+      if (inTable) flushTable();
       if (inList) flushList();
       flushParagraph();
       continue;
@@ -115,6 +161,17 @@ function renderMarkdown(content: string) {
       flushParagraph();
       inList = true;
       listItems.push(trimmed.slice(2));
+    } else if (trimmed.startsWith("|") && trimmed.endsWith("|")) {
+      if (inList) flushList();
+      flushParagraph();
+      // Separator row (|---|---|)
+      if (trimmed.match(/^\|[\s\-:|]+\|$/)) {
+        tableHasHeader = tableRows.length === 1;
+      } else {
+        const cells = trimmed.slice(1, -1).split("|").map((c) => c.trim());
+        tableRows.push(cells);
+      }
+      inTable = true;
     } else if (trimmed.match(/^!\[.*\]\(.*\)$/)) {
       if (inList) flushList();
       flushParagraph();
@@ -142,6 +199,7 @@ function renderMarkdown(content: string) {
     }
   }
 
+  if (inTable) flushTable();
   if (inList) flushList();
   flushParagraph();
 
