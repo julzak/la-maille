@@ -13,7 +13,7 @@ export const articles: Article[] = [
     slug: "how-to-recreate-sweater-from-photo",
     title: "How to Recreate Any Sweater From a Photo",
     excerpt:
-      "See a sweater you love? Learn how to turn any photo into a custom knitting pattern that fits your exact measurements and gauge.",
+      "Turn any photo into a custom knitting pattern. Learn manual reverse-engineering and AI-assisted methods to recreate sweaters with your exact measurements and gauge.",
     keywords: [
       "recreate knitting pattern",
       "copy sweater pattern",
@@ -23,7 +23,7 @@ export const articles: Article[] = [
     publishedAt: "2026-02-19",
     readingTime: "6 min read",
     content: `
-You spot a gorgeous sweater on Pinterest, in a vintage shop, or on a friend — and you think, "I wish I could knit that." Good news: you can. Recreating a sweater from a photo is easier than you might think, especially with the right tools and techniques.
+Yes, you can recreate any sweater from just a photo. With the right measurements, gauge swatch, and either manual calculations or AI pattern generation tools like La Maille, knitters routinely turn inspiration photos into complete, custom-fitted patterns. This guide covers both traditional reverse-engineering methods and modern AI-assisted approaches — so you can knit that sweater you've been admiring.
 
 ## Why Recreate Instead of Buy a Pattern?
 
@@ -93,6 +93,23 @@ Many knitters use a hybrid approach: letting AI handle the initial pattern gener
 
 Whether you go the traditional route or use AI assistance, recreating a sweater from a photo is one of the most satisfying knitting projects. You end up with a truly custom garment that fits you perfectly — and the knowledge that you made it happen from just a picture.
 
+## Frequently Asked Questions
+
+**Can I recreate any sweater from a photo?**
+Yes. With a clear photo, your body measurements, and your gauge swatch, you can recreate most sweaters. Simple stockinette designs are easiest; complex cables or colorwork require more analysis.
+
+**What measurements do I need to recreate a sweater?**
+You need bust, waist, hip, shoulder width, arm length, upper arm circumference, and desired body length. Plus your knitting gauge in stitches and rows per inch.
+
+**How long does it take to create a pattern from a photo?**
+Manual reverse-engineering takes 2-6 hours depending on complexity. AI tools like La Maille generate complete patterns in under 5 minutes.
+
+**Do I need the exact same yarn as the original sweater?**
+No. Match the yarn weight (fingering, DK, worsted, etc.) and adjust your needle size to achieve the correct gauge. The fiber content can differ.
+
+**What's the difference between a chart and a full pattern?**
+A chart shows stitch placement visually. A full pattern includes row-by-row instructions, shaping, measurements, and construction details. La Maille generates complete patterns, not just charts.
+
 Want to turn your photo into a pattern right now? Try La Maille — upload a photo, enter your measurements, and get a complete custom pattern in minutes.
     `.trim(),
   },
@@ -100,7 +117,7 @@ Want to turn your photo into a pattern right now? Try La Maille — upload a pho
     slug: "photo-to-knitting-pattern-complete-guide",
     title: "Photo to Knitting Pattern: The Complete Guide",
     excerpt:
-      "Everything you need to know about converting a photo into a knitting pattern — from analyzing construction to generating row-by-row instructions.",
+      "Complete guide to converting photos into knitting patterns. Covers construction analysis, measurement calculation, and AI pattern generation for custom-fit results.",
     keywords: [
       "photo to knitting pattern",
       "convert photo to knitting pattern",
@@ -110,9 +127,7 @@ Want to turn your photo into a pattern right now? Try La Maille — upload a pho
     publishedAt: "2026-02-19",
     readingTime: "8 min read",
     content: `
-Converting a photo into a knitting pattern used to require years of experience and serious math skills. Today, the process is more accessible than ever — whether you do it manually or use AI tools to help.
-
-This guide covers everything you need to know about going from photo to finished pattern.
+You can convert any photo into a complete knitting pattern by analyzing construction, identifying stitch patterns, and calculating stitch counts from your gauge. With over 70% of knitters searching for patterns online, tools like La Maille now automate this entire process — generating row-by-row instructions from a single photo. This guide covers both the manual method and modern AI-assisted approach step by step.
 
 ## Understanding the Challenge
 
@@ -233,6 +248,23 @@ If you're using an AI-generated pattern, review it carefully before starting. Ch
 
 The journey from seeing a sweater you love to wearing one you made yourself is incredibly rewarding. Whether you enjoy the puzzle of manual pattern creation or prefer to let AI handle the calculations, the result is the same: a custom garment that fits your body, in yarn you chose, created with your own hands.
 
+## Frequently Asked Questions
+
+**How do I convert a photo to a knitting pattern?**
+Analyze the construction method and stitch patterns, take your body measurements, knit a gauge swatch, then calculate stitch counts — or use AI tools like La Maille to generate the pattern automatically.
+
+**What makes a good source photo for pattern generation?**
+Clear lighting, front view showing full silhouette, visible stitch texture, and neutral background. Multiple angles improve accuracy for sleeve and back details.
+
+**Can AI really generate accurate knitting patterns from photos?**
+Yes. AI pattern generators analyze construction, estimate proportions, and calculate stitch counts based on your gauge. La Maille produces complete row-by-row instructions, not just colorwork charts.
+
+**What if the sweater in my photo has a complex stitch pattern?**
+Identify the stitch using a stitch dictionary or Ravelry. For cables, find the specific cable type. For colorwork, you may need to chart the pattern separately.
+
+**How accurate are AI-generated knitting patterns?**
+When you provide accurate gauge and measurements, AI-generated patterns are mathematically precise. Review the pattern before starting and make adjustments for personal fit preferences.
+
 Ready to turn your photo into a pattern? Try La Maille and generate your custom pattern today.
     `.trim(),
   },
@@ -241,7 +273,7 @@ Ready to turn your photo into a pattern? Try La Maille and generate your custom 
     title:
       "AI Knitting Pattern Generator vs Traditional Methods: Which Is Right for You?",
     excerpt:
-      "Compare AI-powered pattern generation with traditional pattern design. Learn the pros and cons of each approach for creating custom knitting patterns.",
+      "AI knitting pattern generators create custom patterns in minutes vs hours for traditional methods. Compare speed, accuracy, and control to choose your approach.",
     keywords: [
       "AI knitting pattern generator",
       "knitting pattern generator",
@@ -251,9 +283,7 @@ Ready to turn your photo into a pattern? Try La Maille and generate your custom 
     publishedAt: "2026-02-19",
     readingTime: "7 min read",
     content: `
-The knitting world is experiencing a quiet revolution. AI-powered tools can now generate custom knitting patterns in minutes — something that traditionally required hours of calculations or years of design experience.
-
-But is AI pattern generation right for you? Let's compare both approaches honestly.
+AI knitting pattern generators create complete, custom-fitted patterns in under 5 minutes — a process that traditionally takes 2-6 hours of manual calculation. Among the 53+ million knitters in the US alone, tools like La Maille are changing how custom patterns are created. Here's an honest comparison of both approaches to help you decide which is right for your projects.
 
 ## Traditional Pattern Creation: The Craft Approach
 
@@ -408,6 +438,23 @@ There's no wrong answer. Your choice depends on:
 
 Try both approaches on different projects and see what feels right for you. You might find you prefer AI generation for quick everyday projects but enjoy traditional methods for special designs.
 
+## Frequently Asked Questions
+
+**What is an AI knitting pattern generator?**
+Software that analyzes photos and measurements to automatically calculate and produce complete knitting patterns with row-by-row instructions, eliminating manual pattern math.
+
+**Is AI pattern generation better than traditional methods?**
+Neither is inherently better. AI is faster and more accessible; traditional methods offer complete control. Many knitters use both depending on the project.
+
+**Do AI pattern generators work for all sweater styles?**
+Most handle common constructions like raglan, set-in sleeves, and drop shoulders. Complex or unusual designs may need manual adjustment after generation.
+
+**How much does AI pattern generation cost?**
+Varies by tool. La Maille offers free pattern generation during beta. Traditional methods cost only your time but require pattern math skills.
+
+**Can beginners use AI pattern generators?**
+Yes. AI generators eliminate the need for advanced math or design experience. You need accurate measurements and gauge — skills any knitter can learn.
+
 Ready to try AI pattern generation? Upload a photo to La Maille and see how it works.
     `.trim(),
   },
@@ -416,7 +463,7 @@ Ready to try AI pattern generation? Upload a photo to La Maille and see how it w
     title:
       "Understanding Knitting Gauge: Why It Matters and How to Get It Right",
     excerpt:
-      "Master knitting gauge once and for all. Learn why gauge matters, how to measure it accurately, and what to do when your gauge doesn't match.",
+      "Knitting gauge determines every measurement in your finished garment. A half-stitch difference can mean 2-4 inches off. Learn to measure and match gauge correctly.",
     keywords: [
       "knitting gauge",
       "gauge swatch",
@@ -427,9 +474,7 @@ Ready to try AI pattern generation? Upload a photo to La Maille and see how it w
     publishedAt: "2026-02-19",
     readingTime: "7 min read",
     content: `
-Ask any experienced knitter the secret to well-fitting garments, and they'll give you one word: gauge. It's the foundation of every successful knitting project — and the thing many knitters try to skip.
-
-Let's fix that.
+Knitting gauge is the number of stitches and rows per inch you achieve with a specific yarn, needle, and stitch pattern — and it determines every measurement in your finished garment. A half-stitch-per-inch gauge difference can result in a garment 2-4 inches off target size, which is why La Maille and every reliable pattern tool requires your exact gauge. This guide explains everything you need to know about measuring, matching, and troubleshooting gauge.
 
 ## What Is Gauge?
 
@@ -572,6 +617,23 @@ Once you have accurate gauge, you can:
 
 Your gauge is your personal knitting fingerprint. Know it, and you can knit anything.
 
+## Frequently Asked Questions
+
+**What is knitting gauge?**
+The number of stitches and rows per inch (or 4 inches/10cm) you achieve with specific yarn, needles, and stitch pattern. It determines all measurements in your finished garment.
+
+**Why does gauge matter so much?**
+A half-stitch-per-inch difference can make a sweater 2-4 inches too big or small. Gauge controls every measurement — bust, sleeve width, body length.
+
+**How do I measure my knitting gauge?**
+Knit a swatch at least 6 inches square, bind off, wash, and block. Measure stitches and rows over 4 inches in the center of the swatch, avoiding edges.
+
+**What if my gauge doesn't match the pattern?**
+Change needle size. Too many stitches (tight) = try larger needles. Too few stitches (loose) = try smaller needles. Re-swatch until gauge matches.
+
+**Do I need to match row gauge exactly?**
+Stitch gauge is more critical — it controls width. Row gauge affects length, which is usually adjustable. Match stitch gauge first; row gauge is secondary.
+
 Ready to put your gauge to work? Try La Maille — enter your gauge and measurements to generate a custom pattern that fits perfectly.
     `.trim(),
   },
@@ -579,7 +641,7 @@ Ready to put your gauge to work? Try La Maille — enter your gauge and measurem
     slug: "how-to-identify-knitting-stitches-from-photos",
     title: "How to Identify Knitting Stitches From Photos",
     excerpt:
-      "Learn to recognize common knitting stitches from photos. A visual guide to stockinette, ribbing, cables, and more — plus tips for analyzing any knitted fabric.",
+      "Visual guide to identifying stockinette, garter, ribbing, cables, and colorwork from photos. Essential skill for recreating sweaters and understanding patterns.",
     keywords: [
       "identify knitting stitch",
       "knitting stitch patterns",
@@ -589,9 +651,7 @@ Ready to put your gauge to work? Try La Maille — enter your gauge and measurem
     publishedAt: "2026-02-19",
     readingTime: "6 min read",
     content: `
-You've found a sweater you love and you want to recreate it. But what stitch is that? Learning to identify knitting stitches from photos is a valuable skill — whether you're analyzing a garment, troubleshooting your own knitting, or using AI tools that need you to understand what you're looking at.
-
-Here's your visual guide to the most common knitting stitches.
+You can identify most knitting stitches from a photo by looking for key visual characteristics: smooth Vs indicate stockinette, horizontal ridges mean garter stitch, and vertical columns signal ribbing. With Ravelry's 11+ million users sharing project photos daily, stitch identification is an essential skill for recreating patterns. Tools like La Maille can also analyze photos automatically, but understanding stitch structure yourself makes you a more confident knitter.
 
 ## The Foundation: Knit and Purl
 
@@ -733,6 +793,23 @@ Once you can identify stitches, you can:
 - Communicate clearly about what you want to make
 - Get better results from AI pattern generators by understanding what you're uploading
 
+## Frequently Asked Questions
+
+**How do I identify a knitting stitch from a photo?**
+Look for key characteristics: smooth Vs = stockinette, vertical ridges = ribbing, horizontal ridges = garter, twisted ropes = cables, intentional holes = lace.
+
+**What's the difference between stockinette and garter stitch?**
+Stockinette is smooth Vs on one side, bumps on the other. Garter stitch has horizontal ridges on both sides and doesn't curl.
+
+**How can I tell if a sweater has raglan or set-in sleeves?**
+Raglan has diagonal seam lines from underarm to neckline. Set-in sleeves have curved seams that follow the shoulder and drop into the armhole.
+
+**What is ribbing in knitting?**
+Alternating vertical columns of knit and purl stitches creating stretchy, ridged fabric. Common types: 1x1 (K1P1) and 2x2 (K2P2). Used for cuffs, hems, necklines.
+
+**Can AI identify knitting stitches from photos?**
+Yes. Tools like La Maille analyze photos to identify construction and stitch patterns. For complex patterns, knowing basic stitch identification helps verify results.
+
 Ready to turn a photo into a pattern? La Maille can analyze your image and generate knitting instructions — but knowing your stitches helps you verify the results and make adjustments.
     `.trim(),
   },
@@ -740,7 +817,7 @@ Ready to turn a photo into a pattern? La Maille can analyze your image and gener
     slug: "how-to-measure-yourself-for-knitted-sweater",
     title: "How to Measure Yourself for a Knitted Sweater",
     excerpt:
-      "Get accurate body measurements for a perfectly fitting handknit sweater. Learn which measurements matter, how to take them, and common mistakes to avoid.",
+      "Accurate body measurements are the foundation of well-fitting sweaters. Learn exactly where and how to measure for bust, shoulders, arms, and body length.",
     keywords: [
       "sweater measurements knitting",
       "how to measure for sweater",
@@ -750,9 +827,7 @@ Ready to turn a photo into a pattern? La Maille can analyze your image and gener
     publishedAt: "2026-02-22",
     readingTime: "6 min read",
     content: `
-A beautifully knit sweater that doesn't fit is heartbreaking. Hours of work, gorgeous yarn — and it sits unworn in your closet. The culprit? Usually incorrect measurements taken before casting on.
-
-Getting accurate measurements is the foundation of a well-fitting sweater. Here's how to do it right.
+Accurate body measurements are the single most important factor in knitting a sweater that fits well. Standard sweater ease ranges from 2-4 inches for a comfortable fit, which means even small measurement errors compound into noticeable fit problems. Whether you're following a published pattern or generating a custom one with La Maille, your measurements are the foundation of every stitch count. Here's exactly how to measure yourself correctly.
 
 ## Why Measurements Matter More Than Size Charts
 
@@ -896,6 +971,23 @@ The same body measurements can produce different fits depending on ease:
 
 When choosing pattern sizes or generating custom patterns, decide what fit style you want first, then add the appropriate ease to your measurements.
 
+## Frequently Asked Questions
+
+**What measurements do I need for a knitted sweater?**
+Essential: bust, waist, hip circumference, shoulder width, arm length, upper arm circumference, and desired body length. Optional: cross-back width, neck circumference.
+
+**How do I measure my bust for knitting?**
+Wrap tape measure around the fullest part of your bust, parallel to the floor. Keep it snug but not compressing. This is your primary sizing measurement.
+
+**Should I measure over clothes?**
+No. Measure in underwear or thin, close-fitting clothing. Bulky clothes add 1-2 inches to every measurement and will throw off your pattern sizing.
+
+**What's the difference between body measurements and finished measurements?**
+Body measurements are your actual body. Finished measurements are the garment size, which includes ease. A 38" bust might wear a sweater with 42" finished bust (4" ease).
+
+**How often should I update my measurements?**
+Annually, or whenever your body changes significantly. Bodies change — that's normal. Accurate current measurements ensure well-fitting garments.
+
 ## Ready to Use Your Measurements?
 
 With accurate measurements in hand, you can confidently choose pattern sizes, modify existing patterns, or generate custom patterns that fit your body perfectly.
@@ -908,7 +1000,7 @@ Try La Maille — enter your measurements and gauge, upload a photo of any sweat
     title:
       "Raglan vs Set-In Sleeves: Which Construction Is Right for You?",
     excerpt:
-      "Compare raglan and set-in sleeve construction methods. Learn the pros, cons, and best uses for each style to choose the right one for your next sweater.",
+      "Raglan sleeves are easier to knit; set-in sleeves offer tailored fit. Compare construction methods, difficulty, and which flatters your body type.",
     keywords: [
       "raglan vs set-in sleeves",
       "raglan sleeve knitting",
@@ -918,7 +1010,7 @@ Try La Maille — enter your measurements and gauge, upload a photo of any sweat
     publishedAt: "2026-02-22",
     readingTime: "7 min read",
     content: `
-When you're planning a sweater, one of the first decisions is sleeve construction. Raglan and set-in are the two most popular options, and each has distinct advantages. Understanding the differences helps you choose the right construction for your project — and your body.
+Raglan sleeves are knit seamlessly with diagonal shaping lines, while set-in sleeves use curved armholes and shaped sleeve caps for a tailored look. Top-down raglan construction became popular in the 1980s with Elizabeth Zimmermann's innovations, and today both methods are widely supported by pattern tools like La Maille. This guide compares construction, difficulty, fit, and aesthetics to help you choose the right sleeve type for your next project.
 
 ## What's the Difference?
 
@@ -1039,6 +1131,23 @@ Not sure which construction your inspiration sweater uses? Look for:
 - **Set-in**: Curved seam that follows the shoulder and drops into the armhole
 - **Drop shoulder**: No shaped armhole; sleeves attach to a straight body edge
 
+## Frequently Asked Questions
+
+**What's the difference between raglan and set-in sleeves?**
+Raglan has diagonal seams from underarm to neckline; body and sleeves shape together. Set-in has curved armholes with shaped sleeve caps; pieces are usually seamed.
+
+**Which sleeve type is easier to knit?**
+Raglan is generally easier — regular decreases along four lines, often seamless. Set-in requires curved armhole shaping and a shaped sleeve cap, plus seaming.
+
+**Are raglan sleeves flattering for everyone?**
+Raglan's diagonal lines can emphasize broad shoulders or larger busts. Set-in sleeves create a more defined, tailored shoulder line that flatters many body types.
+
+**Can I convert a raglan pattern to set-in sleeves?**
+Technically yes, but it's complex — all shaping changes and you'll need to calculate sleeve cap shaping. Easier to find a pattern in your preferred construction.
+
+**Which construction is more comfortable?**
+Both can be comfortable. Raglan allows slightly more shoulder mobility due to the diagonal seam. Set-in can feel more structured. Personal preference matters most.
+
 Ready to knit your next sweater? Try La Maille — upload a photo of any sweater style and get a custom pattern with the right construction for that design.
     `.trim(),
   },
@@ -1046,7 +1155,7 @@ Ready to knit your next sweater? Try La Maille — upload a photo of any sweater
     slug: "how-to-resize-knitting-pattern",
     title: "How to Resize a Knitting Pattern",
     excerpt:
-      "Learn to resize any knitting pattern to fit your measurements. A step-by-step guide to adjusting stitch counts, shaping, and proportions.",
+      "Resize any knitting pattern using gauge math. Calculate new stitch counts, adjust shaping proportionally, and get the fit you want from any pattern.",
     keywords: [
       "resize knitting pattern",
       "adjust knitting pattern size",
@@ -1056,9 +1165,7 @@ Ready to knit your next sweater? Try La Maille — upload a photo of any sweater
     publishedAt: "2026-02-22",
     readingTime: "8 min read",
     content: `
-You've found the perfect pattern, but it doesn't come in your size. Or it does, but you've learned that pattern sizes rarely match your actual body. Either way, you need to resize.
-
-Resizing a knitting pattern can seem intimidating, but it's really just math and proportion. Here's how to do it systematically.
+You can resize any knitting pattern by recalculating stitch counts using your gauge: multiply your desired measurement in inches by your stitches per inch, then adjust all shaping proportionally. The average hand-knit sweater takes 40-80 hours to complete, so getting the size right before you start is critical. Whether you resize manually or use tools like La Maille to generate a pattern for your exact measurements, understanding the math behind resizing makes you a more confident knitter.
 
 ## Before You Start: Gather Information
 
@@ -1218,6 +1325,23 @@ This is particularly useful when:
 - You're working with unusual measurements
 - You want to try multiple sizes quickly
 
+## Frequently Asked Questions
+
+**How do I resize a knitting pattern?**
+Calculate new stitch counts using your gauge: desired inches × stitches per inch = stitches needed. Then proportionally adjust all shaping (armholes, neckline, sleeves).
+
+**Can I just add or remove stitches to resize?**
+For width, yes — but you must also recalculate all shaping. More body stitches means more armhole decreases, adjusted shoulder shaping, etc.
+
+**Is resizing length easier than width?**
+Yes. Length changes don't affect stitch counts — just add or remove rows before shaping begins. Width changes require recalculating every shaped section.
+
+**What if I'm between two pattern sizes?**
+Either blend sizes (follow M for bust, L for hips) or interpolate stitch counts. Size M = 200 stitches, Size L = 220? Your "M.5" ≈ 210 stitches.
+
+**When is it easier to generate a custom pattern instead of resizing?**
+When your measurements differ significantly from standard sizing, or you're between sizes in multiple areas. Tools like La Maille generate patterns for your exact measurements.
+
 Ready to skip the resizing math? Try La Maille — upload a photo, enter your measurements, and get a pattern made for your body.
     `.trim(),
   },
@@ -1225,7 +1349,7 @@ Ready to skip the resizing math? Try La Maille — upload a photo, enter your me
     slug: "top-down-vs-bottom-up-sweaters",
     title: "Top-Down vs Bottom-Up Sweaters: Pros and Cons",
     excerpt:
-      "Compare top-down and bottom-up sweater construction. Learn the advantages of each method and how to choose the right approach for your project.",
+      "Top-down lets you try on as you go; bottom-up is traditional and structured. Compare construction methods to choose the right approach for your project.",
     keywords: [
       "top-down sweater knitting",
       "bottom-up sweater",
@@ -1235,7 +1359,7 @@ Ready to skip the resizing math? Try La Maille — upload a photo, enter your me
     publishedAt: "2026-02-22",
     readingTime: "6 min read",
     content: `
-Every sweater starts somewhere — but where you start affects the entire knitting experience. Top-down and bottom-up are the two main construction directions, and each has passionate advocates. Here's what you need to know to choose.
+Top-down sweaters start at the neckline and work toward the hem, letting you try on as you go. Bottom-up sweaters start at the hem and work upward, following the traditional construction method. Top-down construction became popular in the 1980s with Elizabeth Zimmermann's innovations, and today both methods are fully supported by AI pattern generators like La Maille. Here's how to choose the right direction for your project.
 
 ## Top-Down Construction
 
@@ -1353,6 +1477,23 @@ When using tools like La Maille to generate patterns from photos, the AI typical
 
 The advantage of custom pattern generation is that the pattern is calculated for your measurements regardless of construction method — so you get the fit benefits of top-down try-on built into a pattern that might be written either direction.
 
+## Frequently Asked Questions
+
+**What's the difference between top-down and bottom-up sweaters?**
+Top-down starts at the neckline and works down to hem. Bottom-up starts at hem and works up to shoulders. Each affects construction, fit checking, and finishing.
+
+**Which construction method is better for beginners?**
+Top-down is often recommended — you can try on as you go, adjust length easily, and most patterns are seamless. Bottom-up requires seaming but teaches traditional construction.
+
+**Can I try on a bottom-up sweater while knitting?**
+Not easily. Pieces are separate until seamed. You can hold pieces up to your body to estimate, but true fit checking requires finishing.
+
+**Why would someone choose bottom-up over top-down?**
+Traditional pattern availability, seams for structure, lighter pieces in hand while knitting, and some stitch patterns work better bottom-up.
+
+**Can I convert a top-down pattern to bottom-up?**
+Yes, but it's complex. All shaping reverses, the order changes, and some techniques don't translate directly. Find a pattern in your preferred direction when possible.
+
 Ready to knit your next sweater? Try La Maille — upload a photo of any style and get a custom pattern designed for your measurements.
     `.trim(),
   },
@@ -1360,7 +1501,7 @@ Ready to knit your next sweater? Try La Maille — upload a photo of any style a
     slug: "what-is-ease-in-knitting",
     title: "What Is Ease in Knitting? A Complete Guide",
     excerpt:
-      "Understand ease in knitting and how it affects fit. Learn about positive ease, negative ease, and how to choose the right amount for your project.",
+      "Ease is the difference between your body and your sweater. Standard fit needs 2-4 inches of ease. Learn to calculate and choose ease for the fit you want.",
     keywords: [
       "ease in knitting",
       "positive ease knitting",
@@ -1370,9 +1511,7 @@ Ready to knit your next sweater? Try La Maille — upload a photo of any style a
     publishedAt: "2026-02-22",
     readingTime: "6 min read",
     content: `
-You've taken your measurements, checked your gauge, chosen the "right" size — and the sweater still doesn't fit the way you expected. Often, the culprit is ease, one of the most misunderstood concepts in garment knitting.
-
-Let's clear it up.
+Ease in knitting is the difference between your body measurement and the finished garment measurement — a 38-inch bust wearing a 42-inch sweater has 4 inches of positive ease. Standard sweater ease ranges from 2-4 inches for a comfortable fit, making it one of the most important decisions in pattern sizing. Understanding ease is essential whether you're choosing a pattern size or using La Maille to generate a custom-fitted pattern.
 
 ## What Is Ease?
 
@@ -1520,6 +1659,23 @@ Always:
 3. Calculate the ease for each size
 4. Choose based on your preference, not just the size label
 
+## Frequently Asked Questions
+
+**What is ease in knitting?**
+The difference between your body measurement and the finished garment measurement. A 38" bust wearing a 42" sweater has 4" of positive ease.
+
+**How much ease should a sweater have?**
+Depends on style. Close fit: 1-2". Standard fit: 2-4". Relaxed: 4-6". Oversized: 6"+. Pattern photos usually show the intended ease.
+
+**What's the difference between positive and negative ease?**
+Positive ease = garment larger than body (most sweaters). Negative ease = garment smaller than body, relying on fabric stretch (fitted ribbed garments, socks).
+
+**How do I know what ease a pattern includes?**
+Compare the pattern's "finished measurements" to the "body measurements" it's designed for. The difference is the built-in ease.
+
+**Can I change the ease in a pattern?**
+Yes. Choose a larger size for more ease, smaller for less. Or calculate your target finished measurement (body + desired ease) and find the matching size.
+
 Ready to get the perfect fit? Try La Maille — enter your measurements and desired fit style to generate a custom pattern with exactly the right ease for you.
     `.trim(),
   },
@@ -1527,7 +1683,7 @@ Ready to get the perfect fit? Try La Maille — enter your measurements and desi
     slug: "how-to-knit-sweater-that-fits",
     title: "How to Knit a Sweater That Actually Fits",
     excerpt:
-      "Stop knitting sweaters that end up in the donate pile. Learn the secrets to getting fit right the first time, from measurements to modifications.",
+      "Stop knitting sweaters that don't fit. Accurate measurements, honest gauge swatching, and proper size selection ensure your handknits fit perfectly.",
     keywords: [
       "knit sweater that fits",
       "sweater fitting tips",
@@ -1537,9 +1693,7 @@ Ready to get the perfect fit? Try La Maille — enter your measurements and desi
     publishedAt: "2026-02-22",
     readingTime: "7 min read",
     content: `
-Every knitter has at least one: the sweater that took months to make but never gets worn because it just doesn't fit right. The shoulders are weird, or it pulls across the bust, or the body is somehow both too long and too boxy.
-
-It doesn't have to be this way. Here's how to knit sweaters that actually fit.
+The key to knitting a sweater that fits is accurate gauge swatching, honest body measurements, and choosing pattern size by finished measurements — not size labels. A half-stitch-per-inch gauge difference can result in a garment 2-4 inches off target size, which is the most common cause of fit problems. Whether you're using a published pattern or generating a custom one with La Maille, these fundamentals determine your success.
 
 ## Why Sweaters Don't Fit
 
@@ -1688,6 +1842,23 @@ Getting fit right takes more effort upfront:
 
 But the result is a sweater you'll actually wear, one that fits like it was made for you — because it was.
 
+## Frequently Asked Questions
+
+**Why don't my knitted sweaters fit well?**
+Common causes: wrong size choice, gauge mismatch, ignoring ease, not measuring accurately, or choosing patterns designed for different body proportions.
+
+**How do I choose the right pattern size?**
+Don't match by size label. Calculate your desired finished bust (body + ease), then choose the size with that finished measurement.
+
+**What's the most important step for good fit?**
+Accurate gauge swatching. A half-stitch-per-inch difference can make a sweater 2-4 inches too big or small. Always swatch, wash, block, then measure.
+
+**Should I trust pattern size charts?**
+Trust finished measurements, not size labels. "Medium" varies wildly between patterns. Always check the actual inches/centimeters for each size.
+
+**Can AI pattern generators help with fit?**
+Yes. Tools like La Maille generate patterns from your exact measurements and gauge, eliminating size chart guesswork and fit surprises.
+
 Ready to knit something that fits? Try La Maille — upload a photo of any sweater style and get a custom pattern generated for your exact measurements.
     `.trim(),
   },
@@ -1695,7 +1866,7 @@ Ready to knit something that fits? Try La Maille — upload a photo of any sweat
     slug: "best-yarn-for-first-sweater",
     title: "Best Yarn for Your First Sweater",
     excerpt:
-      "Choosing yarn for your first sweater project? Learn which fibers, weights, and brands are most forgiving for beginner sweater knitters.",
+      "Worsted or DK weight wool in solid colors is ideal for first sweaters. Wool blocks well, forgives tension variations, and rips back cleanly for fixes.",
     keywords: [
       "best yarn for sweater",
       "beginner sweater yarn",
@@ -1705,9 +1876,7 @@ Ready to knit something that fits? Try La Maille — upload a photo of any sweat
     publishedAt: "2026-02-22",
     readingTime: "6 min read",
     content: `
-Your first sweater is a milestone. You'll learn tons, make some mistakes, and (hopefully) end up with a wearable garment you're proud of. Choosing the right yarn can make that journey much smoother.
-
-Here's what to look for — and what to avoid.
+The best yarn for a first sweater is worsted or DK weight wool in a light-to-medium solid color — it blocks well, forgives tension variations, and rips back cleanly when you need to fix mistakes. Worsted weight yarn typically knits at 4-5 stitches per inch, making it fast enough to see progress while still being manageable for beginners. Once you've chosen your yarn, tools like La Maille can generate a pattern matched to your exact gauge and measurements.
 
 ## What Makes Yarn "Beginner-Friendly"?
 
@@ -1854,6 +2023,23 @@ You're going to spend a lot of time with this yarn. Make it something you love.
 
 Once you've chosen your yarn and made your gauge swatch, you're ready to generate or select a pattern. Tools like La Maille let you upload a photo of any sweater style, enter your gauge, and get a custom pattern — perfect for ensuring your first sweater fits well.
 
+## Frequently Asked Questions
+
+**What's the best yarn for a first sweater?**
+Worsted or DK weight wool in a light-to-medium solid color. Wool blocks well, has memory, rips back easily, and shows stitches clearly.
+
+**Why is wool recommended for beginners?**
+Wool is forgiving — it blocks to even out tension variations, springs back to shape, and unknits cleanly when you need to fix mistakes.
+
+**Should I use superwash wool for my first sweater?**
+Superwash is fine — machine washable and convenient. Regular wool has slightly more elasticity and memory but requires hand washing.
+
+**How much yarn do I need for a sweater?**
+Roughly: Worsted weight = 1000-1400 yards, DK weight = 1200-1600 yards for adult sizes. Always buy an extra skein for safety.
+
+**Can I use acrylic yarn for a sweater?**
+You can, but 100% acrylic is less forgiving — doesn't block the same way and can look less polished. A wool-acrylic blend (50%+ wool) is better.
+
 Ready to start? Try La Maille with your chosen yarn and see your sweater take shape.
     `.trim(),
   },
@@ -1861,7 +2047,7 @@ Ready to start? Try La Maille with your chosen yarn and see your sweater take sh
     slug: "how-to-read-knitting-pattern-beginners",
     title: "How to Read a Knitting Pattern: A Beginner's Guide",
     excerpt:
-      "Confused by knitting pattern abbreviations and instructions? Learn to decode any pattern with this comprehensive guide to knitting pattern reading.",
+      "Decode K, P, YO, K2tog and read any knitting pattern. Learn abbreviations, understand parentheses and asterisks, and interpret charts confidently.",
     keywords: [
       "how to read knitting pattern",
       "knitting pattern abbreviations",
@@ -1871,9 +2057,7 @@ Ready to start? Try La Maille with your chosen yarn and see your sweater take sh
     publishedAt: "2026-02-22",
     readingTime: "8 min read",
     content: `
-Knitting patterns can look like they're written in code. K2tog, ssk, pm, yo — it's a lot of unfamiliar abbreviations. But once you crack the code, patterns become clear instructions that guide you stitch by stitch.
-
-Here's everything you need to know to read any knitting pattern.
+Reading a knitting pattern means understanding abbreviations (K = knit, P = purl, YO = yarn over), size notations in parentheses, and repeat markers like asterisks. With 70% of knitters searching for patterns online, pattern literacy is the gateway skill to the craft. Whether you're following a Ravelry pattern or a custom one generated by La Maille, this guide teaches you to read any knitting pattern with confidence.
 
 ## Anatomy of a Pattern
 
@@ -2047,6 +2231,23 @@ Sometimes patterns don't accommodate your measurements, or you want to recreate 
 
 Tools like La Maille generate custom patterns based on your specific measurements and gauge. The instructions are written the same way — with abbreviations and row-by-row guidance — but calculated for your body.
 
+## Frequently Asked Questions
+
+**What do knitting abbreviations mean?**
+K = knit, P = purl, St = stitch, Rep = repeat, RS/WS = right/wrong side, CO = cast on, BO = bind off, K2tog = knit 2 together, YO = yarn over.
+
+**What do parentheses mean in knitting patterns?**
+Usually size variations or repeats. "CO 80 (90, 100)" = cast on 80 for small, 90 for medium, 100 for large. Circle your size throughout.
+
+**What does "repeat from * to end" mean?**
+Work the instructions between the asterisks across the entire row. Example: "*K2, P2, repeat from *" = keep working K2, P2 until you reach the end.
+
+**How do I read a knitting chart?**
+RS rows read right to left, WS rows left to right. Each square = one stitch. Symbols are defined in the pattern's chart key.
+
+**What's the most important number in a pattern?**
+Gauge. If your stitches-per-inch doesn't match the pattern gauge, your finished measurements will be wrong regardless of following instructions perfectly.
+
 Ready to try a pattern? Whether you're following a published design or generating a custom one with La Maille, understanding pattern language opens up the world of garment knitting.
     `.trim(),
   },
@@ -2054,7 +2255,7 @@ Ready to try a pattern? Whether you're following a published design or generatin
     slug: "common-sweater-knitting-mistakes-and-fixes",
     title: "Common Sweater Knitting Mistakes (And How to Fix Them)",
     excerpt:
-      "Learn to identify and fix the most common sweater knitting mistakes. From dropped stitches to sizing errors, here's how to rescue your project.",
+      "Fix dropped stitches, gauge mistakes, twisted joins, and sizing errors. Learn to identify and correct the most common sweater knitting problems.",
     keywords: [
       "knitting mistakes fix",
       "common knitting errors",
@@ -2064,7 +2265,7 @@ Ready to try a pattern? Whether you're following a published design or generatin
     publishedAt: "2026-02-22",
     readingTime: "7 min read",
     content: `
-Every knitter makes mistakes. The difference between frustration and success is knowing how to identify and fix them. Here are the most common sweater knitting mistakes and exactly how to handle each one.
+The most common sweater knitting mistakes — gauge errors, dropped stitches, twisted joins, and wrong size selection — are all fixable or preventable with the right techniques. The average hand-knit sweater takes 40-80 hours to complete, making mistake prevention worth every minute of preparation. This guide covers the most frequent problems and their solutions, so you can knit with confidence whether you're following a published pattern or one generated by La Maille.
 
 ## Gauge Mistakes
 
@@ -2268,6 +2469,23 @@ Some fit problems can't be fixed by ripping and re-knitting the same pattern. If
 
 Tools like La Maille create patterns based on your specific measurements and gauge — reducing the chance of sizing errors before you even cast on.
 
+## Frequently Asked Questions
+
+**How do I fix a dropped stitch?**
+Use a crochet hook to pull each ladder bar through the loop, one by one, from bottom to top. For purl stitches, work from the back side.
+
+**What if my sweater is the wrong size?**
+If too big, limited options — some waist shaping can be added. If too small, very difficult to fix. Prevention (accurate gauge and measurements) is key.
+
+**How do I avoid twisting when joining in the round?**
+Before joining, lay work flat and ensure all cast-on stitches face the same direction. Some knitters work 1-2 flat rows first, then join.
+
+**What causes accidental yarn overs?**
+Wrong yarn position when starting a stitch — yarn in front when it should be in back. Check yarn position before each stitch to prevent extra holes.
+
+**When should I rip back vs. try to fix in place?**
+Major structural issues (gauge, size, twisted join) require ripping. Small errors (dropped stitch, single mistake) can often be fixed locally.
+
 Ready to knit a sweater that fits? Try La Maille and generate a pattern designed for your exact body.
     `.trim(),
   },
@@ -2275,7 +2493,7 @@ Ready to knit a sweater that fits? Try La Maille and generate a pattern designed
     slug: "how-to-adapt-knitting-pattern-to-your-size",
     title: "How to Adapt a Knitting Pattern to Your Size",
     excerpt:
-      "Learn to modify any knitting pattern to fit your unique body. A practical guide to adjusting length, width, and shaping for a custom fit.",
+      "Adapt any knitting pattern to your measurements. Modify length easily, adjust width with proportional math, or blend sizes for custom fit.",
     keywords: [
       "adapt knitting pattern size",
       "modify knitting pattern",
@@ -2285,9 +2503,7 @@ Ready to knit a sweater that fits? Try La Maille and generate a pattern designed
     publishedAt: "2026-02-22",
     readingTime: "8 min read",
     content: `
-The perfect pattern rarely comes in the perfect size for your body. Maybe the bust fits but the torso is too long, or the shoulders work but you need more hip room. Adapting patterns to your size is a core skill that transforms frustrating almosts into sweaters that fit.
-
-Here's how to do it systematically.
+You can adapt any knitting pattern to your size by comparing your measurements plus ease to the pattern's finished measurements, then adjusting stitch counts proportionally. With the global yarn market valued at $5.3 billion and growing, more knitters than ever need patterns that fit their unique bodies. This guide covers length adjustments, width modifications, and size blending — or you can use La Maille to generate a pattern for your exact measurements from the start.
 
 ## Understanding What Needs to Change
 
@@ -2442,6 +2658,23 @@ Start simple:
 3. Work up to full size blending
 
 Each successful adaptation builds your skills for the next.
+
+## Frequently Asked Questions
+
+**How do I adapt a pattern for my size?**
+Compare your measurements + ease to the pattern's finished measurements. Adjust stitch counts proportionally: (your inches × your gauge) = your stitches.
+
+**Can I mix sizes within a pattern?**
+Yes — follow size M for bust, size L for hips, etc. Watch transition points where sizes meet and add/remove stitches gradually if needed.
+
+**What's the easiest pattern modification?**
+Length. Just add or remove rows before shaping begins. Width changes require recalculating all shaping, which is more complex.
+
+**When should I generate a custom pattern instead of adapting?**
+When measurements differ significantly from standard sizing, when you're between sizes in multiple areas, or when you've had consistent fit problems.
+
+**How do I calculate sleeve increases after modification?**
+(Upper arm stitches - cuff stitches) ÷ 2 = increases per side. Distribute evenly over sleeve length: total rows ÷ increases = increase interval.
 
 Ready to skip the adaptation math? Try La Maille — upload a photo of any sweater and get a pattern generated for your exact measurements and gauge. Custom fit without the calculations.
     `.trim(),
