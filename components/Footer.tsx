@@ -29,10 +29,10 @@ export function Footer() {
               How It Works
             </Link>
             <Link
-              href="/photo-to-knitting-pattern"
+              href="/blog/how-to-recreate-sweater-from-photo"
               className="hover:text-foreground transition-colors"
             >
-              Photo to Pattern
+              Recreate a Sweater
             </Link>
             <Link
               href="/blog"

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { ImageUploader } from "@/components/ImageUploader";
 import { ResumeProjectDialog } from "@/components/ResumeProjectDialog";
@@ -159,6 +160,44 @@ export default function Home() {
           <p className="text-center text-sm text-muted-foreground mt-6 md:hidden">
             📸 → 🧶 From photo to pattern
           </p>
+        </div>
+      </section>
+
+      {/* FROM THE BLOG */}
+      <section className="py-12 md:py-20 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="font-serif text-3xl text-center mb-3">
+            From the Blog
+          </h2>
+          <p className="text-center text-muted-foreground mb-10">
+            Tips and guides to help you knit with confidence.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { slug: "how-to-recreate-sweater-from-photo", title: "How to Recreate Any Sweater From a Photo" },
+              { slug: "understanding-knitting-gauge-complete-guide", title: "Understanding Knitting Gauge: The Complete Guide" },
+              { slug: "top-down-vs-bottom-up-sweaters", title: "Top-Down vs Bottom-Up Sweaters: Pros and Cons" },
+              { slug: "colorwork-knitting-for-beginners", title: "Colorwork Knitting for Beginners" },
+            ].map(({ slug, title }) => (
+              <Link
+                key={slug}
+                href={`/blog/${slug}`}
+                className="group block bg-card rounded-lg border border-border p-5 hover:border-primary/40 transition-colors"
+              >
+                <h3 className="font-serif text-sm font-medium group-hover:text-primary transition-colors">
+                  {title}
+                </h3>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-6">
+            <Link
+              href="/blog"
+              className="text-sm text-primary hover:underline"
+            >
+              View all articles →
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -242,6 +242,46 @@ export default function KnittingPatternGeneratorPage() {
         </div>
       </section>
 
+      {/* RELATED ARTICLES */}
+      <section className="py-20 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="font-serif text-3xl text-center mb-3">
+            Learn More About Knitting Patterns
+          </h2>
+          <p className="text-center text-muted-foreground mb-10">
+            Deepen your knitting knowledge with these guides.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { slug: "how-to-recreate-sweater-from-photo", title: "How to Recreate Any Sweater From a Photo" },
+              { slug: "best-yarn-for-first-sweater", title: "Best Yarn for Your First Sweater" },
+              { slug: "raglan-vs-set-in-sleeves-which-to-choose", title: "Raglan vs Set-In Sleeves: Which to Choose?" },
+              { slug: "blocking-knitted-sweater", title: "Blocking a Knitted Sweater: Complete Guide" },
+              { slug: "knitting-in-the-round-vs-flat", title: "Knitting in the Round vs Flat" },
+              { slug: "cable-knit-sweater-pattern", title: "Cable Knit Sweater Pattern Guide" },
+            ].map(({ slug, title }) => (
+              <Link
+                key={slug}
+                href={`/blog/${slug}`}
+                className="group block bg-card rounded-lg border border-border p-5 hover:border-primary/40 transition-colors"
+              >
+                <h3 className="font-serif text-sm font-medium group-hover:text-primary transition-colors">
+                  {title}
+                </h3>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-6">
+            <Link
+              href="/blog"
+              className="text-sm text-primary hover:underline"
+            >
+              View all articles →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* FINAL CTA */}
       <section className="py-20 px-4 bg-primary/5">
         <div className="container mx-auto max-w-2xl text-center">
