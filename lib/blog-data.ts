@@ -4058,12 +4058,14 @@ Upload a sweater photo and get your custom knitting pattern in minutes.
     slug: "knitting-pattern-size-chart",
     title: "How to Read Knitting Pattern Size Charts and Schematics",
     excerpt:
-      "Decode size charts, schematics, and body-vs-finished measurements in knitting patterns. Includes CYC standard sizing tables and grading logic.",
+      "Master the knitting pattern size chart: body measurements, ease, gauge, and how to pick the right size every time. Practical tables + expert tips included.",
     keywords: ["knitting pattern size chart", "knitting size guide", "sweater size chart measurements", "standard body measurements for knitting"],
     publishedAt: "2026-02-25",
     readingTime: "19 min read",
     content: `
 A knitting pattern size chart is a standardized reference table that maps body measurements — such as bust, waist, hips, and sleeve length — to finished garment dimensions, helping knitters select the correct pattern size before casting on. These charts typically express sizes in both centimeters and inches and account for design ease, the intentional difference between the body measurement and the finished garment measurement.
+
+![Flat-lay of a measuring tape and knitting notebook with body measurements written down beside a wool gauge swatch](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772096711/seo/en/knitting-pattern-size-chart/knitting-pattern-size-chart/knitting-pattern-size-chart-measuring-tools.jpg)
 
 If you've ever knitted a sweater to the letter of the pattern and ended up with something that doesn't fit, the culprit is almost always a misread knitting pattern size chart. These charts look simple — a row of numbers across a few body measurements — but they contain layers of information that many knitters skip over. Understanding how a knitting size guide works is the single most impactful skill you can build before casting on a garment. In this guide, we'll walk through what the numbers actually mean, how to measure yourself correctly, what ease is and why it matters more than your clothing label, and how gauge connects directly to sizing. By the end, you'll know exactly which column to knit from — and why. Whether you're making your first sweater size chart decisions or refining your approach after a few frustrating fit experiences, this guide is built for you.
 
@@ -4074,6 +4076,8 @@ If you've ever knitted a sweater to the letter of the pattern and ended up with 
 - **A gauge swatch difference of just 1 stitch per 4 inches (10 cm) can result in a finished sweater that is 2–4 inches off in circumference across an average adult body.** — Mathematical consequence of gauge variance across 200–240 stitches in a typical adult sweater body
 
 ## What Is a Knitting Pattern Size Chart and How Is It Structured?
+
+![Technical diagram of standard body measurement points for knitting — bust, waist, hip, body length, and sleeve length labeled on a torso outline](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772096743/seo/en/knitting-pattern-size-chart/knitting-pattern-size-chart/knitting-pattern-size-chart-body-measurements-diagram.webp)
 
 A knitting pattern size chart is a reference table that translates body measurements into pattern instructions. Unlike ready-to-wear clothing sizes, which vary wildly between brands, a knitting size guide is anchored to actual numbers: inches and centimeters. Most charts organize information in columns by size, with rows representing different measurements. The most common measurements listed are bust or chest circumference, waist circumference, hip circumference, body length (from underarm or shoulder to hem), sleeve length, and sometimes upper arm circumference and shoulder width.
 
@@ -4106,6 +4110,8 @@ Write all measurements down and keep them accessible. Knitting a garment from st
 ### Which Measurement Is the Most Important?
 
 For most sweater patterns, bust or chest circumference is the primary key measurement used to select your size column. This is the measurement most patterns are graded from. However, if you have a significantly different proportion — for example, narrow shoulders with a fuller bust, or wide hips relative to your chest — you may need to size for one measurement and modify others. Understanding that patterns can be adjusted between sizes (a technique called short-rowing for bust, or adjusting stitch counts at the hip) empowers you to treat the size chart as a starting point, not a final answer.
+
+![Hands measuring a knitted gauge swatch with a tape measure stretched across 4 inches of stockinette fabric to check stitch count](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772096757/seo/en/knitting-pattern-size-chart/knitting-pattern-size-chart/knitting-pattern-size-chart-gauge-swatch-measurement.jpg)
 
 ## Understanding Ease: The Variable That Actually Determines Fit
 
@@ -4228,6 +4234,8 @@ Upload a sweater photo and get your custom knitting pattern in minutes.
     content: `
 Short rows are a knitting technique where you work only part of the stitches on a needle before turning back, deliberately leaving stitches unworked. This creates extra rows in a localized section of the fabric, allowing knitters to add three-dimensional shaping — such as bust darts, shoulder slopes, or curved hems — without adding or removing stitches.
 
+![Knitter's hands turning work mid-row to execute a short row in cream stockinette fabric on wooden circular needles](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772096715/seo/en/knitting-short-rows-technique/knitting-short-rows-technique/knitting-short-rows-technique-hands-turning.webp)
+
 The knitting short rows technique is one of the most versatile tools in a knitter's toolkit — and one of the most misunderstood. At its core, a short row is simply a row you don't finish. You work partway across the needle, then turn and go back. That deliberate interruption builds extra fabric depth in one spot, letting you curve, slope, or shape your knitting without ever touching your stitch count. Used correctly, short rows are what separates a flat, boxy sweater from one with a fitted shoulder, a tailored bust, or a graceful hemline. In this guide, you'll learn exactly what short rows do, when to use them, which of the two main methods suits your project, and how to calculate the steps for shoulder shaping with concrete numbers. Whether you're approaching your first shaped sweater or finally decoding a pattern instruction that says 'work to 6 sts before marker, w&t', this article will give you the clear, practical framework you need.
 
 ## Key Facts
@@ -4237,6 +4245,8 @@ The knitting short rows technique is one of the most versatile tools in a knitte
 - **Adding a full bust adjustment using short rows typically requires working 2 to 4 additional short-row wedges of 8 to 16 rows each, depending on the difference between bust and high-bust measurements.** — Garment fitting and sweater construction principles for woven and knit fabric adjustment
 
 ## What Are Short Rows Used for in Knitting?
+
+![Technical diagram comparing wrap and turn short row wrap placement versus German short row double stitch on the needle](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772096735/seo/en/knitting-short-rows-technique/knitting-short-rows-technique/knitting-short-rows-technique-method-comparison-diagram.webp)
 
 Short rows solve a fundamental problem in flat knitting: fabric only curves if some areas have more rows than others. A shoulder that slopes downward from neck to armhole needs the armhole edge to be physically longer than the neck edge. A bust dart needs extra depth at the fullest point of the chest. A sock heel needs a three-dimensional pocket to cup the back of the foot. In every case, the solution is the same — add rows in exactly the right place, and nowhere else. That is what the knitting short rows technique achieves.
 
@@ -4261,6 +4271,8 @@ Wrap and turn works best in textured stitches like seed, moss, or cables, where 
 ### How to Pick Up Wraps Correctly
 
 On a knit row, insert the right needle tip under the front leg of the wrap from below, then into the stitch itself, and knit both together. On a purl row, insert the needle tip from behind into the back leg of the wrap, place it onto the left needle alongside the stitch, and purl both together. Working them as one stitch prevents a visible horizontal bar and closes the gap at the turning point completely.
+
+![Overhead view of a knitted sweater shoulder piece showing stepped short row shaping creating a gradual slope from neck to armhole](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772096747/seo/en/knitting-short-rows-technique/knitting-short-rows-technique/knitting-short-rows-technique-shoulder-shaping.jpg)
 
 ## German Short Rows: The Cleaner Alternative
 
@@ -4349,6 +4361,8 @@ Upload a sweater photo and get your custom knitting pattern in minutes.
     content: `
 Knitting sleeve cap shaping is the process of gradually decreasing stitches at the top of a sleeve to form a curved dome that fits precisely into the armhole opening of a set-in sleeve garment. The sleeve cap height typically measures between 14 cm and 18 cm (5.5–7 inches) for adult sizes, and must match the armhole depth of the bodice to within a few millimetres for a smooth, professional fit.
 
+![Partially knitted sleeve cap in oatmeal wool showing graduated decrease shaping on both edges, photographed flat on a linen surface](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772096723/seo/en/knitting-sleeve-cap-shaping/knitting-sleeve-cap-shaping/knitting-sleeve-cap-shaping-overview.jpg)
+
 Knitting sleeve cap shaping is one of the most technically rewarding skills in garment construction — and one of the most misunderstood. If you have ever finished a sleeve only to find it pulls across the shoulder, puckers at the seam, or simply refuses to sit flat, the culprit is almost always in the cap shaping calculations. The sleeve cap is the curved dome at the top of a sleeve that must fit precisely into the shaped armhole of your bodice. Get it right, and your sweater will look tailored and move beautifully. Get it wrong, and no amount of blocking will fully fix it. In this guide, you will learn exactly how to calculate sleeve cap shaping from your own gauge and measurements, how to distribute decreases for a smooth curve, and how armhole shaping on the bodice directly determines what your sleeve cap needs to look like. Expect concrete numbers, worked examples, and the reasoning behind every step.
 
 ## Key Facts
@@ -4358,6 +4372,8 @@ Knitting sleeve cap shaping is one of the most technically rewarding skills in g
 - **Approximately 30–40% of total sleeve cap stitches are bound off in the first two rows (the underarm bind-off), setting the width foundation for all subsequent shaping decreases.** — Proportional rule derived from standard sleeve cap calculation formulas used in garment knitting
 
 ## What Is Sleeve Cap Shaping and Why Does It Matter?
+
+![Technical diagram of a knitted sleeve cap showing three decrease zones, underarm bind-off, and crown bind-off with measurement annotations](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772096760/seo/en/knitting-sleeve-cap-shaping/knitting-sleeve-cap-shaping/knitting-sleeve-cap-shaping-diagram.webp)
 
 A sleeve cap is the uppermost section of a knitted sleeve, shaped by systematically binding off and decreasing stitches to produce a curved silhouette. This curve must correspond — almost millimetre for millimetre — to the curved armhole cut into the front and back bodice pieces. When both curves align correctly and the sleeve cap seam length carries a small amount of positive ease (typically 2.5 to 4 cm more than the armhole seam length), the two pieces ease together smoothly during finishing, creating a clean, rounded shoulder line.
 
@@ -4386,6 +4402,8 @@ Sleeve cap calculation knitting follows a logical sequence of five steps. Work t
 ### Distributing Decreases Across the Cap for a Smooth Curve
 
 The key to a smooth sleeve cap curve is not working decreases at a constant rate. Instead, think of the cap in three zones. Zone 1 (bottom third): decrease every right-side row (every 2 rows) — this creates the steep lower curve. Zone 2 (middle third): decrease every 4 rows — this is the gentle, wider mid-section. Zone 3 (top third): return to decreasing every 2 rows, sometimes every row, to narrow quickly toward the crown. In our example with 29 decrease rows across 50 rows: roughly 10 decreases in Zone 1 (20 rows), 9 decreases in Zone 2 (18 rows), and 10 decreases in Zone 3 (12 rows, including some single-row decreases at the very top). Finishing with a final bind-off of 10–14 sts gives the crown a neat, flat edge ready for seaming.
+
+![Hands pinning a knitted sleeve cap into a sweater armhole at quarter-point positions before seaming, showing cap ease distribution](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772096772/seo/en/knitting-sleeve-cap-shaping/knitting-sleeve-cap-shaping/knitting-sleeve-cap-shaping-seaming.webp)
 
 ## What Determines Sleeve Cap Height?
 
