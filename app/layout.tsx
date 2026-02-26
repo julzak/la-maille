@@ -113,39 +113,6 @@ export default function RootLayout({
                   addressCountry: "FR",
                 },
               },
-              {
-                "@context": "https://schema.org",
-                "@type": "HowTo",
-                name: "How to generate a knitting pattern from a photo",
-                description:
-                  "Turn any knit photo into a custom knitting pattern in 4 simple steps.",
-                step: [
-                  {
-                    "@type": "HowToStep",
-                    position: 1,
-                    name: "Upload your inspiration",
-                    text: "Take or upload a front view photo of the garment, well-lit.",
-                  },
-                  {
-                    "@type": "HowToStep",
-                    position: 2,
-                    name: "La Maille reads the knit",
-                    text: "AI identifies the shape, proportions and stitches of the garment.",
-                  },
-                  {
-                    "@type": "HowToStep",
-                    position: 3,
-                    name: "Enter your measurements",
-                    text: "Provide your chest circumference, desired length, and your gauge.",
-                  },
-                  {
-                    "@type": "HowToStep",
-                    position: 4,
-                    name: "Get your custom pattern",
-                    text: "Receive row-by-row knitting instructions adapted to your measurements.",
-                  },
-                ],
-              },
             ]),
           }}
         />

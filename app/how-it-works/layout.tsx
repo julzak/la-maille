@@ -1,9 +1,17 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "How to Create a Knitting Pattern from a Photo",
+  title:
+    "How It Works: 4 Steps from Photo to Knitting Pattern | La Maille",
   description:
-    "Learn how to turn any sweater photo into a custom knitting pattern in 4 simple steps. Upload, measure, and get row-by-row instructions.",
+    "Step-by-step guide: upload a sweater photo, enter your measurements and gauge, and receive a complete knitting pattern with row-by-row instructions.",
+  keywords: [
+    "how to create knitting pattern",
+    "knitting pattern steps",
+    "photo to pattern tutorial",
+    "knitting pattern from photo guide",
+    "step by step knitting pattern",
+  ],
   alternates: {
     canonical: "https://la-maille.com/how-it-works",
   },
