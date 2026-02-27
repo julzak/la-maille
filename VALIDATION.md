@@ -68,7 +68,7 @@ Tester avec differents types d'images :
 
 ### 5. Export PDF / Print
 - [ ] Bouton "Exporter PDF" ouvre dialogue impression
-- [ ] Nom de fichier correct (ok-patron-[type]-[date].pdf)
+- [ ] Nom de fichier correct (la-maille-[type]-[date].pdf)
 - [ ] Page de couverture presente
 - [ ] Mise en page propre
 - [ ] Pas de boutons/UI dans le PDF

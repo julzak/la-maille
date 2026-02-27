@@ -1329,7 +1329,7 @@ export default function PatronPage() {
               variant="ghost"
               onClick={() => {
                 window.location.href =
-                  "mailto:contact@okpatron.fr?subject=Probleme avec un patron genere&body=ID du patron: " +
+                  "mailto:contact@la-maille.com?subject=Probleme avec un patron genere&body=ID du patron: " +
                   pattern.id;
               }}
               className="text-muted-foreground min-h-[44px] w-full sm:w-auto"
