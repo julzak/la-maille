@@ -106,6 +106,9 @@ export function AuthModal() {
         if (signUpError) throw signUpError;
 
         if (data.user) {
+          if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'sign_up', { method: 'email' });
+          }
           toast.success(t("auth.signUpSuccess"));
           handleAuthSuccess();
         }

@@ -8,6 +8,21 @@ import { AuthModal } from "@/components/AuthModal";
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { setUser, setProfile, setIsLoading } = useAuthStore();
 
+  // Track GA4 sign_up event for OAuth users (redirected with ?signup= param)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const signupMethod = params.get("signup");
+    if (signupMethod && window.gtag) {
+      window.gtag('event', 'sign_up', { method: signupMethod });
+      params.delete("signup");
+      const newUrl = params.toString()
+        ? `${window.location.pathname}?${params.toString()}`
+        : window.location.pathname;
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, []);
+
   useEffect(() => {
     const supabase = createClient();
 

@@ -16,6 +16,8 @@ export async function GET(request: Request) {
         data: { user },
       } = await supabase.auth.getUser();
 
+      let isNewUser = false;
+
       if (user) {
         // Check if profile exists
         const { data: existingProfile } = await supabase
@@ -24,7 +26,9 @@ export async function GET(request: Request) {
           .eq("id", user.id)
           .single();
 
-        if (!existingProfile) {
+        isNewUser = !existingProfile;
+
+        if (isNewUser) {
           // Create profile for OAuth users
           const username =
             user.user_metadata?.username ||
@@ -56,7 +60,11 @@ export async function GET(request: Request) {
         }
       }
 
-      return NextResponse.redirect(`${origin}${next}`);
+      const redirectUrl = new URL(`${origin}${next}`);
+      if (isNewUser) {
+        redirectUrl.searchParams.set("signup", "google");
+      }
+      return NextResponse.redirect(redirectUrl.toString());
     }
   }
 
