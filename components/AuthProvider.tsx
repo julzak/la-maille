@@ -4,17 +4,23 @@ import { useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useAuthStore, type UserProfile } from "@/lib/auth-store";
 import { AuthModal } from "@/components/AuthModal";
+import { trackEvent, getStoredUTMs, clearUTMs } from "@/lib/analytics";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { setUser, setProfile, setIsLoading } = useAuthStore();
 
-  // Track GA4 sign_up event for OAuth users (redirected with ?signup= param)
+  // Track GA4 sign_up event for OAuth/email users (redirected with ?signup= param)
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     const signupMethod = params.get("signup");
-    if (signupMethod && window.gtag) {
-      window.gtag('event', 'sign_up', { method: signupMethod });
+    if (signupMethod) {
+      const utms = getStoredUTMs();
+      trackEvent('sign_up', {
+        method: signupMethod,
+        ...utms,
+      });
+      clearUTMs();
       params.delete("signup");
       const newUrl = params.toString()
         ? `${window.location.pathname}?${params.toString()}`

@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/components/AuthProvider";
+import { UTMCapture } from "@/components/UTMCapture";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://la-maille.com"),
@@ -118,6 +119,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
+        <UTMCapture />
         <AuthProvider>
           <Header />
           <main className="flex-1">{children}</main>

@@ -33,6 +33,7 @@ import { YarnCalculator } from "@/components/YarnCalculator";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { SavePatternButton } from "@/components/SavePatternButton";
 import { useAutoSave } from "@/hooks/useAutoSave";
+import { trackEvent, getStoredUTMs } from "@/lib/analytics";
 import type { StoredProject } from "@/lib/storage";
 import type { YarnStock } from "@/lib/yarn-calculator";
 
@@ -137,6 +138,20 @@ function PatronPageContent() {
       router.replace("/");
     }
   }, [isHydrated, hasPattern, router]);
+
+  // Track pattern generation (fires once when pattern is first displayed)
+  const [generateTracked, setGenerateTracked] = useState(false);
+  useEffect(() => {
+    if (isHydrated && pattern && !generateTracked) {
+      const utms = getStoredUTMs();
+      trackEvent('generate_pattern', {
+        garment_type: pattern.analysis.garment.type,
+        ...utms,
+      });
+      setGenerateTracked(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isHydrated, pattern]);
 
   // Gérer le scroll pour réafficher le disclaimer
   useEffect(() => {

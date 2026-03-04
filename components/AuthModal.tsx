@@ -7,6 +7,7 @@ import { Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useAuthStore } from "@/lib/auth-store";
 import { useTranslation } from "@/lib/i18n";
+import { trackEvent, getStoredUTMs, clearUTMs } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -106,9 +107,9 @@ export function AuthModal() {
         if (signUpError) throw signUpError;
 
         if (data.user) {
-          if (typeof window !== 'undefined' && window.gtag) {
-            window.gtag('event', 'sign_up', { method: 'email' });
-          }
+          const utms = getStoredUTMs();
+          trackEvent('sign_up', { method: 'email', ...utms });
+          clearUTMs();
           toast.success(t("auth.signUpSuccess"));
           handleAuthSuccess();
         }

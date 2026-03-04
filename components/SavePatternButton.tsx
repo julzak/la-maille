@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/lib/auth-store";
 import { useTranslation } from "@/lib/i18n";
+import { trackEvent, getStoredUTMs } from "@/lib/analytics";
 import type { GeneratedPattern } from "@/lib/types";
 
 interface SavePatternButtonProps {
@@ -66,6 +67,12 @@ export function SavePatternButton({
 
       setIsSaved(true);
       toast.success(t("savedPatterns.saved"));
+
+      const utms = getStoredUTMs();
+      trackEvent('save_pattern', {
+        garment_type: pattern.analysis.garment.type,
+        ...utms,
+      });
     } catch (error) {
       console.error("Error saving pattern:", error);
       toast.error(t("savedPatterns.saveError"));

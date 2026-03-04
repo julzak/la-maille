@@ -62,7 +62,8 @@ export async function GET(request: Request) {
 
       const redirectUrl = new URL(`${origin}${next}`);
       if (isNewUser) {
-        redirectUrl.searchParams.set("signup", "google");
+        const provider = user?.app_metadata?.provider ?? "google";
+        redirectUrl.searchParams.set("signup", provider === "email" ? "email" : "google");
       }
       return NextResponse.redirect(redirectUrl.toString());
     }
