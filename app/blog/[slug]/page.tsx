@@ -237,12 +237,61 @@ function formatInline(text: string): string {
     );
 }
 
+function getRelatedArticles(currentSlug: string, count = 3) {
+  const current = getArticleBySlug(currentSlug);
+  if (!current) return [];
+  const all = getAllArticles().filter((a) => a.slug !== currentSlug);
+  // Score by keyword overlap
+  const scored = all.map((a) => {
+    const overlap = a.keywords.filter((k) =>
+      current.keywords.some(
+        (ck) => ck.toLowerCase().includes(k.toLowerCase()) || k.toLowerCase().includes(ck.toLowerCase())
+      )
+    ).length;
+    return { article: a, score: overlap };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, count).map((s) => s.article);
+}
+
 export default function BlogArticlePage({ params }: Props) {
   const article = getArticleBySlug(params.slug);
   if (!article) notFound();
 
+  const relatedArticles = getRelatedArticles(params.slug);
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.excerpt,
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    author: {
+      "@type": "Person",
+      name: "Dominique from La Maille",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "La Maille",
+      url: "https://la-maille.com",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://la-maille.com/blog/${article.slug}`,
+    },
+    image: "https://la-maille.com/og-image.png",
+    keywords: article.keywords.join(", "),
+  };
+
   return (
     <div className="container mx-auto max-w-[700px] px-4 py-12 md:py-20">
+      {/* Article JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+
       {/* Back link */}
       <Link
         href="/blog"
@@ -290,6 +339,29 @@ export default function BlogArticlePage({ params }: Props) {
           <ArrowRight className="w-4 h-4" />
         </Link>
       </section>
+
+      {/* Related Articles */}
+      {relatedArticles.length > 0 && (
+        <section className="mt-16">
+          <h2 className="font-serif text-2xl mb-6">Related articles</h2>
+          <div className="grid gap-4">
+            {relatedArticles.map((related) => (
+              <Link
+                key={related.slug}
+                href={`/blog/${related.slug}`}
+                className="group block p-4 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-colors"
+              >
+                <h3 className="font-medium group-hover:text-primary transition-colors mb-1">
+                  {related.title}
+                </h3>
+                <p className="text-sm text-muted-foreground line-clamp-2">
+                  {related.excerpt}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
