@@ -85,7 +85,7 @@ export default function PrivacyPage() {
                   <li>Exporter vos données</li>
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mt-4">
-                  Pour exercer ces droits, contactez-nous à : hello@la-maille.com
+                  Pour exercer ces droits, contactez-nous à : contact@la-maille.com
                 </p>
               </section>
 
@@ -101,7 +101,7 @@ export default function PrivacyPage() {
                 <h2 className="text-xl font-semibold mb-4">7. Contact</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Pour toute question concernant cette politique de confidentialité :<br />
-                  Email : hello@la-maille.com<br />
+                  Email : contact@la-maille.com<br />
                   La Maille · Paris, France
                 </p>
               </section>
@@ -167,7 +167,7 @@ export default function PrivacyPage() {
                   <li>Export your data</li>
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mt-4">
-                  To exercise these rights, contact us at: hello@la-maille.com
+                  To exercise these rights, contact us at: contact@la-maille.com
                 </p>
               </section>
 
@@ -183,7 +183,7 @@ export default function PrivacyPage() {
                 <h2 className="text-xl font-semibold mb-4">7. Contact</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   For any questions about this privacy policy:<br />
-                  Email: hello@la-maille.com<br />
+                  Email: contact@la-maille.com<br />
                   La Maille · Paris, France
                 </p>
               </section>

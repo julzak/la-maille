@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const BREVO_API_KEY = Deno.env.get("BREVO_API_KEY");
 const ADMIN_EMAIL = "jzakoian@gmail.com";
 
 interface WebhookPayload {
@@ -88,17 +88,17 @@ const handler = async (req: Request): Promise<Response> => {
 </html>
     `;
 
-    const res = await fetch("https://api.resend.com/emails", {
+    const res = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${RESEND_API_KEY}`,
+        "api-key": BREVO_API_KEY!,
       },
       body: JSON.stringify({
-        from: "La Maille <hello@la-maille.com>",
-        to: [email],
+        sender: { name: "La Maille", email: "contact@la-maille.com" },
+        to: [{ email }],
         subject: `Bienvenue sur La Maille, ${username} !`,
-        html: emailHtml,
+        htmlContent: emailHtml,
       }),
     });
 
@@ -132,17 +132,17 @@ const handler = async (req: Request): Promise<Response> => {
 </html>
     `;
 
-    await fetch("https://api.resend.com/emails", {
+    await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${RESEND_API_KEY}`,
+        "api-key": BREVO_API_KEY!,
       },
       body: JSON.stringify({
-        from: "La Maille <hello@la-maille.com>",
-        to: [ADMIN_EMAIL],
+        sender: { name: "La Maille", email: "contact@la-maille.com" },
+        to: [{ email: ADMIN_EMAIL }],
         subject: `🧶 Nouveau compte : ${username}`,
-        html: adminNotificationHtml,
+        htmlContent: adminNotificationHtml,
       }),
     });
 

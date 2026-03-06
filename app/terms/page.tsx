@@ -119,7 +119,7 @@ export default function TermsPage() {
                 <h2 className="text-xl font-semibold mb-4">9. Contact</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Pour toute question :<br />
-                  Email : hello@la-maille.com<br />
+                  Email : contact@la-maille.com<br />
                   La Maille · Paris, France
                 </p>
               </section>
@@ -219,7 +219,7 @@ export default function TermsPage() {
                 <h2 className="text-xl font-semibold mb-4">9. Contact</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   For any questions:<br />
-                  Email: hello@la-maille.com<br />
+                  Email: contact@la-maille.com<br />
                   La Maille · Paris, France
                 </p>
               </section>

@@ -15,6 +15,12 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             Made with ❤️ &amp; 🧶 in Paris
           </p>
+          <a
+            href="mailto:contact@la-maille.com"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            contact@la-maille.com
+          </a>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
             <Link
               href="/knitting-pattern-generator"

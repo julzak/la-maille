@@ -107,7 +107,7 @@ export default function RootLayout({
                 name: "La Maille",
                 url: "https://la-maille.com",
                 logo: "https://la-maille.com/logo-lamaille-120.png",
-                email: "hello@la-maille.com",
+                email: "contact@la-maille.com",
                 address: {
                   "@type": "PostalAddress",
                   addressLocality: "Paris",
