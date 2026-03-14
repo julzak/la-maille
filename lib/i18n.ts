@@ -670,6 +670,16 @@ export const translations = {
     "pattern.disclaimerConfidence": "Confiance de l'analyse : {0}",
     "pattern.disclaimerLimitations": "Limitations identifiees : {0}",
     "pattern.disclaimerAdvice": "En cas de doute, consultez un patron commercial similaire pour comparaison.",
+
+    // Simplified funnel
+    pickYourSize: "Choisissez votre taille",
+    oneClickPattern: "Un clic, un patron",
+    orCustomize: "ou personnalisez les mesures",
+    customizePattern: "Affiner mon patron",
+    regeneratePattern: "Régénérer le patron",
+    "step.photo": "Photo",
+    "step.size": "Taille",
+    "step.pattern": "Patron",
   },
 
   en: {
@@ -1320,6 +1330,16 @@ export const translations = {
     "pattern.disclaimerConfidence": "Analysis confidence: {0}",
     "pattern.disclaimerLimitations": "Identified limitations: {0}",
     "pattern.disclaimerAdvice": "When in doubt, consult a similar commercial pattern for comparison.",
+
+    // Simplified funnel
+    pickYourSize: "Pick your size",
+    oneClickPattern: "One click, one pattern",
+    orCustomize: "or customize measurements",
+    customizePattern: "Refine my pattern",
+    regeneratePattern: "Regenerate pattern",
+    "step.photo": "Photo",
+    "step.size": "Size",
+    "step.pattern": "Pattern",
   },
 } as const;
 

@@ -8,29 +8,25 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { MeasurementsForm } from "@/components/MeasurementsForm";
-import { GarmentOverlay } from "@/components/GarmentOverlay";
+import { SizeSelector } from "@/components/SizeSelector";
+import { ProgressStepper } from "@/components/ProgressStepper";
 import { SaveIndicator } from "@/components/SaveIndicator";
 import { WeavingLoader } from "@/components/WeavingLoader";
 import { useLaMailleStore, useStoreHydrated } from "@/lib/store";
-import { generateFullPattern } from "@/lib/pattern-calculator";
 import {
   getRejectionMessage,
   CONFIDENCE_DISPLAY,
   ERROR_MESSAGES,
-  SUCCESS_MESSAGES,
 } from "@/lib/messages";
 import { useTranslation } from "@/lib/i18n";
 import { useAutoSave } from "@/hooks/useAutoSave";
 import { generateProjectId, type StoredProject } from "@/lib/storage";
-import type { Gauge, Measurements, YarnInfo } from "@/lib/types";
 
 export default function AnalysePage() {
   const router = useRouter();
-  const { t, language } = useTranslation();
+  const { t } = useTranslation();
   const {
     imagePreviews,
-    imagePreview,
     imageName,
     analysis,
     analysisLoading,
@@ -38,14 +34,8 @@ export default function AnalysePage() {
     setAnalysis,
     setAnalysisLoading,
     setAnalysisError,
-    setFormData,
-    setPattern,
-    setPatternLoading,
-    patternLoading,
   } = useLaMailleStore();
 
-  // State for overlay confirmation
-  const [overlayConfirmed, setOverlayConfirmed] = useState(false);
   const [projectId] = useState(() => generateProjectId());
 
   // Wait for store hydration before making decisions
@@ -159,44 +149,6 @@ export default function AnalysePage() {
     }
   }, [isHydrated, imagePreviews, analysis, analysisError, runAnalysis]);
 
-  // Handler pour le formulaire
-  const handleFormSubmit = async (data: {
-    gauge: Gauge;
-    measurements: Measurements;
-    yarn: YarnInfo;
-  }) => {
-    if (!analysis || !analysis.analysable) return;
-
-    setPatternLoading(true);
-    setFormData(data.gauge, data.measurements, data.yarn);
-
-    try {
-      // Générer le patron
-      const pattern = generateFullPattern(
-        analysis,
-        data.gauge,
-        data.measurements,
-        data.yarn,
-        language
-      );
-
-      setPattern(pattern, language);
-      toast.success(SUCCESS_MESSAGES.patternGenerated);
-      router.push("/patron");
-    } catch (err) {
-      console.error("Erreur lors de la génération:", err);
-      const errorMessage =
-        err instanceof Error
-          ? err.message
-          : "Erreur lors de la génération du patron";
-      setAnalysisError(errorMessage);
-      setPatternLoading(false);
-      toast.error("Erreur de génération", {
-        description: errorMessage,
-      });
-    }
-  };
-
   // Handler pour changer d'image
   const handleChangeImage = () => {
     router.push("/");
@@ -237,6 +189,8 @@ export default function AnalysePage() {
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="max-w-5xl mx-auto">
+        <ProgressStepper currentStep={2} />
+
         <div className="flex items-start justify-between mb-2">
           <h1 className="text-3xl md:text-4xl font-bold">
             {t("analyzeTitle")}
@@ -485,29 +439,10 @@ export default function AnalysePage() {
             )}
           </div>
 
-          {/* Colonne droite - Validation & Formulaire (3/5) */}
+          {/* Colonne droite - Sélection taille (3/5) */}
           <div className="lg:col-span-3">
-            {analysis && analysis.analysable && !overlayConfirmed ? (
-              /* Étape 1: Validation visuelle de l'analyse */
-              <div>
-                <h2 className="text-xl font-bold mb-4">{t("validateAnalysis")}</h2>
-                <GarmentOverlay
-                  imageUrl={imagePreview!}
-                  analysis={analysis}
-                  onConfirm={() => setOverlayConfirmed(true)}
-                  onReject={handleChangeImage}
-                />
-              </div>
-            ) : analysis && analysis.analysable && overlayConfirmed ? (
-              /* Étape 2: Formulaire de mesures */
-              <div>
-                <h2 className="text-xl font-bold mb-4">{t("yourParameters")}</h2>
-                <MeasurementsForm
-                  analysis={analysis}
-                  onSubmit={handleFormSubmit}
-                  isLoading={patternLoading}
-                />
-              </div>
+            {analysis && analysis.analysable ? (
+              <SizeSelector analysis={analysis} />
             ) : analysisLoading ? (
               <div className="min-h-[300px] md:min-h-[400px] flex items-center justify-center">
                 <WeavingLoader message={t("loaderReadingKnit")} size="lg" />

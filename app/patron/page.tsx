@@ -30,12 +30,17 @@ import {
   canShareFiles,
 } from "@/lib/pdf-utils";
 import { YarnCalculator } from "@/components/YarnCalculator";
-import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { ProgressStepper } from "@/components/ProgressStepper";
+import { GaugeSection } from "@/components/measurements/GaugeSection";
+import { BodyMeasurementsSection } from "@/components/measurements/BodyMeasurementsSection";
+import { YarnSection } from "@/components/measurements/YarnSection";
 import { SavePatternButton } from "@/components/SavePatternButton";
 import { useAutoSave } from "@/hooks/useAutoSave";
 import { trackEvent, getStoredUTMs } from "@/lib/analytics";
 import type { StoredProject } from "@/lib/storage";
 import type { YarnStock } from "@/lib/yarn-calculator";
+import type { Gauge, Measurements, YarnInfo } from "@/lib/types";
+import type { SizeKey } from "@/lib/size-presets";
 
 function PatronPageContent() {
   const router = useRouter();
@@ -51,9 +56,17 @@ function PatronPageContent() {
     measurements,
     yarn,
     setPattern,
+    setFormData,
   } = useLaMailleStore();
 
   const [showDisclaimer, setShowDisclaimer] = useState(true);
+  const [refineOpen, setRefineOpen] = useState(false);
+  const [refineGauge, setRefineGauge] = useState<Gauge | null>(null);
+  const [refineMeasurements, setRefineMeasurements] = useState<Measurements | null>(null);
+  const [refineYarn, setRefineYarn] = useState<YarnInfo | null>(null);
+  const [refineSelectedSize, setRefineSelectedSize] = useState<SizeKey | "custom" | null>(null);
+  const [refineTouched] = useState<Set<string>>(new Set());
+  const [refineErrors] = useState<Record<string, string>>({});
   const [lastScrollY, setLastScrollY] = useState(0);
   const [assemblyOpen, setAssemblyOpen] = useState(false);
   const [finishingOpen, setFinishingOpen] = useState(false);
@@ -97,6 +110,37 @@ function PatronPageContent() {
     // Scroll to top on mount
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
+
+  // Init refine state from pattern data
+  useEffect(() => {
+    if (isHydrated && pattern && gauge && measurements && yarn) {
+      setRefineGauge(gauge);
+      setRefineMeasurements(measurements);
+      setRefineYarn(yarn);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isHydrated, pattern]);
+
+  // Regenerate pattern with refined values
+  const handleRegenerate = useCallback(() => {
+    if (!analysis || !analysis.analysable || !refineGauge || !refineMeasurements || !refineYarn) return;
+
+    try {
+      setFormData(refineGauge, refineMeasurements, refineYarn);
+      const newPattern = generateFullPattern(
+        analysis,
+        refineGauge,
+        refineMeasurements,
+        refineYarn,
+        language
+      );
+      setPattern(newPattern, language);
+      toast.success(t("regeneratePattern"));
+    } catch (err) {
+      console.error("Erreur lors de la régénération:", err);
+      toast.error("Erreur de régénération");
+    }
+  }, [analysis, refineGauge, refineMeasurements, refineYarn, language, setFormData, setPattern, t]);
 
   // Regenerate pattern when language changes
   useEffect(() => {
@@ -370,6 +414,8 @@ function PatronPageContent() {
 
       <div className="container mx-auto px-4 py-6 md:py-8">
         <div className="max-w-4xl mx-auto space-y-4 md:space-y-6">
+          <ProgressStepper currentStep={3} />
+
           {/* HEADER */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-3">
@@ -473,6 +519,50 @@ function PatronPageContent() {
                 </div>
               </div>
             </CardContent>
+          </Card>
+
+          {/* AFFINER MON PATRON */}
+          <Card className="animate-fade-in-up animate-delay-50">
+            <button
+              onClick={() => setRefineOpen(!refineOpen)}
+              className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors text-left"
+            >
+              <div className="flex items-center gap-2">
+                <ChevronDown
+                  className={`h-4 w-4 text-muted-foreground transition-transform ${refineOpen ? "rotate-0" : "-rotate-90"}`}
+                />
+                <span className="font-semibold text-base">{t("customizePattern")}</span>
+              </div>
+              <span className="text-xs text-muted-foreground">{t("orCustomize")}</span>
+            </button>
+
+            {refineOpen && refineGauge && refineMeasurements && refineYarn && (
+              <CardContent className="pt-0 space-y-4">
+                <GaugeSection
+                  gauge={refineGauge}
+                  onChange={setRefineGauge}
+                  errors={refineErrors}
+                  touched={refineTouched}
+                  onBlur={() => {}}
+                />
+                <BodyMeasurementsSection
+                  measurements={refineMeasurements}
+                  onChange={setRefineMeasurements}
+                  selectedSize={refineSelectedSize}
+                  onSizeSelect={setRefineSelectedSize}
+                  errors={refineErrors}
+                  touched={refineTouched}
+                  onBlur={() => {}}
+                />
+                <YarnSection
+                  yarn={refineYarn}
+                  onChange={setRefineYarn}
+                />
+                <Button onClick={handleRegenerate} className="w-full">
+                  {t("regeneratePattern")}
+                </Button>
+              </CardContent>
+            )}
           </Card>
 
           {/* 2. MATÉRIEL */}
@@ -813,9 +903,5 @@ function PatronPageContent() {
 }
 
 export default function PatronPage() {
-  return (
-    <ProtectedRoute>
-      <PatronPageContent />
-    </ProtectedRoute>
-  );
+  return <PatronPageContent />;
 }
