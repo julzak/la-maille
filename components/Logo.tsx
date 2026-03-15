@@ -13,12 +13,22 @@ interface LogoProps {
 export function Logo({ className = "", showTagline = true }: LogoProps) {
   return (
     <div className={`flex flex-col items-center ${className}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/logo-lamaille.svg"
-        alt="La Maille"
-        className="logo-img h-[80px] md:h-[100px] w-auto"
-        style={{ minHeight: '80px' }}
+      <div
+        role="img"
+        aria-label="La Maille"
+        className="h-[80px] md:h-[100px]"
+        style={{
+          aspectRatio: '220 / 155',
+          backgroundColor: '#E07A5F',
+          WebkitMaskImage: 'url(/logo-lamaille.svg)',
+          WebkitMaskSize: 'contain',
+          WebkitMaskRepeat: 'no-repeat',
+          WebkitMaskPosition: 'center',
+          maskImage: 'url(/logo-lamaille.svg)',
+          maskSize: 'contain',
+          maskRepeat: 'no-repeat',
+          maskPosition: 'center',
+        }}
       />
       {showTagline && (
         <span className="text-xs md:text-sm text-muted-foreground -mt-6 text-center">
