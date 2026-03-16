@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "knit pattern from photo",
   ],
   alternates: {
-    canonical: "https://la-maille.com",
+    canonical: "https://la-maille.com/",
   },
   openGraph: {
     title: "Photo to Knitting Pattern Generator | La Maille",
