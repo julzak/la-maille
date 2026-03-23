@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description:
       "Upload any sweater or cardigan photo and get a custom knitting pattern with row-by-row instructions. Free AI-powered pattern generator.",
     type: "website",
-    url: "https://la-maille.com",
+    url: "https://la-maille.com/",
     siteName: "La Maille",
     locale: "en_US",
     images: [
