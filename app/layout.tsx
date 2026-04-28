@@ -6,67 +6,74 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/components/AuthProvider";
 import { UTMCapture } from "@/components/UTMCapture";
+import { useI18n } from "@/lib/i18n";
+import { getServerLanguage } from "@/lib/i18n/server";
+import { seoMetadata } from "@/lib/i18n/metadata";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://la-maille.com"),
-  title: {
-    default: "Photo to Knitting Pattern Generator | La Maille",
-    template: "%s | La Maille",
-  },
-  description:
-    "Upload any sweater or cardigan photo and get a custom knitting pattern with row-by-row instructions. Free AI-powered pattern generator.",
-  keywords: [
-    "knitting pattern generator",
-    "photo to knitting pattern",
-    "custom knitting pattern",
-    "sweater pattern",
-    "cardigan pattern",
-    "AI knitting",
-    "knit pattern from photo",
-  ],
-  alternates: {
-    canonical: "https://la-maille.com/",
-  },
-  openGraph: {
-    title: "Photo to Knitting Pattern Generator | La Maille",
-    description:
-      "Upload any sweater or cardigan photo and get a custom knitting pattern with row-by-row instructions. Free AI-powered pattern generator.",
-    type: "website",
-    url: "https://la-maille.com/",
-    siteName: "La Maille",
-    locale: "en_US",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "La Maille - Photo to Knitting Pattern Generator",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Photo to Knitting Pattern Generator | La Maille",
-    description:
-      "Upload any sweater or cardigan photo and get a custom knitting pattern. Free AI-powered generator.",
-    images: ["/og-image.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  verification: {
-    google: "33-ejD9qCp7816s-1iwJe1xZsATCkLv9lZn_qmyN5hE",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = getServerLanguage();
+  const m = seoMetadata[lang];
+
+  return {
+    metadataBase: new URL("https://la-maille.com"),
+    title: {
+      default: m.title,
+      template: m.titleTemplate,
+    },
+    description: m.description,
+    keywords: m.keywords,
+    alternates: {
+      canonical: "https://la-maille.com/",
+    },
+    openGraph: {
+      title: m.title,
+      description: m.description,
+      type: "website",
+      url: "https://la-maille.com/",
+      siteName: m.siteName,
+      locale: m.ogLocale,
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: m.ogAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: m.title,
+      description: m.twitterDescription,
+      images: ["/og-image.png"],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    verification: {
+      google: "33-ejD9qCp7816s-1iwJe1xZsATCkLv9lZn_qmyN5hE",
+    },
+  };
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const lang = getServerLanguage();
+  const m = seoMetadata[lang];
+
+  // SSR: hydrate the singleton store so Client Components rendered on the
+  // server use the correct language. The browser will read the same cookie
+  // when bootstrapping the store, so SSR HTML matches the first client render.
+  if (typeof window === "undefined") {
+    useI18n.setState({ language: lang });
+  }
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-3BHGQYMQVD"
         strategy="afterInteractive"
@@ -91,8 +98,7 @@ export default function RootLayout({
                 "@type": "WebApplication",
                 name: "La Maille",
                 url: "https://la-maille.com",
-                description:
-                  "Upload any sweater or cardigan photo and get a custom knitting pattern with row-by-row instructions.",
+                description: m.applicationDescription,
                 applicationCategory: "DesignApplication",
                 operatingSystem: "Web",
                 offers: {

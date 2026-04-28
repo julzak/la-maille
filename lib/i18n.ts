@@ -1,24 +1,35 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import {
+  LANG_COOKIE,
+  LANG_COOKIE_MAX_AGE,
+  readLanguageFromCookieString,
+  type Language,
+} from "./i18n/detect";
 
-export type Language = "fr" | "en";
+export type { Language };
 
 interface I18nState {
   language: Language;
   setLanguage: (lang: Language) => void;
 }
 
-export const useI18n = create<I18nState>()(
-  persist(
-    (set) => ({
-      language: "en",
-      setLanguage: (language) => set({ language }),
-    }),
-    {
-      name: "lamaille-lang",
+function getInitialLanguage(): Language {
+  if (typeof document !== "undefined") {
+    const fromCookie = readLanguageFromCookieString(document.cookie);
+    if (fromCookie) return fromCookie;
+  }
+  return "en";
+}
+
+export const useI18n = create<I18nState>()((set) => ({
+  language: getInitialLanguage(),
+  setLanguage: (language) => {
+    set({ language });
+    if (typeof document !== "undefined") {
+      document.cookie = `${LANG_COOKIE}=${language}; path=/; max-age=${LANG_COOKIE_MAX_AGE}; samesite=lax`;
     }
-  )
-);
+  },
+}));
 
 // Translations
 export const translations = {

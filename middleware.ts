@@ -1,8 +1,35 @@
 import { type NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
+import {
+  LANG_COOKIE,
+  LANG_COOKIE_MAX_AGE,
+  isValidLanguage,
+  parseAcceptLanguage,
+} from "@/lib/i18n/detect";
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request);
+  const existing = request.cookies.get(LANG_COOKIE)?.value;
+  const detected = isValidLanguage(existing)
+    ? existing
+    : parseAcceptLanguage(request.headers.get("accept-language"));
+
+  // Mutate request cookies so the rest of the chain (layout via cookies())
+  // sees the resolved language on the very first request.
+  if (existing !== detected) {
+    request.cookies.set(LANG_COOKIE, detected);
+  }
+
+  const response = await updateSession(request);
+
+  if (existing !== detected) {
+    response.cookies.set(LANG_COOKIE, detected, {
+      maxAge: LANG_COOKIE_MAX_AGE,
+      sameSite: "lax",
+      path: "/",
+    });
+  }
+
+  return response;
 }
 
 export const config = {
