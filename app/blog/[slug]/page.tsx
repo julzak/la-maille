@@ -3,11 +3,46 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Metadata } from "next";
-import { getArticleBySlug, getAllArticles } from "@/lib/blog-data";
+import { getArticleBySlug, getAllArticles, articleLang } from "@/lib/blog-data";
+import type { Language } from "@/lib/i18n/detect";
 
 interface Props {
   params: { slug: string };
 }
+
+const chrome: Record<
+  Language,
+  {
+    back: string;
+    related: string;
+    byline: string;
+    ctaTitle: string;
+    ctaText: string;
+    ctaButton: string;
+    locale: string;
+  }
+> = {
+  fr: {
+    back: "Tous les articles",
+    related: "Articles similaires",
+    byline: "Dominique de La Maille",
+    ctaTitle: "Envie d'essayer ?",
+    ctaText:
+      "Importez la photo d'un pull et obtenez votre patron de tricot sur mesure en quelques minutes.",
+    ctaButton: "Essayer La Maille, c'est gratuit",
+    locale: "fr-FR",
+  },
+  en: {
+    back: "All articles",
+    related: "Related articles",
+    byline: "Dominique from La Maille",
+    ctaTitle: "Ready to try it?",
+    ctaText:
+      "Upload a sweater photo and get your custom knitting pattern in minutes.",
+    ctaButton: "Try La Maille, it's free",
+    locale: "en-US",
+  },
+};
 
 export async function generateStaticParams() {
   return getAllArticles().map((article) => ({ slug: article.slug }));
@@ -17,12 +52,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = getArticleBySlug(params.slug);
   if (!article) return {};
 
+  const lang = articleLang(article);
+  const base = "https://la-maille.com/blog";
+
+  // hreflang only when a translated counterpart exists.
+  const languages = article.translationSlug
+    ? {
+        en: `${base}/${lang === "en" ? article.slug : article.translationSlug}`,
+        fr: `${base}/${lang === "fr" ? article.slug : article.translationSlug}`,
+        "x-default": `${base}/${lang === "en" ? article.slug : article.translationSlug}`,
+      }
+    : undefined;
+
   return {
     title: article.title,
     description: article.excerpt,
     keywords: article.keywords,
     alternates: {
-      canonical: `https://la-maille.com/blog/${article.slug}`,
+      canonical: `${base}/${article.slug}`,
+      ...(languages ? { languages } : {}),
     },
     openGraph: {
       title: article.title,
@@ -240,7 +288,10 @@ function formatInline(text: string): string {
 function getRelatedArticles(currentSlug: string, count = 3) {
   const current = getArticleBySlug(currentSlug);
   if (!current) return [];
-  const all = getAllArticles().filter((a) => a.slug !== currentSlug);
+  // Only suggest articles in the same language.
+  const all = getAllArticles(articleLang(current)).filter(
+    (a) => a.slug !== currentSlug
+  );
   // Score by keyword overlap
   const scored = all.map((a) => {
     const overlap = a.keywords.filter((k) =>
@@ -259,17 +310,20 @@ export default function BlogArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const relatedArticles = getRelatedArticles(params.slug);
+  const lang = articleLang(article);
+  const c = chrome[lang];
 
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
+    inLanguage: lang,
     headline: article.title,
     description: article.excerpt,
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
     author: {
       "@type": "Person",
-      name: "Dominique from La Maille",
+      name: c.byline,
     },
     publisher: {
       "@type": "Organization",
@@ -285,7 +339,7 @@ export default function BlogArticlePage({ params }: Props) {
   };
 
   return (
-    <div className="container mx-auto max-w-[700px] px-4 py-12 md:py-20">
+    <div lang={lang} className="container mx-auto max-w-[700px] px-4 py-12 md:py-20">
       {/* Article JSON-LD */}
       <script
         type="application/ld+json"
@@ -298,7 +352,7 @@ export default function BlogArticlePage({ params }: Props) {
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
       >
         <ArrowLeft className="w-4 h-4" />
-        All articles
+        {c.back}
       </Link>
 
       {/* Header */}
@@ -307,10 +361,10 @@ export default function BlogArticlePage({ params }: Props) {
           {article.title}
         </h1>
         <div className="flex items-center gap-3 text-sm text-muted-foreground">
-          <span>Dominique from La Maille</span>
+          <span>{c.byline}</span>
           <span aria-hidden="true">&middot;</span>
           <time dateTime={article.publishedAt}>
-            {new Date(article.publishedAt).toLocaleDateString("en-US", {
+            {new Date(article.publishedAt).toLocaleDateString(c.locale, {
               year: "numeric",
               month: "long",
               day: "numeric",
@@ -326,16 +380,13 @@ export default function BlogArticlePage({ params }: Props) {
 
       {/* CTA */}
       <section className="mt-16 p-8 bg-primary/5 rounded-xl border border-primary/20 text-center">
-        <h2 className="font-serif text-2xl mb-3">Ready to try it?</h2>
-        <p className="text-muted-foreground mb-6">
-          Upload a sweater photo and get your custom knitting pattern in
-          minutes.
-        </p>
+        <h2 className="font-serif text-2xl mb-3">{c.ctaTitle}</h2>
+        <p className="text-muted-foreground mb-6">{c.ctaText}</p>
         <Link
           href="/"
           className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
         >
-          Try La Maille — it&apos;s free
+          {c.ctaButton}
           <ArrowRight className="w-4 h-4" />
         </Link>
       </section>
@@ -343,7 +394,7 @@ export default function BlogArticlePage({ params }: Props) {
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
         <section className="mt-16">
-          <h2 className="font-serif text-2xl mb-6">Related articles</h2>
+          <h2 className="font-serif text-2xl mb-6">{c.related}</h2>
           <div className="grid gap-4">
             {relatedArticles.map((related) => (
               <Link

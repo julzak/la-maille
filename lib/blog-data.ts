@@ -1,3 +1,5 @@
+export type ArticleLang = "fr" | "en";
+
 export interface Article {
   slug: string;
   title: string;
@@ -6,9 +8,290 @@ export interface Article {
   publishedAt: string;
   readingTime: string;
   keywords: string[];
+  /** Article language. Absent means "en" (the original blog was English-only). */
+  lang?: ArticleLang;
+  /** Slug of the translated counterpart in the other language, for hreflang. */
+  translationSlug?: string;
+}
+
+/** Resolve an article's language, defaulting legacy English articles to "en". */
+export function articleLang(article: Article): ArticleLang {
+  return article.lang ?? "en";
 }
 
 export const articles: Article[] = [
+  // === FR ARTICLES (genere par runs/fr/build_blog_fr.py, ne pas editer a la main) START ===
+  {
+    slug: "point-mousse-tricot",
+    title: "Point mousse au tricot : guide complet pour bien le maîtriser",
+    excerpt:
+      "Tout comprendre sur le point mousse tricot : structure, échantillon, usages et différences avec le jersey. Guide pratique avec exemples concrets.",
+    keywords: [
+      "point mousse tricot",
+      "point au tricot",
+      "point mousse au tricot",
+      "tricot point mousse",
+      "point mousse",
+      "point jersey tricot"
+    ],
+    publishedAt: "2026-06-22",
+    readingTime: "11 min de lecture",
+    lang: "fr",
+    content: `
+**Le point mousse est le point de tricot le plus élémentaire : il s'obtient en tricotant tous les rangs à l'endroit, ce qui produit un tissu réversible, élastique et légèrement côtelé. Contrairement au jersey, il ne se roule pas sur les bords et offre une texture symétrique des deux côtés.**
+
+Le point mousse tricot est souvent présenté comme le point des débutants. C'est vrai dans le sens où il ne demande qu'une seule technique : tricoter à l'endroit sur chaque rang. Mais cette simplicité cache une logique structurelle précise qui mérite d'être comprise, même par des tricoteuses et tricoteurs expérimentés. Pourquoi le point mousse ne se roule-t-il pas ? Pourquoi faut-il compter ses rangs différemment du jersey ? Comment anticiper son comportement sur un pull ou une écharpe ? Ce guide répond à ces questions avec des exemples concrets et des données mesurables. Que vous tricotiez votre premier châle ou que vous adaptiez un patron existant, comprendre le point mousse vous permettra de faire des choix techniques éclairés, notamment pour les bordures, les lisières et les transitions entre différents points.
+
+## Qu'est-ce que le point mousse et comment est-il construit ?
+
+Le point mousse est le résultat d'un tricotage systématique de toutes les mailles à l'endroit, rang après rang. Sur des aiguilles droites, cela signifie tricoter à l'endroit sur l'endroit de l'ouvrage, puis à l'endroit encore sur l'envers. Sur des aiguilles circulaires, il faut alterner un rang endroit et un rang envers, car on ne retourne jamais l'ouvrage. C'est une distinction importante que beaucoup de patrons ne précisent pas clairement.
+
+Chaque paire de rangs forme ce que l'on appelle un bourrelet : un renflement horizontal visible sur les deux faces du tissu. C'est précisément cette structure symétrique qui rend le point mousse réversible. Les deux faces sont identiques, contrairement au point jersey où l'endroit et l'envers sont clairement différents.
+
+Sur le plan mécanique, les mailles endroit s'emboîtent de telle façon qu'elles compriment le tissu verticalement. Un rang en point mousse occupe moins de hauteur qu'un rang en jersey avec le même fil et les mêmes aiguilles. Concrètement, si vous tricotez 20 rangs en jersey et 20 rangs en point mousse, la pièce en jersey sera plus haute. Pour obtenir 10 cm de hauteur en point mousse, vous aurez besoin d'environ 20 à 25 % de rangs supplémentaires par rapport au jersey. Cette donnée est essentielle pour adapter un patron ou construire votre propre échantillon.
+
+### La différence avec le point jersey tricot
+
+Le point jersey tricot alterne des rangs endroit et des rangs envers. Cette alternance crée une face lisse (les V des mailles endroit) et une face côtelée (les arceaux des mailles envers). Le point mousse, lui, présente les deux faces identiques en bourrelets horizontaux. Autre différence notable : le jersey a tendance à se rouler sur les bords, ce qui nécessite souvent une bordure en côtes ou en point mousse pour stabiliser l'ouvrage. Le point mousse ne roule jamais, ce qui en fait un choix naturel pour les finitions.
+
+## Comment lire et calculer un échantillon en point mousse ?
+
+L'échantillon est la clé de tout ouvrage bien ajusté. En point mousse, le comptage des rangs fonctionne différemment de celui du jersey, et c'est une source fréquente d'erreurs.
+
+Lorsque vous tricotez votre carré d'échantillon, visez une pièce d'au moins 15 x 15 cm avant blocage, pour pouvoir mesurer une zone centrale de 10 x 10 cm à l'abri des distorsions de bord. Posez la pièce à plat sans l'étirer, puis comptez le nombre de mailles sur 10 cm horizontalement et le nombre de bourrelets sur 10 cm verticalement.
+
+La notion de bourrelet est ici centrale : en point mousse, un bourrelet correspond à deux rangs tricotés. Quand un patron indique 18 rangs pour 10 cm en point mousse, cela correspond à 9 bourrelets visibles. Si vous confondez rangs et bourrelets, vous risquez de tricoter une pièce deux fois plus longue que prévu.
+
+Prenons un exemple concret : vous tricotez un carré d'échantillon avec de la laine worsted (grosseur standard) sur des aiguilles 5 mm. Vous obtenez 18 mailles et 9 bourrelets pour 10 cm. Si vous devez tricoter 30 cm de hauteur pour un bas de pull, il vous faudra 27 bourrelets, soit 54 rangs. Ce calcul simple mais précis évite les mauvaises surprises.
+
+Attention aussi au blocage : le point mousse gagne légèrement en largeur et perd un peu en hauteur après mouillage et séchage à plat. Prévoyez toujours de bloquer votre échantillon avant de lancer les calculs définitifs.
+
+### Tension et choix des aiguilles
+
+La tension est le facteur qui influence le plus votre échantillon. Avec un fil identique, passer d'une aiguille 4,5 mm à une aiguille 5 mm peut modifier votre nombre de mailles de 2 à 3 mailles pour 10 cm, ce qui sur 100 mailles représente un écart de 4 à 6 cm de largeur totale. En point mousse, un tricotage légèrement plus lâche est souvent conseillé pour éviter un tissu trop rigide, car la compression verticale du point est déjà importante. Si votre tissu en point mousse semble cartonné, montez d'une demi-taille d'aiguilles avant de refaire votre échantillon.
+
+## Où utiliser le point mousse dans la construction d'un tricot ?
+
+Le point mousse s'intègre à de nombreux endroits d'un ouvrage, et pas seulement pour les projets simples. Sa réversibilité et son absence de roulottage en font un allié technique précieux dans la construction d'un pull, d'un châle ou d'une veste.
+
+Pour les bordures et les lisières, le point mousse est très efficace. Tricoter les 3 à 5 premières et dernières mailles de chaque rang en point mousse sur une pièce en jersey stabilise les bords sans avoir besoin d'une finition séparée. Cette technique est particulièrement utile pour les plaids, les étoles et les cardigans non boutonnés.
+
+En construction top-down (du haut vers le bas), les emmanchures et l'encolure bénéficient souvent d'une relevée de mailles suivie de quelques rangs en point mousse pour créer une bordure nette et non roulée. On retrouve aussi le point mousse dans les épaulettes des pulls raglan ou dans les séparations entre les zones corps et manches.
+
+Le point mousse est également la base de nombreux points texturés plus complexes. Le point noisette, le [point de riz](/blog/point-de-riz-tricot) ou certains points ajourés tricot intègrent des séquences de mailles endroit et envers dont le point mousse constitue le fondement. Comprendre la logique du point mousse vous permet donc d'aborder ces points avec une meilleure intuition des tensions en jeu.
+
+Pour les écharpes et les snuds, le point mousse est un excellent choix : il produit un tissu épais et chaud, ne se roule pas, et est agréable au toucher grâce à sa texture boursouflée qui piège l'air.
+
+### Point mousse et point ajouré tricot : peuvent-ils cohabiter ?
+
+Oui, et cette combinaison est plus courante qu'on ne le pense. Dans un point ajouré tricot, les jetés et les diminutions créent des trous décoratifs. Ces sections peuvent être encadrées de colonnes ou de bandes en point mousse pour contrôler l'élasticité et éviter que le tissu ne se distorde. Dans un châle triangulaire classique, par exemple, les bords sont souvent en point mousse tandis que le centre travaille un motif ajouré. La neutralité du point mousse met en valeur la dentelle sans entrer en concurrence avec elle.
+
+## Les erreurs les plus courantes avec le point mousse et comment les éviter
+
+Même en sachant que le point mousse ne demande que des mailles endroit, certaines erreurs récurrentes méritent d'être nommées clairement.
+
+La première erreur est de confondre point mousse et point jersey sur des aiguilles circulaires. En tricot en rond, pour obtenir du jersey, on tricote tous les rangs à l'endroit (car on ne retourne pas l'ouvrage). Pour obtenir du point mousse en rond, il faut alterner un rang endroit et un rang envers. Beaucoup de tricoteuses qui passent des aiguilles droites aux aiguilles circulaires font cette confusion et se retrouvent avec du jersey là où elles attendaient du point mousse.
+
+La deuxième erreur concerne l'échantillon : mesurer des rangs au lieu de bourrelets, ou ne pas bloquer l'échantillon avant de calculer. Nous avons vu que cette erreur peut doubler la longueur d'une pièce. Prenez toujours le temps de bloquer et de recompter.
+
+Troisième point de vigilance : la régularité de la tension. Le point mousse accentue visuellement les irrégularités de tension plus que le jersey. Les mailles trop lâches ou trop serrées créent des vagues ou des creux bien visibles sur le tissu mousse. Si votre ouvrage semble irrégulier, concentrez-vous sur l'uniformité de votre geste plutôt que sur la vitesse.
+
+Enfin, certains patrons indiquent simplement «tricoter en point mousse» sans préciser le nombre de rangs, supposant que le tricoteur calcule lui-même depuis son échantillon. Ne sautez jamais cette étape, même sur un projet simple : une écharpe tricotée sans contrôle d'échantillon peut finir avec une largeur très différente de celle souhaitée.
+
+## Point mousse et choix de la laine : quels fils fonctionnent le mieux ?
+
+Le point mousse révèle la texture du fil d'une façon très directe. Contrairement au jersey, dont la surface lisse peut masquer les irrégularités d'un fil artisanal, le point mousse amplifie la matière. C'est à la fois un avantage et un point d'attention.
+
+Les fils de laine 100 % pure laine, notamment en qualité mérinos, donnent des résultats excellents en point mousse : le tissu est souple, les bourrelets sont bien définis, et le blocage à l'eau permet un ajustement précis des dimensions. Un fil mérinos peigné d'épaisseur DK (grosseur intermédiaire) sur des aiguilles 3,75 mm à 4 mm produit un point mousse fin et régulier, idéal pour des pièces portées près du corps.
+
+Les fils plus épais, de type bulky ou super bulky, produisent un point mousse très marqué avec des bourrelets larges et bien visibles. Ces fils conviennent parfaitement aux plaids et aux accessoires mais sont plus difficiles à utiliser pour un pull ajusté, car le tissu résultant manque de souplesse.
+
+Les fils acryliques ou mélangés (laine-acrylique) fonctionnent techniquement en point mousse, mais le tissu est souvent plus raide et le blocage moins efficace. Si vous souhaitez que votre point mousse prenne bien sa forme finale, privilégiez des fibres naturelles ou des mélanges à dominante laine.
+
+Les fils bouclés, mohair ou fantaisie méritent une attention particulière : le point mousse peut disparaître visuellement sous le halo ou les boucles du fil. Tricotez toujours un échantillon pour vérifier que la texture reste lisible avant de vous lancer sur une grande pièce.
+
+## Points cles
+
+- Le point mousse s'obtient en tricotant tous les rangs à l'endroit, sur aiguilles droites ou circulaires.
+- Il est réversible, ne roule pas sur les bords et présente une élasticité supérieure au jersey en hauteur.
+- L'échantillon en point mousse se compte en bourrelets (paires de rangs), non en rangs individuels.
+- Il est utilisé en bordure, en écharpe, en plaid et comme base de nombreux points texturés plus complexes.
+
+## Glossaire
+
+- **Point mousse** : Point obtenu en tricotant tous les rangs à l'endroit ; tissu réversible, épais et élastique.
+- **Point jersey** : Point alterné : rangs endroit et rangs envers, produisant une face lisse et une face côtelée distinctes.
+- **Échantillon** : Carré de tricot de référence, habituellement 10 x 10 cm, servant à calculer les dimensions d'un ouvrage.
+- **Tension** : Degré de serrage du fil lors du tricotage, qui influe directement sur les mesures de l'échantillon.
+- **Bourrelet** : Renflement horizontal visible en point mousse, formé par une paire de rangs tricotés à l'endroit.
+- **Lisière** : Maille ou groupe de mailles situé en bord d'ouvrage, souvent traité en point mousse pour stabiliser le bord.
+- **Maille endroit** : Maille de base tricotée par l'avant, formant un V à la surface de l'ouvrage.
+- **Réversibilité** : Propriété d'un point dont les deux faces sont identiques ou utilisables, comme c'est le cas du point mousse.
+
+## Questions frequentes
+
+### Comment tricoter le point mousse sur des aiguilles circulaires ?
+
+Sur des aiguilles circulaires, pour obtenir du point mousse, vous devez alterner un rang tricoté entièrement à l'endroit et un rang tricoté entièrement à l'envers. C'est l'inverse du jersey en rond, où l'on tricote tous les rangs à l'endroit. Cette différence s'explique par le fait que vous ne retournez jamais l'ouvrage sur des aiguilles circulaires en tricot en rond : pour que chaque maille soit tricotée à l'endroit sur les deux faces, il faut alterner les deux types de rang.
+
+### Quelle est la différence entre le point mousse et les côtes ?
+
+Le point mousse est obtenu en tricotant tous les rangs à l'endroit, produisant un tissu uniforme et réversible. Les côtes alternent des colonnes de mailles endroit et de mailles envers sur le même rang, ce qui crée un tissu fortement élastique en largeur. Le point mousse est plus élastique en hauteur, les côtes en largeur. Les côtes sont préférées pour les bords qui doivent se resserrer (poignets, encolures), tandis que le point mousse convient mieux aux bordures qui doivent rester plates et stables.
+
+### Le point mousse convient-il pour tricoter un pull entier ?
+
+Oui, tricoter un pull entier en point mousse est tout à fait possible et donne un résultat chaud et structuré. Le tissu est plus épais et moins drapé qu'un pull en jersey, ce qui le rend plus adapté aux modèles oversize ou aux vestes. Attention à bien ajuster votre échantillon : le point mousse compresse la hauteur, et vous aurez besoin de plus de rangs qu'en jersey pour atteindre la même longueur de corps ou de manches. Choisissez un fil de bonne qualité car le point mousse ne masque pas les irrégularités du fil.
+
+### Pourquoi le point mousse ne se roule-t-il pas sur les bords ?
+
+Le point mousse ne se roule pas parce que sa structure est parfaitement symétrique sur les deux faces. En jersey, les mailles endroit exercent une traction vers l'avant et les mailles envers vers l'arrière, créant un déséquilibre qui fait rouler le tissu. En point mousse, toutes les mailles exercent la même tension dans les deux directions, ce qui maintient les bords naturellement plats. C'est pourquoi le point mousse est si souvent utilisé pour les lisières et les bordures de projets tricotés en jersey.
+
+### Comment compter les rangs en point mousse ?
+
+En point mousse, il est plus fiable de compter les bourrelets que les rangs. Un bourrelet correspond à deux rangs tricotés. Regardez votre ouvrage de côté ou sur la tranche : vous verrez des renflements horizontaux réguliers. Comptez ces renflements, puis multipliez par 2 pour obtenir le nombre de rangs. Si votre patron indique un nombre de rangs, divisez par 2 pour savoir combien de bourrelets vous devez atteindre. Cette méthode de comptage est plus précise car les rangs individuels peuvent être difficiles à distinguer à l'oeil nu.
+
+## En resume
+
+Le point mousse tricot est bien plus qu'un simple point de départ pour les débutants. Sa structure symétrique, son absence de roulottage et son élasticité verticale en font un outil technique à part entière dans la construction d'un ouvrage. Retenir trois points essentiels suffit pour l'utiliser correctement : compter en bourrelets et non en rangs, ajuster la méthode selon que vous tricotez sur aiguilles droites ou circulaires, et toujours réaliser et bloquer un échantillon avant de lancer les calculs. Que vous l'utilisiez pour stabiliser les bords d'un pull en jersey, pour une écharpe réversible ou comme base d'un point texturé plus complexe, le point mousse mérite d'être compris dans sa logique plutôt que simplement exécuté mécaniquement.
+`,
+  },
+  {
+    slug: "point-de-riz-tricot",
+    title: "Point de riz au tricot : technique, usages et astuces",
+    excerpt:
+      "Apprenez le point de riz au tricot : comment le réaliser, pourquoi il ne gondole pas et dans quels projets l'utiliser. Guide complet avec exemples concrets.",
+    keywords: [
+      "point de riz tricot",
+      "tricot point de riz",
+      "point de riz au tricot",
+      "point de blé tricot",
+      "point de blé au tricot",
+      "tricot point de blé"
+    ],
+    publishedAt: "2026-06-22",
+    readingTime: "13 min de lecture",
+    lang: "fr",
+    content: `
+**Le point de riz au tricot est un point de structure obtenu en alternant mailles à l'endroit et mailles à l'envers sur chaque rang, de façon décalée d'un rang à l'autre, ce qui produit un tissu réversible à texture granuleuse. Contrairement au jersey, il ne s'enroule pas sur lui-même et présente la même apparence sur ses deux faces.**
+
+Le point de riz tricot est l'un des points de structure les plus utilisés par les tricoteuses et tricoteurs, et pour de bonnes raisons. Facile à retenir, il repose sur une seule règle : alterner une maille à l'endroit et une maille à l'envers, en inversant le décalage à chaque rang. Le résultat est un tissu à la texture granuleuse, réversible, qui tient parfaitement à plat sans gondoler. Contrairement au jersey, qui a tendance à s'enrouler sur les bords, le point de riz est stable dès la première maille. C'est précisément pour cette raison qu'il est si souvent employé en bordures, en écharpes ou en corps de pulls entiers. Dans cet article, vous allez comprendre comment le construire rang par rang, en quoi il diffère du point de blé, comment adapter votre échantillon et dans quels projets l'exploiter au mieux.
+
+## Comment tricoter le point de riz : la règle des deux rangs
+
+Le point de riz repose sur un principe simple, mais qu'il faut comprendre précisément pour ne pas le confondre avec les côtes 1/1. Dans les côtes, vous tricotez toujours une maille endroit au-dessus d'une maille endroit, et une maille envers au-dessus d'une maille envers. Dans le point de riz, vous faites exactement l'inverse : vous tricotez une maille endroit au-dessus d'une maille envers, et une maille envers au-dessus d'une maille endroit. Ce décalage crée le relief caractéristique du point.
+
+Concrètement, pour commencer, montez un nombre pair de mailles, par exemple 20 mailles. Au rang 1, tricotez en alternant : 1 maille endroit, 1 maille envers, et répétez jusqu'à la fin. Au rang 2, regardez vos mailles : la première maille qui se présente à vous est une maille endroit (vous voyez un V). Tricotez-la à l'envers. La suivante est une maille envers (vous voyez un relief horizontal). Tricotez-la à l'endroit. Répétez ce principe sur toute la largeur.
+
+Une astuce pratique : si vous tricotez le point de riz correctement, chaque maille que vous voyez comme une maille endroit doit être tricotée à l'envers, et inversement. Vous n'avez pas besoin de mémoriser les rangs pairs et impairs séparément. Il vous suffit d'observer la maille qui se présente et de faire le contraire. Ce réflexe s'acquiert après quelques centimètres seulement.
+
+### Nombre de mailles : pair ou impair ?
+
+Le point de riz fonctionne sur un nombre pair de mailles, mais aussi sur un nombre impair. Sur un nombre pair, le rang 1 et le rang 2 sont strictement identiques dans leur logique : vous commencez et terminez toujours par la même séquence. Sur un nombre impair, le décalage s'effectue automatiquement : vous commencez chaque rang par une maille endroit, et le motif se construit de lui-même. Beaucoup de tricoteuses préfèrent travailler sur un nombre impair pour cette raison. Pour un châle, une écharpe ou un panneau décoratif central, cette option simplifie le comptage et garantit une symétrie parfaite dans le motif.
+
+## Point de riz et point de blé : quelles différences concrètes ?
+
+Le point de blé au tricot est régulièrement confondu avec le point de riz, et la confusion est compréhensible car les deux points sont très proches visuellement. La différence tient à la construction sur plusieurs rangs.
+
+Dans le point de riz classique, le décalage s'effectue à chaque rang. Vous obtenez ainsi un grain très régulier, presque carré, où chaque relief est isolé de ses voisins. Dans le point de blé, le décalage s'effectue tous les deux rangs : vous tricotez deux rangs identiques avant d'inverser le motif. Le résultat est un grain légèrement plus allongé verticalement, qui ressemble davantage à un épi de blé, d'où le nom.
+
+Les deux points produisent un tissu réversible et ne gondolent pas. En revanche, le point de blé donne un tissu légèrement plus souple que le point de riz, car les reliefs sont moins serrés. Pour des bordures de pulls ou des poignets, le point de riz offre une meilleure tenue. Pour un corps de gilet ou une écharpe épaisse, le point de blé apporte un aspect textile plus doux et moins rigide.
+
+Du point de vue du calcul de patron, les deux points se comportent de façon similaire : ils resserrent la maille en largeur par rapport au jersey et épaississent le tissu. Il est impératif de réaliser un échantillon distinct pour chacun d'eux, même si vous utilisez le même fil et les mêmes aiguilles.
+
+### Lequel choisir selon votre projet ?
+
+Si votre projet demande une belle tenue structurelle, des bordures qui ne roulent pas, ou un panneau de texture sur un pull, le point de riz est le choix le plus adapté. Si vous cherchez un tissu entier plus souple et avec un grain plus discret, le point de blé convient mieux. Pour une écharpe portée tous les jours, par exemple, le point de blé sera plus agréable au toucher et moins raide. Les deux points s'intègrent facilement dans un patron sur mesure dès lors que vous avez mesuré votre échantillon avec attention.
+
+## L'échantillon au point de riz : pourquoi il est indispensable
+
+Travailler au point de riz modifie significativement vos résultats par rapport au jersey. Ce n'est pas une question de préférence : c'est une réalité mécanique du point. Lorsque vous alternez mailles endroit et mailles envers sur le même rang, les deux types de mailles se compriment mutuellement. Le tissu final est plus dense, plus épais, et surtout plus resserré en largeur.
+
+Pour illustrer : si votre échantillon jersey en jersey avec un fil donné est de 18 mailles pour 10 cm, votre échantillon en point de riz avec le même fil et les mêmes aiguilles pourrait atteindre 20 à 22 mailles pour 10 cm. Ce sont 2 à 4 mailles supplémentaires sur 10 cm, soit une différence de plus de 10 % sur la largeur. Sur un pull avec 180 mailles au total pour le devant, cette différence représente 36 à 72 mailles de décalage par rapport à vos attentes initiales. C'est une erreur de taille facilement évitable si vous prenez le temps de tricoter un échantillon de 15 x 15 cm au point de riz, que vous lavez et séchez à plat avant de le mesurer.
+
+La hauteur est également affectée, mais dans une moindre mesure. Le point de riz produit un tissu légèrement plus court en hauteur que le jersey pour un même nombre de rangs, en raison de la tension exercée par les mailles envers qui tirent le tissu vers l'intérieur. Comptez environ 5 % de rangs supplémentaires pour atteindre la même longueur finale.
+
+### Comment mesurer votre échantillon correctement
+
+Montez au moins 25 mailles et tricotez 30 rangs au point de riz. Rabattez souplement, lavez l'échantillon selon les instructions du fil, puis séchez-le à plat sans l'étirer. Placez-le sur une surface plane et mesurez la largeur et la hauteur sur la zone centrale du carré, en évitant les 3 premières et dernières mailles ainsi que les 3 premiers et derniers rangs, qui sont toujours moins représentatifs. Notez le nombre de mailles et de rangs pour 10 cm. C'est à partir de ces données que vous, ou votre générateur de patron, calculerez le nombre de mailles à monter et le nombre de rangs à tricoter pour chaque pièce de votre projet.
+
+## Le point de riz dans la construction d'un pull
+
+Le point de riz est souvent utilisé comme point de finition sur un pull : manchettes, col, bande de boutonnage d'un gilet, ou bas de corps. Sa principale vertu dans ce rôle est de ne pas gondoler et de former un bord net, sans nécessiter de lisières spéciales ni de coutures rapportées. Contrairement aux côtes qui forment un bord légèrement rentré, le point de riz produit un bord parfaitement plat, idéal sur les pièces que vous ne souhaitez pas voir se retrousser.
+
+Il peut aussi constituer le tissu principal d'un pull entier. Un pull tricoté intégralement au point de riz aura un aspect structuré, une belle tenue et une réversibilité utile si vous optez pour une construction simple sans endroit ni envers marqués. C'est une solution particulièrement adaptée pour les débutants confirmés qui maîtrisent le jersey et souhaitent un résultat plus texturé sans entrer dans des points plus complexes.
+
+Dans une construction top-down, le point de riz s'intègre facilement. Les augmentations pour les emmanchures ou le raglan s'exécutent de la même façon qu'en jersey, en veillant simplement à maintenir le motif de décalage sur les nouvelles mailles créées. Une règle pratique : après chaque augmentation, regardez la maille nouvellement créée et tricotez-la à l'opposé de la maille adjacente. Le motif se prolonge naturellement.
+
+### Intégrer le point de riz dans un patron existant
+
+Si vous suivez un patron écrit en jersey et souhaitez le convertir en point de riz, deux ajustements sont nécessaires. Premièrement, recalculez le nombre de mailles de départ à partir de votre nouvel échantillon. Deuxièmement, relisez chaque instruction de façonnage (augmentations, diminutions) en vérifiant que le motif de décalage est maintenu après chaque intervention sur les mailles. Les diminutions au bord (pour encolure ou emmanchure) ne posent pas de difficulté particulière. Les augmentations encadrées en milieu de rang nécessitent un peu d'attention pour ne pas créer de rupture visible dans le motif.
+
+## Quel fil choisir pour tricoter au point de riz ?
+
+Le point de riz met en valeur la structure du fil plutôt que sa brillance ou sa couleur. Les fils très lisses et brillants, comme la soie pure ou certains fils synthétiques, rendent le grain moins lisible car ils reflètent la lumière de façon uniforme. À l'inverse, les fils légèrement poilus, les tweed, les laines non traitées ou les mélanges laine-alpaga révèlent parfaitement le relief du point.
+
+Les fils teints en coloris neutres, comme l'écru, le grège, le gris chiné ou le caramel, font particulièrement ressortir le motif. Les couleurs foncées et très saturées ont tendance à atténuer le relief visuel, bien que le tissu reste techniquement identique.
+
+En termes de grosseur, le point de riz fonctionne sur tous les calibres de fil, du fin (aiguilles n° 2,5 ou 3) jusqu'au gros (aiguilles n° 6 ou 7). Sur un fil fin, le grain est délicat et convient pour des accessoires ou des vêtements légers. Sur un fil épais, la texture est plus prononcée et donne un aspect campagnard et chaleureux, idéal pour des pulls d'hiver ou des plaids.
+
+Attention : le point de riz consomme davantage de fil que le jersey pour une même surface, en raison de sa densité accrue. Prévoyez environ 10 à 15 % de fil supplémentaire par rapport aux indications d'un patron jersey équivalent. Mieux vaut acheter un écheveau de trop que se retrouver à court en cours de projet.
+
+## Erreurs fréquentes et comment les éviter
+
+La première erreur est de confondre point de riz et côtes 1/1. Les deux alternent mailles endroit et mailles envers, mais dans les côtes, vous reproduisez le même rang indéfiniment. Dans le point de riz, vous inversez le décalage à chaque rang. Si votre tissu commence à ressembler à des côtes élastiques, c'est que vous avez oublié d'inverser. Il suffit de compter vos rangs ou de marquer le rang 1 avec un marqueur de couleur pour ne pas perdre le fil.
+
+La deuxième erreur concerne le fil en attente. Lorsque vous passez d'une maille endroit à une maille envers, pensez à amener le fil devant l'ouvrage avant de tricoter la maille envers, et à le repasser derrière avant de tricoter la maille endroit. Oublier ce mouvement crée des jeté involontaires qui élargissent le tissu et créent des trous visibles.
+
+La troisième erreur est de ne pas adapter l'échantillon. Comme mentionné précédemment, utiliser les mesures d'un patron jersey sans recalculer pour le point de riz est la source d'erreurs de taille les plus courantes. Un pull prévu pour faire 50 cm de large peut sortir à 44 cm si vous n'avez pas tenu compte du resserrement du point.
+
+Enfin, beaucoup de tricoteuses et tricoteurs tricotent les mailles envers plus serrées que les mailles endroit. Cette irrégularité crée un tissu dont les rangs ne sont pas tous de la même hauteur, ce qui donne un aspect légèrement ondulé. Pour y remédier, faites consciemment l'effort de détendre légèrement le fil sur les mailles envers, ou essayez d'augmenter d'une demi-taille votre aiguille.
+
+## Points cles
+
+- Le point de riz s'obtient en alternant une maille endroit et une maille envers sur chaque rang, avec décalage systématique d'un rang à l'autre.
+- Ce point produit un tissu réversible qui ne gondole pas aux bords, contrairement au jersey.
+- Le point de riz resserrant davantage le tissu en largeur, il est indispensable de réaliser un échantillon spécifique avant tout projet.
+- Le point de blé est une variante très proche du point de riz, souvent confondue, mais réalisée sur un nombre impair de mailles.
+
+## Glossaire
+
+- **Point de riz** : Point de structure réversible alternant une maille endroit et une maille envers, décalées à chaque rang.
+- **Point de blé** : Variante du point de riz sur un nombre impair de mailles, produisant un motif légèrement différent mais visuellement proche.
+- **Échantillon** : Carré de tricot de référence (généralement 10 x 10 cm) permettant de vérifier le nombre de mailles et de rangs au centimètre avant de commencer un projet.
+- **Tissu réversible** : Tissu dont les deux faces présentent un aspect identique ou symétrique, sans endroit ni envers distincts.
+- **Tension** : Force exercée sur le fil en tricotant, qui détermine la taille des mailles et influence directement l'échantillon.
+- **Maille endroit** : Maille tricotée en insérant l'aiguille de gauche à droite par l'avant de la maille, produisant un V visible sur l'endroit du travail.
+- **Maille envers** : Maille tricotée en insérant l'aiguille de droite à gauche par l'avant, produisant un relief horizontal sur l'endroit du travail.
+- **Lisière** : Première et dernière maille d'un rang, tricotées selon une technique spécifique pour obtenir un bord net et régulier.
+
+## Questions frequentes
+
+### Quelle est la différence entre le point de riz et le point de blé au tricot ?
+
+Le point de riz alterne une maille endroit et une maille envers sur chaque rang, avec un décalage inversé à chaque rang. Le point de blé fonctionne de la même façon, mais le décalage s'effectue tous les deux rangs plutôt qu'à chaque rang. Le résultat du point de blé est un grain légèrement plus allongé verticalement et un tissu un peu plus souple. Les deux sont réversibles et ne gondolent pas aux bords, mais le point de riz offre une meilleure tenue structurelle pour les bordures.
+
+### Comment savoir si je tricote le point de riz correctement ?
+
+La vérification la plus simple est visuelle : regardez la maille qui se présente sur votre aiguille gauche. Si vous voyez un V (maille endroit), tricotez-la à l'envers. Si vous voyez un relief horizontal (maille envers), tricotez-la à l'endroit. Un tissu correctement tricoté en point de riz doit avoir un aspect granuleux régulier sur les deux faces et ne doit pas présenter de colonnes verticales régulières, qui seraient le signe de côtes 1/1.
+
+### Faut-il un nombre pair ou impair de mailles pour tricoter le point de riz ?
+
+Les deux fonctionnent. Sur un nombre pair de mailles, vous devez mémoriser le décalage entre rangs pairs et impairs. Sur un nombre impair, le décalage s'effectue automatiquement car vous commencez et terminez toujours par une maille endroit, et le rang suivant commence de nouveau par une maille endroit. Tricoter sur un nombre impair est souvent plus simple pour les débutants confirmés car il n'y a qu'une seule séquence à retenir.
+
+### Le point de riz convient-il pour tricoter un pull entier ?
+
+Oui, le point de riz est tout à fait adapté à la confection d'un pull entier. Il donne un tissu structuré, réversible et stable. Il consomme environ 10 à 15 % de fil de plus qu'un même pull en jersey, et il resserrera votre tissu en largeur. Il est indispensable de réaliser un échantillon au point de riz pour recalculer le nombre de mailles de votre patron avant de commencer. Dans une construction top-down, les augmentations s'intègrent naturellement en maintenant le motif sur les nouvelles mailles.
+
+### Pourquoi mon point de riz ressemble-t-il à des côtes ?
+
+Si votre tissu présente des colonnes verticales régulières et un aspect élastique, vous tricoter probablement des côtes 1/1 plutôt que du point de riz. Cela arrive quand vous répétez le même rang sans inverser le décalage. En point de riz, la règle est simple : tricotez toujours une maille endroit au-dessus d'une maille envers, et inversement. Regardez chaque maille avant de la tricoter et faites le contraire de ce que vous voyez.
+
+## En resume
+
+Le point de riz au tricot est un point de structure fiable, polyvalent et accessible à toute personne qui maîtrise les bases du tricot. Sa règle fondamentale est simple : tricoter toujours le contraire de ce que vous voyez, rang après rang. Il produit un tissu réversible, stable, qui ne gondole pas et qui convient aussi bien pour des bordures que pour des projets entiers. Son principal impact technique est le resserrement du tissu en largeur par rapport au jersey, ce qui rend la réalisation d'un échantillon dédié indispensable. Le point de blé, variante proche, offre davantage de souplesse pour les projets en tissu plein. En comprenant ces mécanismes, vous pouvez intégrer le point de riz dans n'importe quel patron avec confiance et précision.
+`,
+  },
+  // === FR ARTICLES END ===
   {
     slug: "how-to-recreate-sweater-from-photo",
     title: "How to Recreate Any Sweater From a Photo",
@@ -4850,8 +5133,11 @@ export function getArticleBySlug(slug: string): Article | undefined {
   return articles.find((a) => a.slug === slug);
 }
 
-export function getAllArticles(): Article[] {
-  return articles.sort(
+export function getAllArticles(lang?: ArticleLang): Article[] {
+  const list = lang
+    ? articles.filter((a) => articleLang(a) === lang)
+    : [...articles];
+  return list.sort(
     (a, b) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );

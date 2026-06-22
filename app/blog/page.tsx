@@ -1,17 +1,34 @@
 import Link from "next/link";
-import { getAllArticles } from "@/lib/blog-data";
+import { getAllArticles, articleLang } from "@/lib/blog-data";
+import { getServerLanguage } from "@/lib/i18n/server";
+import type { Language } from "@/lib/i18n/detect";
+
+const chrome: Record<Language, { title: string; subtitle: string; locale: string }> = {
+  fr: {
+    title: "Conseils & guides tricot",
+    subtitle:
+      "Apprenez à transformer vos pulls préférés en patrons de tricot sur mesure",
+    locale: "fr-FR",
+  },
+  en: {
+    title: "Knitting Tips & Guides",
+    subtitle:
+      "Learn how to turn your favorite sweaters into custom knitting patterns",
+    locale: "en-US",
+  },
+};
 
 export default function BlogPage() {
-  const articles = getAllArticles();
+  const lang = getServerLanguage();
+  const t = chrome[lang];
+  const articles = getAllArticles(lang);
 
   return (
     <div className="container mx-auto max-w-4xl px-4 py-12 md:py-20">
       <div className="text-center mb-12">
-        <h1 className="font-serif text-4xl md:text-5xl mb-4">
-          Knitting Tips &amp; Guides
-        </h1>
+        <h1 className="font-serif text-4xl md:text-5xl mb-4">{t.title}</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Learn how to turn your favorite sweaters into custom knitting patterns
+          {t.subtitle}
         </p>
       </div>
 
@@ -25,11 +42,14 @@ export default function BlogPage() {
             <article className="bg-card rounded-lg border border-border p-6 h-full transition-colors group-hover:border-primary/40">
               <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
                 <time dateTime={article.publishedAt}>
-                  {new Date(article.publishedAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                  {new Date(article.publishedAt).toLocaleDateString(
+                    chrome[articleLang(article)].locale,
+                    {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }
+                  )}
                 </time>
                 <span aria-hidden="true">&middot;</span>
                 <span>{article.readingTime}</span>

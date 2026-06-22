@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# credentials
+ga-service-account.json
+
+# SEO content-machine working dir (skill seo-geo run artifacts)
+/runs
+
 # dependencies
 /node_modules
 /.pnp
