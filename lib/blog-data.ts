@@ -32,12 +32,14 @@ export const articles: Article[] = [
       "aiguilles circulaires interchangeables"
     ],
     publishedAt: "2026-06-22",
-    readingTime: "12 min de lecture",
+    readingTime: "13 min de lecture",
     lang: "fr",
     content: `
 **Les aiguilles circulaires sont des aiguilles de tricot constituées de deux pointes rigides reliées par un câble souple, permettant de tricoter en rond (pour former un tube sans couture) ou à plat (comme des aiguilles droites classiques). Elles existent en longueurs de câble allant généralement de 40 cm à 150 cm, et dans tous les diamètres standards de 2 mm à 15 mm.**
 
 Les aiguilles circulaires font partie des outils les plus polyvalents du tricot, pourtant elles restent souvent mal comprises. Beaucoup de tricoteuses et tricoteurs les achètent pour un projet précis, puis les rangent faute de savoir comment les exploiter pleinement. Ce guide vous explique exactement comment fonctionnent les aiguilles circulaires, comment choisir la bonne longueur de câble selon votre ouvrage, et pourquoi elles sont devenues indispensables dès que l'on souhaite [tricoter un pull](/blog/comment-tricoter-un-pull) sans couture. Vous trouverez ici des repères chiffrés concrets : quelle longueur pour combien de mailles, quel diamètre pour quel fil, et à quel moment investir dans un jeu interchangeable. Que vous tricotiez votre premier pull top-down ou que vous souhaitiez optimiser votre matériel existant, ce guide vous donnera les bases nécessaires pour prendre des décisions éclairées.
+
+![Trois aiguilles circulaires de longueurs différentes (40 cm, 80 cm et 100 cm) disposées sur un fond lin crème avec une pelote de laine terracotta](/images/blog/aiguilles-circulaires/aiguilles-circulaires-longueurs-comparees.webp)
 
 ## Qu'est-ce qu'une aiguille circulaire et en quoi diffère-t-elle d'une aiguille droite ?
 
@@ -47,6 +49,8 @@ Une aiguille circulaire se compose de deux pointes rigides reliées par un câbl
 
 Les pointes en métal, généralement en acier inoxydable ou en aluminium, offrent une surface glissante qui facilite le mouvement rapide des mailles. Elles conviennent particulièrement aux fils lisses comme le mérinos ou le coton. Les pointes en bois ou en bambou créent plus de friction, ce qui ralentit le glissement des mailles. Cet effet est bénéfique pour les [débutant](/blog/tricot-debutant)s ou pour les fils glissants comme la soie ou certains fils synthétiques. Les pointes en plastique ou en résine acrylique sont plus légères et souvent moins coûteuses, mais leur jonction avec le câble peut être moins précise, ce qui crée parfois un accroc qui gêne le passage des mailles.
 
+![Schéma technique d'une aiguille circulaire avec ses trois parties annotées : les pointes rigides, le câble souple et la jonction](/images/blog/aiguilles-circulaires/aiguilles-circulaires-schema-anatomie.webp)
+
 ## Comment choisir la bonne longueur de câble pour votre projet ?
 
 C'est la question la plus fréquente et la plus concrète. La règle fondamentale est simple : la longueur totale de l'aiguille circulaire (pointes comprises) doit être inférieure au périmètre de l'ouvrage. Si votre ouvrage fait 60 cm de tour, vous avez besoin d'une aiguille dont la longueur totale est inférieure à 60 cm. Si le câble est trop long, les mailles s'étirent pour couvrir la distance et le tricot devient inconfortable à tenir, voire impossible. Voici des repères pratiques par type d'ouvrage. Pour un [bonnet](/blog/bonnet-a-tricoter) adulte tricoté en rond, le périmètre est d'environ 56 à 58 cm ; une aiguille de 40 cm de longueur totale convient parfaitement. Pour un pull adulte en construction top-down, le tour de poitrine dépasse souvent 100 cm ; un câble de 80 cm est le minimum conseillé. Pour les manches ou les chaussettes, dont le tour peut descendre à 20 ou 30 cm, il faut soit utiliser des aiguilles double-pointes, soit appliquer la technique du magic loop avec un câble d'au moins 80 cm. La longueur n'est pas universelle : un même projet peut nécessiter deux longueurs différentes selon l'étape. C'est précisément pour cela que les systèmes interchangeables ont été conçus.
@@ -54,6 +58,8 @@ C'est la question la plus fréquente et la plus concrète. La règle fondamental
 ### Tableau de correspondance longueur de câble et type d'ouvrage
 
 40 cm : bonnets, cols roulés, mitaines. 60 cm : sweaters enfants, carrés, petits châles. 80 cm : pulls adultes, grands châles, plaids. 100 cm et plus : pulls très amples, couvertures, ouvrages à grand nombre de mailles. Ces valeurs correspondent à la longueur totale de l'aiguille (pointes + câble). Si le fabricant indique uniquement la longueur du câble, ajoutez environ 8 à 10 cm pour les deux pointes. Prenez l'habitude de mesurer le périmètre de votre ouvrage avant de choisir votre aiguille plutôt que de vous fier uniquement aux recommandations du patron, car les patrons étrangers peuvent indiquer des longueurs en pouces ou correspondant à des standards différents.
+
+![Mains tenant des aiguilles circulaires formant une boucle de magic loop pour tricoter en rond un petit ouvrage tubulaire en laine grise](/images/blog/aiguilles-circulaires/aiguilles-circulaires-magic-loop-technique.webp)
 
 ## Aiguilles circulaires fixes ou interchangeables : comment trancher ?
 
@@ -141,12 +147,14 @@ Les aiguilles circulaires sont bien plus qu'un simple substitut aux aiguilles dr
       "lire un patron de tricot"
     ],
     publishedAt: "2026-06-22",
-    readingTime: "12 min de lecture",
+    readingTime: "13 min de lecture",
     lang: "fr",
     content: `
 **Le tricot est une technique textile qui consiste à entrelacer des boucles de fil à l'aide de deux aiguilles ou plus pour former un tissu maillé extensible. Pour un débutant, maîtriser l'échantillon, les points de base et la lecture d'un patron constitue le socle indispensable avant tout projet.**
 
 Vous débutez le tricot et vous souhaitez comprendre pourquoi chaque étape compte, pas seulement comment l'exécuter ? Ce guide s'adresse à vous. Le tricot débutant recouvre un ensemble de compétences précises : monter les mailles, maîtriser les points de base, lire un patron et surtout réaliser un échantillon avant de commencer. Cette dernière étape, souvent négligée, est pourtant celle qui fait la différence entre un pull qui tombe bien et un pull trop étroit de 8 cm. Nous allons parcourir ensemble les fondamentaux dans l'ordre logique où vous en aurez besoin : les outils, les points essentiels, la tension, la construction d'un premier vêtement et la lecture d'un patron. Chaque section répond à une question concrète. Vous trouverez des chiffres, des exemples et des explications sur le raisonnement derrière chaque technique, pour que vous puissiez adapter, pas seulement reproduire.
+
+![Outils essentiels pour débuter le tricot : aiguilles circulaires, pelote de laine mérinos, mètre ruban et marqueurs de mailles posés sur un tissu de lin clair.](/images/blog/tricot-debutant/tricot-debutant-outils-essentiels.webp)
 
 ## Quels outils choisir pour débuter le tricot ?
 
@@ -156,6 +164,8 @@ Avant de tricoter la première maille, il faut choisir les bons outils. Pour un 
 
 Les aiguilles droites conviennent aux pièces tricotées à plat, comme un carré, une [écharpe](/blog/echarpe-snood-tricot) ou le devant d'un pull tricoté en morceaux. Les [aiguilles circulaires](/blog/tricoter-en-rond), reliées par un câble souple, permettent de tricoter en rond et d'éviter les coutures. Pour un premier pull tricoté en construction top-down (de l'encolure vers le bas), les aiguilles circulaires de 80 cm à 100 cm sont indispensables. Elles servent aussi à tricoter à plat : le câble porte le poids du tricot et soulage les poignets dès que le nombre de mailles devient important.
 
+![Diagramme technique d'un échantillon de tricot 10 x 10 cm en jersey montrant la mesure des mailles en largeur et des rangs en hauteur.](/images/blog/tricot-debutant/tricot-debutant-diagramme-echantillon.webp)
+
 ## Les points de tricot indispensables pour un débutant
 
 Le tricot repose sur deux points fondamentaux : la maille endroit et la maille envers. Toutes les textures, tous les motifs et tous les reliefs que vous voyez sur un tricot sont des combinaisons de ces deux mouvements. En jersey, vous tricotez toutes les mailles endroit sur les rangs côté endroit et toutes les mailles envers sur les rangs côté envers. Le résultat est une surface lisse d'un côté et une surface granuleuse de l'autre. C'est le point de base de la majorité des pulls. En [point mousse](/blog/point-mousse-tricot), vous tricotez toutes les mailles endroit sur tous les rangs, ce qui produit un tissu épais, réversible et non enroulant sur les bords. C'est le point idéal pour les écharpes et les bordures. Les côtes, elles, alternent mailles endroit et mailles envers sur le même rang. Les côtes 1/1 (une maille endroit, une maille envers en alternance) ou les côtes 2/2 (deux mailles endroit, deux mailles envers) produisent un tissu élastique très utilisé pour les poignets, les bords côte et les encolures. Une côte 2/2 sur 20 mailles reprend exactement la même séquence toutes les 4 mailles : c'est la prévisibilité qui permet de tricoter ces rangs presque sans regarder une fois le rythme installé. Avant de vous lancer dans un patron complexe, entraînez-vous à passer d'un point à l'autre sur un même rang : c'est la transition entre la maille endroit et la maille envers (ramener le fil devant avant de piquer) qui trébuche le plus souvent au début.
@@ -163,6 +173,8 @@ Le tricot repose sur deux points fondamentaux : la maille endroit et la maille e
 ### Pourquoi le point mousse ne s'enroule pas et le jersey si ?
 
 Le jersey s'enroule sur les bords parce que les mailles endroit et les mailles envers exercent des tensions différentes sur le tissu. Sur un rang jersey côté endroit, les boucles tirent vers l'avant ; sur un rang envers, elles tirent vers l'arrière. Cette alternance crée un déséquilibre qui courbe le tissu. Le point mousse, lui, équilibre les tensions rang après rang : chaque rang tricoté entièrement à l'endroit compense le rang précédent. C'est pourquoi les bordures des pulls en jersey sont systématiquement tricotées en côtes ou en point mousse sur quelques rangs.
+
+![Pull tricoté en construction top-down raglan en cours de travail sur aiguilles circulaires, montrant les quatre lignes d'augmentation de l'empiècement.](/images/blog/tricot-debutant/tricot-debutant-construction-top-down.webp)
 
 ## Pourquoi l'échantillon est l'étape la plus importante du tricot
 
@@ -246,12 +258,14 @@ Le tricot débutant n'est pas une question de talent mais de méthode. Quatre co
       "fil à tricoter"
     ],
     publishedAt: "2026-06-22",
-    readingTime: "11 min de lecture",
+    readingTime: "12 min de lecture",
     lang: "fr",
     content: `
 **La laine à tricoter est un fil textile, généralement composé de fibres naturelles (laine de mouton, alpaga, coton) ou synthétiques, conditionné en pelotes ou en échevaux et destiné à être travaillé avec des aiguilles à tricoter. Son grammage au mètre, sa torsion et sa composition déterminent directement le rendu visuel, la tenue et le confort du tricot fini.**
 
 Choisir une laine à tricoter semble simple en apparence, et pourtant ce choix conditionne l'entièreté de votre projet : la taille finale du tricot, sa souplesse, sa durabilité, et même le plaisir que vous aurez à travailler le fil entre vos mains. Avant de lancer les premières mailles, il vaut la peine de comprendre ce qui se cache derrière l'étiquette d'une pelote. Quelle fibre pour quel usage ? Quel titrage pour quelles aiguilles à tricoter ? Comment lire un grammage et éviter la mauvaise surprise à mi-projet ? Ce guide pratique répond à ces questions en s'appuyant sur des repères concrets. Que vous souhaitiez [tricoter un pull](/blog/comment-tricoter-un-pull) du haut vers le bas, une paire de chaussettes en laine à chaussettes ou un accessoire en fil à tricoter léger, les principes restent les mêmes. Comprendre la matière, c'est déjà poser les bases d'un tricot réussi.
+
+![Trois pelotes de laine à tricoter de différentes épaisseurs : fingering, DK et Aran, posées sur une surface en lin naturel](/images/blog/laine-a-tricoter/laine-a-tricoter-epaisseurs-comparaison.webp)
 
 ## Comment lire l'étiquette d'une pelote de laine à tricoter ?
 
@@ -266,6 +280,8 @@ Enfin, les symboles d'entretien vous indiquent si le fil est lavable en machine,
 ### Le titrage : comprendre les mètres par gramme
 
 Le titrage exprime la finesse d'un fil. Plus le chiffre est élevé (en Nm, numéro métrique), plus le fil est fin. Dans la pratique courante, on parle plutôt de « poids de fil » avec des catégories comme lace, fingering, DK, worsted ou chunky. Un fil DK contient typiquement 200 à 220 mètres pour 100 grammes, tandis qu'un fil fingering, utilisé pour la laine à chaussettes notamment, dépasse souvent 380 mètres pour 100 grammes. Connaître cette correspondance vous aide à substituer un fil par un autre si votre coloris préféré n'est pas disponible.
+
+![Schéma illustratif des informations contenues sur l'étiquette d'une pelote de laine : poids, métrage, composition et aiguilles recommandées](/images/blog/laine-a-tricoter/laine-a-tricoter-etiquette-schema.webp)
 
 ## Quelles fibres choisir selon le projet tricoté ?
 
@@ -282,6 +298,8 @@ Les mélanges synthétiques, comme la composition typique des laines à chausset
 ### La laine à chaussettes : un cas particulier
 
 La laine à chaussettes est un fil à tricoter de catégorie fingering (fin), conçu pour résister à l'usure liée au port dans une chaussure. Sa composition comprend presque toujours du polyamide (nylon) pour renforcer les fibres. Elle se tricote sur des aiguilles à tricoter de 2 mm à 2,5 mm, produisant un tissu dense et solide. Comptez environ 400 mètres pour une paire de chaussettes adultes de taille moyenne, ce qui correspond généralement à deux pelotes de 100 grammes selon les marques.
+
+![Échantillon de tricot en jersey avec une règle métallique pour mesurer les mailles et les rangs, et deux aiguilles à tricoter en bambou posées en diagonal](/images/blog/laine-a-tricoter/laine-a-tricoter-echantillon-mesure.webp)
 
 ## Aiguilles à tricoter : quel numéro pour quelle laine ?
 
@@ -399,6 +417,8 @@ Choisir une laine à tricoter adaptée à son projet, c'est conjuguer trois crit
 
 Le point mousse tricot est souvent présenté comme le point des [débutant](/blog/tricot-debutant)s. C'est vrai dans le sens où il ne demande qu'une seule technique : tricoter à l'endroit sur chaque rang. Mais cette simplicité cache une logique structurelle précise qui mérite d'être comprise, même par des tricoteuses et tricoteurs expérimentés. Pourquoi le point mousse ne se roule-t-il pas ? Pourquoi faut-il compter ses rangs différemment du jersey ? Comment anticiper son comportement sur un pull ou une [écharpe](/blog/echarpe-snood-tricot) ? Ce guide répond à ces questions avec des exemples concrets et des données mesurables. Que vous tricotiez votre premier châle ou que vous adaptiez un patron existant, comprendre le point mousse vous permettra de faire des choix techniques éclairés, notamment pour les bordures, les lisières et les transitions entre différents points.
 
+![Carré d'échantillon en point mousse tricot avec bourrelets horizontaux bien visibles, laine naturelle écrue sur fond lin](/images/blog/point-mousse-tricot/point-mousse-tricot-echantillon.webp)
+
 ## Qu'est-ce que le point mousse et comment est-il construit ?
 
 Le point mousse est le résultat d'un tricotage systématique de toutes les mailles à l'endroit, rang après rang. Sur des aiguilles droites, cela signifie tricoter à l'endroit sur l'endroit de l'ouvrage, puis à l'endroit encore sur l'envers. Sur des [aiguilles circulaires](/blog/tricoter-en-rond), il faut alterner un rang endroit et un rang envers, car on ne retourne jamais l'ouvrage. C'est une distinction importante que beaucoup de patrons ne précisent pas clairement.
@@ -410,6 +430,8 @@ Sur le plan mécanique, les mailles endroit s'emboîtent de telle façon qu'elle
 ### La différence avec le point jersey tricot
 
 Le point jersey tricot alterne des rangs endroit et des rangs envers. Cette alternance crée une face lisse (les V des mailles endroit) et une face côtelée (les arceaux des mailles envers). Le point mousse, lui, présente les deux faces identiques en bourrelets horizontaux. Autre différence notable : le jersey a tendance à se rouler sur les bords, ce qui nécessite souvent une bordure en côtes ou en point mousse pour stabiliser l'ouvrage. Le point mousse ne roule jamais, ce qui en fait un choix naturel pour les finitions.
+
+![Diagramme technique comparant la structure du point mousse et du point jersey tricot en coupe transversale](/images/blog/point-mousse-tricot/point-mousse-tricot-diagramme-structure.webp)
 
 ## Comment lire et calculer un échantillon en point mousse ?
 
@@ -426,6 +448,8 @@ Attention aussi au blocage : le point mousse gagne légèrement en largeur et pe
 ### Tension et choix des aiguilles
 
 La tension est le facteur qui influence le plus votre échantillon. Avec un fil identique, passer d'une aiguille 4,5 mm à une aiguille 5 mm peut modifier votre nombre de mailles de 2 à 3 mailles pour 10 cm, ce qui sur 100 mailles représente un écart de 4 à 6 cm de largeur totale. En point mousse, un tricotage légèrement plus lâche est souvent conseillé pour éviter un tissu trop rigide, car la compression verticale du point est déjà importante. Si votre tissu en point mousse semble cartonné, montez d'une demi-taille d'aiguilles avant de refaire votre échantillon.
+
+![Pull en cours de tricotage en point mousse sur aiguilles circulaires avec règle mesurant l'échantillon sur 10 cm](/images/blog/point-mousse-tricot/point-mousse-tricot-echantillon-mesure.webp)
 
 ## Où utiliser le point mousse dans la construction d'un tricot ?
 
@@ -533,6 +557,8 @@ Le point mousse tricot est bien plus qu'un simple point de départ pour les déb
 
 Le point de riz tricot est l'un des points de structure les plus utilisés par les tricoteuses et tricoteurs, et pour de bonnes raisons. Facile à retenir, il repose sur une seule règle : alterner une maille à l'endroit et une maille à l'envers, en inversant le décalage à chaque rang. Le résultat est un tissu à la texture granuleuse, réversible, qui tient parfaitement à plat sans gondoler. Contrairement au jersey, qui a tendance à s'enrouler sur les bords, le point de riz est stable dès la première maille. C'est précisément pour cette raison qu'il est si souvent employé en bordures, en [écharpe](/blog/echarpe-snood-tricot)s ou en corps de pulls entiers. Dans cet article, vous allez comprendre comment le construire rang par rang, en quoi il diffère du [point de blé](/blog/point-de-ble-tricot), comment adapter votre échantillon et dans quels projets l'exploiter au mieux.
 
+![Échantillon de tricot au point de riz en laine écrue, montrant la texture granuleuse caractéristique du point](/images/blog/point-de-riz-tricot/point-de-riz-tricot-echantillon.webp)
+
 ## Comment tricoter le point de riz : la règle des deux rangs
 
 Le point de riz repose sur un principe simple, mais qu'il faut comprendre précisément pour ne pas le confondre avec les côtes 1/1. Dans les côtes, vous tricotez toujours une maille endroit au-dessus d'une maille endroit, et une maille envers au-dessus d'une maille envers. Dans le point de riz, vous faites exactement l'inverse : vous tricotez une maille endroit au-dessus d'une maille envers, et une maille envers au-dessus d'une maille endroit. Ce décalage crée le relief caractéristique du point.
@@ -544,6 +570,8 @@ Une astuce pratique : si vous tricotez le point de riz correctement, chaque mail
 ### Nombre de mailles : pair ou impair ?
 
 Le point de riz fonctionne sur un nombre pair de mailles, mais aussi sur un nombre impair. Sur un nombre pair, le rang 1 et le rang 2 sont strictement identiques dans leur logique : vous commencez et terminez toujours par la même séquence. Sur un nombre impair, le décalage s'effectue automatiquement : vous commencez chaque rang par une maille endroit, et le motif se construit de lui-même. Beaucoup de tricoteuses préfèrent travailler sur un nombre impair pour cette raison. Pour un châle, une écharpe ou un panneau décoratif central, cette option simplifie le comptage et garantit une symétrie parfaite dans le motif.
+
+![Schéma technique comparant la construction du point de riz et des côtes 1/1 rang par rang](/images/blog/point-de-riz-tricot/point-de-riz-tricot-schema-comparatif.webp)
 
 ## Point de riz et point de blé : quelles différences concrètes ?
 
@@ -558,6 +586,8 @@ Du point de vue du calcul de patron, les deux points se comportent de façon sim
 ### Lequel choisir selon votre projet ?
 
 Si votre projet demande une belle tenue structurelle, des bordures qui ne roulent pas, ou un panneau de texture sur un pull, le point de riz est le choix le plus adapté. Si vous cherchez un tissu entier plus souple et avec un grain plus discret, le point de blé convient mieux. Pour une écharpe portée tous les jours, par exemple, le point de blé sera plus agréable au toucher et moins raide. Les deux points s'intègrent facilement dans un patron sur mesure dès lors que vous avez mesuré votre échantillon avec attention.
+
+![Comparaison côte à côte d'un échantillon au point de riz et d'un échantillon au point de blé, deux variantes proches du tricot texturé](/images/blog/point-de-riz-tricot/point-de-riz-tricot-vs-point-de-ble.webp)
 
 ## L'échantillon au point de riz : pourquoi il est indispensable
 
@@ -666,6 +696,8 @@ Le point de riz au tricot est un point de structure fiable, polyvalent et access
 
 Le point de blé tricot est l'un des points de texture les plus polyvalents qui existent. Il suffit d'alterner une maille endroit et une maille envers sur chaque rang, en décalant la séquence d'un rang à l'autre, pour obtenir un tissu au relief régulier, agréable à toucher et identique sur les deux faces. C'est précisément cette réversibilité qui le rend si apprécié pour les [écharpe](/blog/echarpe-snood-tricot)s, les bordures de pulls et les pièces portées à plat. Pourtant, beaucoup de tricoteuses et tricoteurs sous-estiment l'impact de ce point sur leur échantillon et leurs calculs de laine. Un pull tricoté en point de blé ne se calcule pas comme un pull en jersey : les mailles sont plus serrées, la consommation de fil augmente, et la tombée du tissu change. Cet article vous explique comment fonctionne le point de blé, comment réaliser votre échantillon correctement, et comment l'intégrer dans vos projets de façon maîtrisée.
 
+![Carré d'échantillon tricoté en point de blé, laine mérinos crème sur fond de lin naturel, montrant le relief en quinconce des mailles endroit et envers](/images/blog/point-de-ble-tricot/point-de-ble-tricot-echantillon-texture.webp)
+
 ## Quelle est la structure du point de blé au tricot ?
 
 Le point de blé repose sur un principe de quinconce entre mailles endroit et mailles envers. Au rang 1, vous tricotez en alternant 1 maille endroit, 1 maille envers, jusqu'à la fin du rang. Au rang 2, vous inversez la séquence : chaque maille qui était tricotée endroit au rang précédent est maintenant tricotée envers, et vice versa. Ce décalage de 1 maille crée le relief caractéristique : chaque petite bosse envers est encadrée par deux colonnes endroit au rang suivant, ce qui évoque visuellement des grains de blé alignés. Pour que cette alternance fonctionne, vous devez disposer d'un nombre pair de mailles. Avec un nombre impair, le décalage ne s'inverse pas correctement et le point devient irrégulier. Si votre projet impose un nombre impair de mailles, il faudra intégrer une maille de lisière neutre à chaque extrémité. La répétition sur seulement 2 rangs est un avantage majeur : le point de blé est extrêmement rapide à mémoriser, même pour quelqu'un qui découvre les points de texture. Après quelques centimètres, la logique devient intuitive : vous tricotez toujours à l'opposé de la maille que vous voyez en face de vous.
@@ -674,6 +706,8 @@ Le point de blé repose sur un principe de quinconce entre mailles endroit et ma
 
 Sur un diagramme symbolique, le point de blé est représenté par une alternance de cases vides (maille endroit vue de l'endroit) et de cases avec un tiret horizontal (maille envers vue de l'endroit), disposées en quinconce d'une rangée à l'autre. Si vous travaillez en rangs aller-retour, n'oubliez pas que sur les rangs retour, la lecture du diagramme s'inverse de droite à gauche, et que les symboles s'interprètent du point de vue de la face que vous regardez. Cette logique de lecture est fondamentale pour éviter les erreurs quand vous intégrez le point de blé dans un patron plus complexe.
 
+![Diagramme technique du point de blé au tricot montrant l'alternance des mailles endroit et envers sur 2 rangs en quinconce, symboles endroit et envers en terracotta sur fond crème](/images/blog/point-de-ble-tricot/point-de-ble-tricot-diagramme-structure.webp)
+
 ## Pourquoi l'échantillon en point de blé est différent du jersey ?
 
 C'est le point que beaucoup de tricoteuses et tricoteurs négligent, et qui explique la plupart des déconvenues de taille. Le point de blé produit un tissu structurellement plus dense que le jersey, parce que chaque maille envers crée une petite boucle qui tire sur les mailles adjacentes horizontalement. Résultat : pour les mêmes aiguilles et la même laine, vous obtiendrez généralement 10 à 15 % de mailles de plus pour 10 centimètres en point de blé qu'en jersey. Cela signifie concrètement que si votre jersey donne 20 mailles pour 10 cm, votre point de blé pourrait en donner 22 ou 23. Ce n'est pas une approximation : c'est une différence mesurable qui modifie tous vos calculs de patron. Si vous utilisez un patron conçu pour le jersey et que vous le tricotez en point de blé sans adapter l'échantillon, votre pièce sera trop petite. La règle est simple : réalisez toujours un échantillon spécifique au point que vous allez utiliser, lavez-le et bloquez-le avant de mesurer. Ne transposez jamais l'échantillon jersey vers le point de blé sans vérification. Cette étape prend 30 minutes et vous évite de défaire plusieurs heures de travail.
@@ -681,6 +715,8 @@ C'est le point que beaucoup de tricoteuses et tricoteurs négligent, et qui expl
 ### Comment réaliser un bon échantillon en point de blé ?
 
 Montez entre 24 et 30 mailles (nombre pair obligatoire) et tricotez au moins 30 rangs en point de blé. L'échantillon doit être suffisamment grand pour que la zone centrale, à l'abri des effets de lisière, soit représentative. Mesurez uniquement les 10 cm centraux, jamais les bords. Notez le nombre de mailles et le nombre de rangs sur 10 cm. Ces deux données sont vos références pour adapter ou calculer votre patron. Si vous devez bloquer votre futur ouvrage à la vapeur ou au mouillé, faites de même avec cet échantillon : la mesure finale est celle après blocage.
+
+![Écharpe tricotée en point de blé avec les deux faces identiques visibles, laine naturelle couleur avoine, aiguilles en bois, fond pierre gris clair](/images/blog/point-de-ble-tricot/point-de-ble-tricot-echarpe-reversible.webp)
 
 ## Quelles laines choisir pour tricoter en point de blé ?
 
@@ -767,6 +803,8 @@ Le point de blé au tricot est bien plus qu'un point décoratif : c'est une stru
 
 Le choix d'un point de tricot ne relève pas du simple goût esthétique : il conditionne l'élasticité de votre tissu, la quantité de laine nécessaire, et le nombre de mailles à monter. Avant même de penser au coloris ou à la marque de fil, il est utile de comprendre comment chaque point au tricot structure la matière. Le jersey, le [point mousse](/blog/point-mousse-tricot), les côtes ou les torsades ne se comportent pas de la même façon face à la tension, à l'humidité ou au blocage. Dans ce guide, vous trouverez une présentation structurée des grandes familles de points, une explication de leur impact sur votre échantillon, et des repères concrets pour adapter vos patrons. Que vous débutiez votre premier pull top-down ou que vous cherchiez à comprendre pourquoi votre sweat rétréci à la largeur, ce guide vous donne les bases techniques pour avancer avec méthode.
 
+![Trois échantillons de tricot côte à côte illustrant le jersey, le point mousse et les côtes 2/2 en laine mérinos naturelle](/images/blog/point-tricot/point-tricot-familles-echantillons.webp)
+
 ## Quelles sont les grandes familles de points de tricot ?
 
 On distingue trois grandes familles de points au tricot, chacune avec des propriétés physiques bien distinctes. Les comprendre permet de faire des choix éclairés, et non des choix par défaut.
@@ -785,6 +823,8 @@ La quasi-totalité des patrons de tricot publient leur tension en jersey, sur ai
 
 Les côtes ne servent pas uniquement à finir un pull : elles peuvent structurer des pans entiers d'un vêtement. Un pull entièrement tricoté en côtes 2/2 aura une silhouette plus ajustée qu'un pull en jersey de même taille nominale, car les colonnes envers compriment transversalement le tissu. Ce phénomène peut atteindre 20 à 30 % de réduction de largeur par rapport au jersey, d'où l'importance de tricoter l'échantillon dans le bon point.
 
+![Diagramme technique illustrant la structure d'une maille endroit, d'une maille envers et d'un jeté au tricot](/images/blog/point-tricot/point-tricot-diagramme-anatomie-maille.webp)
+
 ## Comment le point de tricot influence-t-il l'échantillon et la tension ?
 
 L'échantillon est la seule mesure fiable qui vous permet de passer d'un patron à un vêtement aux bonnes dimensions. Et la tension que vous mesurez dépend directement du point que vous utilisez. Un même fil tricoté en jersey sur des aiguilles de 4,5 mm peut donner 20 mailles pour 10 cm, et seulement 16 mailles pour 10 cm en [point de riz](/blog/point-de-riz-tricot) avec les mêmes aiguilles, parce que le point de riz est structurellement plus compact horizontalement et plus gonflant verticalement.
@@ -796,6 +836,8 @@ Si vous obtenez plus de mailles que la tension indiquée par le patron, vos mail
 ### Pourquoi tricoter l'échantillon dans le bon point est non négociable
 
 Certains tricoteurs font leur échantillon en jersey même si le projet est en torsades ou en point de riz. C'est une erreur fréquente qui génère des pièces trop larges ou trop étroites. Chaque structure de point modifie la façon dont le fil se loge entre les aiguilles. Un point de torsade, par exemple, tire horizontalement sur le tissu et réduit sa largeur visible. Il faut donc mesurer la tension dans le point exact qui sera utilisé, à l'emplacement exact du vêtement où ce point apparaît.
+
+![Mesure de l'échantillon sur un point de torsades en laine chunky, avec règle posée sur 10 cm de tricot](/images/blog/point-tricot/point-tricot-mesure-echantillon-torsades.webp)
 
 ## Comment lire les symboles et abréviations d'un point au tricot dans un patron ?
 
@@ -901,6 +943,8 @@ Maîtriser le point de tricot, c'est comprendre que chaque structure de maille �
 
 Vous cherchez un modèle tricot layette naissance gratuit avec explication, clair et techniquement fiable ? Vous êtes au bon endroit. Tricoter pour un nouveau-né, c'est aussi exigeant que gratifiant : les petites tailles exigent une tension précise, les matières doivent être adaptées à une peau très sensible, et les explications doivent être suffisamment détaillées pour ne laisser aucune place à l'interprétation. Dans cet article, vous trouverez des patrons commentés pour les trois pièces essentielles de toute layette de naissance, le bonnet, les chaussons et une brassière simple, avec les explications rang par rang et les détails techniques qui font la différence. Un nouveau-né de taille naissance à un tour de tête d'environ 34 cm et un tour de poitrine de 40 cm : ce sont ces deux mesures qui gouvernent l'ensemble de vos calculs de mailles.
 
+![Ensemble de layette tricotée pour nouveau-né : bonnet, chaussons et brassière en laine mérinos couleur naturelle, sur fond lin crème](/images/blog/modele-tricot-layette-naissance-gratuit-avec-explication/modele-tricot-layette-naissance-gratuit-avec-explication-layette-ensemble.webp)
+
 ## Pourquoi l'échantillon est encore plus critique pour la layette que pour un pull adulte
 
 Sur un pull adulte, un écart d'une demi-maille pour 10 cm représente quelques centimètres d'erreur sur le total, souvent absorbable. Sur une pièce de layette pour nouveau-né, ce même écart peut rendre un bonnet trop large pour tenir sur la tête ou des chaussons trop étroits pour entrer. Les proportions sont simplement beaucoup plus serrées.
@@ -912,6 +956,8 @@ Prenons un exemple concret. Le patron de bonnet ci-dessous est calculé pour une
 ### Quelle laine choisir pour tricoter pour bébé ?
 
 La règle principale est simple : la laine doit être douce au toucher du poignet (testez-la là, la peau y est aussi sensible que celle d'un bébé), lavable en machine à 30 ou 40 degrés, et non irritante. Le Mérinos superwash traité en machine est une valeur sûre : il est doux, régulier, et se lave sans feutrage. Les mélanges coton-bambou ou coton-acrylique sont également très utilisés pour la layette car ils sont hypoallergéniques et résistent aux lavages fréquents. Évitez les laines bouclettes ou mohair pour les pièces au contact direct de la peau : elles peuvent piquer et les fibres longues sont déconseillées à proximité du visage d'un nouveau-né. Pour la taille naissance, un fil calibre 4 fils (Fingering) ou DK léger est le plus courant. Un écheveau de 50 g suffit généralement pour un bonnet complet, et deux à trois écheveaux pour une brassière.
+
+![Carré d'échantillon en laine gris clair mesuré avec une règle pour vérifier la tension avant de tricoter une layette de naissance](/images/blog/modele-tricot-layette-naissance-gratuit-avec-explication/modele-tricot-layette-naissance-gratuit-avec-explication-echantillon-tension.webp)
 
 ## Patron complet pour tricoter un bonnet pour bébé taille naissance
 
@@ -942,6 +988,8 @@ Le bonnet obtenu mesure environ 17 cm de haut et 34 cm de circonférence, ce qui
 ### Comment adapter ce patron à une taille 1-3 mois ?
 
 Pour obtenir un bonnet de taille 1 à 3 mois (tour de tête cible : 37 cm), vous n'avez qu'à ajouter un multiple de 4 mailles au montage initial pour conserver les côtes 2/2. Montez 84 mailles au lieu de 72, et ajoutez 3 rangs de jersey supplémentaires avant les diminutions. Toutes les autres étapes restent identiques. Ce principe de multiplication par 4 est la base du calcul en côtes 2/2 : votre nombre total de mailles doit toujours être divisible par 4 pour que le motif soit régulier d'un bout à l'autre.
+
+![Schéma technique illustrant la construction d'un bonnet bébé en tricot : zones de côtes, corps en jersey et diminutions au sommet](/images/blog/modele-tricot-layette-naissance-gratuit-avec-explication/modele-tricot-layette-naissance-gratuit-avec-explication-schema-bonnet.webp)
 
 ## Patron de chaussons bébé tricot, modèle gratuit rang par rang
 
@@ -1081,12 +1129,14 @@ Tricoter une layette de naissance, c'est maîtriser la précision dans un format
       "tricoter un gilet pour femme"
     ],
     publishedAt: "2026-06-22",
-    readingTime: "13 min de lecture",
+    readingTime: "14 min de lecture",
     lang: "fr",
     content: `
 **Un modèle tricot gilet femme est un patron décrivant les instructions de construction, les quantités de mailles et les rangs nécessaires pour tricoter un gilet ajusté aux mesures d'une porteuse. Il existe en version avec ou sans manches, et se tricote le plus souvent en jersey, en côtes ou en [point mousse](/blog/point-mousse-tricot).**
 
 Chercher un modèle tricot gilet femme facile gratuit est l'une des requêtes les plus fréquentes dans la communauté du tricot, et pour de bonnes raisons : le gilet est l'un des vêtements les plus polyvalents et les plus accessibles à tricoter. Il se porte en toute saison, se personnalisé à l'infini et représente un projet plus court qu'un pull complet. Pourtant, télécharger un patron gratuit ne suffit pas à garantir un résultat à votre taille. La grande majorité des tricoteuses qui recommencent un gilet plusieurs fois le font à cause d'un échantillon mal vérifié ou d'une construction mal comprise. Cet article vous explique comment choisir un modèle adapté à votre niveau, comprendre les logiques de construction d'un gilet femme, et tirer le meilleur parti d'un patron, qu'il soit gratuit ou sur mesure. Vous trouverez aussi les termes techniques indispensables et des repères chiffrés concrets pour avancer avec confiance.
+
+![Gilet femme sans manche tricoté à la main en laine mérinos couleur terracotta, posé à plat sur un tissu de lin écru](/images/blog/modele-tricot-gilet-femme-facile-gratuit/modele-tricot-gilet-femme-facile-gratuit-gilet-sans-manche.webp)
 
 ## Pourquoi l'échantillon conditionne la réussite de votre gilet
 
@@ -1095,6 +1145,8 @@ Avant même de monter les mailles de votre gilet, une étape est non négociable
 ### Comment lire les indications de tension dans un patron gratuit
 
 La plupart des modèles de gilet gratuits en français indiquent la tension sous la forme : « Échantillon : X mailles et Y rangs pour 10 cm au point Z sur aiguilles N mm ». Lisez cette ligne en premier, avant même de regarder les instructions. Si le point utilisé pour l'échantillon est le jersey et que votre gilet est tricoté en point mousse, les valeurs seront différentes. Vérifiez toujours que l'échantillon de référence correspond bien au point principal du vêtement.
+
+![Échantillon de tricot en laine écrue posé à plat avec une règle en bois pour mesurer les mailles et les rangs aux 10 centimètres](/images/blog/modele-tricot-gilet-femme-facile-gratuit/modele-tricot-gilet-femme-facile-gratuit-echantillon-tension.webp)
 
 ## Les constructions de gilet les plus accessibles pour débuter
 
@@ -1111,6 +1163,8 @@ Vous démarrez par l'encolure, montez un nombre réduit de mailles, puis vous au
 ### La construction en un seul morceau à plat (intermédiaire)
 
 Certains patrons permettent de tricoter le dos et les deux devants en continuité, reliés par les mailles des côtés. Cette approche réduit les coutures mais implique de savoir gérer plusieurs fils simultanément. Elle convient à des tricoteuses ayant déjà réalisé au moins deux ou trois projets de vêtements.
+
+![Schéma technique illustrant la construction top-down raglan d'un gilet tricoté, avec les quatre lignes d'augmentation et les marqueurs d'emmanchure indiqués](/images/blog/modele-tricot-gilet-femme-facile-gratuit/modele-tricot-gilet-femme-facile-gratuit-schema-top-down-raglan.webp)
 
 ## Choisir la bonne laine pour tricoter un gilet femme
 
@@ -1211,6 +1265,8 @@ Tricoter un gilet femme est un projet à la portée de toute tricoteuse ayant ac
 
 L'écharpe tricot est souvent le premier projet ambitieux que l'on entreprend après avoir maîtrisé les bases. Sa forme rectangulaire, sans mise en forme ni couture complexe, ne signifie pas pour autant qu'elle se tricote les yeux fermés. Bien [choisir sa laine](/blog/quelle-laine-pour-tricoter-un-pull), calculer son échantillon, sélectionner le bon point : chacune de ces étapes conditionne le résultat final. Une écharpe en tricot trop étroite, qui s'enroule sur les côtés, ou dont la laine gratouille après dix minutes de port, c'est une déception évitable. Ce guide vous explique le pourquoi de chaque décision technique, des mailles montées jusqu'au rang rabattu, en passant par le calcul concret du nombre de mailles à partir de votre échantillon personnel. Que vous visiez une écharpe au tricot légère en alpaga ou un modèle épais en laine mérinos, les mêmes principes s'appliquent. Voici comment les mettre en pratique.
 
+![Écharpe tricot en cours et échantillon mesuré à 10 cm posés sur un fond en lin naturel](/images/blog/echarpe-tricot/echarpe-tricot-echantillon-mesure.webp)
+
 ## Pourquoi l'échantillon est la première étape, pas une option
 
 Beaucoup de tricoteurs expérimentés avouent parfois sauter l'étape de l'échantillon pour un projet aussi simple qu'une écharpe. C'est compréhensible, mais risqué. La tension varie d'une personne à l'autre, d'une laine à l'autre, et même selon votre état de fatigue ou la façon dont vous tenez vos aiguilles. Deux tricoteurs utilisant exactement les mêmes aiguilles et la même pelote peuvent obtenir des résultats différents de 2 à 3 mailles aux 10 cm. Sur une écharpe de 20 cm de large, cet écart représente 4 à 6 mailles de trop ou de trop peu, ce qui modifie la largeur finale de 2 à 4 cm. Pour réaliser votre échantillon, montez entre 20 et 25 mailles et tricotez une dizaine de centimètres dans le point choisi. Bloquez ou lavez le carré selon les instructions de la laine, puis mesurez à plat en comptant le nombre de mailles sur exactement 10 cm. Notez ce chiffre : c'est votre densité de mailles. Divisez la largeur souhaitée de l'écharpe par la largeur d'une maille pour obtenir le nombre exact de mailles à monter. Exemple : si votre échantillon donne 18 mailles aux 10 cm et que vous visez 22 cm de large, vous devez monter 40 mailles (22 x 1,8). Ce calcul élémentaire vous évite de devoir défaire l'ouvrage après 50 rangs.
@@ -1219,6 +1275,8 @@ Beaucoup de tricoteurs expérimentés avouent parfois sauter l'étape de l'écha
 
 Mesurez toujours au centre du carré, jamais sur les bords qui sont souvent distordus par la tension des lisières. Utilisez une règle rigide et des épingles pour maintenir le tissu à plat. Comptez les mailles sur 10 cm en incluant les demi-mailles si nécessaire. Si vous obtenez 18,5 mailles pour 10 cm, utilisez ce chiffre décimal dans votre calcul plutôt que de l'arrondir. Sur une longueur de 180 cm, l'arrondi se traduit par plusieurs centimètres d'écart.
 
+![Diagramme comparatif des points de tricot pour écharpe : point mousse, côtes 2/2, point de riz et jersey](/images/blog/echarpe-tricot/echarpe-tricot-comparaison-points.webp)
+
 ## Choisir la bonne laine pour une écharpe au tricot
 
 Le choix de la laine conditionne à la fois le rendu esthétique, le confort au port et la facilité d'entretien. Pour une écharpe portée au quotidien directement sur la peau, privilégiez une laine traitée superwash ou une fibre naturellement douce comme le mérinos fin, l'alpaga ou le cachemire. Ces matières passent généralement à la machine en programme laine. Les laines non traitées ont tendance à feutrer au lavage et requièrent un lavage à la main à l'eau froide. Le poids du fil est la deuxième variable à considérer. Une laine DK (double knitting, environ 200 à 220 mètres pour 100 grammes) tricoté sur des aiguilles de 3,75 à 4,5 mm donnera une écharpe souple et légère. Une laine bulky (80 à 100 mètres pour 100 grammes) sur des aiguilles de 6 à 8 mm produira un modèle plus chaud et plus rapide à tricoter. Pour estimer votre consommation de fil, multipliez la largeur par la longueur de l'écharpe pour obtenir la surface en cm², puis reportez-vous aux indications de la pelote. En règle générale, prévoyez une pelote de sécurité supplémentaire : mieux vaut en avoir trop que de manquer de fil à mi-projet en risquant de ne pas retrouver le même lot de teinture. Le numéro de lot (dye lot) est imprimé sur l'étiquette de chaque pelote.
@@ -1226,6 +1284,8 @@ Le choix de la laine conditionne à la fois le rendu esthétique, le confort au 
 ### Fibres naturelles ou synthétiques : laquelle choisir ?
 
 Les fibres naturelles comme la laine mérinos et l'alpaga respirent mieux et régulent la température. Les mélanges laine-acrylique (80/20 ou 70/30) offrent un bon compromis entre douceur et facilité d'entretien, notamment pour les écharpes destinées aux enfants. Les fils 100% acrylique sont résistants et lavables en machine mais moins respirants et parfois électrostatiques. Le choix dépend de l'usage prévu et du budget : une écharpe quotidienne en mérinos superwash représente un investissement de 20 à 40 euros en laine pour des dimensions adultes standard.
+
+![Trois pelotes de laine de différents poids DK, worsted et bulky pour choisir la bonne laine pour une écharpe tricot](/images/blog/echarpe-tricot/echarpe-tricot-choix-laine-poids.webp)
 
 ## Quel point choisir pour une écharpe tricot qui ne s'enroule pas
 
@@ -1306,12 +1366,14 @@ Réussir une écharpe tricot repose sur une chaîne de décisions cohérentes : 
       "côtes anglaises faciles"
     ],
     publishedAt: "2026-06-22",
-    readingTime: "11 min de lecture",
+    readingTime: "12 min de lecture",
     lang: "fr",
     content: `
 **Les côtes anglaises (ou point de côtes anglaises) sont un point de tricot formé en alternant mailles endroit et mailles glissées avec un jeté, créant ainsi un relief épais et élastique caractéristique. Ce point double la hauteur visuelle des côtes par rapport aux côtes 1/1 classiques, ce qui lui confère une grande extensibilité et un toucher moelleux.**
 
 Le tricot côtes anglaises fascine autant qu'il intimide. Son relief prononcé, sa douceur au toucher et son élasticité remarquable en font l'un des points les plus utilisés pour les [écharpe](/blog/echarpe-snood-tricot)s, les [bonnet](/blog/bonnet-a-tricoter)s et les cols roulés. Pourtant, beaucoup de tricoteuses et tricoteurs évitent les côtes anglaises, convaincus que le point est complexe ou que les rangs se lisent mal. Ce guide est là pour démystifier ce point de A à Z : comment il est construit, pourquoi l'échantillon change tout, comment adapter votre tension et comment lire correctement les instructions d'un patron. Vous apprendrez aussi à [choisir la laine](/blog/quelle-laine-pour-tricoter-un-pull) la mieux adaptée et à éviter les erreurs les plus courantes. En comprenant le mécanisme qui se cache derrière chaque geste, les côtes anglaises faciles deviennent une réalité, même pour ceux qui n'ont jusqu'ici travaillé qu'en jersey ou en côtes 1/1.
+
+![Échantillon de tricot côtes anglaises en laine mérinos naturelle présentant le relief prononcé caractéristique du point](/images/blog/tricot-cotes-anglaises/tricot-cotes-anglaises-echantillon.webp)
 
 ## Comment fonctionne le point de côtes anglaises ?
 
@@ -1321,6 +1383,8 @@ Pour comprendre les côtes anglaises, il faut partir de leur mécanique fondamen
 
 Sur un nombre impair de mailles, le rang de mise en place se tricote ainsi : une maille endroit, puis en alternance jeté et maille glissée à l'envers, maille endroit. Les rangs suivants suivent ce schéma : jeté, maille glissée, puis on tricote ensemble la maille suivante et le jeté du rang précédent à l'endroit. Cette séquence se répète sur chaque rang, que l'on travaille à plat ou [en rond](/blog/tricoter-en-rond). En travaillant en rond, les instructions diffèrent légèrement car les deux faces ne se tricotent plus de la même manière, mais le principe de maille différée reste identique.
 
+![Schéma technique illustrant la mécanique des côtes anglaises : maille glissée avec jeté et tricotage ensemble au rang suivant](/images/blog/tricot-cotes-anglaises/tricot-cotes-anglaises-schema-technique.webp)
+
 ## Pourquoi l'échantillon est encore plus critique ici qu'ailleurs
 
 Si l'échantillon est toujours recommandé en tricot, il devient ici absolument incontournable. Les côtes anglaises sont sensibles à deux variables que d'autres points tolèrent mieux : la tension verticale et l'élasticité horizontale. Un écart de tension d'une seule maille sur 10 cm peut représenter une différence de 3 à 4 cm sur un pull de 50 cm de tour de poitrine. Pour réaliser votre échantillon, montez au minimum 24 mailles et tricotez 30 rangs en côtes anglaises. Laissez reposer le carré 24 heures sans l'épingler, car ce point se détend naturellement après le travail. Mesurez ensuite le nombre de mailles et de rangs sur 10 cm à plat, sans étirer le tissu. Notez que les côtes anglaises ont naturellement tendance à se rétrécir en largeur sur l'aiguille, puis à s'élargir une fois posées à plat. Cette différence peut atteindre 20 à 25 % selon la laine utilisée. Si votre patron indique 14 mailles pour 10 cm en côtes anglaises et que vous en obtenez 16, changez d'aiguilles avant de recalculer quoi que ce soit. Une aiguille plus grosse d'un demi-millimètre suffit souvent à corriger cet écart.
@@ -1328,6 +1392,8 @@ Si l'échantillon est toujours recommandé en tricot, il devient ici absolument 
 ### Bloquer ou ne pas bloquer un échantillon en côtes anglaises ?
 
 La question du blocage à la vapeur d'un échantillon en côtes anglaises est fréquemment posée. La réponse dépend de ce que vous prévoyez de faire avec la pièce finie. Si votre pull sera lavé et séché à plat, bloquez l'échantillon de la même façon. Si l'accessoire ne sera jamais humidifié, mesurez l'échantillon sec. Bloquer un échantillon en côtes anglaises à la vapeur écrase légèrement le relief et modifie les mesures. Pour préserver l'élasticité caractéristique du point, le lavage à la main avec séchage à plat reste la méthode la plus fidèle à l'usage réel du tricot fini.
+
+![Trois pelotes de laine adaptées au tricot côtes anglaises en poids Aran avec des aiguilles en bois taille 5,5 mm](/images/blog/tricot-cotes-anglaises/tricot-cotes-anglaises-choix-laine.webp)
 
 ## Choisir la bonne laine pour des côtes anglaises réussies
 
@@ -1423,6 +1489,8 @@ Les côtes anglaises sont bien plus qu'un simple point de fantaisie : c'est une 
 
 Vous souhaitez tricoter un pull facile et vous cherchez un point de départ clair, gratuit et sans détour ? Ce guide est fait pour vous. Tricoter un pull est souvent perçu comme une étape intimidante après les [écharpe](/blog/echarpe-snood-tricot)s et les [bonnet](/blog/bonnet-a-tricoter)s, mais avec la bonne méthode et les bons repères, c'est un projet tout à fait accessible dès votre première année de pratique. Dans cet article, vous trouverez les explications concrètes sur le choix de la laine, la réalisation de l'échantillon, la construction top-down et la lecture d'un patron. Pas de raccourcis ni de promesses vagues : chaque étape est expliquée avec des chiffres et des exemples précis. À la fin, vous saurez exactement par où commencer, [quelle laine](/blog/quelle-laine-pour-tricoter-un-pull) acheter, combien de mailles monter et pourquoi chaque décision technique compte pour que votre pull vous aille vraiment.
 
+![Aiguilles circulaires en bois avec un échantillon de jersey en laine mérinos crème sur fond neutre, lumière naturelle douce](/images/blog/tricoter-un-pull-facile-debutant-gratuit/tricoter-un-pull-facile-debutant-gratuit-echantillon-jersey.webp)
+
 ## Pourquoi commencer par un pull en jersey construction top-down ?
 
 La construction top-down est unanimement recommandée pour un premier pull, et ce n'est pas un hasard. En commençant par le col et en tricotant vers le bas, vous construisez le vêtement en un seul morceau ou en très peu de parties. Résultat : peu ou pas de coutures à assembler à la fin, ce qui est souvent la partie la plus délicate pour un débutant. L'autre avantage décisif est la possibilité d'essayer le pull en cours de route. Vous pouvez glisser l'ouvrage sur des [aiguilles circulaires](/blog/tricoter-en-rond) et passer la tête pour vérifier l'encolure, ou placer les mailles en attente sur un fil de marquage pour tester la profondeur des emmanchures avant de les rabattre définitivement.
@@ -1432,6 +1500,8 @@ Le jersey, de son côté, est le point le plus simple qui existe : un rang endro
 ### Qu'est-ce qu'un raglan top-down concrètement ?
 
 Le raglan top-down est la forme la plus courante de pull débutant en construction top-down. On monte les mailles du col, puis on effectue des augmentations régulières à quatre points précis du rang pour créer simultanément les deux manches et le corps du pull. Ces lignes d'augmentation forment des diagonales visibles de chaque côté du col jusqu'aux emmanchures, ce qui est à la fois un repère visuel pour compter et un élément décoratif caractéristique. En pratique, vous doublez vos sections de manches et de corps toutes les deux rangées (un rang endroit augmenté, un rang envers droit). Lorsque la profondeur d'emmanchure est atteinte, vous mettez les mailles des manches en attente sur un fil et vous continuez uniquement sur les mailles du corps jusqu'à la longueur souhaitée.
+
+![Schéma technique illustrant la construction top-down raglan d'un pull avec les quatre sections dos, devant et deux manches reliées par les lignes de raglan](/images/blog/tricoter-un-pull-facile-debutant-gratuit/tricoter-un-pull-facile-debutant-gratuit-schema-top-down-raglan.webp)
 
 ## Choisir sa laine : poids, matière et quantité pour un premier pull
 
@@ -1446,6 +1516,8 @@ Sur la quantité : comptez entre 800 et 1 200 mètres de fil Aran pour un pull a
 ### Comment lire une étiquette de pelote avant d'acheter ?
 
 L'étiquette d'une pelote concentre toutes les informations utiles. Le symbole des aiguilles croisées indique la taille d'aiguilles recommandée par le fabricant, exprimée en millimètres. Le symbole du carré indique l'échantillon de référence : par exemple, 18 m x 24 rgs = 10 cm x 10 cm sur aiguilles 5 mm en jersey. Ces chiffres sont la base de tout calcul de patron. La composition en pourcentage (par exemple 100 % mérinos ou 80 % laine / 20 % polyamide) vous renseigne sur la douceur, l'entretien et la durabilité du fil. Le grammage et le métrage vous permettent de calculer combien de pelotes acheter en divisant le métrage total requis par le métrage d'une pelote.
+
+![Trois pelotes de laine Aran de différentes teintes naturelles disposées sur une surface neutre avec un mètre ruban pour illustrer le choix de la laine](/images/blog/tricoter-un-pull-facile-debutant-gratuit/tricoter-un-pull-facile-debutant-gratuit-choix-laine-aran.webp)
 
 ## L'échantillon : l'étape que vous ne pouvez pas sauter
 
@@ -1560,12 +1632,14 @@ Tricoter un premier pull est un projet structurant : il vous oblige à comprendr
       "chaussons tricot semelle"
     ],
     publishedAt: "2026-06-22",
-    readingTime: "12 min de lecture",
+    readingTime: "13 min de lecture",
     lang: "fr",
     content: `
 **Les chaussons tricotés sont des chaussures d'intérieur confectionnées à l'aiguille, généralement en laine ou en fil acrylique, construits en montant des mailles sur un ou deux aiguilles et en formant la semelle, les côtés et le talon par des augmentations et des diminutions successives. Un modèle de chaussons tricot facile et gratuit repose sur un nombre limité de mailles (entre 30 et 50 selon la pointure) et peut se réaliser en quelques heures avec une maîtrise basique du jersey et des côtes.**
 
 Trouver un modèle de chaussons tricot facile et gratuit est rapide. Comprendre pourquoi ce modèle fonctionne l'est beaucoup moins. Pourtant, c'est cette compréhension qui fait la différence entre un chausson qui tient en forme et un autre qui s'aplatit après deux lavages. Ce guide ne se contente pas de vous donner des instructions à suivre à l'aveugle : il vous explique chaque choix technique, du montage des mailles jusqu'au rabattage final. Vous saurez pourquoi on utilise des côtes 2/2 en bord de tige, pourquoi la semelle se tricote souvent avec une maille glissée sur deux, et comment adapter n'importe quel patron gratuit à votre pointure réelle grâce à votre échantillon. Que vous tricoter à plat sur deux aiguilles droites ou [en rond](/blog/tricoter-en-rond) sur un jeu de cinq, les principes de construction restent les mêmes. À la fin, vous aurez toutes les clés pour lire, adapter et même concevoir votre propre patron de chaussons.
+
+![Paire de chaussons tricotés à la main en laine Aran couleur naturelle et terracotta, posés sur une surface en bois clair avec une pelote de laine](/images/blog/chaussons-tricot-facile-gratuit/chaussons-tricot-facile-gratuit-paire-finies.webp)
 
 ## Pourquoi l'échantillon est la première étape, même pour des chaussons
 
@@ -1578,6 +1652,8 @@ Pour des chaussons, l'échantillon prend moins de 30 minutes et vous épargne de
 ### Comment calculer le nombre de mailles à monter selon votre échantillon
 
 La formule est simple : divisez la mesure souhaitée en centimètres par 10, puis multipliez par le nombre de mailles de votre échantillon. Si votre pied fait 9 cm de large et que votre échantillon donne 20 mailles pour 10 cm, vous avez besoin de 18 mailles pour la largeur de la semelle. La plupart des patrons gratuits de chaussons expriment cette logique sous forme de tableau de pointures. Apprendre à calculer vous-même vous rend indépendant de ces tableaux et vous permet d'adapter n'importe quel modèle.
+
+![Diagramme technique illustrant un échantillon de tricot de 10 cm sur 10 cm avec les mailles et les rangs mesurés à la règle](/images/blog/chaussons-tricot-facile-gratuit/chaussons-tricot-facile-gratuit-echantillon-diagramme.webp)
 
 ## Les deux grandes constructions de chaussons : à plat ou en rond
 
@@ -1592,6 +1668,8 @@ Pour un premier patron de chaussons facile et gratuit, la construction à plat e
 ### La construction en L : la méthode la plus simple pour les débutants
 
 La construction en L consiste à monter les mailles de la semelle en premier, à tricoter jusqu'à la longueur du pied, puis à créer le talon et la tige en continuant dans le même sens. L'ouvrage forme un L lorsqu'on le pose à plat. Cette méthode ne demande qu'un seul rabattage final et une seule couture sur le côté du talon. Elle est particulièrement adaptée aux patrons gratuits de chaussons adultes car la longueur du pied est directement lisible sur l'ouvrage sans calcul intermédiaire.
+
+![Chausson en cours de tricot à plat sur deux aiguilles droites, montrant la construction en L avec la semelle en jersey et les premières mailles de la tige](/images/blog/chaussons-tricot-facile-gratuit/chaussons-tricot-facile-gratuit-construction-plat.webp)
 
 ## Choisir le bon fil pour des chaussons durables et confortables
 
@@ -1709,6 +1787,8 @@ Tricoter des chaussons faciles et gratuits, c'est avant tout comprendre quelques
 
 Tricoter un bonnet est souvent le premier projet en ronde que l'on entreprend après avoir maîtrisé les bases sur des aiguilles droites. Et pourtant, même avec de l'expérience, les mêmes questions reviennent : combien de mailles monter, comment calculer le bon nombre pour sa taille, comment obtenir un sommet régulier sans trou ni bosse ? Ce guide répond à ces questions de façon concrète. Vous y trouverez la logique qui se cache derrière chaque étape, de l'échantillon jusqu'aux dernières diminutions. Que vous souhaitiez tricoter un bonnet femme, un bonnet [pour bébé](/blog/layette-bebe-tricot) ou simplement comprendre pourquoi votre dernier bonnet était trop grand, chaque section vous donne les chiffres et le raisonnement nécessaires pour ajuster votre travail. Aucune formule magique ici : uniquement de la géométrie textile, du bon sens et quelques calculs accessibles.
 
+![Bonnet en cours de tricot sur aiguilles circulaires, montrant le revers en côtes et le corps en jersey](/images/blog/tricoter-un-bonnet/tricoter-un-bonnet-en-cours.webp)
+
 ## Pourquoi l'échantillon est la première étape incontournable
 
 Avant de monter la moindre maille pour tricoter un bonnet, vous devez connaître votre échantillon. L'échantillon, c'est le nombre de mailles et de rangs que vous obtenez sur 10 x 10 cm avec votre fil et vos aiguilles. Ce chiffre gouverne tout le calcul de votre bonnet.
@@ -1723,6 +1803,8 @@ Tricoter votre échantillon en rond, dans les mêmes conditions que votre projet
 
 Tricotez un carré d'au moins 15 x 15 cm, bloquez-le à la vapeur ou à l'eau selon les recommandations du fil, puis laissez-le sécher à plat. Mesurez toujours au centre du carré, loin des bords où la tension est instable. Utilisez une règle rigide, pas un mètre de couture qui peut s'étirer. Comptez les mailles sur exactement 10 cm. Si vous obtenez 17,5 mailles, ne l'arrondissez pas : travaillez avec ce nombre dans vos calculs, car l'arrondi cumulatif peut générer des erreurs notables sur un vêtement.
 
+![Diagramme illustrant la mesure de l'échantillon de tricot sur 10 x 10 cm avec comptage des mailles et des rangs](/images/blog/tricoter-un-bonnet/tricoter-un-bonnet-echantillon-diagramme.webp)
+
 ## Choisir ses aiguilles et sa laine pour un bonnet réussi
 
 Le choix des aiguilles et du fil détermine à la fois le rendu esthétique et le confort du bonnet. Pour tricoter un bonnet, la majorité des tricoteurs travaillent avec des aiguilles circulaires de 40 à 60 cm de câble, ou avec un jeu de 4 à 5 aiguilles à double pointe. Les deux options permettent de travailler en rond, ce qui évite toute couture au sommet et donne un tissu régulier.
@@ -1736,6 +1818,8 @@ La matière influe aussi sur la structure du point : une laine avec du twist (to
 ### Tableau de correspondance aiguilles et fils pour bonnet
 
 Fil fingering : aiguilles 2,5-3,5 mm, environ 18-22 mailles pour 10 cm. Fil DK : aiguilles 3,5-4,5 mm, environ 18-22 mailles pour 10 cm. Fil worsted : aiguilles 4,5-5,5 mm, environ 16-20 mailles pour 10 cm. Fil aran : aiguilles 5-6 mm, environ 14-18 mailles pour 10 cm. Fil chunky : aiguilles 6-8 mm, environ 10-14 mailles pour 10 cm. Ces valeurs sont indicatives et varient selon la marque et votre tension personnelle : l'échantillon reste indispensable.
+
+![Cinq pelotes de laine de différentes épaisseurs avec leurs aiguilles correspondantes, de fingering à chunky](/images/blog/tricoter-un-bonnet/tricoter-un-bonnet-choix-laine-aiguilles.webp)
 
 ## Calculer le nombre de mailles à monter selon la taille
 
