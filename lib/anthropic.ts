@@ -5,6 +5,9 @@ const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
+// Modele Claude utilise pour l'analyse d'image (vision). Exporte pour le tracking des generations.
+export const ANALYSIS_MODEL = "claude-opus-4-8";
+
 const SYSTEM_PROMPT = `CRITICAL: Return ONLY valid JSON. No text before or after. No markdown code blocks. Just the raw JSON object starting with { and ending with }
 
 Tu es un expert en analyse de vêtements tricotés pour l'application La Maille.
@@ -346,7 +349,7 @@ export async function analyzeGarmentImage({
     });
 
     const response = await client.messages.create({
-      model: "claude-opus-4-6",
+      model: ANALYSIS_MODEL,
       max_tokens: 4096,
       messages: [
         {

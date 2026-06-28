@@ -2,9 +2,49 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   analyzeGarmentImage,
   AnalysisError,
+  ANALYSIS_MODEL,
   type ImageMediaType,
   type ImageData,
 } from "@/lib/anthropic";
+import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+import type { GarmentAnalysis } from "@/lib/types";
+
+/**
+ * Logge une generation en base (best-effort). N'echoue jamais le flux user :
+ * toute erreur est avalee et juste loggee.
+ */
+async function logGeneration(
+  analysis: GarmentAnalysis,
+  numImages: number
+): Promise<void> {
+  try {
+    const admin = createAdminClient();
+    if (!admin) return; // service_role non configuree -> on skip silencieusement
+
+    // Recupere l'utilisateur connecte si session presente (sinon anonyme)
+    let userId: string | null = null;
+    try {
+      const supabase = await createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      userId = user?.id ?? null;
+    } catch {
+      // pas de session valide -> generation anonyme
+    }
+
+    await admin.from("generations").insert({
+      user_id: userId,
+      analysable: analysis.analysable,
+      garment_type: analysis.analysable ? analysis.garment.type : null,
+      num_images: numImages,
+      model: ANALYSIS_MODEL,
+    });
+  } catch (err) {
+    console.error("Failed to log generation:", err);
+  }
+}
 
 const ALLOWED_TYPES: ImageMediaType[] = [
   "image/jpeg",
@@ -83,6 +123,9 @@ export async function POST(request: NextRequest) {
 
     // Analyze with Claude
     const analysis = await analyzeGarmentImage({ images });
+
+    // Track the generation (best-effort, ne bloque pas la reponse)
+    await logGeneration(analysis, images.length);
 
     return NextResponse.json({
       success: true,
