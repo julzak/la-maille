@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "How It Works: 4 Steps from Photo to Knitting Pattern | La Maille",
+  title: "How It Works: 4 Steps from Photo to Knitting Pattern",
   description:
     "Step-by-step guide: upload a sweater photo, enter your measurements and gauge, and receive a complete knitting pattern with row-by-row instructions.",
   keywords: [
