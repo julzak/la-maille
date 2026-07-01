@@ -2427,7 +2427,7 @@ For sleeve caps — one of the more mathematically involved parts of garment con
 
 ![Screenshot or diagram of La Maille interface showing photo upload and pattern generation flow](/images/blog/photo-to-knitting-pattern-complete-guide/la-maille-pattern-generation-flow.webp)
 
-All of this analysis and calculation can absolutely be done by hand — and many experienced knitters genuinely enjoy the puzzle. But if you want faster results, or if garment math isn't your strength, AI tools like [La Maille](https://la-maille.com/) can analyze your photo and generate a complete, personalized pattern automatically.
+All of this analysis and calculation can absolutely be done by hand — and many experienced knitters genuinely enjoy the puzzle. But if you want faster results, or if garment math isn't your strength, AI tools like [La Maille's knitting pattern generator](/knitting-pattern-generator) can analyze your photo and generate a complete, personalized pattern automatically.
 
 Here's the workflow:
 
@@ -2556,7 +2556,7 @@ For decades, knitters who wanted custom patterns had two options: buy a publishe
 
 ## AI Pattern Generation: The Modern Approach
 
-AI knitting pattern generators like [La Maille](https://la-maille.com/) use machine learning to analyze images and produce fully calculated patterns automatically. You provide a photo of a sweater you love, your body measurements, and your yarn's gauge — the AI handles every calculation and delivers row-by-row instructions you can cast on immediately.
+AI knitting pattern generators like [La Maille](/knitting-pattern-generator) use machine learning to analyze images and produce fully calculated patterns automatically. You provide a photo of a sweater you love, your body measurements, and your yarn's gauge — the AI handles every calculation and delivers row-by-row instructions you can cast on immediately.
 
 ### How AI Pattern Generation Works
 
@@ -6402,7 +6402,7 @@ Knitting neckline shaping is the process of reducing stitches at the top of a sw
 
 ![Three knitted swatches showing crew neck, V-neck, and scoop neck neckline shaping shapes side by side on a linen surface](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772031936/seo/en/knitting-neckline-shaping/knitting-neckline-shaping/knitting-neckline-shaping-three-styles.jpg)
 
-Knitting neckline shaping is one of the most satisfying techniques to master — it transforms a flat rectangle of fabric into a garment that actually fits a human body. Whether you are working a classic crew neck, a flattering V-neck, or a relaxed scoop neck, the core logic is the same: you remove stitches at the center, then taper each side gradually with decreases. The difference between neckline styles comes down to how many stitches you remove at once and how quickly you work those side decreases. In this guide, you will learn how to calculate stitch counts, work each neckline style step by step, choose the right decreases for clean edges, and finish with a tidy neckband. Every example uses concrete stitch numbers based on a typical worsted-weight gauge of 20 stitches and 28 rows per 4 inches (10 cm), so you can see exactly how the math works before adapting it to your own swatch.
+Knitting neckline shaping is one of the most satisfying techniques to master — it transforms a flat rectangle of fabric into a garment that actually fits a human body. Whether you are working a classic crew neck, a flattering V-neck, or a relaxed scoop neck, the core logic is the same: you remove stitches at the center, then taper each side gradually with decreases. The difference between neckline styles comes down to how many stitches you remove at once and how quickly you work those side decreases. In this guide, you will learn how to calculate stitch counts, work each neckline style step by step, choose the right decreases for clean edges, and finish with a tidy neckband. Every example uses concrete stitch numbers based on a typical worsted-weight gauge of 20 stitches and 28 rows per 4 inches (10 cm), so you can see exactly how the math works before adapting it to your own swatch. If you would rather skip the calculations, La Maille's [knitting pattern generator](/knitting-pattern-generator) works out neckline shaping for you from a single photo.
 
 ## Key Facts
 
