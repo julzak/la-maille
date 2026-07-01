@@ -4779,7 +4779,7 @@ If your gauge doesn't match:
 
 A gauge difference of just 1 stitch per 4 inches may sound negligible. But on a sweater chest with 200 stitches, that 1-stitch difference becomes 2.5 inches of lost or gained circumference. That's the difference between a sweater that fits and one that doesn't.
 
-Always knit a gauge swatch before starting any garment. Cast on at least 30 stitches and work at least 4 inches. Wash and block the swatch the same way you'll wash the finished garment — yarn relaxes and changes dimensions after washing. Measure the swatch flat, count stitches over 4 inches in the center (not near the edges), and adjust needle size up or down until your gauge matches.
+Always knit a gauge swatch before starting any garment. Cast on at least 30 stitches and work at least 4 inches. Wash and block the swatch the same way you'll wash the finished garment — yarn relaxes and changes dimensions after washing. Measure the swatch flat, count stitches over 4 inches in the center (not near the edges), and adjust needle size up or down until your gauge matches. If matching a fixed gauge feels like a fight, our [knitting pattern generator](/knitting-pattern-generator) works the other way around: it builds the pattern around the gauge you actually knit.
 
 ## Working Through a Pattern Section
 
