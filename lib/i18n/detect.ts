@@ -3,6 +3,35 @@ export type Language = "fr" | "en";
 export const LANG_COOKIE = "lamaille-lang";
 export const LANG_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
+/** Header interne posé par le middleware : locale déterminée par l'URL. */
+export const LOCALE_HEADER = "x-lamaille-locale";
+
+/**
+ * Pages marketing localisées par URL : EN à la racine, FR sous /fr.
+ * Les routes applicatives (/analyse, /patron, /tricot, /mes-patrons, ...)
+ * restent pilotées par le cookie et ne sont pas listées ici.
+ */
+const EN_LOCALIZED_PATHS = new Set([
+  "/",
+  "/knitting-pattern-generator",
+  "/how-it-works",
+  "/blog",
+  "/privacy",
+  "/terms",
+]);
+
+/**
+ * Locale imposée par l'URL, ou null pour les routes applicatives
+ * (non localisées par URL, comportement cookie inchangé).
+ */
+export function getPathLocale(pathname: string): Language | null {
+  if (pathname === "/fr" || pathname.startsWith("/fr/")) return "fr";
+  if (EN_LOCALIZED_PATHS.has(pathname) || pathname.startsWith("/blog/")) {
+    return "en";
+  }
+  return null;
+}
+
 export function isValidLanguage(value: unknown): value is Language {
   return value === "fr" || value === "en";
 }

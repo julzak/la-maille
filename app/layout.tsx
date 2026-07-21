@@ -6,13 +6,16 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/components/AuthProvider";
 import { UTMCapture } from "@/components/UTMCapture";
+import { LocaleSync } from "@/components/LocaleSync";
 import { useI18n } from "@/lib/i18n";
-import { getServerLanguage } from "@/lib/i18n/server";
+import { getRequestLocale } from "@/lib/i18n/server";
 import { seoMetadata } from "@/lib/i18n/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const lang = getServerLanguage();
+  const lang = getRequestLocale();
   const m = seoMetadata[lang];
+  const homeUrl =
+    lang === "fr" ? "https://la-maille.com/fr" : "https://la-maille.com/";
 
   return {
     metadataBase: new URL("https://la-maille.com"),
@@ -23,13 +26,13 @@ export async function generateMetadata(): Promise<Metadata> {
     description: m.description,
     keywords: m.keywords,
     alternates: {
-      canonical: "https://la-maille.com/",
+      canonical: homeUrl,
     },
     openGraph: {
       title: m.title,
       description: m.description,
       type: "website",
-      url: "https://la-maille.com/",
+      url: homeUrl,
       siteName: m.siteName,
       locale: m.ogLocale,
       images: [
@@ -62,12 +65,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const lang = getServerLanguage();
+  const lang = getRequestLocale();
   const m = seoMetadata[lang];
 
   // SSR: hydrate the singleton store so Client Components rendered on the
-  // server use the correct language. The browser will read the same cookie
-  // when bootstrapping the store, so SSR HTML matches the first client render.
+  // server use the correct language. The browser resolves the same locale
+  // (URL first, then cookie), so SSR HTML matches the first client render.
   if (typeof window === "undefined") {
     useI18n.setState({ language: lang });
   }
@@ -126,6 +129,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <UTMCapture />
+        <LocaleSync />
         <AuthProvider>
           <Header />
           <main className="flex-1">{children}</main>

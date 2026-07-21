@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAllArticles, articleLang } from "@/lib/blog-data";
-import { getServerLanguage } from "@/lib/i18n/server";
+import { getRequestLocale } from "@/lib/i18n/server";
 import type { Language } from "@/lib/i18n/detect";
 
 const chrome: Record<Language, { title: string; subtitle: string; locale: string }> = {
@@ -19,8 +19,9 @@ const chrome: Record<Language, { title: string; subtitle: string; locale: string
 };
 
 export default function BlogPage() {
-  const lang = getServerLanguage();
+  const lang = getRequestLocale();
   const t = chrome[lang];
+  const prefix = lang === "fr" ? "/fr" : "";
   const articles = getAllArticles(lang);
 
   return (
@@ -36,7 +37,7 @@ export default function BlogPage() {
         {articles.map((article) => (
           <Link
             key={article.slug}
-            href={`/blog/${article.slug}`}
+            href={`${prefix}/blog/${article.slug}`}
             className="group block"
           >
             <article className="bg-card rounded-lg border border-border p-6 h-full transition-colors group-hover:border-primary/40">
