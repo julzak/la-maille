@@ -1,13 +1,43 @@
 "use client";
 
+import { usePathname, useRouter } from "next/navigation";
 import { useTranslation, type Language } from "@/lib/i18n";
+import { getPathLocale } from "@/lib/i18n/detect";
+
+/**
+ * URL équivalente dans l'autre locale, ou null si la page n'est pas
+ * localisée par URL (routes applicatives : on ne change que le cookie).
+ * Les articles de blog n'ont pas d'équivalent slug à slug : on renvoie
+ * vers le listing blog de l'autre locale.
+ */
+function equivalentPath(pathname: string, target: Language): string | null {
+  const current = getPathLocale(pathname);
+  if (!current || current === target) return null;
+
+  if (target === "fr") {
+    if (pathname === "/") return "/fr";
+    if (pathname.startsWith("/blog/")) return "/fr/blog";
+    return `/fr${pathname}`;
+  }
+
+  if (pathname === "/fr") return "/";
+  const stripped = pathname.slice("/fr".length) || "/";
+  if (stripped.startsWith("/blog/")) return "/blog";
+  return stripped;
+}
 
 export function LanguageSelector() {
   const { language, setLanguage } = useTranslation();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const toggleLanguage = () => {
     const newLang: Language = language === "fr" ? "en" : "fr";
     setLanguage(newLang);
+    const target = equivalentPath(pathname, newLang);
+    if (target) {
+      router.push(target);
+    }
   };
 
   return (
