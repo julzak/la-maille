@@ -2,6 +2,7 @@ import { create } from "zustand";
 import {
   LANG_COOKIE,
   LANG_COOKIE_MAX_AGE,
+  getPathLocale,
   readLanguageFromCookieString,
   type Language,
 } from "./i18n/detect";
@@ -15,6 +16,10 @@ interface I18nState {
 
 function getInitialLanguage(): Language {
   if (typeof document !== "undefined") {
+    // Sur les pages marketing, l'URL fait foi (EN racine, FR sous /fr) :
+    // garantit une hydratation cohérente avec le SSR piloté par l'URL.
+    const fromPath = getPathLocale(window.location.pathname);
+    if (fromPath) return fromPath;
     const fromCookie = readLanguageFromCookieString(document.cookie);
     if (fromCookie) return fromCookie;
   }
