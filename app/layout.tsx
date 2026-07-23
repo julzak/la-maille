@@ -27,6 +27,11 @@ export async function generateMetadata(): Promise<Metadata> {
     keywords: m.keywords,
     alternates: {
       canonical: homeUrl,
+      languages: {
+        en: "https://la-maille.com/",
+        fr: "https://la-maille.com/fr",
+        "x-default": "https://la-maille.com/",
+      },
     },
     openGraph: {
       title: m.title,

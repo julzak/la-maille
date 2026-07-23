@@ -7,24 +7,52 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: `${baseUrl}/`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/`,
+          fr: `${baseUrl}/fr`,
+          "x-default": `${baseUrl}/`,
+        },
+      },
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/knitting-pattern-generator`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/knitting-pattern-generator`,
+          fr: `${baseUrl}/fr/knitting-pattern-generator`,
+          "x-default": `${baseUrl}/knitting-pattern-generator`,
+        },
+      },
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/how-it-works`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/how-it-works`,
+          fr: `${baseUrl}/fr/how-it-works`,
+          "x-default": `${baseUrl}/how-it-works`,
+        },
+      },
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/blog`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/blog`,
+          fr: `${baseUrl}/fr/blog`,
+          "x-default": `${baseUrl}/blog`,
+        },
+      },
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
@@ -36,13 +64,53 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     })),
     {
+      url: `${baseUrl}/fr/knitting-pattern-generator`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/knitting-pattern-generator`,
+          fr: `${baseUrl}/fr/knitting-pattern-generator`,
+          "x-default": `${baseUrl}/knitting-pattern-generator`,
+        },
+      },
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/fr/how-it-works`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/how-it-works`,
+          fr: `${baseUrl}/fr/how-it-works`,
+          "x-default": `${baseUrl}/how-it-works`,
+        },
+      },
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/fr`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/`,
+          fr: `${baseUrl}/fr`,
+          "x-default": `${baseUrl}/`,
+        },
+      },
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
     {
       url: `${baseUrl}/fr/blog`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/blog`,
+          fr: `${baseUrl}/fr/blog`,
+          "x-default": `${baseUrl}/blog`,
+        },
+      },
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.7,

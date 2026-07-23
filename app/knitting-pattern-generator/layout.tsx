@@ -6,6 +6,11 @@ export const metadata: Metadata = {
     "Turn any sweater or cardigan photo into a custom knitting pattern. Get row-by-row instructions adapted to your gauge. Free AI-powered pattern generator.",
   alternates: {
     canonical: "https://la-maille.com/knitting-pattern-generator",
+    languages: {
+      en: "https://la-maille.com/knitting-pattern-generator",
+      fr: "https://la-maille.com/fr/knitting-pattern-generator",
+      "x-default": "https://la-maille.com/knitting-pattern-generator",
+    },
   },
 };
 

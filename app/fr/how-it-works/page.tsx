@@ -6,6 +6,11 @@ export const metadata: Metadata = {
     "Guide pas à pas : uploadez la photo d'un pull, entrez vos mensurations et votre échantillon, et recevez un patron de tricot complet rang par rang.",
   alternates: {
     canonical: "https://la-maille.com/fr/how-it-works",
+    languages: {
+      en: "https://la-maille.com/how-it-works",
+      fr: "https://la-maille.com/fr/how-it-works",
+      "x-default": "https://la-maille.com/how-it-works",
+    },
   },
 };
 
