@@ -6,6 +6,11 @@ export const metadata: Metadata = {
     "Learn how to turn your favorite sweaters into custom knitting patterns. Tips, guides, and tutorials from La Maille.",
   alternates: {
     canonical: "https://la-maille.com/blog",
+    languages: {
+      en: "https://la-maille.com/blog",
+      fr: "https://la-maille.com/fr/blog",
+      "x-default": "https://la-maille.com/blog",
+    },
   },
 };
 

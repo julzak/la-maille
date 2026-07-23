@@ -3533,7 +3533,7 @@ Top-down raglan is widely considered the best choice for a first sweater. The co
 **Does sleeve construction affect how much yarn I need?**
 The total yardage for a sweater of the same size is roughly similar regardless of construction. However, set-in sleeves involve more individual pieces, so you may need to manage yarn quantities more carefully to ensure each piece has enough. Top-down raglans allow you to adjust length on the fly if you are running low, which gives slightly more flexibility in practice.
 
-Ready to knit your next sweater? Try La Maille — upload a photo of any sweater style and get a custom pattern with the right construction for that design.
+Ready to knit your next sweater? Try La Maille's [knitting pattern generator](/knitting-pattern-generator) — upload a photo of any sweater style and get a custom pattern with the right construction for that design.
     `.trim(),
   },
   {
@@ -5872,7 +5872,7 @@ Stitch pattern significantly increases yarn consumption above a stockinette base
 
 Knowing how many yards of yarn for a sweater comes down to three things: yarn weight (which sets your baseline range), garment size and construction (which determines surface area), and stitch pattern (which applies the final multiplier). For most adult sweaters, worsted weight falls between 1,000 and 1,800 yards, DK between 1,200 and 2,200, and bulky between 400 and 900. Cardigans add 10 to 20 percent. Cables add 20 to 30 percent. Your gauge swatch makes every estimate accurate instead of approximate. And a 10 percent buffer skein purchased from the same dye lot is the cheapest insurance in knitting. Use these numbers as your starting framework, adjust with your own swatch data, and you'll never be caught short — or over-budget — on yarn again.
 
-Upload a sweater photo and get your custom knitting pattern in minutes.
+Upload a sweater photo to our [knitting pattern generator](/knitting-pattern-generator) and get your custom knitting pattern in minutes.
     `.trim(),
   },
   {

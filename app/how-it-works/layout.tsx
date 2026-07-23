@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://la-maille.com/how-it-works",
+    languages: {
+      en: "https://la-maille.com/how-it-works",
+      fr: "https://la-maille.com/fr/how-it-works",
+      "x-default": "https://la-maille.com/how-it-works",
+    },
   },
 };
 

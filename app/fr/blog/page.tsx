@@ -6,6 +6,11 @@ export const metadata: Metadata = {
     "Apprenez à transformer vos pulls préférés en patrons de tricot sur mesure. Conseils, guides et tutoriels de La Maille.",
   alternates: {
     canonical: "https://la-maille.com/fr/blog",
+    languages: {
+      en: "https://la-maille.com/blog",
+      fr: "https://la-maille.com/fr/blog",
+      "x-default": "https://la-maille.com/blog",
+    },
   },
 };
 
