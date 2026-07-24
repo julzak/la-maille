@@ -112,3 +112,31 @@ EOF
 ## Coûts à surveiller
 - **Anthropic API** : ~$0.01-0.05 par analyse d'image (limite configurée)
 - Supabase/Vercel/Resend : free tier suffisant pour le moment
+
+---
+
+## Supabase migration 2026-04-18 → `jazzy-apps`
+
+### Avant / Après
+
+| Item | Source (SUPPRIMÉE ✅) | Cible |
+|---|---|---|
+| Projet Supabase | `la-maille` — ref `cecfgksbmdyzjvfhodur` — eu-west-1 | `jazzy-apps` — ref `vpmmobouujkknustjlho` — eu-central-1 |
+| URL | `https://cecfgksbmdyzjvfhodur.supabase.co` | `https://vpmmobouujkknustjlho.supabase.co` |
+
+### Changements
+- **Schema public** : tables `profiles` + `saved_patterns`, fonctions `handle_new_user` + `handle_updated_at`, 7 RLS policies, FK vers `auth.users` — tout migré via `pg_dump --schema=public` nettoyé.
+- **Auth** : `auth.users` (32) + `auth.identities` (33) migrés via `pg_dump` data-only avec `session_replication_role=replica`. **Hashes bcrypt préservés → aucun reset password nécessaire** pour les 23 users email. Les 9 users Google fonctionnent via identities migrées + même Client ID Google.
+- **Trigger `on_auth_user_created`** sur `auth.users` recréé manuellement (n'était pas dans le dump `--schema=public`).
+- **Edge function `welcome-email`** : redéployée sur jazzy-apps via `supabase functions deploy`. Secret `BREVO_API_KEY` re-set via `supabase secrets set`.
+- **Webhook `welcome-email`** : bootstrap manuel sur jazzy-apps car le schéma `supabase_functions` n'existait pas (créé seulement à la 1ère webhook UI). Installés : extension `pg_net`, schéma `supabase_functions`, table `hooks`, fonction `http_request` (copie exacte du source). Trigger `AFTER INSERT ON public.profiles` avec URL + service_role de jazzy-apps.
+- **Auth URL Configuration** (jazzy-apps) : Site URL = `https://la-maille.com` ; Redirect URLs = `https://la-maille.com/**` + `http://localhost:3000/**`.
+- **Google OAuth** : même Client ID Google Cloud réutilisé ; redirect URI `https://vpmmobouujkknustjlho.supabase.co/auth/v1/callback` ajoutée dans Google Cloud Console + provider Google activé dans jazzy-apps Auth avec Client ID + Secret identiques.
+- **Vercel env vars (production)** remplacées : `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (seules vars Supabase côté Vercel).
+
+### Suppression projet source
+**FAIT** : projet source `la-maille` (`cecfgksbmdyzjvfhodur`) **supprimé** (vérifié 2026-06-26 : DNS NXDOMAIN). Plus de rollback auth possible (hashes bcrypt source perdus), conforme au plan initial. Migration close.
+
+### Follow-up UX (out of migration scope)
+- Template email "Confirm signup" Supabase = default moche → customiser dans jazzy-apps → Authentication → Email Templates
+- Ou **désactiver** la confirmation email native Supabase et implémenter un double-opt-in custom via le welcome email Brevo (token stocké en `profiles.confirmation_token` + route `/confirm-email?token=xxx` côté Next.js).
