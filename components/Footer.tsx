@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="bg-muted/30 mt-auto border-t border-border">
       <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col items-center gap-4">
-          <Logo showTagline={false} />
+          <Logo />
           <p className="text-sm text-muted-foreground">
             Made with ❤️ &amp; 🧶 in Paris
           </p>

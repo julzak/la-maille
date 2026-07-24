@@ -73,7 +73,7 @@ export default function Home() {
       <section className="py-6 md:py-8 px-4">
         <div className="container mx-auto max-w-2xl text-center">
           <p className="text-sm text-muted-foreground">
-            🧶 Join <span className="font-medium text-foreground">100+ knitters</span> who use La Maille — <span className="font-medium text-foreground">free while in beta</span>
+            {t("socialProofPrefix")}<span className="font-medium text-foreground">{t("socialProofKnitters")}</span>{t("socialProofMiddle")}<span className="font-medium text-foreground">{t("socialProofFree")}</span>
           </p>
         </div>
       </section>
@@ -121,44 +121,44 @@ export default function Home() {
       <section className="py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-4xl">
           <h2 className="font-serif text-3xl text-center mb-12">
-            See it in action
+            {t("homeDemoTitle")}
           </h2>
           <div className="grid md:grid-cols-2 gap-6 md:gap-10 items-start">
             {/* Your photo */}
             <div>
-              <p className="text-sm font-medium text-muted-foreground mb-3 text-center">Your photo</p>
+              <p className="text-sm font-medium text-muted-foreground mb-3 text-center">{t("homeDemoYourPhoto")}</p>
               <div className="aspect-[4/5] rounded-xl border-2 border-dashed border-border bg-muted/20 flex flex-col items-center justify-center gap-4 p-8">
                 <span className="text-6xl" aria-hidden="true">📸</span>
                 <div className="text-center">
-                  <p className="font-serif text-lg mb-1">Upload any sweater photo</p>
-                  <p className="text-sm text-muted-foreground">Front view, well-lit</p>
+                  <p className="font-serif text-lg mb-1">{t("homeDemoUploadCta")}</p>
+                  <p className="text-sm text-muted-foreground">{t("homeDemoUploadHint")}</p>
                 </div>
               </div>
             </div>
 
             {/* Your pattern */}
             <div>
-              <p className="text-sm font-medium text-muted-foreground mb-3 text-center">Your pattern</p>
+              <p className="text-sm font-medium text-muted-foreground mb-3 text-center">{t("homeDemoYourPattern")}</p>
               <div className="aspect-[4/5] rounded-xl border border-border bg-card p-6 md:p-8 flex flex-col">
-                <div className="text-xs text-muted-foreground mb-4 uppercase tracking-wider">La Maille — Custom Pattern</div>
+                <div className="text-xs text-muted-foreground mb-4 uppercase tracking-wider">{t("homeDemoPatternHeader")}</div>
                 <div className="font-mono text-xs md:text-sm text-muted-foreground space-y-3 flex-1">
-                  <p><span className="text-foreground font-medium">Cast on</span> 84 stitches on circular needles.</p>
-                  <p><span className="text-foreground font-medium">Rows 1-20:</span> *K2, P2* ribbing</p>
-                  <p><span className="text-foreground font-medium">Row 21:</span> Knit all stitches (stockinette)</p>
-                  <p><span className="text-foreground font-medium">Continue</span> in stockinette for 38 cm</p>
-                  <p className="text-primary">↓ Armhole shaping</p>
-                  <p><span className="text-foreground font-medium">Next row:</span> Bind off 4 sts, knit to end</p>
-                  <p><span className="text-foreground font-medium">Dec row:</span> K1, SSK, knit to last 3 sts, K2tog, K1</p>
+                  <p><span className="text-foreground font-medium">{t("homeDemoCastOn")}</span>{t("homeDemoCastOnRest")}</p>
+                  <p><span className="text-foreground font-medium">{t("homeDemoRows120")}</span>{t("homeDemoRows120Rest")}</p>
+                  <p><span className="text-foreground font-medium">{t("homeDemoRow21")}</span>{t("homeDemoRow21Rest")}</p>
+                  <p><span className="text-foreground font-medium">{t("homeDemoContinue")}</span>{t("homeDemoContinueRest")}</p>
+                  <p className="text-primary">{t("homeDemoArmhole")}</p>
+                  <p><span className="text-foreground font-medium">{t("homeDemoNextRow")}</span>{t("homeDemoNextRowRest")}</p>
+                  <p><span className="text-foreground font-medium">{t("homeDemoDecRow")}</span>{t("homeDemoDecRowRest")}</p>
                   <p className="text-muted-foreground/50">...</p>
                 </div>
                 <div className="text-xs text-muted-foreground mt-4 pt-3 border-t border-border">
-                  Adapted to your gauge &amp; measurements
+                  {t("homeDemoAdapted")}
                 </div>
               </div>
             </div>
           </div>
           <p className="text-center text-sm text-muted-foreground mt-6 md:hidden">
-            📸 → 🧶 From photo to pattern
+            {t("homeDemoMobileCaption")}
           </p>
         </div>
       </section>
@@ -167,25 +167,25 @@ export default function Home() {
       <section className="py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-4xl">
           <h2 className="font-serif text-3xl text-center mb-3">
-            From the Blog
+            {t("homeBlogTitle")}
           </h2>
           <p className="text-center text-muted-foreground mb-10">
-            Tips and guides to help you knit with confidence.
+            {t("homeBlogSubtitle")}
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { slug: "how-to-recreate-sweater-from-photo", title: "How to Recreate Any Sweater From a Photo" },
-              { slug: "understanding-knitting-gauge-complete-guide", title: "Understanding Knitting Gauge: The Complete Guide" },
-              { slug: "top-down-vs-bottom-up-sweaters", title: "Top-Down vs Bottom-Up Sweaters: Pros and Cons" },
-              { slug: "colorwork-knitting-for-beginners", title: "Colorwork Knitting for Beginners" },
-            ].map(({ slug, title }) => (
+              { slug: "how-to-recreate-sweater-from-photo", titleKey: "homeBlogArticle1" as const },
+              { slug: "understanding-knitting-gauge-complete-guide", titleKey: "homeBlogArticle2" as const },
+              { slug: "top-down-vs-bottom-up-sweaters", titleKey: "homeBlogArticle3" as const },
+              { slug: "colorwork-knitting-for-beginners", titleKey: "homeBlogArticle4" as const },
+            ].map(({ slug, titleKey }) => (
               <Link
                 key={slug}
                 href={`/blog/${slug}`}
                 className="group block bg-card rounded-lg border border-border p-5 hover:border-primary/40 transition-colors"
               >
                 <h3 className="font-serif text-sm font-medium group-hover:text-primary transition-colors">
-                  {title}
+                  {t(titleKey)}
                 </h3>
               </Link>
             ))}
@@ -195,7 +195,7 @@ export default function Home() {
               href="/blog"
               className="text-sm text-primary hover:underline"
             >
-              View all articles →
+              {t("homeBlogViewAll")}
             </Link>
           </div>
         </div>

@@ -400,11 +400,11 @@ export function ImageUploader({
               {t("maxSize")}
             </p>
             <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mt-3">
-              <span>📤 Upload</span>
+              <span>{t("uploadStepUpload")}</span>
               <span aria-hidden="true">→</span>
-              <span>📏 Measure</span>
+              <span>{t("uploadStepMeasure")}</span>
               <span aria-hidden="true">→</span>
-              <span>🧶 Pattern in ~2 min</span>
+              <span>{t("uploadStepPattern")}</span>
             </div>
           </div>
         ) : null}
