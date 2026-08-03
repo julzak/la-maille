@@ -8,34 +8,27 @@ import {
 } from "@/lib/anthropic";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { resolveIdentity, checkRateLimit } from "@/lib/rate-limit";
 import type { GarmentAnalysis } from "@/lib/types";
 
 /**
  * Logge une generation en base (best-effort). N'echoue jamais le flux user :
- * toute erreur est avalee et juste loggee.
+ * toute erreur est avalee et juste loggee. ip_hash n'est renseigne que pour
+ * les requetes anonymes (jamais l'IP en clair).
  */
 async function logGeneration(
+  admin: ReturnType<typeof createAdminClient>,
   analysis: GarmentAnalysis,
-  numImages: number
+  numImages: number,
+  userId: string | null,
+  ipHash: string | null
 ): Promise<void> {
   try {
-    const admin = createAdminClient();
     if (!admin) return; // service_role non configuree -> on skip silencieusement
-
-    // Recupere l'utilisateur connecte si session presente (sinon anonyme)
-    let userId: string | null = null;
-    try {
-      const supabase = await createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      userId = user?.id ?? null;
-    } catch {
-      // pas de session valide -> generation anonyme
-    }
 
     await admin.from("generations").insert({
       user_id: userId,
+      ip_hash: ipHash,
       analysable: analysis.analysable,
       garment_type: analysis.analysable ? analysis.garment.type : null,
       num_images: numImages,
@@ -57,6 +50,41 @@ const MAX_IMAGES = 5;
 
 export async function POST(request: NextRequest) {
   try {
+    const admin = createAdminClient();
+
+    // Recupere l'utilisateur connecte si session presente (sinon anonyme)
+    let userId: string | null = null;
+    try {
+      const supabase = await createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      userId = user?.id ?? null;
+    } catch {
+      // pas de session valide -> requete anonyme
+    }
+
+    // Rate limit avant tout appel Anthropic : 5/24h anonyme (par IP hashee),
+    // 15/24h connecte (par user_id). Fail-open si le comptage echoue.
+    const identity = resolveIdentity(userId, request);
+    const { limited, limit } = await checkRateLimit(admin, identity);
+
+    if (limited) {
+      return NextResponse.json(
+        {
+          error:
+            identity.type === "user"
+              ? `Limite de ${limit} analyses par jour atteinte. Revenez demain.`
+              : `Limite de ${limit} analyses gratuites par jour atteinte. Creez un compte pour continuer.`,
+          code:
+            identity.type === "user"
+              ? "RATE_LIMIT_AUTHENTICATED"
+              : "RATE_LIMIT_ANONYMOUS",
+        },
+        { status: 429 }
+      );
+    }
+
     const formData = await request.formData();
 
     // Support both single "image" and multiple "images" fields
@@ -125,7 +153,13 @@ export async function POST(request: NextRequest) {
     const analysis = await analyzeGarmentImage({ images });
 
     // Track the generation (best-effort, ne bloque pas la reponse)
-    await logGeneration(analysis, images.length);
+    await logGeneration(
+      admin,
+      analysis,
+      images.length,
+      userId,
+      identity.type === "ip" ? identity.ipHash : null
+    );
 
     return NextResponse.json({
       success: true,

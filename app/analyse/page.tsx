@@ -18,13 +18,17 @@ import {
   CONFIDENCE_DISPLAY,
   ERROR_MESSAGES,
 } from "@/lib/messages";
-import { useTranslation } from "@/lib/i18n";
+import { useTranslation, tp, type TranslationKey } from "@/lib/i18n";
+import {
+  ANONYMOUS_DAILY_LIMIT,
+  AUTHENTICATED_DAILY_LIMIT,
+} from "@/lib/rate-limit-constants";
 import { useAutoSave } from "@/hooks/useAutoSave";
 import { generateProjectId, type StoredProject } from "@/lib/storage";
 
 export default function AnalysePage() {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const {
     imagePreviews,
     imageName,
@@ -115,6 +119,17 @@ export default function AnalysePage() {
       const data = await response.json();
 
       if (!response.ok) {
+        if (response.status === 429) {
+          const isAuthenticated = data.code === "RATE_LIMIT_AUTHENTICATED";
+          const key: TranslationKey = isAuthenticated
+            ? "rateLimitAuthenticated"
+            : "rateLimitAnonymous";
+          throw new Error(
+            isAuthenticated
+              ? tp(language, key, AUTHENTICATED_DAILY_LIMIT)
+              : tp(language, key, ANONYMOUS_DAILY_LIMIT, AUTHENTICATED_DAILY_LIMIT)
+          );
+        }
         throw new Error(data.error || ERROR_MESSAGES.serverError);
       }
 
@@ -137,6 +152,7 @@ export default function AnalysePage() {
   }, [
     imagePreviews,
     analysis,
+    language,
     setAnalysis,
     setAnalysisLoading,
     setAnalysisError,
