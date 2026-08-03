@@ -162,11 +162,24 @@ export const translations = {
       "Ces éléments nécessitent votre jugement ou la consultation d'un patron dédié.",
     sharePDF: "Partager le PDF",
     downloadPDF: "Télécharger le PDF",
+    printPattern: "Imprimer",
     download: "Télécharger",
     restart: "Recommencer",
     reportProblem: "Signaler un problème",
     generatingPDF: "Génération...",
     loading: "Chargement...",
+
+    // Email gate (export PDF / impression, BRIEF-01)
+    emailGateTitle: "Un email pour débloquer votre patron",
+    emailGateDescription:
+      "Votre patron reste lisible à l'écran sans rien donner. L'export PDF et l'impression nécessitent juste votre email.",
+    emailGateEmailLabel: "Email",
+    emailGateEmailPlaceholder: "vous@exemple.com",
+    emailGateNewsletterLabel:
+      "Recevoir des conseils tricot et les nouveautés",
+    emailGateSubmit: "Déverrouiller",
+    emailGateSubmitting: "Déverrouillage...",
+    emailGateInvalidEmail: "Merci d'entrer une adresse email valide.",
 
     // WeavingLoader messages
     loaderReceivingImage: "Réception de votre image...",
@@ -869,11 +882,23 @@ export const translations = {
       "These elements require your judgment or consultation of a dedicated pattern.",
     sharePDF: "Share PDF",
     downloadPDF: "Download PDF",
+    printPattern: "Print",
     download: "Download",
     restart: "Start over",
     reportProblem: "Report a problem",
     generatingPDF: "Generating...",
     loading: "Loading...",
+
+    // Email gate (PDF export / print, BRIEF-01)
+    emailGateTitle: "One email to unlock your pattern",
+    emailGateDescription:
+      "Your pattern stays fully readable on screen for free. Exporting to PDF or printing just needs your email.",
+    emailGateEmailLabel: "Email",
+    emailGateEmailPlaceholder: "you@example.com",
+    emailGateNewsletterLabel: "Get knitting tips and news",
+    emailGateSubmit: "Unlock",
+    emailGateSubmitting: "Unlocking...",
+    emailGateInvalidEmail: "Please enter a valid email address.",
 
     // WeavingLoader messages
     loaderReceivingImage: "Receiving your image...",
