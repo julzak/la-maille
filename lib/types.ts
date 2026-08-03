@@ -327,6 +327,10 @@ export interface SavedPattern {
   garment_type: string;
   created_at: string;
   updated_at: string;
+  // Publication (BRIEF-03). Optionnels : absents tant que la migration
+  // 20260803_public_patterns.sql n'est pas appliquee.
+  is_public?: boolean;
+  public_slug?: string | null;
 }
 
 export interface SavedPatternInsert {
@@ -344,4 +348,8 @@ export interface SavedPatternSummary {
   thumbnail_url: string | null;
   garment_type: string;
   created_at: string;
+  // Publication (BRIEF-03). `undefined` = colonnes absentes en DB
+  // (migration non appliquee) : l'UI masque alors le toggle.
+  is_public?: boolean;
+  public_slug?: string | null;
 }
