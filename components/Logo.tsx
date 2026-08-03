@@ -3,14 +3,13 @@
 interface LogoProps {
   variant?: "light" | "dark";
   className?: string;
-  showTagline?: boolean;
 }
 
 // SVG logo component - uses the actual logo file
 // Logo SVG dimensions: 220x155 (ratio 1.42:1)
 // Mobile: 40px height → 57px width
 // Desktop: 48px height → 68px width
-export function Logo({ className = "", showTagline = true }: LogoProps) {
+export function Logo({ className = "" }: LogoProps) {
   return (
     <div className={`flex flex-col items-center ${className}`}>
       <div
@@ -30,11 +29,6 @@ export function Logo({ className = "", showTagline = true }: LogoProps) {
           maskPosition: 'center',
         }}
       />
-      {showTagline && (
-        <span className="text-xs md:text-sm text-muted-foreground -mt-6 text-center">
-          your French knitting companion
-        </span>
-      )}
     </div>
   );
 }
@@ -44,7 +38,6 @@ export function Logo({ className = "", showTagline = true }: LogoProps) {
 export function LogoText({
   variant = "dark",
   className = "",
-  showTagline = true
 }: LogoProps) {
   return (
     <div className={`flex flex-col ${className}`}>
@@ -58,11 +51,6 @@ export function LogoText({
         <span style={{ color: "#E07A5F" }}>I</span>
         LLE
       </span>
-      {showTagline && (
-        <span className="text-xs text-muted-foreground -mt-0.5">
-          your French knitting companion
-        </span>
-      )}
     </div>
   );
 }

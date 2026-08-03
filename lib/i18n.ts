@@ -696,6 +696,49 @@ export const translations = {
     "step.photo": "Photo",
     "step.size": "Taille",
     "step.pattern": "Patron",
+
+    // Home — See it in action
+    homeDemoTitle: "Voir en action",
+    homeDemoYourPhoto: "Votre photo",
+    homeDemoUploadCta: "Importez n'importe quelle photo de pull",
+    homeDemoUploadHint: "Vue de face, bien éclairée",
+    homeDemoYourPattern: "Votre patron",
+    homeDemoPatternHeader: "La Maille — Patron personnalisé",
+    homeDemoCastOn: "Monter",
+    homeDemoCastOnRest: " 84 mailles sur aiguilles circulaires.",
+    homeDemoRows120: "Rangs 1-20 :",
+    homeDemoRows120Rest: " côtes *2 end., 2 env.*",
+    homeDemoRow21: "Rang 21 :",
+    homeDemoRow21Rest: " toutes les mailles à l'endroit (jersey)",
+    homeDemoContinue: "Continuer",
+    homeDemoContinueRest: " en jersey sur 38 cm",
+    homeDemoArmhole: "↓ Façonnage des emmanchures",
+    homeDemoNextRow: "Rang suivant :",
+    homeDemoNextRowRest: " rabattre 4 m., tricoter jusqu'à la fin",
+    homeDemoDecRow: "Rang dim. :",
+    homeDemoDecRowRest: " 1 end., surj. simple, end. jusqu'aux 3 dernières m., 2 ens. end., 1 end.",
+    homeDemoAdapted: "Adapté à votre échantillon et vos mesures",
+    homeDemoMobileCaption: "📸 → 🧶 De la photo au patron",
+
+    // Home — From the Blog
+    homeBlogTitle: "Sur le blog",
+    homeBlogSubtitle: "Conseils et guides pour tricoter en toute confiance.",
+    homeBlogViewAll: "Voir tous les articles →",
+    homeBlogArticle1: "Recréer n'importe quel pull à partir d'une photo",
+    homeBlogArticle2: "Comprendre l'échantillon : le guide complet",
+    homeBlogArticle3: "Top-down vs bottom-up : avantages et inconvénients",
+    homeBlogArticle4: "Initiation au jacquard",
+
+    // Uploader steps
+    uploadStepUpload: "📤 Importer",
+    uploadStepMeasure: "📏 Mesurer",
+    uploadStepPattern: "🧶 Patron en ~2 min",
+
+    // Social proof
+    socialProofPrefix: "🧶 Rejoignez ",
+    socialProofKnitters: "1 000+ tricoteurs",
+    socialProofMiddle: " qui utilisent La Maille — ",
+    socialProofFree: "c'est gratuit",
   },
 
   en: {
@@ -1356,6 +1399,49 @@ export const translations = {
     "step.photo": "Photo",
     "step.size": "Size",
     "step.pattern": "Pattern",
+
+    // Home — See it in action
+    homeDemoTitle: "See it in action",
+    homeDemoYourPhoto: "Your photo",
+    homeDemoUploadCta: "Upload any sweater photo",
+    homeDemoUploadHint: "Front view, well-lit",
+    homeDemoYourPattern: "Your pattern",
+    homeDemoPatternHeader: "La Maille — Custom Pattern",
+    homeDemoCastOn: "Cast on",
+    homeDemoCastOnRest: " 84 stitches on circular needles.",
+    homeDemoRows120: "Rows 1-20:",
+    homeDemoRows120Rest: " *K2, P2* ribbing",
+    homeDemoRow21: "Row 21:",
+    homeDemoRow21Rest: " Knit all stitches (stockinette)",
+    homeDemoContinue: "Continue",
+    homeDemoContinueRest: " in stockinette for 38 cm",
+    homeDemoArmhole: "↓ Armhole shaping",
+    homeDemoNextRow: "Next row:",
+    homeDemoNextRowRest: " Bind off 4 sts, knit to end",
+    homeDemoDecRow: "Dec row:",
+    homeDemoDecRowRest: " K1, SSK, knit to last 3 sts, K2tog, K1",
+    homeDemoAdapted: "Adapted to your gauge & measurements",
+    homeDemoMobileCaption: "📸 → 🧶 From photo to pattern",
+
+    // Home — From the Blog
+    homeBlogTitle: "From the Blog",
+    homeBlogSubtitle: "Tips and guides to help you knit with confidence.",
+    homeBlogViewAll: "View all articles →",
+    homeBlogArticle1: "How to Recreate Any Sweater From a Photo",
+    homeBlogArticle2: "Understanding Knitting Gauge: The Complete Guide",
+    homeBlogArticle3: "Top-Down vs Bottom-Up Sweaters: Pros and Cons",
+    homeBlogArticle4: "Colorwork Knitting for Beginners",
+
+    // Uploader steps
+    uploadStepUpload: "📤 Upload",
+    uploadStepMeasure: "📏 Measure",
+    uploadStepPattern: "🧶 Pattern in ~2 min",
+
+    // Social proof
+    socialProofPrefix: "🧶 Join ",
+    socialProofKnitters: "1,000+ knitters",
+    socialProofMiddle: " who use La Maille — ",
+    socialProofFree: "it's free",
   },
 } as const;
 
