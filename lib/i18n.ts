@@ -77,6 +77,10 @@ export const translations = {
       "Essayez avec une autre photo, bien éclairée et montrant clairement le vêtement de face.",
     waiting: "En attente",
     analysisWillStart: "La lecture va démarrer automatiquement.",
+    rateLimitAnonymous:
+      "Vous avez atteint la limite de {0} analyses gratuites aujourd'hui. Créez un compte gratuit pour bénéficier de {1} analyses par jour.",
+    rateLimitAuthenticated:
+      "Vous avez atteint votre limite de {0} analyses aujourd'hui. Revenez demain pour continuer.",
 
     // Form
     gauge: "Échantillon",
@@ -779,6 +783,10 @@ export const translations = {
       "Try with another photo, well-lit and clearly showing the garment from the front.",
     waiting: "Waiting",
     analysisWillStart: "Reading will start automatically.",
+    rateLimitAnonymous:
+      "You've reached today's limit of {0} free analyses. Create a free account to get {1} analyses per day.",
+    rateLimitAuthenticated:
+      "You've reached your daily limit of {0} analyses. Come back tomorrow to continue.",
 
     // Form
     gauge: "Gauge",
