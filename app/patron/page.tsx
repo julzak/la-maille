@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { toast } from "sonner";
-import { ChevronDown, ChevronRight, Download, Share2 } from "lucide-react";
+import { ChevronDown, ChevronRight, Download, Share2, Printer } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -20,6 +20,9 @@ import { PatternSection } from "@/components/PatternSection";
 import { SaveIndicator } from "@/components/SaveIndicator";
 import { KnitMode } from "@/components/KnitMode";
 import { useLaMailleStore } from "@/lib/store";
+import { useAuthStore } from "@/lib/auth-store";
+import { useEmailGateStore, useEmailGateHydrated } from "@/lib/email-gate-store";
+import { EmailGateModal } from "@/components/EmailGateModal";
 import { getStitchWarning } from "@/lib/messages";
 import { useTranslation, translateLimitation } from "@/lib/i18n";
 import { generateFullPattern } from "@/lib/pattern-calculator";
@@ -75,6 +78,20 @@ function PatronPageContent() {
   const [canShare, setCanShare] = useState(false);
   const [yarnStock, setYarnStock] = useState<YarnStock | null>(null);
   const [mode, setMode] = useState<"document" | "knit">("document");
+
+  // Email gate (BRIEF-01) : export PDF et impression bloques pour les
+  // anonymes non deverrouilles. Lecture ecran toujours libre.
+  const { user } = useAuthStore();
+  const emailGateUnlocked = useEmailGateStore((state) => state.unlocked);
+  const emailGateHydrated = useEmailGateHydrated();
+  const [emailGateOpen, setEmailGateOpen] = useState(false);
+  const [pendingGatedAction, setPendingGatedAction] = useState<
+    (() => void) | null
+  >(null);
+  // Avant hydratation du store localStorage, on considere l'anonyme comme
+  // gate par defaut (ne jamais laisser passer par erreur une fraction de
+  // seconde avant que l'etat reel ne soit connu).
+  const isEmailGated = !user && (!emailGateHydrated || !emailGateUnlocked);
 
   // Prepare project data for auto-save
   const projectData = useMemo<StoredProject | null>(() => {
@@ -233,8 +250,28 @@ function PatronPageContent() {
     router.push("/");
   };
 
+  // Ouvre le modal email et rejoue `action` une fois deverrouille.
+  const runGated = useCallback(
+    (action: () => void) => {
+      if (isEmailGated) {
+        setPendingGatedAction(() => action);
+        setEmailGateOpen(true);
+        return;
+      }
+      action();
+    },
+    [isEmailGated]
+  );
+
+  const handleEmailGateUnlocked = useCallback(() => {
+    setEmailGateOpen(false);
+    const action = pendingGatedAction;
+    setPendingGatedAction(null);
+    action?.();
+  }, [pendingGatedAction]);
+
   // Download PDF
-  const handleDownloadPDF = useCallback(async () => {
+  const downloadPDF = useCallback(async () => {
     if (!pattern || isGeneratingPDF) return;
 
     setIsGeneratingPDF(true);
@@ -276,7 +313,7 @@ function PatronPageContent() {
   }, [pattern, isGeneratingPDF, t, imagePreview, language]);
 
   // Share PDF (mobile)
-  const handleSharePDF = useCallback(async () => {
+  const sharePDF = useCallback(async () => {
     if (!pattern || isGeneratingPDF) return;
 
     setIsGeneratingPDF(true);
@@ -316,6 +353,25 @@ function PatronPageContent() {
       setIsGeneratingPDF(false);
     }
   }, [pattern, isGeneratingPDF, t, imagePreview, language]);
+
+  // Impression (vue /patron/print) : meme gate que l'export PDF.
+  const printPattern = useCallback(() => {
+    router.push("/patron/print");
+  }, [router]);
+
+  // Wrappers publics : passent par le gate email pour les anonymes non
+  // deverrouilles, sinon executent l'action directement.
+  const handleDownloadPDF = useCallback(() => {
+    runGated(downloadPDF);
+  }, [runGated, downloadPDF]);
+
+  const handleSharePDF = useCallback(() => {
+    runGated(sharePDF);
+  }, [runGated, sharePDF]);
+
+  const handlePrint = useCallback(() => {
+    runGated(printPattern);
+  }, [runGated, printPattern]);
 
   // Loading pendant l'hydratation
   if (!isHydrated || !pattern) {
@@ -842,6 +898,16 @@ function PatronPageContent() {
             )}
 
             <Button
+              variant="outline"
+              onClick={handlePrint}
+              className="flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto"
+              aria-label={t("printPattern")}
+            >
+              <Printer className="h-4 w-4" aria-hidden="true" />
+              {t("printPattern")}
+            </Button>
+
+            <Button
               onClick={() => setMode("knit")}
               className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 min-h-[44px] w-full sm:w-auto"
               aria-label={t("launchKnitting")}
@@ -898,6 +964,14 @@ function PatronPageContent() {
           onExit={() => setMode("document")}
         />
       )}
+
+      {/* EMAIL GATE (BRIEF-01) : export PDF / impression pour les anonymes */}
+      <EmailGateModal
+        open={emailGateOpen}
+        onOpenChange={setEmailGateOpen}
+        onUnlocked={handleEmailGateUnlocked}
+        garmentType={pattern.analysis.garment.type}
+      />
     </div>
   );
 }

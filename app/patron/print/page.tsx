@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLaMailleStore } from "@/lib/store";
+import { useAuthStore } from "@/lib/auth-store";
+import { useEmailGateStore, useEmailGateHydrated } from "@/lib/email-gate-store";
 import {
   GARMENT_TYPE_LABELS,
   CONSTRUCTION_METHOD_LABELS,
@@ -12,11 +14,24 @@ import {
 export default function PrintPatternPage() {
   const router = useRouter();
   const { pattern, hasPattern } = useLaMailleStore();
+  const { user } = useAuthStore();
+  const emailGateUnlocked = useEmailGateStore((state) => state.unlocked);
+  const emailGateHydrated = useEmailGateHydrated();
   const [isReady, setIsReady] = useState(false);
 
+  // BRIEF-01 : acces direct a /patron/print par un anonyme non deverrouille
+  // redirige vers /patron (pas de contournement du gate export PDF).
   useEffect(() => {
     if (!hasPattern()) {
       router.replace("/");
+      return;
+    }
+
+    if (!emailGateHydrated) return; // attend de connaitre l'etat reel du gate
+
+    const isGated = !user && !emailGateUnlocked;
+    if (isGated) {
+      router.replace("/patron");
       return;
     }
 
@@ -26,7 +41,7 @@ export default function PrintPatternPage() {
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [hasPattern, router]);
+  }, [hasPattern, router, user, emailGateUnlocked, emailGateHydrated]);
 
   // Lancer l'impression automatiquement une fois prêt
   useEffect(() => {
