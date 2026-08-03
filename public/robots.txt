@@ -3,7 +3,11 @@ Allow: /
 Disallow: /api/
 Disallow: /auth/
 Disallow: /analyse
+# /patron reste bloque (outil prive) mais les pages patrons publiques
+# /patron/p/... sont indexables : la regle Allow, plus longue, prime sur
+# le Disallow prefixe (longest match, standard REP).
 Disallow: /patron
+Allow: /patron/p/
 Disallow: /tricot
 Disallow: /mes-patrons
 
