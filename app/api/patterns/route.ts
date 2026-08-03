@@ -99,12 +99,32 @@ export async function GET() {
       );
     }
 
-    // Fetch user's patterns, sorted by creation date (newest first)
-    const { data, error } = await supabase
+    // Fetch user's patterns, sorted by creation date (newest first).
+    // Les colonnes is_public/public_slug (BRIEF-03) peuvent ne pas encore
+    // exister (migration 20260803_public_patterns.sql non appliquee) :
+    // dans ce cas on retombe sur l'ancien select et l'UI masque le toggle.
+    let publicSharingAvailable = true;
+    const first = await supabase
       .from("saved_patterns")
-      .select("id, pattern_id, name, thumbnail_url, garment_type, created_at")
+      .select(
+        "id, pattern_id, name, thumbnail_url, garment_type, created_at, is_public, public_slug"
+      )
       .eq("user_id", user.id)
       .order("created_at", { ascending: false });
+
+    let data = first.data as SavedPatternSummary[] | null;
+    let error = first.error;
+
+    if (error && error.code === "42703") {
+      publicSharingAvailable = false;
+      const fallback = await supabase
+        .from("saved_patterns")
+        .select("id, pattern_id, name, thumbnail_url, garment_type, created_at")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false });
+      data = fallback.data as SavedPatternSummary[] | null;
+      error = fallback.error;
+    }
 
     if (error) {
       console.error("Error fetching patterns:", error);
@@ -120,6 +140,7 @@ export async function GET() {
       success: true,
       patterns,
       count: patterns.length,
+      publicSharingAvailable,
     });
   } catch (error) {
     console.error("List patterns error:", error);
