@@ -57,6 +57,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/photo-to-knitting-pattern`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
     ...getAllArticles("en").map((article) => ({
       url: `${baseUrl}/blog/${article.slug}`,
       lastModified: new Date(article.publishedAt),

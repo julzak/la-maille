@@ -1378,6 +1378,7 @@ Tricoter une layette de naissance, c'est maîtriser la précision dans un format
     publishedAt: "2026-06-22",
     readingTime: "14 min de lecture",
     lang: "fr",
+    translationSlug: "knitting-a-cardigan-from-scratch",
     content: `
 **Un modèle tricot gilet femme est un patron décrivant les instructions de construction, les quantités de mailles et les rangs nécessaires pour tricoter un gilet ajusté aux mesures d'une porteuse. Il existe en version avec ou sans manches, et se tricote le plus souvent en jersey, en côtes ou en [point mousse](/blog/point-mousse-tricot).**
 
@@ -6149,6 +6150,7 @@ Upload a sweater photo and get your custom knitting pattern in minutes.
     keywords: ["knitting a cardigan from scratch", "simple cardigan knitting pattern", "knit cardigan step by step", "beginner cardigan pattern"],
     publishedAt: "2026-02-25",
     readingTime: "18 min read",
+    translationSlug: "gilet-cardigan-tricot",
     content: `
 Knitting a cardigan from scratch means constructing an open-front garment by working yarn through a series of interlocking loops, following a pattern that accounts for gauge, shaping, and seaming or seamless construction. A standard adult cardigan requires approximately 800–1,400 meters of yarn and is worked in sections (back, two fronts, sleeves) or in one piece from the top down or bottom up.
 
