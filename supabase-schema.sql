@@ -127,14 +127,16 @@ CREATE TRIGGER on_saved_pattern_updated
 
 -- Chaque ligne = une analyse d'image lancee via /api/analyze.
 -- analysable = true  -> vraie generation de patron
--- analysable = false -> photo rejetee (non tricot / illisible)
+-- analysable = false -> photo rejetee (non tricot / illisible), motif dans rejection_reason
 CREATE TABLE IF NOT EXISTS public.generations (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
   analysable BOOLEAN NOT NULL,
   garment_type TEXT,
+  rejection_reason TEXT,
   num_images INT NOT NULL DEFAULT 1,
   model TEXT NOT NULL,
+  ip_hash TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
