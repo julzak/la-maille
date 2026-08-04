@@ -350,7 +350,9 @@ export async function analyzeGarmentImage({
 
     const response = await client.messages.create({
       model: ANALYSIS_MODEL,
-      max_tokens: 4096,
+      // Opus 5 : le thinking est actif par defaut et compte dans max_tokens.
+      // 8192 laisse la place au raisonnement + au JSON complet de l'analyse.
+      max_tokens: 8192,
       messages: [
         {
           role: "user",
