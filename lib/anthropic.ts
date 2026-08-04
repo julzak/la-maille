@@ -6,7 +6,7 @@ const client = new Anthropic({
 });
 
 // Modele Claude utilise pour l'analyse d'image (vision). Exporte pour le tracking des generations.
-export const ANALYSIS_MODEL = "claude-opus-4-8";
+export const ANALYSIS_MODEL = "claude-opus-5";
 
 const SYSTEM_PROMPT = `CRITICAL: Return ONLY valid JSON. No text before or after. No markdown code blocks. Just the raw JSON object starting with { and ending with }
 
