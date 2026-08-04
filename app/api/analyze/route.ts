@@ -31,6 +31,7 @@ async function logGeneration(
       ip_hash: ipHash,
       analysable: analysis.analysable,
       garment_type: analysis.analysable ? analysis.garment.type : null,
+      rejection_reason: analysis.analysable ? null : analysis.rejectionReason,
       num_images: numImages,
       model: ANALYSIS_MODEL,
     });
