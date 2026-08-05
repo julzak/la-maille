@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Trash2, Loader2, Eye } from "lucide-react";
+import { Trash2, Loader2, Eye, Copy, ExternalLink, Globe } from "lucide-react";
 import { toast } from "sonner";
 import {
   Card,
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -38,6 +39,75 @@ export function PatternCard({ pattern, onDelete }: PatternCardProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  // Publication (BRIEF-03). `is_public === undefined` = colonnes absentes
+  // en DB (migration non appliquee) : le toggle est masque.
+  const publicSharingAvailable = pattern.is_public !== undefined;
+  const [isPublic, setIsPublic] = useState(pattern.is_public === true);
+  const [publicSlug, setPublicSlug] = useState<string | null>(
+    pattern.public_slug ?? null
+  );
+  const [isTogglingPublic, setIsTogglingPublic] = useState(false);
+  const [showPublicDialog, setShowPublicDialog] = useState(false);
+
+  const publicUrl =
+    publicSlug && typeof window !== "undefined"
+      ? `${window.location.origin}/patron/p/${publicSlug}`
+      : null;
+
+  const updateVisibility = async (makePublic: boolean) => {
+    setIsTogglingPublic(true);
+    try {
+      const response = await fetch(`/api/patterns/${pattern.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ is_public: makePublic }),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (data.code === "MIGRATION_REQUIRED") {
+          toast.error(t("publicToggle.unavailable"));
+        } else {
+          toast.error(t("publicToggle.error"));
+        }
+        return;
+      }
+
+      setIsPublic(data.is_public);
+      setPublicSlug(data.public_slug ?? null);
+      toast.success(
+        data.is_public
+          ? t("publicToggle.published")
+          : t("publicToggle.unpublished")
+      );
+    } catch (error) {
+      console.error("Error updating pattern visibility:", error);
+      toast.error(t("publicToggle.error"));
+    } finally {
+      setIsTogglingPublic(false);
+    }
+  };
+
+  const handlePublicToggle = (checked: boolean) => {
+    if (isTogglingPublic) return;
+    if (checked) {
+      // Consentement explicite : dialog d'explication avant publication.
+      setShowPublicDialog(true);
+    } else {
+      updateVisibility(false);
+    }
+  };
+
+  const handleCopyPublicUrl = async () => {
+    if (!publicUrl) return;
+    try {
+      await navigator.clipboard.writeText(publicUrl);
+      toast.success(t("publicToggle.copied"));
+    } catch {
+      toast.error(t("publicToggle.error"));
+    }
+  };
 
   const formattedDate = new Date(pattern.created_at).toLocaleDateString(
     language === "fr" ? "fr-FR" : "en-US",
@@ -162,6 +232,64 @@ export function PatternCard({ pattern, onDelete }: PatternCardProps) {
             </p>
           </div>
         </div>
+
+        {/* Publication (BRIEF-03) : toggle "Rendre public" + URL publique */}
+        {publicSharingAvailable && (
+          <div className="mt-3 pt-3 border-t space-y-2">
+            <div className="flex items-center justify-between gap-2">
+              <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Globe className="h-3.5 w-3.5" aria-hidden="true" />
+                {t("publicToggle.label")}
+              </span>
+              {isTogglingPublic ? (
+                <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+              ) : (
+                <Switch
+                  checked={isPublic}
+                  onCheckedChange={handlePublicToggle}
+                  aria-label={t("publicToggle.label")}
+                />
+              )}
+            </div>
+
+            {isPublic && publicUrl && (
+              <div className="flex items-center gap-1">
+                <p
+                  className="flex-1 min-w-0 truncate text-xs text-muted-foreground font-mono"
+                  title={publicUrl}
+                >
+                  /patron/p/{publicSlug}
+                </p>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-7 w-7 p-0 shrink-0"
+                  onClick={handleCopyPublicUrl}
+                  aria-label={t("publicToggle.copyLink")}
+                  title={t("publicToggle.copyLink")}
+                >
+                  <Copy className="h-3.5 w-3.5" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-7 w-7 p-0 shrink-0"
+                  asChild
+                >
+                  <a
+                    href={publicUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t("publicToggle.viewPage")}
+                    title={t("publicToggle.viewPage")}
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
       </CardContent>
 
       <CardFooter className="p-3 pt-0 flex gap-2">
@@ -215,6 +343,31 @@ export function PatternCard({ pattern, onDelete }: PatternCardProps) {
           </AlertDialogContent>
         </AlertDialog>
       </CardFooter>
+
+      {/* Consentement explicite avant publication (BRIEF-03) */}
+      <AlertDialog open={showPublicDialog} onOpenChange={setShowPublicDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              {t("publicToggle.confirmTitle")}
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              {t("publicToggle.confirmDescription")}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
+            <Button
+              onClick={() => {
+                setShowPublicDialog(false);
+                updateVisibility(true);
+              }}
+            >
+              {t("publicToggle.confirm")}
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Card>
   );
 }

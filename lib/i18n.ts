@@ -542,6 +542,20 @@ export const translations = {
     "savedPatterns.createdAt": "Cree le",
     "savedPatterns.patternCount": "{count} patron(s)",
 
+    // Page patron publique (BRIEF-03)
+    "publicToggle.label": "Rendre public",
+    "publicToggle.confirmTitle": "Rendre ce patron public ?",
+    "publicToggle.confirmDescription":
+      "La page du patron sera visible par tous et indexée par Google. Votre photo source n'est jamais publiée et votre nom n'apparaît pas sur la page.",
+    "publicToggle.confirm": "Rendre public",
+    "publicToggle.published": "Patron publié",
+    "publicToggle.unpublished": "Patron repassé en privé",
+    "publicToggle.error": "Impossible de modifier la visibilité",
+    "publicToggle.unavailable": "Publication indisponible pour le moment",
+    "publicToggle.copyLink": "Copier le lien",
+    "publicToggle.copied": "Lien copié",
+    "publicToggle.viewPage": "Voir la page",
+
     // Authentication
     "auth.signIn": "Se connecter",
     "auth.signUp": "S'inscrire",
@@ -1260,6 +1274,20 @@ export const translations = {
     "savedPatterns.loginRequired": "Sign in to save your patterns",
     "savedPatterns.createdAt": "Created on",
     "savedPatterns.patternCount": "{count} pattern(s)",
+
+    // Public pattern page (BRIEF-03)
+    "publicToggle.label": "Make public",
+    "publicToggle.confirmTitle": "Make this pattern public?",
+    "publicToggle.confirmDescription":
+      "The pattern page will be visible to everyone and indexed by Google. Your source photo is never published and your name does not appear on the page.",
+    "publicToggle.confirm": "Make public",
+    "publicToggle.published": "Pattern published",
+    "publicToggle.unpublished": "Pattern set back to private",
+    "publicToggle.error": "Could not update visibility",
+    "publicToggle.unavailable": "Publishing is unavailable right now",
+    "publicToggle.copyLink": "Copy link",
+    "publicToggle.copied": "Link copied",
+    "publicToggle.viewPage": "View page",
 
     // Authentication
     "auth.signIn": "Sign in",

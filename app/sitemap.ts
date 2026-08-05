@@ -1,8 +1,49 @@
 import { MetadataRoute } from "next";
 import { getAllArticles } from "@/lib/blog-data";
+import { createAnonClient } from "@/lib/public-patterns";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Les pages patrons publiques evoluent avec les publications des
+// utilisateurs : le sitemap est regenere au plus toutes les heures.
+export const revalidate = 3600;
+
+/**
+ * Slugs des patrons publics (BRIEF-03), via le client Supabase anonyme
+ * (la RLS ne laisse sortir que is_public = true). Si la requete echoue
+ * (migration non appliquee, DB indisponible), le sitemap rend le reste
+ * sans crasher.
+ */
+async function getPublicPatternEntries(
+  baseUrl: string
+): Promise<MetadataRoute.Sitemap> {
+  try {
+    const supabase = createAnonClient();
+    if (!supabase) return [];
+
+    const { data, error } = await supabase
+      .from("saved_patterns")
+      .select("public_slug, updated_at")
+      .eq("is_public", true)
+      .not("public_slug", "is", null)
+      .order("updated_at", { ascending: false })
+      .limit(1000);
+
+    if (error || !data) return [];
+
+    return data.map((row) => ({
+      url: `${baseUrl}/patron/p/${row.public_slug}`,
+      lastModified: new Date(row.updated_at),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://la-maille.com";
+
+  const publicPatternEntries = await getPublicPatternEntries(baseUrl);
 
   return [
     {
@@ -127,6 +168,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    ...publicPatternEntries,
     {
       url: `${baseUrl}/privacy`,
       lastModified: new Date("2026-02-02"),
