@@ -27,9 +27,9 @@ BRIEF-05 test-pinterest           (indépendant, livrable contenu, pas de code a
 
 - BRIEF-01-capture-email — mergé (PR #15, vérifié en prod le 2026-08-03 : contact Brevo créé, logs Vercel sans erreur)
 - BRIEF-02-rate-limit-analyze — mergé (PR #14, vérifié en prod le 2026-08-03 : ip_hash loggé, migration appliquée sur jazzy-apps)
-- BRIEF-03-pages-patrons-publiques — en cours
+- BRIEF-03-pages-patrons-publiques — mergé (PR #18, migration appliquée sur jazzy-apps le 2026-08-05, RLS vérifiée : requête anonyme directe = 0 ligne sur 37 patrons privés)
 - BRIEF-04-seo-quick-wins — mergé (PR #13, correction : /photo-to-knitting-pattern retiré du sitemap, c'est un redirect 308)
-- BRIEF-05-test-pinterest — en cours
+- BRIEF-05-test-pinterest — mergé (PR #17, kit dans tasks/pinterest-test/ ; publication des pins côté Julien)
 
 ## Blocages
 
