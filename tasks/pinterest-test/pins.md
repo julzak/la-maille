@@ -11,6 +11,12 @@ Repartition : 13 pins FR, 12 pins EN. 15 pins vers des articles de blog, 10 pins
 > C'est l'URL "Visuel vertical" qu'il faut donner a Pinterest ("Enregistrer depuis l'URL" du
 > createur d'epingle), le champ Lien restant l'URL de destination avec UTM.
 
+> REGLE VISUELS (2026-08-05, apres refonte des pins 9, 10, 12, 13, 14, 15, 16, 17, 19, 24) :
+> un visuel de pin = PHOTO chaleureuse uniquement (lin, laine, lumiere naturelle, palette creme
+> #FDF6F0 / terracotta #C4785B). JAMAIS de capture d'ecran, de schema, de diagramme, d'illustration
+> cartoon ni de texte dans l'image. Le gabarit (titre Georgia + filet terracotta + la-maille.com)
+> porte deja le message : l'image ne fait que donner envie.
+
 ---
 
 ## Pins vers des articles de blog (15)
