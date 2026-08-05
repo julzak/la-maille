@@ -3,6 +3,9 @@ import type { GarmentAnalysis } from "./types";
 
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
+  // Surcharges 529/429 transitoires : le SDK reessaie avec backoff exponentiel.
+  // Defaut = 2, insuffisant pendant les fenetres de surcharge -> 4.
+  maxRetries: 4,
 });
 
 // Modele Claude utilise pour l'analyse d'image (vision). Exporte pour le tracking des generations.
