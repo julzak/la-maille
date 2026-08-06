@@ -11,6 +11,55 @@ const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MAX_SIZE = 10 * 1024 * 1024; // 10MB per image
 const MAX_IMAGES = 5;
 
+// Redimensionnement cote client avant upload : une photo smartphone fait
+// facilement 8-12MP / plusieurs MB, ce qui ralentit l'upload mobile et
+// augmente les tokens image factures par l'API. 1568px de grand cote suffit
+// pour l'analyse des mailles tout en ramenant le fichier vers ~300KB.
+const MAX_DIMENSION = 1568;
+const JPEG_QUALITY = 0.85;
+
+async function downscaleImage(file: File): Promise<File> {
+  try {
+    // from-image : applique l'orientation EXIF (photos smartphone en portrait)
+    const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
+    const longEdge = Math.max(bitmap.width, bitmap.height);
+    if (longEdge <= MAX_DIMENSION) {
+      bitmap.close();
+      return file;
+    }
+    const scale = MAX_DIMENSION / longEdge;
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(bitmap.width * scale);
+    canvas.height = Math.round(bitmap.height * scale);
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      bitmap.close();
+      return file;
+    }
+    ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    bitmap.close();
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob(resolve, "image/jpeg", JPEG_QUALITY)
+    );
+    if (!blob) return file;
+    return new File([blob], file.name.replace(/\.[^.]+$/, "") + ".jpg", {
+      type: "image/jpeg",
+    });
+  } catch {
+    // navigateur sans createImageBitmap ou image illisible : envoi original
+    return file;
+  }
+}
+
+function readAsDataURL(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
+
 interface SelectedImage {
   file: File;
   preview: string;
@@ -113,26 +162,20 @@ export function ImageUploader({
 
       setError(null);
 
-      // Process each file
-      let processed = 0;
-      for (const file of filesToProcess) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const url = e.target?.result as string;
+      // Redimensionne puis prepare la preview de chaque fichier
+      void (async () => {
+        for (const file of filesToProcess) {
+          const resized = await downscaleImage(file);
+          const preview = await readAsDataURL(resized);
           newImages.push({
-            file,
-            preview: url,
+            file: resized,
+            preview,
             id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
           });
-          processed++;
-
-          if (processed === filesToProcess.length) {
-            setSelectedImages((prev) => [...prev, ...newImages]);
-            setState("selected");
-          }
-        };
-        reader.readAsDataURL(file);
-      }
+        }
+        setSelectedImages((prev) => [...prev, ...newImages]);
+        setState("selected");
+      })();
     },
     [validateFile, selectedImages.length]
   );

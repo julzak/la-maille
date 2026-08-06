@@ -362,11 +362,19 @@ export async function analyzeGarmentImage({
       text: textPrompt,
     });
 
-    const response = await client.messages.create({
+    // output_config (effort) n'est pas encore dans les typings du SDK 0.71 :
+    // extension locale du type, le parametre est transmis tel quel a l'API.
+    const params: Anthropic.MessageCreateParamsNonStreaming & {
+      output_config?: { effort: "low" | "medium" | "high" };
+    } = {
       model: ANALYSIS_MODEL,
       // Opus 5 : le thinking est actif par defaut et compte dans max_tokens.
       // 8192 laisse la place au raisonnement + au JSON complet de l'analyse.
       max_tokens: 8192,
+      // effort low : latence moyenne mesuree 8,3s contre 11,1s en effort high
+      // (defaut), qualite equivalente sur le bench scripts/diag-latence-opus.ts.
+      // NE PAS desactiver le thinking a la place : mesure plus lent (13,7s).
+      output_config: { effort: "low" },
       messages: [
         {
           role: "user",
@@ -382,7 +390,8 @@ export async function analyzeGarmentImage({
           cache_control: { type: "ephemeral" },
         },
       ],
-    });
+    };
+    const response = await client.messages.create(params);
 
     const usage: AnalysisUsage = {
       cacheCreationInputTokens: response.usage.cache_creation_input_tokens ?? null,
