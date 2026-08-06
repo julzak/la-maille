@@ -24,8 +24,29 @@ export default function BlogPage() {
   const prefix = lang === "fr" ? "/fr" : "";
   const articles = getAllArticles(lang);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: t.title,
+    description: t.subtitle,
+    url: `https://la-maille.com${prefix}/blog`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: articles.map((article, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `https://la-maille.com${prefix}/blog/${article.slug}`,
+        name: article.title,
+      })),
+    },
+  };
+
   return (
     <div className="container mx-auto max-w-4xl px-4 py-12 md:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="text-center mb-12">
         <h1 className="font-serif text-4xl md:text-5xl mb-4">{t.title}</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
