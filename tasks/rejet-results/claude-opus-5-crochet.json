@@ -1,0 +1,5 @@
+{
+  "image": "crochet.jpg",
+  "ms": 7519,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"cardigan\", \"confidence\": 0.9}, \"construction\": {\"method\": \"pieces-assemblees\", \"confidence\": 0.9, \"reasoning\": \"Assemblage de carrés granny au crochet cousus/joints entre eux, formant corps et manches\"}, \"neckline\": {\"type\": \"ouvert-cardigan\", \"confidence\": 0.85}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"autre\", \"doubled\": false, \"confidence\": 0.5}, \"sleeves\": {\"type\": \"montees\", \"length\": \"3-4\", \"confidence\": 0.6}, \"stitch\": {\"mainPattern\": \"autre\", \"confidence\": 0.85, \"notes\": \"Crochet: carrés granny multicolores, bordure festonnée\"}, \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.8}, \"fit\": {\"style\": \"oversized\", \"confidence\": 0.7}, \"limitations\": [\"Pièce à plat, difficile d'évaluer la coupe réelle\", \"Pas de vue rapprochée de l'encolure\"], \"warnings\": [\"Le vêtement semble être au crochet et non tricoté\"], \"overallConfidence\": \"medium\"}"
+}
