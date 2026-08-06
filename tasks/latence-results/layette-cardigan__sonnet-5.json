@@ -1,0 +1,13 @@
+{
+  "variant": "sonnet-5",
+  "image": "layette-cardigan",
+  "ok": true,
+  "ms": 7680,
+  "inputTokens": 3581,
+  "outputTokens": 535,
+  "costUsd": 0.018768,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 1,
+  "raw": "```json\n{\n  \"analysable\": true,\n  \"rejectionReason\": null,\n  \"garment\": {\"type\": \"cardigan\", \"confidence\": 0.85},\n  \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Le vêtement est plié et partiellement visible, rendant difficile l'identification de la méthode de construction précise.\"},\n  \"neckline\": {\"type\": \"ouvert-cardigan\", \"confidence\": 0.75},\n  \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"point-mousse\", \"doubled\": false, \"confidence\": 0.5},\n  \"sleeves\": {\"type\": \"montees\", \"length\": \"longues\", \"confidence\": 0.5},\n  \"stitch\": {\"mainPattern\": \"mousse\", \"confidence\": 0.75, \"notes\": \"Point mousse visible sur le corps avec un possible motif texturé (torsades légères) sur l'empiècement du haut.\"},\n  \"closure\": {\"type\": \"boutons\", \"buttonCountEstimate\": 3, \"confidence\": 0.9},\n  \"fit\": {\"style\": \"regular\", \"confidence\": 0.5},\n  \"limitations\": [\n    \"Le vêtement est plié, ce qui limite la vue complète de la coupe et de la longueur des manches\",\n    \"La méthode de construction (top-down, bottom-up, etc.) n'est pas clairement identifiable\",\n    \"L'ajustement (fit) est difficile à évaluer car le vêtement n'est pas porté\"\n  ],\n  \"warnings\": [],\n  \"overallConfidence\": \"medium\"\n}\n```"
+}

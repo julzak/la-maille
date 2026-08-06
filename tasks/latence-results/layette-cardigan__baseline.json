@@ -1,0 +1,12 @@
+{
+  "variant": "baseline",
+  "image": "layette-cardigan",
+  "ok": true,
+  "ms": 15711,
+  "inputTokens": 3581,
+  "outputTokens": 867,
+  "costUsd": 0.03958,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 2
+}

@@ -1,0 +1,13 @@
+{
+  "variant": "compact-low",
+  "image": "pull-irlandais-ecru",
+  "ok": true,
+  "ms": 10438,
+  "inputTokens": 3687,
+  "outputTokens": 402,
+  "costUsd": 0.028485,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 3,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.85}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Pull plié, les jonctions d'épaules et manches ne sont pas visibles.\"}, \"neckline\": {\"type\": \"ras-du-cou\", \"confidence\": 0.8}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"cotes-1x1\", \"doubled\": false, \"confidence\": 0.6}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.2}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.9, \"notes\": \"Torsades type aran avec fond de mailles envers et bordure en côtes.\"}, \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.85}, \"fit\": {\"style\": \"regular\", \"confidence\": 0.4}, \"limitations\": [\"Vêtement plié: manches et longueur non visibles.\", \"Construction indéterminable.\"], \"warnings\": [], \"overallConfidence\": \"medium\"}"
+}

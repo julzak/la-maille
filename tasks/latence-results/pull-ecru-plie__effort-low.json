@@ -1,0 +1,13 @@
+{
+  "variant": "effort-low",
+  "image": "pull-ecru-plie",
+  "ok": true,
+  "ms": 7651,
+  "inputTokens": 3581,
+  "outputTokens": 462,
+  "costUsd": 0.029455,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 9,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.5}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.2, \"reasoning\": \"Le vêtement est plié, aucune ligne de construction (raglan, empiècement, coutures) n'est visible.\"}, \"neckline\": {\"type\": \"unknown\", \"confidence\": 0.15}, \"neckband\": {\"construction\": \"unknown\", \"height\": \"unknown\", \"stitch\": \"unknown\", \"doubled\": null, \"confidence\": 0.1}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.1}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.85, \"notes\": \"Tricot aran : torsades, point de blé/riz et colonnes de côtes, laine épaisse écrue.\"}, \"closure\": {\"type\": \"unknown\", \"buttonCountEstimate\": 0, \"confidence\": 0.3}, \"fit\": {\"style\": \"unknown\", \"confidence\": 0.15}, \"limitations\": [\"Vêtement plié : encolure, manches et fermeture non visibles\", \"Impossible de déterminer le type exact (pull ou cardigan)\", \"Aucune information sur la construction\"], \"warnings\": [\"Analyse limitée à la texture du point\"], \"overallConfidence\": \"low\"}"
+}

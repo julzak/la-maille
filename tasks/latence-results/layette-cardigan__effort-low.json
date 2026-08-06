@@ -1,0 +1,13 @@
+{
+  "variant": "effort-low",
+  "image": "layette-cardigan",
+  "ok": true,
+  "ms": 9375,
+  "inputTokens": 3581,
+  "outputTokens": 474,
+  "costUsd": 0.029755,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 0,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"cardigan\", \"confidence\": 0.9}, \"construction\": {\"method\": \"top-down\", \"confidence\": 0.4, \"reasoning\": \"Vêtement plié, ligne d'épaule visible suggérant une construction en une pièce du haut vers le bas, mais assemblage possible\"}, \"neckline\": {\"type\": \"ouvert-cardigan\", \"confidence\": 0.7}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"mousse\", \"doubled\": false, \"confidence\": 0.5}, \"sleeves\": {\"type\": \"montees\", \"length\": \"longues\", \"confidence\": 0.4}, \"stitch\": {\"mainPattern\": \"mousse\", \"confidence\": 0.85, \"notes\": \"Point mousse dominant, bordures en côtes possibles\"}, \"closure\": {\"type\": \"boutons\", \"buttonCountEstimate\": 3, \"confidence\": 0.85}, \"fit\": {\"style\": \"regular\", \"confidence\": 0.4}, \"limitations\": [\"Vêtement plié : longueur, forme des manches et type d'emmanchure non vérifiables\", \"Encolure partiellement masquée\"], \"warnings\": [\"Il s'agit d'un ensemble bébé (béguin, chaussons, gilet) ; seul le gilet a été analysé\"], \"overallConfidence\": \"medium\"}"
+}

@@ -1,0 +1,13 @@
+{
+  "variant": "low-hires",
+  "image": "layette-cardigan",
+  "ok": true,
+  "ms": 8155,
+  "inputTokens": 7043,
+  "outputTokens": 475,
+  "costUsd": 0.04709,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 0,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"cardigan\", \"confidence\": 0.85}, \"construction\": {\"method\": \"top-down\", \"confidence\": 0.5, \"reasoning\": \"Lignes de raglan visibles aux épaules, tricot en point mousse suggérant une construction top-down en une pièce\"}, \"neckline\": {\"type\": \"ouvert-cardigan\", \"confidence\": 0.7}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"mousse\", \"doubled\": false, \"confidence\": 0.5}, \"sleeves\": {\"type\": \"raglan\", \"length\": \"longues\", \"confidence\": 0.6}, \"stitch\": {\"mainPattern\": \"mousse\", \"confidence\": 0.85, \"notes\": \"Point mousse dominant, bordures en côtes possibles sur les autres pièces du set\"}, \"closure\": {\"type\": \"boutons\", \"buttonCountEstimate\": 3, \"confidence\": 0.8}, \"fit\": {\"style\": \"regular\", \"confidence\": 0.4}, \"limitations\": [\"Vêtement plié, longueur totale et forme du corps non visibles\", \"Encolure partiellement masquée\", \"Type de manches difficile à confirmer\"], \"warnings\": [\"Il s'agit probablement d'un ensemble bébé (béguin, chaussons, cardigan)\"], \"overallConfidence\": \"medium\"}"
+}

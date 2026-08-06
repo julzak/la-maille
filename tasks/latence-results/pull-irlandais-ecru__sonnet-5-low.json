@@ -1,0 +1,13 @@
+{
+  "variant": "sonnet-5-low",
+  "image": "pull-irlandais-ecru",
+  "ok": true,
+  "ms": 5423,
+  "inputTokens": 3581,
+  "outputTokens": 483,
+  "costUsd": 0.017988,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 4,
+  "raw": "{\n  \"analysable\": true,\n  \"rejectionReason\": null,\n  \"garment\": {\"type\": \"pull\", \"confidence\": 0.7},\n  \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Le pull est plié, la méthode de construction n'est pas clairement visible\"},\n  \"neckline\": {\"type\": \"ras-du-cou\", \"confidence\": 0.65},\n  \"neckband\": {\"construction\": \"picked-up\", \"height\": \"moyenne\", \"stitch\": \"cotes-1x1\", \"doubled\": null, \"confidence\": 0.5},\n  \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.2},\n  \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.9, \"notes\": \"Motif de torsades élaboré sur le corps, bordures en côtes\"},\n  \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.8},\n  \"fit\": {\"style\": \"unknown\", \"confidence\": 0.3},\n  \"limitations\": [\n    \"Le vêtement est plié, empêchant une vue complète des manches et de la coupe\",\n    \"La méthode de construction ne peut pas être déterminée avec certitude\",\n    \"L'ajustement (fit) n'est pas visible car le pull n'est pas porté\"\n  ],\n  \"warnings\": [],\n  \"overallConfidence\": \"medium\"\n}"
+}

@@ -1,0 +1,13 @@
+{
+  "variant": "effort-medium",
+  "image": "pull-ecru-plie",
+  "ok": true,
+  "ms": 10580,
+  "inputTokens": 3581,
+  "outputTokens": 594,
+  "costUsd": 0.032755,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 10,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"unknown\", \"confidence\": 0.35}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.2, \"reasoning\": \"Le vêtement est plié, aucune ligne d'augmentation, épaule ou emmanchure n'est visible. Impossible de déterminer le sens de tricotage.\"}, \"neckline\": {\"type\": \"unknown\", \"confidence\": 0.15}, \"neckband\": {\"construction\": \"unknown\", \"height\": \"unknown\", \"stitch\": \"unknown\", \"doubled\": null, \"confidence\": 0.1}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.1}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.85, \"notes\": \"Ouvrage de style aran : torsades épaisses encadrées de colonnes de mailles endroit, panneaux centraux en point de blé/point de riz. Laine claire écrue, fil épais.\"}, \"closure\": {\"type\": \"unknown\", \"buttonCountEstimate\": 0, \"confidence\": 0.2}, \"fit\": {\"style\": \"unknown\", \"confidence\": 0.15}, \"limitations\": [\"Le vêtement est plié : ni encolure, ni manches, ni fermeture visibles\", \"Impossible de compter des boutons (aucune patte de boutonnage visible)\", \"Type de vêtement (pull ou cardigan) indéterminable\", \"Méthode de construction non observable\", \"Coupe et taille non évaluables\"], \"warnings\": [\"Photo décorative : seule la texture du point est exploitable\", \"Pour une analyse complète, photographier le vêtement à plat et déplié, de face\"], \"overallConfidence\": \"low\"}"
+}

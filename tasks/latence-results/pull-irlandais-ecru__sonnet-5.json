@@ -1,0 +1,13 @@
+{
+  "variant": "sonnet-5",
+  "image": "pull-irlandais-ecru",
+  "ok": true,
+  "ms": 13782,
+  "inputTokens": 3581,
+  "outputTokens": 700,
+  "costUsd": 0.021243,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 3,
+  "raw": "{\n  \"analysable\": true,\n  \"rejectionReason\": null,\n  \"garment\": {\n    \"type\": \"pull\",\n    \"confidence\": 0.7\n  },\n  \"construction\": {\n    \"method\": \"unknown\",\n    \"confidence\": 0.3,\n    \"reasoning\": \"Le vêtement est plié, ce qui empêche de voir les coutures ou l'absence de coutures. La pièce en cours de tricotage sur les aiguilles suggère un travail en cours mais ne permet pas de déterminer la méthode globale.\"\n  },\n  \"neckline\": {\n    \"type\": \"ras-du-cou\",\n    \"confidence\": 0.65\n  },\n  \"neckband\": {\n    \"construction\": \"picked-up\",\n    \"height\": \"moyenne\",\n    \"stitch\": \"cotes-1x1\",\n    \"doubled\": false,\n    \"confidence\": 0.55\n  },\n  \"sleeves\": {\n    \"type\": \"unknown\",\n    \"length\": \"unknown\",\n    \"confidence\": 0.2\n  },\n  \"stitch\": {\n    \"mainPattern\": \"torsades\",\n    \"confidence\": 0.9,\n    \"notes\": \"Motif de torsades élaboré et complexe sur le corps principal, avec bordures en côtes 1x1 sur les poignets et le bas du corps.\"\n  },\n  \"closure\": {\n    \"type\": \"aucune\",\n    \"buttonCountEstimate\": 0,\n    \"confidence\": 0.75\n  },\n  \"fit\": {\n    \"style\": \"regular\",\n    \"confidence\": 0.4\n  },\n  \"limitations\": [\n    \"Le vêtement est plié, empêchant de voir la longueur totale, les manches et la coupe générale\",\n    \"Impossible de déterminer la méthode de construction sans voir l'intérieur ou les coutures\",\n    \"Le type de manches et leur longueur ne sont pas visibles\",\n    \"La coupe (fit) est difficile à évaluer avec le vêtement plié\"\n  ],\n  \"warnings\": [\n    \"L'image montre principalement le col et la texture, le reste du vêtement étant plié\"\n  ],\n  \"overallConfidence\": \"medium\"\n}"
+}

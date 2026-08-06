@@ -1,0 +1,12 @@
+{
+  "variant": "thinking-off",
+  "image": "layette-cardigan",
+  "ok": true,
+  "ms": 12824,
+  "inputTokens": 3581,
+  "outputTokens": 727,
+  "costUsd": 0.03608,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 0
+}

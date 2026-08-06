@@ -1,0 +1,13 @@
+{
+  "variant": "low-hires",
+  "image": "pull-irlandais-ecru",
+  "ok": true,
+  "ms": 9680,
+  "inputTokens": 7043,
+  "outputTokens": 474,
+  "costUsd": 0.047065,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 3,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.85}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Le pull est plié, les lignes d'épaules et de raglan ne sont pas visibles ; impossible de déterminer le sens de tricotage.\"}, \"neckline\": {\"type\": \"ras-du-cou\", \"confidence\": 0.6}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"cotes-1x1\", \"doubled\": false, \"confidence\": 0.45}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.2}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.9, \"notes\": \"Motif aran : torsades, nattes et points de riz/mousse en panneaux, bordures en côtes.\"}, \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.8}, \"fit\": {\"style\": \"regular\", \"confidence\": 0.3}, \"limitations\": [\"Vêtement plié : manches et emmanchures non visibles\", \"Méthode de construction indéterminable\", \"Encolure partiellement masquée\"], \"warnings\": [\"Analyse basée sur une vue partielle du vêtement plié\"], \"overallConfidence\": \"medium\"}"
+}

@@ -1,0 +1,13 @@
+{
+  "variant": "compact-low",
+  "image": "pull-ecru-plie",
+  "ok": true,
+  "ms": 8126,
+  "inputTokens": 3687,
+  "outputTokens": 418,
+  "costUsd": 0.028885,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 10,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"unknown\", \"confidence\": 0.3}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.2, \"reasoning\": \"Vêtement plié et entouré d'un mètre ruban, aucune structure identifiable.\"}, \"neckline\": {\"type\": \"unknown\", \"confidence\": 0.1}, \"neckband\": {\"construction\": \"unknown\", \"height\": \"unknown\", \"stitch\": \"unknown\", \"doubled\": null, \"confidence\": 0.1}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.1}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.85, \"notes\": \"Torsades et points texturés type aran en laine épaisse écrue.\"}, \"closure\": {\"type\": \"unknown\", \"buttonCountEstimate\": 0, \"confidence\": 0.2}, \"fit\": {\"style\": \"unknown\", \"confidence\": 0.1}, \"limitations\": [\"Vêtement plié : type, encolure et manches invisibles.\", \"Aucun bouton ni ouverture visible.\"], \"warnings\": [\"Analyse limitée au point de tricot.\"], \"overallConfidence\": \"low\"}"
+}

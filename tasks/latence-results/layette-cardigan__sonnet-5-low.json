@@ -1,0 +1,13 @@
+{
+  "variant": "sonnet-5-low",
+  "image": "layette-cardigan",
+  "ok": true,
+  "ms": 6187,
+  "inputTokens": 3581,
+  "outputTokens": 502,
+  "costUsd": 0.018273,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 2,
+  "raw": "{\n  \"analysable\": true,\n  \"rejectionReason\": null,\n  \"garment\": { \"type\": \"cardigan\", \"confidence\": 0.9 },\n  \"construction\": { \"method\": \"unknown\", \"confidence\": 0.4, \"reasoning\": \"Vêtement plié, structure interne difficile à évaluer précisément\" },\n  \"neckline\": { \"type\": \"ouvert-cardigan\", \"confidence\": 0.8 },\n  \"neckband\": { \"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"mousse\", \"doubled\": false, \"confidence\": 0.5 },\n  \"sleeves\": { \"type\": \"unknown\", \"length\": \"longues\", \"confidence\": 0.4 },\n  \"stitch\": { \"mainPattern\": \"mousse\", \"confidence\": 0.75, \"notes\": \"Point mousse principalement, avec un motif texturé (torsades légères) visible sur l'épaule\" },\n  \"closure\": { \"type\": \"boutons\", \"buttonCountEstimate\": 3, \"confidence\": 0.9 },\n  \"fit\": { \"style\": \"regular\", \"confidence\": 0.5 },\n  \"limitations\": [\n    \"Le vêtement est plié, la vue complète du corps et des manches n'est pas visible\",\n    \"Impossible de déterminer avec certitude le type de manches (montées/raglan)\",\n    \"La méthode de construction ne peut pas être confirmée sans voir l'intérieur ou le dos\"\n  ],\n  \"warnings\": [],\n  \"overallConfidence\": \"medium\"\n}"
+}

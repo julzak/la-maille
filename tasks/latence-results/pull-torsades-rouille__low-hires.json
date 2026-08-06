@@ -1,0 +1,13 @@
+{
+  "variant": "low-hires",
+  "image": "pull-torsades-rouille",
+  "ok": true,
+  "ms": 8641,
+  "inputTokens": 7043,
+  "outputTokens": 493,
+  "costUsd": 0.04754,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 2,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.9}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Le pull est plié, les lignes d'épaules et d'emmanchures ne sont pas visibles, impossible de déterminer le sens de tricotage.\"}, \"neckline\": {\"type\": \"ras-du-cou\", \"confidence\": 0.85}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"cotes-1x1\", \"doubled\": false, \"confidence\": 0.6}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"longues\", \"confidence\": 0.6}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.9, \"notes\": \"Torsades et points texturés type aran sur fond de jersey, bordures en côtes aux poignets et au bas.\"}, \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.85}, \"fit\": {\"style\": \"oversized\", \"confidence\": 0.5}, \"limitations\": [\"Vêtement plié: épaules, emmanchures et longueur totale non visibles\", \"Impossible de confirmer la méthode de construction\", \"Type de montage des manches indéterminable\"], \"warnings\": [\"Estimation du fit approximative car le vêtement n'est pas porté\"], \"overallConfidence\": \"medium\"}"
+}

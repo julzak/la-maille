@@ -1,0 +1,13 @@
+{
+  "variant": "effort-medium",
+  "image": "layette-cardigan",
+  "ok": true,
+  "ms": 10672,
+  "inputTokens": 3581,
+  "outputTokens": 605,
+  "costUsd": 0.03303,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 1,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"cardigan\", \"confidence\": 0.9}, \"construction\": {\"method\": \"top-down\", \"confidence\": 0.45, \"reasoning\": \"Gilet bébé en point mousse, plié, avec bande de boutonnage continue le long du devant; la construction semble faite en une pièce du haut vers le bas, mais l'image pliée ne permet pas de confirmer les lignes d'augmentation.\"}, \"neckline\": {\"type\": \"ouvert-cardigan\", \"confidence\": 0.75}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"mousse\", \"doubled\": false, \"confidence\": 0.5}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"longues\", \"confidence\": 0.4}, \"stitch\": {\"mainPattern\": \"mousse\", \"confidence\": 0.9, \"notes\": \"Point mousse régulier sur tout le corps, bordures également en mousse ; ensemble assorti (béguin en point de riz/mousse et chaussons à côtes).\"}, \"closure\": {\"type\": \"boutons\", \"buttonCountEstimate\": 3, \"confidence\": 0.85}, \"fit\": {\"style\": \"regular\", \"confidence\": 0.4}, \"limitations\": [\"Vêtement plié: impossible de voir la forme complète, l'emmanchure et la longueur exacte\", \"Type de manches (raglan, montées, marteau) indéterminable\", \"Nombre total de boutons possiblement supérieur (partie basse masquée)\", \"Construction (top-down/bottom-up) non vérifiable\"], \"warnings\": [\"Photo d'un ensemble bébé: plusieurs pièces présentes (béguin, chaussons)\"], \"overallConfidence\": \"medium\"}"
+}

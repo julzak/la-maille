@@ -1,0 +1,12 @@
+{
+  "variant": "thinking-off",
+  "image": "pull-ecru-plie",
+  "ok": true,
+  "ms": 17836,
+  "inputTokens": 3581,
+  "outputTokens": 678,
+  "costUsd": 0.034855,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 10
+}

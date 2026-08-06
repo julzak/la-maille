@@ -1,0 +1,13 @@
+{
+  "variant": "sonnet-5",
+  "image": "pull-ecru-plie",
+  "ok": true,
+  "ms": 8780,
+  "inputTokens": 3581,
+  "outputTokens": 710,
+  "costUsd": 0.021393,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 10,
+  "raw": "```json\n{\n  \"analysable\": true,\n  \"rejectionReason\": null,\n  \"garment\": { \"type\": \"unknown\", \"confidence\": 0.3 },\n  \"construction\": { \"method\": \"unknown\", \"confidence\": 0.2, \"reasoning\": \"Le vêtement est plié et enroulé, aucune vue d'ensemble de la construction (encolure, épaules, coutures) n'est visible pour déterminer la méthode.\" },\n  \"neckline\": { \"type\": \"unknown\", \"confidence\": 0.1 },\n  \"neckband\": { \"construction\": \"unknown\", \"height\": \"unknown\", \"stitch\": \"unknown\", \"doubled\": null, \"confidence\": 0.1 },\n  \"sleeves\": { \"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.1 },\n  \"stitch\": { \"mainPattern\": \"torsades\", \"confidence\": 0.75, \"notes\": \"Motif de torsades visible en relief alternant avec des zones de point de riz ou de semences, typique d'un tricot irlandais/aran.\" },\n  \"closure\": { \"type\": \"unknown\", \"buttonCountEstimate\": 0, \"confidence\": 0.2 },\n  \"fit\": { \"style\": \"unknown\", \"confidence\": 0.1 },\n  \"limitations\": [\n    \"Le vêtement est plié et roulé, empêchant de voir l'encolure, les épaules et les manches\",\n    \"Impossible de déterminer le type exact du vêtement (pull, cardigan, gilet)\",\n    \"Impossible d'évaluer la méthode de construction sans voir les coutures ou l'encolure\",\n    \"Aucune fermeture (boutons/zip) visible car la zone centrale n'est pas dépliée\",\n    \"La coupe/ajustement ne peut pas être évaluée sur un vêtement plié\"\n  ],\n  \"warnings\": [\n    \"L'image montre le vêtement plié avec un ruban à mesurer, rendant l'analyse structurelle très limitée\",\n    \"Seul le motif de point (torsades) peut être identifié avec une confiance raisonnable\"\n  ],\n  \"overallConfidence\": \"low\"\n}\n```"
+}

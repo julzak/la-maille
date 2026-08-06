@@ -1,0 +1,13 @@
+{
+  "variant": "effort-medium",
+  "image": "pull-irlandais-ecru",
+  "ok": true,
+  "ms": 14156,
+  "inputTokens": 3581,
+  "outputTokens": 547,
+  "costUsd": 0.03158,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 3,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.85}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Le pull est plié, seules la face avant et une partie du col sont visibles. Aucune ligne de raglan ni couture d'épaule identifiable, impossible de déterminer le sens de tricotage.\"}, \"neckline\": {\"type\": \"ras-du-cou\", \"confidence\": 0.8}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"moyenne\", \"stitch\": \"cotes-1x1\", \"doubled\": null, \"confidence\": 0.55}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.2}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.9, \"notes\": \"Panneaux de torsades entrelacées type aran, avec colonnes de points de riz/jersey envers en séparation et bordure en côtes en bas.\"}, \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.8}, \"fit\": {\"style\": \"regular\", \"confidence\": 0.35}, \"limitations\": [\"Vêtement plié: manches non visibles, longueur et type de manches indéterminables\", \"Dos et emmanchures non visibles\", \"Impossible de confirmer si le col est double (replié)\", \"Méthode de construction non déterminable\"], \"warnings\": [\"L'évaluation de la coupe est spéculative car le vêtement n'est pas porté\"], \"overallConfidence\": \"medium\"}"
+}
