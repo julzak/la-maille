@@ -155,6 +155,17 @@ export interface AnalyzeImageOptions {
   images: ImageData[];
 }
 
+// Tokens de cache (prompt caching) remontes par l'API, pour le tracking des generations.
+export interface AnalysisUsage {
+  cacheCreationInputTokens: number | null;
+  cacheReadInputTokens: number | null;
+}
+
+export interface AnalyzeImageResult {
+  analysis: GarmentAnalysis;
+  usage: AnalysisUsage;
+}
+
 export class AnalysisError extends Error {
   constructor(
     message: string,
@@ -306,7 +317,7 @@ function normalizeAnalysis(analysis: GarmentAnalysis): GarmentAnalysis {
 
 export async function analyzeGarmentImage({
   images,
-}: AnalyzeImageOptions): Promise<GarmentAnalysis> {
+}: AnalyzeImageOptions): Promise<AnalyzeImageResult> {
   if (!process.env.ANTHROPIC_API_KEY) {
     throw new AnalysisError(
       "ANTHROPIC_API_KEY is not configured",
@@ -362,8 +373,21 @@ export async function analyzeGarmentImage({
           content,
         },
       ],
-      system: SYSTEM_PROMPT,
+      // Prompt caching : le system prompt (~4000 tokens, statique) est cache
+      // via cache_control ; seules les images (volatiles) restent hors cache.
+      system: [
+        {
+          type: "text",
+          text: SYSTEM_PROMPT,
+          cache_control: { type: "ephemeral" },
+        },
+      ],
     });
+
+    const usage: AnalysisUsage = {
+      cacheCreationInputTokens: response.usage.cache_creation_input_tokens ?? null,
+      cacheReadInputTokens: response.usage.cache_read_input_tokens ?? null,
+    };
 
     // Extract text content from response
     const textContent = response.content.find((block) => block.type === "text");
@@ -399,7 +423,7 @@ export async function analyzeGarmentImage({
       );
     }
 
-    return analysis;
+    return { analysis, usage };
   } catch (error) {
     // Re-throw AnalysisError as-is
     if (error instanceof AnalysisError) {
