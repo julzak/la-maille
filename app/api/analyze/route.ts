@@ -5,6 +5,7 @@ import {
   ANALYSIS_MODEL,
   type ImageMediaType,
   type ImageData,
+  type AnalysisUsage,
 } from "@/lib/anthropic";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -19,6 +20,7 @@ import type { GarmentAnalysis } from "@/lib/types";
 async function logGeneration(
   admin: ReturnType<typeof createAdminClient>,
   analysis: GarmentAnalysis,
+  usage: AnalysisUsage,
   numImages: number,
   userId: string | null,
   ipHash: string | null
@@ -34,6 +36,8 @@ async function logGeneration(
       rejection_reason: analysis.analysable ? null : analysis.rejectionReason,
       num_images: numImages,
       model: ANALYSIS_MODEL,
+      cache_creation_input_tokens: usage.cacheCreationInputTokens,
+      cache_read_input_tokens: usage.cacheReadInputTokens,
     });
   } catch (err) {
     console.error("Failed to log generation:", err);
@@ -151,12 +155,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Analyze with Claude
-    const analysis = await analyzeGarmentImage({ images });
+    const { analysis, usage } = await analyzeGarmentImage({ images });
 
     // Track the generation (best-effort, ne bloque pas la reponse)
     await logGeneration(
       admin,
       analysis,
+      usage,
       images.length,
       userId,
       identity.type === "ip" ? identity.ipHash : null
