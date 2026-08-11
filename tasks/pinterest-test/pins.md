@@ -1,6 +1,6 @@
 # Pins Pinterest (test) - La Maille
 
-25 pins prets a publier. Suivi : pins marques PUBLIE au fil de l'eau, prochain lot de 3-5 la semaine du 2026-08-10. UTM commun sur tous les liens : `utm_source=pinterest&utm_medium=social&utm_campaign=test-pins-2026-08`.
+25 pins prets a publier. Suivi : pins marques PUBLIE au fil de l'eau, prochain lot de 3-5 la semaine du 2026-08-17 (suggestion : 5, 6, 11, 15, 18). UTM commun sur tous les liens : `utm_source=pinterest&utm_medium=social&utm_campaign=test-pins-2026-08`.
 Chaque image et chaque lien de destination a ete verifie en HTTP 200 (voir resultat dans la description de la PR).
 
 Repartition : 13 pins FR, 12 pins EN. 15 pins vers des articles de blog, 10 pins vers la home / le generateur / how-it-works.
@@ -28,7 +28,7 @@ Repartition : 13 pins FR, 12 pins EN. 15 pins vers des articles de blog, 10 pins
 - **Visuel vertical (a utiliser sur Pinterest)** : https://la-maille.com/pins/pin-01.jpg
 - **Lien** : https://la-maille.com/fr/blog/comment-tricoter-un-pull?utm_source=pinterest&utm_medium=social&utm_campaign=test-pins-2026-08
 
-### Pin 2 (FR)
+### Pin 2 (PUBLIE 2026-08-11) (FR)
 - **Image** : https://la-maille.com/images/blog/modele-de-pull-a-tricoter-avec-explication-gratuit/modele-de-pull-a-tricoter-avec-explication-gratuit-echantillon-patron.webp
 - **Titre** (52/100) : Modèle de pull à tricoter gratuit, avec explications
 - **Description** (287/500) : Un modèle de pull tricot gratuit et détaillé, avec toutes les explications pour suivre le patron sans hésitation : échantillon de tension, construction top down et conseils de laine. Un bon point de départ pour un pull tricoté main qui tombe vraiment bien, sans acheter de patron payant.
@@ -42,7 +42,7 @@ Repartition : 13 pins FR, 12 pins EN. 15 pins vers des articles de blog, 10 pins
 - **Visuel vertical (a utiliser sur Pinterest)** : https://la-maille.com/pins/pin-03.jpg
 - **Lien** : https://la-maille.com/fr/blog/modeles-tricot-gratuits?utm_source=pinterest&utm_medium=social&utm_campaign=test-pins-2026-08
 
-### Pin 4 (FR)
+### Pin 4 (PUBLIE 2026-08-11) (FR)
 - **Image** : https://la-maille.com/images/blog/modele-tricot-gilet-femme-facile-gratuit/modele-tricot-gilet-femme-facile-gratuit-gilet-sans-manche.webp
 - **Titre** (50/100) : Modèle gilet tricot facile et gratuit pour débuter
 - **Description** (255/500) : Un modèle de gilet tricot femme facile et gratuit, parfait pour tricoter un cardigan sans manches ou une veste simple. Guide complet avec échantillon de tension, construction top down et astuces pour adapter le patron à sa taille sans reprendre le tricot.
@@ -63,7 +63,7 @@ Repartition : 13 pins FR, 12 pins EN. 15 pins vers des articles de blog, 10 pins
 - **Visuel vertical (a utiliser sur Pinterest)** : https://la-maille.com/pins/pin-06.jpg
 - **Lien** : https://la-maille.com/fr/blog/echarpe-snood-tricot?utm_source=pinterest&utm_medium=social&utm_campaign=test-pins-2026-08
 
-### Pin 7 (FR)
+### Pin 7 (PUBLIE 2026-08-11) (FR)
 - **Image** : https://la-maille.com/images/blog/tricoter-un-bonnet/tricoter-un-bonnet-en-cours.webp
 - **Titre** (44/100) : Tricoter un bonnet : guide complet pas à pas
 - **Description** (251/500) : Le guide pas à pas pour tricoter un bonnet à sa taille : côtes, diminutions régulières pour la fermeture, choix des aiguilles et de la laine. Un projet de tricot rapide et accessible, parfait pour tester un nouveau point ou terminer un fond de pelote.
@@ -112,7 +112,7 @@ Repartition : 13 pins FR, 12 pins EN. 15 pins vers des articles de blog, 10 pins
 - **Visuel vertical (a utiliser sur Pinterest)** : https://la-maille.com/pins/pin-13.jpg
 - **Lien** : https://la-maille.com/blog/cable-knit-sweater-pattern?utm_source=pinterest&utm_medium=social&utm_campaign=test-pins-2026-08
 
-### Pin 14 (EN)
+### Pin 14 (PUBLIE 2026-08-11) (EN)
 - **Image** : https://la-maille.com/images/blog/how-to-read-knitting-pattern-beginners/pattern-anatomy-labeled.webp
 - **Titre** (48/100) : How to Read a Knitting Pattern: Beginner's Guide
 - **Description** (244/500) : Knitting patterns can look like a foreign language at first. This beginner's guide breaks down abbreviations, parentheses for sizes, and how to follow a chart row by row, so you can read any knitting pattern with confidence instead of guessing.
@@ -135,7 +135,7 @@ Repartition : 13 pins FR, 12 pins EN. 15 pins vers des articles de blog, 10 pins
 - **Visuel vertical (a utiliser sur Pinterest)** : https://la-maille.com/pins/pin-16.jpg
 - **Lien** : https://la-maille.com/?utm_source=pinterest&utm_medium=social&utm_campaign=test-pins-2026-08
 
-### Pin 17 (EN)
+### Pin 17 (PUBLIE 2026-08-11) (EN)
 - **Image** : https://la-maille.com/og-image.png
 - **Titre** (53/100) : La Maille: AI Knitting Pattern Generator From a Photo
 - **Description** (250/500) : La Maille is an AI tool that turns a sweater photo into a complete, personalized knitting pattern: construction, stitch pattern, gauge swatch and your measurements. Built for knitters who want to recreate a look without hunting for the exact pattern.
