@@ -1,0 +1,9 @@
+{
+  "model": "claude-opus-5",
+  "ok": true,
+  "ms": 13882,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.9}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Le pull est plié, les lignes d'épaules et d'emmanchures ne sont pas visibles. Les torsades verticales suggèrent un tricot en rangs ou en rond de bas en haut, mais aucune ligne de raglan ni de couture d'épaule n'est identifiable.\"}, \"neckline\": {\"type\": \"ras-du-cou\", \"confidence\": 0.85}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"cotes-1x1\", \"doubled\": false, \"confidence\": 0.65}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"longues\", \"confidence\": 0.55}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.9, \"notes\": \"Torsades verticales alternées avec des colonnes de jersey et des bandes de point mousse ou de côtes; poignets et bas en côtes.\"}, \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.85}, \"fit\": {\"style\": \"regular\", \"confidence\": 0.4}, \"limitations\": [\"Vêtement plié: impossible de voir les emmanchures, la forme des épaules et la longueur totale\", \"Type de montage des manches indéterminable\", \"Impossible de confirmer si la bordure d'encolure est doublée\", \"Coupe (ajustée/oversized) difficile à évaluer sans porté\"], \"warnings\": [\"La construction (top-down/bottom-up) est une hypothèse non vérifiable sur cette photo\"], \"overallConfidence\": \"medium\"}",
+  "inputTokens": 3581,
+  "outputTokens": 602,
+  "costUsd": 0.032955
+}

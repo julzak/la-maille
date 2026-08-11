@@ -1,0 +1,13 @@
+{
+  "variant": "sonnet-5-low",
+  "image": "pull-torsades-rouille",
+  "ok": true,
+  "ms": 6486,
+  "inputTokens": 3581,
+  "outputTokens": 532,
+  "costUsd": 0.018723,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 1,
+  "raw": "{\n  \"analysable\": true,\n  \"rejectionReason\": null,\n  \"garment\": { \"type\": \"pull\", \"confidence\": 0.7 },\n  \"construction\": { \"method\": \"unknown\", \"confidence\": 0.4, \"reasoning\": \"Le pull est plié, la méthode de construction n'est pas clairement identifiable, mais l'ouvrage en cours sur les aiguilles suggère un tricot en pièces séparées.\" },\n  \"neckline\": { \"type\": \"ras-du-cou\", \"confidence\": 0.75 },\n  \"neckband\": { \"construction\": \"picked-up\", \"height\": \"moyenne\", \"stitch\": \"cotes-1x1\", \"doubled\": null, \"confidence\": 0.6 },\n  \"sleeves\": { \"type\": \"montees\", \"length\": \"longues\", \"confidence\": 0.6 },\n  \"stitch\": { \"mainPattern\": \"torsades\", \"confidence\": 0.85, \"notes\": \"Motif torsadé complexe visible sur le corps, manches en côtes 1x1 au niveau des poignets\" },\n  \"closure\": { \"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.75 },\n  \"fit\": { \"style\": \"regular\", \"confidence\": 0.5 },\n  \"limitations\": [\n    \"Le vêtement est plié, ce qui limite la visibilité complète de la construction\",\n    \"Impossible de déterminer si le col est doublé\",\n    \"La méthode de construction (top-down, bottom-up, etc.) n'est pas clairement visible\"\n  ],\n  \"warnings\": [],\n  \"overallConfidence\": \"medium\"\n}"
+}

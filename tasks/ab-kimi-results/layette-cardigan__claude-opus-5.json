@@ -1,0 +1,9 @@
+{
+  "model": "claude-opus-5",
+  "ok": true,
+  "ms": 10481,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"cardigan\", \"confidence\": 0.9}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Le vêtement est plié, ce qui masque les lignes de construction. On devine une ligne d'épaule/emmanchure sur le côté droit de l'image qui pourrait évoquer des manches montées ou une construction en pièces assemblées, mais l'ensemble en point mousse rend l'identification incertaine.\"}, \"neckline\": {\"type\": \"ouvert-cardigan\", \"confidence\": 0.7}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"mousse\", \"confidence\": 0.4}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"longues\", \"confidence\": 0.4}, \"stitch\": {\"mainPattern\": \"mousse\", \"confidence\": 0.85, \"notes\": \"Point mousse (rangs de bosses horizontales) sur l'ensemble du corps ; la bande de boutonnage semble également en mousse ou jersey.\"}, \"closure\": {\"type\": \"boutons\", \"buttonCountEstimate\": 3, \"confidence\": 0.85}, \"fit\": {\"style\": \"unknown\", \"confidence\": 0.2}, \"limitations\": [\"Le vêtement est plié : impossible de voir l'encolure complète, les manches et la longueur totale\", \"Impossible de déterminer la méthode de construction (top-down, bottom-up, pièces assemblées)\", \"Impossible de vérifier si la bordure d'encolure est doublée\", \"Le nombre total de boutons peut être supérieur (partie inférieure masquée par le pli)\"], \"warnings\": [\"Il s'agit probablement d'un vêtement de bébé (ensemble avec béguin et chaussons)\", \"L'analyse repose sur une vue partielle du vêtement plié\"], \"overallConfidence\": \"low\"}",
+  "inputTokens": 3581,
+  "outputTokens": 661,
+  "costUsd": 0.03443
+}

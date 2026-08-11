@@ -1,0 +1,13 @@
+{
+  "variant": "sonnet-5-low",
+  "image": "pull-ecru-plie",
+  "ok": true,
+  "ms": 6335,
+  "inputTokens": 3581,
+  "outputTokens": 579,
+  "costUsd": 0.019428,
+  "jsonOk": true,
+  "overallConfidence": "insufficient",
+  "unknowns": 10,
+  "raw": "{\n  \"analysable\": false,\n  \"rejectionReason\": \"Le vêtement est plié et enroulé, ce qui empêche de voir sa forme générale, son encolure, ses manches et sa fermeture\",\n  \"garment\": { \"type\": \"unknown\", \"confidence\": 0.2 },\n  \"construction\": { \"method\": \"unknown\", \"confidence\": 0.1, \"reasoning\": \"Le vêtement étant plié, la méthode de construction n'est pas identifiable\" },\n  \"neckline\": { \"type\": \"unknown\", \"confidence\": 0.1 },\n  \"neckband\": { \"construction\": \"unknown\", \"height\": \"unknown\", \"stitch\": \"unknown\", \"doubled\": null, \"confidence\": 0.1 },\n  \"sleeves\": { \"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.1 },\n  \"stitch\": { \"mainPattern\": \"torsades\", \"confidence\": 0.6, \"notes\": \"On distingue des motifs torsadés et des points texturés sur le tricot plié\" },\n  \"closure\": { \"type\": \"unknown\", \"buttonCountEstimate\": null, \"confidence\": 0.1 },\n  \"fit\": { \"style\": \"unknown\", \"confidence\": 0.1 },\n  \"limitations\": [\n    \"Le vêtement est plié, empêchant de voir la forme générale\",\n    \"Aucune vue de l'encolure ou de la bordure\",\n    \"Manches non visibles\",\n    \"Système de fermeture non visible\",\n    \"Type de vêtement impossible à déterminer avec certitude\"\n  ],\n  \"warnings\": [\n    \"Image montrant un tricot plié sur une table avec des accessoires de mesure et de tricotage\"\n  ],\n  \"overallConfidence\": \"insufficient\"\n}"
+}

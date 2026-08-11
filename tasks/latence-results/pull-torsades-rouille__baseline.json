@@ -1,0 +1,12 @@
+{
+  "variant": "baseline",
+  "image": "pull-torsades-rouille",
+  "ok": true,
+  "ms": 9156,
+  "inputTokens": 3581,
+  "outputTokens": 580,
+  "costUsd": 0.032405,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 2
+}

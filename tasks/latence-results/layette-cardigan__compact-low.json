@@ -1,0 +1,13 @@
+{
+  "variant": "compact-low",
+  "image": "layette-cardigan",
+  "ok": true,
+  "ms": 10084,
+  "inputTokens": 3687,
+  "outputTokens": 391,
+  "costUsd": 0.02821,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 0,
+  "raw": "{\"analysable\":true,\"rejectionReason\":null,\"garment\":{\"type\":\"cardigan\",\"confidence\":0.9},\"construction\":{\"method\":\"pieces-assemblees\",\"confidence\":0.5,\"reasoning\":\"Vêtement plié, épaules semblant assemblées avec manches montées.\"},\"neckline\":{\"type\":\"ouvert-cardigan\",\"confidence\":0.85},\"neckband\":{\"construction\":\"picked-up\",\"height\":\"basse\",\"stitch\":\"mousse\",\"doubled\":false,\"confidence\":0.5},\"sleeves\":{\"type\":\"montees\",\"length\":\"longues\",\"confidence\":0.5},\"stitch\":{\"mainPattern\":\"mousse\",\"confidence\":0.8,\"notes\":\"Point mousse ou point de riz sur l'ensemble.\"},\"closure\":{\"type\":\"boutons\",\"buttonCountEstimate\":3,\"confidence\":0.85},\"fit\":{\"style\":\"regular\",\"confidence\":0.4},\"limitations\":[\"Vêtement plié, longueur des manches incertaine.\",\"Construction non vérifiable sans vue à plat.\"],\"warnings\":[\"Vêtement de bébé, mesures non estimables.\"],\"overallConfidence\":\"medium\"}"
+}

@@ -1,0 +1,12 @@
+{
+  "variant": "thinking-off",
+  "image": "pull-irlandais-ecru",
+  "ok": true,
+  "ms": 12023,
+  "inputTokens": 3581,
+  "outputTokens": 623,
+  "costUsd": 0.03348,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 4
+}

@@ -1,0 +1,13 @@
+{
+  "variant": "effort-medium",
+  "image": "pull-torsades-rouille",
+  "ok": true,
+  "ms": 9088,
+  "inputTokens": 3581,
+  "outputTokens": 547,
+  "costUsd": 0.03158,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 2,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.9}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Le pull est plié, les lignes d'épaules et d'emmanchures ne sont pas visibles. Les torsades verticales suggèrent un tricot en rangs ou en rond, mais aucune ligne de raglan ou d'empiècement circulaire n'est identifiable.\"}, \"neckline\": {\"type\": \"ras-du-cou\", \"confidence\": 0.9}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"moyenne\", \"stitch\": \"cotes-1x1\", \"doubled\": false, \"confidence\": 0.7}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"longues\", \"confidence\": 0.6}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.9, \"notes\": \"Torsades sur fond de jersey, alternées avec des colonnes de point mousse/côtes; bordures et poignets en côtes.\"}, \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.85}, \"fit\": {\"style\": \"regular\", \"confidence\": 0.4}, \"limitations\": [\"Vêtement plié: impossible de voir le type d'emmanchure et la ligne d'épaule\", \"Coupe et longueur totale non mesurables\", \"Impossible de confirmer si le col est doublé\"], \"warnings\": [\"La méthode de construction est déduite avec une faible certitude\"], \"overallConfidence\": \"medium\"}"
+}

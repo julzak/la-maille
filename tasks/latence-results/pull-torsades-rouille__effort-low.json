@@ -1,0 +1,13 @@
+{
+  "variant": "effort-low",
+  "image": "pull-torsades-rouille",
+  "ok": true,
+  "ms": 8007,
+  "inputTokens": 3581,
+  "outputTokens": 436,
+  "costUsd": 0.028805,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 2,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.9}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Pull plié, lignes d'augmentation d'empiècement non visibles ; torsades verticales suggèrent un tricot en rond mais indéterminable.\"}, \"neckline\": {\"type\": \"ras-du-cou\", \"confidence\": 0.9}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"cotes-1x1\", \"doubled\": false, \"confidence\": 0.6}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"longues\", \"confidence\": 0.5}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.9, \"notes\": \"Torsades sur fond jersey, bordures en côtes, style aran\"}, \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.9}, \"fit\": {\"style\": \"regular\", \"confidence\": 0.4}, \"limitations\": [\"Vêtement plié : forme générale, emmanchures et longueur non mesurables\", \"Type de tête de manche indéterminable\"], \"warnings\": [], \"overallConfidence\": \"medium\"}"
+}

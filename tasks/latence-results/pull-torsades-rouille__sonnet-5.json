@@ -1,0 +1,13 @@
+{
+  "variant": "sonnet-5",
+  "image": "pull-torsades-rouille",
+  "ok": true,
+  "ms": 7906,
+  "inputTokens": 3581,
+  "outputTokens": 550,
+  "costUsd": 0.018993,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 1,
+  "raw": "{\n  \"analysable\": true,\n  \"rejectionReason\": null,\n  \"garment\": { \"type\": \"pull\", \"confidence\": 0.75 },\n  \"construction\": { \"method\": \"unknown\", \"confidence\": 0.4, \"reasoning\": \"Le vêtement est plié, il est difficile de voir les coutures ou le sens de construction. Présence d'un échantillon en cours de tricotage à côté suggère un travail en cours.\" },\n  \"neckline\": { \"type\": \"ras-du-cou\", \"confidence\": 0.7 },\n  \"neckband\": { \"construction\": \"picked-up\", \"height\": \"moyenne\", \"stitch\": \"cotes-1x1\", \"doubled\": null, \"confidence\": 0.55 },\n  \"sleeves\": { \"type\": \"montees\", \"length\": \"longues\", \"confidence\": 0.6 },\n  \"stitch\": { \"mainPattern\": \"torsades\", \"confidence\": 0.85, \"notes\": \"Motif de torsades central bien visible sur le devant, entouré de jersey. Poignets en côtes 1x1.\" },\n  \"closure\": { \"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.7 },\n  \"fit\": { \"style\": \"regular\", \"confidence\": 0.4 },\n  \"limitations\": [\n    \"Le vêtement est plié, ce qui limite la vue sur la longueur totale et la coupe globale\",\n    \"Impossible de voir l'arrière du vêtement\",\n    \"La méthode de construction ne peut pas être confirmée visuellement\",\n    \"Impossible de déterminer si le col est doublé\"\n  ],\n  \"warnings\": [],\n  \"overallConfidence\": \"medium\"\n}"
+}

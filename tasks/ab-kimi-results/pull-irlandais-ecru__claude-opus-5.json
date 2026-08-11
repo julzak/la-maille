@@ -1,0 +1,9 @@
+{
+  "model": "claude-opus-5",
+  "ok": true,
+  "ms": 10441,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.85}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.3, \"reasoning\": \"Le pull est plié, on ne voit ni les emmanchures ni les lignes d'augmentation. Les motifs de torsades verticaux suggèrent une construction bottom-up ou en pièces assemblées, mais rien ne permet de trancher.\"}, \"neckline\": {\"type\": \"ras-du-cou\", \"confidence\": 0.75}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"cotes-1x1\", \"doubled\": null, \"confidence\": 0.5}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.2}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.9, \"notes\": \"Motif de type aran : torsades centrales entrelacées, tresses et losanges sur fond de point mousse/jersey envers. Bordure inférieure en côtes.\"}, \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.8}, \"fit\": {\"style\": \"unknown\", \"confidence\": 0.25}, \"limitations\": [\"Le vêtement est plié : type et longueur des manches non visibles\", \"Impossible de déterminer la méthode de construction (emmanchures et épaules masquées)\", \"Coupe/aisance non évaluable sur un vêtement plié\", \"Dos et éventuelle ouverture arrière non visibles\", \"Double épaisseur du col non vérifiable\"], \"warnings\": [\"L'encolure n'est que partiellement visible : le type ras-du-cou est une déduction\", \"L'analyse du col (hauteur, point) est approximative en raison de l'angle de prise de vue\"], \"overallConfidence\": \"low\"}",
+  "inputTokens": 3581,
+  "outputTokens": 642,
+  "costUsd": 0.033955
+}

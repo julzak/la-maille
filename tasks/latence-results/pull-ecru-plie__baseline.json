@@ -1,0 +1,12 @@
+{
+  "variant": "baseline",
+  "image": "pull-ecru-plie",
+  "ok": true,
+  "ms": 10428,
+  "inputTokens": 3581,
+  "outputTokens": 636,
+  "costUsd": 0.033805,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 10
+}

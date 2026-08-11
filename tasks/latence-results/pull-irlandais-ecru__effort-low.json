@@ -1,0 +1,13 @@
+{
+  "variant": "effort-low",
+  "image": "pull-irlandais-ecru",
+  "ok": true,
+  "ms": 8152,
+  "inputTokens": 3581,
+  "outputTokens": 442,
+  "costUsd": 0.028955,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 3,
+  "raw": "{\"analysable\":true,\"rejectionReason\":null,\"garment\":{\"type\":\"pull\",\"confidence\":0.85},\"construction\":{\"method\":\"unknown\",\"confidence\":0.3,\"reasoning\":\"Le pull est plié, les lignes d'épaules et emmanchures ne sont pas visibles ; motifs de torsades verticaux sans indice clair de sens de tricot.\"},\"neckline\":{\"type\":\"ras-du-cou\",\"confidence\":0.8},\"neckband\":{\"construction\":\"picked-up\",\"height\":\"basse\",\"stitch\":\"cotes-1x1\",\"doubled\":false,\"confidence\":0.6},\"sleeves\":{\"type\":\"unknown\",\"length\":\"unknown\",\"confidence\":0.2},\"stitch\":{\"mainPattern\":\"torsades\",\"confidence\":0.9,\"notes\":\"Torsades aran avec panneaux de points de riz/mousse et bordures en côtes\"},\"closure\":{\"type\":\"aucune\",\"buttonCountEstimate\":0,\"confidence\":0.85},\"fit\":{\"style\":\"regular\",\"confidence\":0.4},\"limitations\":[\"Vêtement plié : manches non visibles\",\"Impossible de déterminer la méthode de construction\",\"Longueur totale et fit incertains\"],\"warnings\":[\"Analyse partielle en raison du pliage du vêtement\"],\"overallConfidence\":\"medium\"}"
+}

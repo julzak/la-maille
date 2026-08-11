@@ -1,0 +1,9 @@
+{
+  "model": "claude-opus-5",
+  "ok": true,
+  "ms": 9899,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"unknown\", \"confidence\": 0.3, \"notes\": null}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.1, \"reasoning\": \"Le vêtement est plié et enroulé, aucune couture d'épaule, emmanchure ou ligne de construction n'est visible.\"}, \"neckline\": {\"type\": \"unknown\", \"confidence\": 0.1}, \"neckband\": {\"construction\": \"unknown\", \"height\": \"unknown\", \"stitch\": \"unknown\", \"doubled\": null, \"confidence\": 0.1}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.1}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.85, \"notes\": \"Tricot type aran en laine épaisse : panneaux de torsades entrelacées alternant avec des panneaux de point de riz/point de blé, séparés par des colonnes de mailles endroit. Couleur écrue naturelle.\"}, \"closure\": {\"type\": \"unknown\", \"buttonCountEstimate\": 0, \"confidence\": 0.15}, \"fit\": {\"style\": \"unknown\", \"confidence\": 0.1}, \"limitations\": [\"Le vêtement est plié : impossible de déterminer sa forme générale (pull, cardigan ou gilet)\", \"Encolure non visible : type de col et bordure indéterminables\", \"Manches non visibles : type et longueur indéterminables\", \"Aucune fermeture ni bouton visible sur la partie exposée\", \"Méthode de construction non identifiable sans coutures ni empiècement visibles\"], \"warnings\": [\"Analyse limitée au point de tricot uniquement\", \"Une photo du vêtement déplié et à plat (vue de face et de dos) est nécessaire pour une analyse complète\"], \"overallConfidence\": \"low\"}",
+  "inputTokens": 3581,
+  "outputTokens": 634,
+  "costUsd": 0.033755
+}

@@ -1,0 +1,13 @@
+{
+  "variant": "low-hires",
+  "image": "pull-ecru-plie",
+  "ok": true,
+  "ms": 18826,
+  "inputTokens": 7043,
+  "outputTokens": 465,
+  "costUsd": 0.04684,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 9,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.6}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.2, \"reasoning\": \"Le vêtement est plié, aucune ligne de construction (raglan, empiècement, coutures) n'est visible.\"}, \"neckline\": {\"type\": \"unknown\", \"confidence\": 0.2}, \"neckband\": {\"construction\": \"unknown\", \"height\": \"unknown\", \"stitch\": \"unknown\", \"doubled\": null, \"confidence\": 0.15}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.15}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.85, \"notes\": \"Tricot type aran : torsades, points de blé/riz et côtes, en laine épaisse écrue.\"}, \"closure\": {\"type\": \"unknown\", \"buttonCountEstimate\": 0, \"confidence\": 0.3}, \"fit\": {\"style\": \"unknown\", \"confidence\": 0.2}, \"limitations\": [\"Vêtement plié : forme générale, encolure et manches non visibles\", \"Impossible de déterminer la méthode de construction\", \"Aucune vue de la fermeture centrale\"], \"warnings\": [\"Analyse basée uniquement sur la texture visible du tricot\"], \"overallConfidence\": \"low\"}"
+}

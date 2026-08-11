@@ -1,0 +1,9 @@
+{
+  "model": "kimi-k3",
+  "ok": true,
+  "ms": 30960,
+  "raw": "{\n  \"analysable\": true,\n  \"rejectionReason\": null,\n  \"garment\": { \"type\": \"unknown\", \"confidence\": 0.3 },\n  \"construction\": { \"method\": \"unknown\", \"confidence\": 0.1, \"reasoning\": \"Le vêtement est plié/roulé, aucune ligne de construction (épaules, emmanchures, coutures) n'est visible pour déterminer la méthode.\" },\n  \"neckline\": { \"type\": \"unknown\", \"confidence\": 0.0 },\n  \"neckband\": { \"construction\": \"unknown\", \"height\": \"unknown\", \"stitch\": \"unknown\", \"doubled\": null, \"confidence\": 0.0 },\n  \"sleeves\": { \"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.1 },\n  \"stitch\": { \"mainPattern\": \"torsades\", \"confidence\": 0.85, \"notes\": \"Larges torsades tressées visibles sur toute la surface, alternant avec des panneaux texturés (point de riz ou similaire). Fil épais écru, tricot type irlandais (aran).\" },\n  \"closure\": { \"type\": \"unknown\", \"buttonCountEstimate\": 0, \"confidence\": 0.2 },\n  \"fit\": { \"style\": \"unknown\", \"confidence\": 0.1 },\n  \"limitations\": [\n    \"Vêtement plié et roulé : impossible d'identifier le type exact (pull, cardigan, gilet)\",\n    \"Encolure non visible : type de col et bordure d'encolure indéterminables\",\n    \"Manches non visibles : type et longueur indéterminables\",\n    \"Fermeture non visible : aucun bouton visible sur les parties exposées, mais le devant peut être caché\",\n    \"Méthode de construction indéterminable (pas de coutures ou épaules visibles)\",\n    \"Coupe et taille indéterminables\"\n  ],\n  \"warnings\": [\n    \"L'analyse se limite au point de tricot : torsades style aran avec panneaux texturés\",\n    \"Le mètre ruban suggère une photo de contexte tricot artisanal, pas une présentation du vêtement à plat\"\n  ],\n  \"overallConfidence\": \"low\"\n}",
+  "inputTokens": 2975,
+  "outputTokens": 813,
+  "costUsd": 0.02112
+}

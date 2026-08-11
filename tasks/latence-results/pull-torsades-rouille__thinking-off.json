@@ -1,0 +1,12 @@
+{
+  "variant": "thinking-off",
+  "image": "pull-torsades-rouille",
+  "ok": true,
+  "ms": 12201,
+  "inputTokens": 3581,
+  "outputTokens": 584,
+  "costUsd": 0.032505,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 2
+}

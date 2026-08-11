@@ -1,0 +1,12 @@
+{
+  "variant": "baseline",
+  "image": "pull-irlandais-ecru",
+  "ok": true,
+  "ms": 9273,
+  "inputTokens": 3581,
+  "outputTokens": 565,
+  "costUsd": 0.03203,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 4
+}
