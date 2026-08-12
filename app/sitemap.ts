@@ -171,12 +171,52 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...publicPatternEntries,
     {
       url: `${baseUrl}/privacy`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/privacy`,
+          fr: `${baseUrl}/fr/privacy`,
+          "x-default": `${baseUrl}/privacy`,
+        },
+      },
       lastModified: new Date("2026-02-02"),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/terms`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/terms`,
+          fr: `${baseUrl}/fr/terms`,
+          "x-default": `${baseUrl}/terms`,
+        },
+      },
+      lastModified: new Date("2026-02-02"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/fr/privacy`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/privacy`,
+          fr: `${baseUrl}/fr/privacy`,
+          "x-default": `${baseUrl}/privacy`,
+        },
+      },
+      lastModified: new Date("2026-02-02"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/fr/terms`,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/terms`,
+          fr: `${baseUrl}/fr/terms`,
+          "x-default": `${baseUrl}/terms`,
+        },
+      },
       lastModified: new Date("2026-02-02"),
       changeFrequency: "yearly",
       priority: 0.3,
