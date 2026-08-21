@@ -12,6 +12,21 @@ export interface Article {
   lang?: ArticleLang;
   /** Slug of the translated counterpart in the other language, for hreflang. */
   translationSlug?: string;
+  /**
+   * Title / meta description servis a Google (balises <title> et
+   * description, OG). Le H1 visible reste `title`. Utilises pour optimiser le
+   * CTR des pages a fortes impressions sans reecrire l'article.
+   */
+  seoTitle?: string;
+  seoDescription?: string;
+}
+
+/** Title et description a utiliser dans les metadonnees d'une page article. */
+export function articleMeta(article: Article): { title: string; description: string } {
+  return {
+    title: article.seoTitle ?? article.title,
+    description: article.seoDescription ?? article.excerpt,
+  };
 }
 
 /** Resolve an article's language, defaulting legacy English articles to "en". */
@@ -3357,6 +3372,9 @@ Try La Maille — enter your measurements and gauge, upload a photo of any sweat
   },
   {
     slug: "raglan-vs-set-in-sleeves-which-to-choose",
+    seoTitle: "Raglan vs Set-In Sleeves: Differences, Fit & Which to Knit",
+    seoDescription:
+      "Raglan or set-in sleeve? Compare construction, difficulty, fit and body type, with photos of each. Plus drop shoulder, and how to pick for your next sweater.",
     title:
       "Raglan vs Set-In Sleeves: Which Construction Is Right for You?",
     excerpt:
@@ -4619,6 +4637,9 @@ Ready to start? Choose your yarn, swatch it honestly, and then use the right too
   },
   {
     slug: "how-to-read-knitting-pattern-beginners",
+    seoTitle: "How to Read a Knitting Pattern: Abbreviations, Charts & Sizes",
+    seoDescription:
+      "Learn to read a knitting pattern step by step: K, P, YO, K2tog abbreviations, parentheses and asterisks, picking your size, and reading charts right to left.",
     title: "How to Read a Knitting Pattern: A Beginner's Guide",
     excerpt:
       "Decode K, P, YO, K2tog and read any knitting pattern. Learn abbreviations, understand parentheses and asterisks, and interpret charts confidently.",
@@ -5121,6 +5142,9 @@ Ready to knit a sweater that fits? Try La Maille and generate a pattern designed
   },
   {
     slug: "how-to-adapt-knitting-pattern-to-your-size",
+    seoTitle: "How to Size Up or Down a Knitting Pattern (Step by Step)",
+    seoDescription:
+      "Make a knitting pattern bigger or smaller: adjust length, recalculate width from your gauge, blend sizes, and convert any pattern to your measurements.",
     title: "How to Adapt a Knitting Pattern to Your Size",
     excerpt:
       "Adapt any knitting pattern to your measurements. Modify length easily, adjust width with proportional math, or blend sizes for custom fit.",
@@ -5472,6 +5496,9 @@ Upload a sweater photo and get your custom knitting pattern in minutes.
   },
   {
     slug: "cable-knit-sweater-pattern",
+    seoTitle: "Cable Knit Sweater Pattern: How to Read, Size & Knit One",
+    seoDescription:
+      "Cable knit sweater pattern guide: how cables change gauge and yarn quantity, needle size, sizing, and how to generate a cable sweater pattern from a photo.",
     title: "Cable Knit Sweater Pattern: Complete Guide",
     excerpt:
       "Learn how to read and knit a cable knit sweater pattern: needle size, yarn quantity, gauge, and sizing. Practical guide for confident knitters. Generate yours free.",
@@ -5712,6 +5739,9 @@ Upload a sweater photo and get your custom knitting pattern in minutes.
   },
   {
     slug: "how-many-yards-of-yarn-for-a-sweater",
+    seoTitle: "How Much Yarn for a Sweater? Yardage Chart by Size & Weight",
+    seoDescription:
+      "How much yarn do you need for a sweater? Yardage chart by size and yarn weight (fingering to bulky), skein counts, and a simple formula to calculate your own.",
     title: "How Many Yards of Yarn for a Sweater? Full Guide",
     excerpt:
       "Find out exactly how many yards of yarn you need for a sweater by size, weight, and construction. Includes a clear yardage chart and calculation method.",
@@ -7017,6 +7047,121 @@ Knitting sleeve cap shaping becomes straightforward once you understand the unde
 
 Upload a sweater photo and get your custom knitting pattern in minutes.
     `.trim(),
+  },
+  {
+    slug: "knitting-pattern-generators-compared",
+    title:
+      "Knitting Pattern Generators Compared: Chart Tools, Calculators, Chatbots and Photo-to-Pattern AI",
+    seoTitle: "Knitting Pattern Generators Compared: Which Type Do You Need?",
+    seoDescription:
+      "Chart makers, sweater calculators, AI chatbots and photo-to-pattern generators do very different things. Compare what each produces and pick the right tool.",
+    excerpt:
+      "Not every knitting pattern generator makes a pattern. Compare the four types of tools (image-to-chart converters, measurement calculators, AI chatbots and photo-to-pattern generators), what each one actually outputs, and which to use for your project.",
+    keywords: [
+      "knitting pattern generator comparison",
+      "best knitting pattern generator",
+      "image to knitting chart",
+      "photo to knitting pattern",
+      "sweater pattern calculator",
+    ],
+    publishedAt: "2026-08-21",
+    readingTime: "9 min read",
+    content: `
+**A knitting pattern generator is any tool that produces knitting instructions from an input you give it. In practice the name covers four very different things: image-to-chart converters (which turn a picture into a colorwork grid), measurement-based calculators (which output a basic sweater recipe from your gauge and sizes), general AI chatbots (which write pattern text from a description), and photo-to-pattern generators (which read a garment's construction from a photo and write the full pattern to your measurements). They are not interchangeable, and the most common disappointment comes from using a chart tool when you wanted a garment pattern.**
+
+This guide compares the four categories on one question: what do you actually get at the end? We look at the input each tool needs, the output it produces, where it shines, and where it quietly fails. The goal is not to crown a winner but to match the tool to the project in front of you. If you already know you want row-by-row instructions for a sweater you photographed, jump to the [AI knitting pattern generator](/knitting-pattern-generator) section; if you are designing a colorwork motif, the chart tools are what you need.
+
+## Type 1: image-to-chart converters
+
+These are the oldest "pattern generators" on the web and still the most numerous. You upload an image, choose a stitch count and a number of colors, and the tool pixelates the picture into a grid where each cell is one stitch. Tools such as Stitch Fiddle and KnitPro (from microRevolt) work this way, and many cross-stitch apps do the same job.
+
+**What you get:** a colorwork chart. A grid, sometimes with a color key and a stitch count per row.
+
+**What you do not get:** any garment. There is no cast on, no shaping, no neckline, no sleeve. The chart assumes you already have a pattern to place it on, or that you are knitting a flat rectangle (a blanket square, a scarf, a cushion panel).
+
+**Best for:** intarsia or stranded motifs, portrait blankets, logos and lettering, cross-stitch transfers.
+
+**Watch out for:** stitch proportions. A knit stitch is wider than it is tall, so a square grid distorts the image unless the tool lets you set a gauge ratio. Also, a photo of a sweater put through one of these tools gives you a pixelated picture of a sweater, not a sweater pattern. This is the single most common mix-up, and it is why La Maille's own product page spends a paragraph explaining that it is not a chart tool.
+
+## Type 2: measurement-based sweater calculators
+
+The second family asks for numbers rather than pictures: your stitch and row gauge, your chest, length and sleeve measurements, sometimes the ease you want. It then fills a standard construction template (most often a top-down raglan, a drop shoulder or a bottom-up set-in sleeve) with your numbers and prints the resulting recipe.
+
+**What you get:** a working basic pattern, with stitch counts calculated for you. This is real garment math, and for a plain sweater it is often enough.
+
+**What you do not get:** the design of a specific garment. The calculator knows its two or three templates and nothing else. If the sweater you admired has a saddle shoulder, a split hem, a shawl collar or a particular rib depth, you translate those details yourself. It also cannot tell you which template matches the garment you are looking at; you have to know already whether it is a raglan or a set-in sleeve (our guide to [raglan vs set-in sleeves](/blog/raglan-vs-set-in-sleeves-which-to-choose) helps with that).
+
+**Best for:** knitters who already understand construction and want the arithmetic done, especially for plain sweaters in stockinette.
+
+**Watch out for:** templates that do not let you change neckline depth or sleeve cap height. The defaults are generic and the fit shows it.
+
+## Type 3: general AI chatbots
+
+Since 2023 a lot of knitters have tried asking ChatGPT, Claude or Gemini for a pattern. Type "write me a pattern for a cropped raglan in DK weight, 40 inch chest" and you will get something that looks like a pattern in seconds.
+
+**What you get:** fluent pattern text, in any format you ask for, with as much explanation as you want. For learning how a construction works, or for rewording a pattern you do not understand, chatbots are genuinely useful.
+
+**What you do not get, reliably:** correct numbers. A general chatbot is not running a sizing model; it is predicting plausible text. Stitch counts may not add up across rows, the decrease rate may not land on the target neckline width, and nothing checks that the sleeve cap fits the armhole. Some knitters get good results by feeding their gauge and every measurement and then verifying each section; at that point you are doing the calculator's job by hand with an assistant that may or may not have followed your constraints.
+
+**Best for:** understanding, rewording, brainstorming modifications, converting units, and asking "why does this pattern do that?".
+
+**Watch out for:** asking a chatbot to read a photo of a sweater. The newer models can describe the garment, but describing is not measuring. Without a gauge, a sizing model and a consistency check, the instructions that follow are an educated guess.
+
+## Type 4: photo-to-pattern generators
+
+The newest category takes a photo of a finished garment and does three things in sequence: it identifies the construction (top-down or bottom-up, raglan, set-in or drop shoulder, neckline type, sleeve style, stitch pattern), it combines that with your gauge and your measurements, and it writes the full pattern, from cast on to bind off. This is what La Maille does, and the [photo to knitting pattern guide](/blog/photo-to-knitting-pattern-complete-guide) walks through the process step by step.
+
+**What you get:** a complete written pattern for the garment in the photo, sized to you, with the construction choices already made to match the original.
+
+**What you do not get:** exotic stitchwork. Photo-to-pattern tools currently handle the structure of sweaters, cardigans, vests and tops in stockinette, ribbing and garter stitch. Complex cables, lace and colorwork are read as "there is a texture here", not charted stitch by stitch. For those you still pair the generated structure with a stitch dictionary or a chart tool from type 1.
+
+**Best for:** recreating a sweater you saw, adapting a vintage or out-of-print design to your size, or getting a full first draft of a garment without doing the construction math.
+
+**Watch out for:** photo quality. The analysis is only as good as the picture: a flat, front-facing, well-lit photo gives a much better reading than a mirror selfie. Our guide on [how to recreate a sweater from a photo](/blog/how-to-recreate-sweater-from-photo) covers what a good source photo looks like. And as with any generated pattern, swatch first and check the numbers against your body before casting on.
+
+## Side-by-side comparison
+
+| | Image-to-chart | Measurement calculator | AI chatbot | Photo-to-pattern AI |
+|---|---|---|---|---|
+| Input | An image | Gauge + measurements | A text description | A photo + gauge + measurements |
+| Output | Colorwork grid | Basic sweater recipe | Pattern-shaped text | Full written garment pattern |
+| Reads the garment's construction | No | No (you choose a template) | Partially, unreliably | Yes |
+| Calculates from your gauge | No | Yes | Only if you insist, unverified | Yes |
+| Shaping, neckline, sleeves | No | Template only | Not reliable | Yes, matched to the photo |
+| Complex cables, lace, colorwork | Colorwork only | No | Describes, does not chart | Not yet |
+| Typical use | Motifs, blankets | Plain sweaters | Learning, rewording | Recreating a specific garment |
+
+## How to choose in 30 seconds
+
+- You have a picture of a motif or a logo and want to knit it into a flat piece: **image-to-chart converter**.
+- You know exactly what construction you want, you just want the stitch counts: **measurement calculator**.
+- You want to understand a pattern, rewrite it, or explore ideas: **AI chatbot**, then verify any numbers elsewhere.
+- You have a photo of a sweater and want to knit that sweater in your size: **photo-to-pattern generator**.
+
+Many projects combine two. A common workflow is to let a photo-to-pattern generator produce the garment structure, then drop a motif from a chart tool onto the front panel, using the row and stitch counts from the generated pattern to place it.
+
+## Frequently Asked Questions
+
+### Is there a free knitting pattern generator that makes a full pattern from a photo?
+
+Yes. [La Maille](/knitting-pattern-generator) is free to use: you upload a photo, enter your gauge and measurements, and get a complete row-by-row pattern without creating an account. Chart converters such as KnitPro are also free but produce a grid, not a garment pattern.
+
+### Can ChatGPT generate a knitting pattern?
+
+It can write text that looks like a pattern, and it is good at explaining and rewording. It does not run a sizing model, so stitch counts and shaping rates need to be checked by hand. Treat it as a writing assistant, not a calculator.
+
+### What is the difference between a knitting chart generator and a knitting pattern generator?
+
+A chart generator turns an image into a grid of stitches for colorwork. A pattern generator produces the instructions to knit a garment: cast on, increases, decreases, neckline, sleeves and bind off. Many tools called "pattern generators" online are actually chart generators.
+
+### Do photo-to-pattern generators work for cardigans and vests?
+
+Yes, the construction logic is the same as for pullovers, with a front opening or no sleeves. La Maille currently supports pullovers, cardigans, vests and sleeveless tops.
+
+### Do I still need to knit a gauge swatch?
+
+Always. Every tool in the calculator and photo-to-pattern families computes from your gauge; if the gauge is wrong, every number that follows is wrong. A 10 cm by 10 cm swatch in your chosen yarn and needles takes an hour and saves the sweater.
+`,
   },
 ];
 

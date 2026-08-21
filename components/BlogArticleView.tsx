@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getArticleBySlug, getAllArticles, articleLang } from "@/lib/blog-data";
+import { BlogInlineCta } from "@/components/BlogInlineCta";
 import type { Language } from "@/lib/i18n/detect";
 
 const chrome: Record<
@@ -40,10 +41,16 @@ const chrome: Record<
 };
 
 // Simple markdown to HTML (handles ##, ###, **, *, -, [](), and paragraphs)
-function renderMarkdown(content: string) {
+/**
+ * @param inlineCta Noeud insere juste avant le 3e titre H2 (donc apres les
+ *   deux premieres sections). Si l'article a moins de 3 H2, il n'est pas
+ *   insere : le CTA de fin d'article suffit.
+ */
+function renderMarkdown(content: string, inlineCta?: React.ReactNode) {
   const lines = content.split("\n");
   const elements: React.ReactNode[] = [];
   let keyCounter = 0;
+  let h2Count = 0;
   let currentParagraph: string[] = [];
   let inList = false;
   let listItems: string[] = [];
@@ -153,6 +160,10 @@ function renderMarkdown(content: string) {
     } else if (trimmed.startsWith("## ")) {
       if (inList) flushList();
       flushParagraph();
+      h2Count++;
+      if (h2Count === 3 && inlineCta) {
+        elements.push(<div key={keyCounter++}>{inlineCta}</div>);
+      }
       elements.push(
         <h2
           key={keyCounter++}
@@ -339,14 +350,19 @@ export function BlogArticleView({ slug }: { slug: string }) {
       </header>
 
       {/* Content */}
-      <article className="prose-custom">{renderMarkdown(article.content)}</article>
+      <article className="prose-custom">
+        {renderMarkdown(
+          article.content,
+          <BlogInlineCta lang={lang} slug={article.slug} />
+        )}
+      </article>
 
       {/* CTA */}
       <section className="mt-16 p-8 bg-primary/5 rounded-xl border border-primary/20 text-center">
         <h2 className="font-serif text-2xl mb-3">{c.ctaTitle}</h2>
         <p className="text-muted-foreground mb-6">{c.ctaText}</p>
         <Link
-          href={prefix || "/"}
+          href={lang === "fr" ? "/fr" : "/knitting-pattern-generator"}
           className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           {c.ctaButton}
