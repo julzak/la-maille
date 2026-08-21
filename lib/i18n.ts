@@ -556,6 +556,32 @@ export const translations = {
     "publicToggle.copied": "Lien copié",
     "publicToggle.viewPage": "Voir la page",
 
+    // Nudge "rendre public" juste apres la sauvegarde (aout 2026 : 0 patron public sur 37)
+    "saveNudge.title": "Partager ce patron ?",
+    "saveNudge.text":
+      "Rendez-le public : il aura sa propre page, visible par tous et indexée par Google. Votre photo source n'est jamais publiée et votre nom n'apparaît pas.",
+    "saveNudge.button": "Rendre public",
+    "saveNudge.later": "Plus tard",
+    "saveNudge.done": "Patron publié. Retrouvez le lien dans Mes patrons.",
+
+    // FAQ home (GEO : reponses directes pour Google et les assistants IA)
+    "homeFaqTitle": "Questions fréquentes",
+    "homeFaq.q1": "Comment fonctionne le générateur de patron de tricot ?",
+    "homeFaq.a1":
+      "Vous importez la photo d'un pull, d'un cardigan ou d'un gilet. L'IA identifie la construction (top-down, bottom-up, raglan, manches montées), l'encolure, le type de manches et le point principal, puis calcule un patron complet rang par rang à partir de votre échantillon et de vos mesures.",
+    "homeFaq.q2": "Est-ce que La Maille est gratuit ?",
+    "homeFaq.a2":
+      "Oui. L'analyse de photo et la génération du patron sont gratuites et ne nécessitent pas de compte. Un compte gratuit permet de sauvegarder vos patrons.",
+    "homeFaq.q3": "Quelle différence avec un générateur de grille ou de diagramme ?",
+    "homeFaq.a3":
+      "La plupart des outils en ligne transforment une image en grille de couleurs (jacquard). La Maille produit un vrai patron de vêtement : montage, augmentations, diminutions, encolure, manches et rabattage, adaptés à votre taille.",
+    "homeFaq.q4": "Quels vêtements sont pris en charge ?",
+    "homeFaq.a4":
+      "Les pulls, cardigans, gilets et tops sans manches en jersey, côtes ou point mousse. Les torsades complexes, la dentelle et le jacquard ne sont pas encore générés.",
+    "homeFaq.q5": "Faut-il connaître son échantillon ?",
+    "homeFaq.a5":
+      "Oui. Le patron est calculé à partir de votre nombre de mailles et de rangs pour 10 cm avec votre laine et vos aiguilles. Tricotez toujours un échantillon avant de commencer.",
+
     // Authentication
     "auth.signIn": "Se connecter",
     "auth.signUp": "S'inscrire",
@@ -1288,6 +1314,32 @@ export const translations = {
     "publicToggle.copyLink": "Copy link",
     "publicToggle.copied": "Link copied",
     "publicToggle.viewPage": "View page",
+
+    // Nudge "make public" right after saving (Aug 2026: 0 public patterns out of 37)
+    "saveNudge.title": "Share this pattern?",
+    "saveNudge.text":
+      "Make it public: it gets its own page, visible to everyone and indexed by Google. Your source photo is never published and your name does not appear.",
+    "saveNudge.button": "Make public",
+    "saveNudge.later": "Later",
+    "saveNudge.done": "Pattern published. Find the link in My patterns.",
+
+    // Home FAQ (GEO: direct answers for Google and AI assistants)
+    "homeFaqTitle": "Frequently asked questions",
+    "homeFaq.q1": "How does the knitting pattern generator work?",
+    "homeFaq.a1":
+      "You upload a photo of a sweater, cardigan or vest. The AI identifies the construction (top-down, bottom-up, raglan, set-in sleeves), the neckline, the sleeve style and the main stitch, then calculates a complete row-by-row pattern from your gauge and measurements.",
+    "homeFaq.q2": "Is La Maille free?",
+    "homeFaq.a2":
+      "Yes. Photo analysis and pattern generation are free and do not require an account. A free account lets you save your patterns.",
+    "homeFaq.q3": "How is it different from a chart or grid generator?",
+    "homeFaq.a3":
+      "Most online tools turn an image into a color grid for colorwork. La Maille produces an actual garment pattern: cast on, increases, decreases, neckline, sleeves and bind off, sized to your measurements.",
+    "homeFaq.q4": "Which garments are supported?",
+    "homeFaq.a4":
+      "Pullovers, cardigans, vests and sleeveless tops in stockinette, ribbing or garter stitch. Complex cables, lace and colorwork are not generated yet.",
+    "homeFaq.q5": "Do I need to know my gauge?",
+    "homeFaq.a5":
+      "Yes. The pattern is calculated from your stitches and rows per 10 cm (4 inches) with your yarn and needles. Always knit a swatch before starting.",
 
     // Authentication
     "auth.signIn": "Sign in",

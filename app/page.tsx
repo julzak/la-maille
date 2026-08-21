@@ -10,6 +10,14 @@ import { useLaMailleStore } from "@/lib/store";
 import { useTranslation } from "@/lib/i18n";
 import { clearProject } from "@/lib/storage";
 
+const HOME_FAQ = [
+  { q: "homeFaq.q1", a: "homeFaq.a1" },
+  { q: "homeFaq.q2", a: "homeFaq.a2" },
+  { q: "homeFaq.q3", a: "homeFaq.a3" },
+  { q: "homeFaq.q4", a: "homeFaq.a4" },
+  { q: "homeFaq.q5", a: "homeFaq.a5" },
+] as const;
+
 export default function Home() {
   const router = useRouter();
   const { t } = useTranslation();
@@ -251,6 +259,50 @@ export default function Home() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* FAQ (GEO : reponses directes, schema FAQPage) */}
+      <section className="py-12 md:py-20 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="font-serif text-3xl text-center mb-10">
+            {t("homeFaqTitle")}
+          </h2>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: HOME_FAQ.map(({ q, a }) => ({
+                  "@type": "Question",
+                  name: t(q),
+                  acceptedAnswer: { "@type": "Answer", text: t(a) },
+                })),
+              }),
+            }}
+          />
+          <div className="space-y-4">
+            {HOME_FAQ.map(({ q, a }) => (
+              <details
+                key={q}
+                className="group bg-card rounded-lg border border-border"
+              >
+                <summary className="cursor-pointer p-5 font-medium flex items-center justify-between gap-4">
+                  {t(q)}
+                  <span
+                    aria-hidden="true"
+                    className="text-muted-foreground transition-transform group-open:rotate-90 shrink-0"
+                  >
+                    &rsaquo;
+                  </span>
+                </summary>
+                <p className="px-5 pb-5 text-muted-foreground text-sm leading-relaxed">
+                  {t(a)}
+                </p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
     </div>

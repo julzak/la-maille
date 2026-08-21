@@ -20,10 +20,27 @@ const UTM_PARAM_KEYS = [
   "fbclid",
 ] as const;
 
+/**
+ * Envoie un event GA4. Passe par `dataLayer` plutot que par `window.gtag`
+ * pour ne pas perdre les events tires avant le chargement du script gtag
+ * (strategy afterInteractive) : typiquement `sign_up` au premier render
+ * apres la redirection OAuth. gtag.js rejoue la file `dataLayer` au chargement.
+ */
 export function trackEvent(name: string, params?: Record<string, unknown>) {
-  if (typeof window !== "undefined" && window.gtag) {
+  if (typeof window === "undefined") return;
+  if (window.gtag) {
     window.gtag("event", name, params);
+    return;
   }
+  const w = window as Window & { dataLayer?: unknown[] };
+  w.dataLayer = w.dataLayer || [];
+  // gtag() pousse son objet `arguments`, pas un tableau : on reproduit la meme forme.
+  /* eslint-disable prefer-rest-params, @typescript-eslint/no-unused-vars */
+  const toArguments = function (_cmd: string, _name: string, _params: unknown) {
+    return arguments;
+  };
+  /* eslint-enable prefer-rest-params, @typescript-eslint/no-unused-vars */
+  w.dataLayer.push(toArguments("event", name, params ?? {}));
 }
 
 /**

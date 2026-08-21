@@ -11,4 +11,28 @@ Allow: /patron/p/
 Disallow: /tricot
 Disallow: /mes-patrons
 
+# Crawlers des assistants IA (GEO) : explicitement autorises sur le contenu
+# public. ChatGPT est le 3e canal d'acquisition et celui qui convertit le
+# mieux (mesure GA4 aout 2026), on ne veut aucune ambiguite.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: CCBot
+Allow: /
+Disallow: /api/
+Disallow: /auth/
+Disallow: /analyse
+Disallow: /patron
+Allow: /patron/p/
+Disallow: /tricot
+Disallow: /mes-patrons
+
 Sitemap: https://la-maille.com/sitemap.xml

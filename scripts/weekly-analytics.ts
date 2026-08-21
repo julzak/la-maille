@@ -18,6 +18,21 @@ const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || ""
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || ""
 const ADMIN_EMAIL = "jzakoian@gmail.com"
 
+// Trafic bot identifie en aout 2026 : ~20 % des sessions venaient de Chine
+// et Singapour en "direct", engagement 2-10 %, duree 1-6 s, sur les articles
+// de blog EN. Exclu de toutes les metriques du rapport ; le volume exclu est
+// affiche a part pour garder la trace.
+const BOT_COUNTRIES = ["China", "Singapore"]
+const BOT_COUNTRY_FILTER = {
+  notExpression: {
+    filter: {
+      fieldName: "country",
+      inListFilter: { values: BOT_COUNTRIES },
+    },
+  },
+}
+const BREVO_LIST_NAME = "la-maille-audience"
+
 // GA4 client
 const ga = new BetaAnalyticsDataClient({ keyFilename: GA_KEY_FILE })
 
@@ -51,6 +66,7 @@ async function getGAMetrics(startDate: string, endDate: string) {
       { name: "bounceRate" },
       { name: "newUsers" },
     ],
+    dimensionFilter: BOT_COUNTRY_FILTER,
   })
 
   const values = response.rows?.[0]?.metricValues || []
@@ -72,6 +88,7 @@ async function getTopPages(startDate: string, endDate: string) {
     metrics: [{ name: "screenPageViews" }],
     orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
     limit: 10,
+    dimensionFilter: BOT_COUNTRY_FILTER,
   })
 
   return (response.rows || []).map((row) => ({
@@ -88,6 +105,7 @@ async function getTopSources(startDate: string, endDate: string) {
     metrics: [{ name: "sessions" }],
     orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
     limit: 8,
+    dimensionFilter: BOT_COUNTRY_FILTER,
   })
 
   return (response.rows || []).map((row) => ({
@@ -104,6 +122,7 @@ async function getTopCountries(startDate: string, endDate: string) {
     metrics: [{ name: "activeUsers" }],
     orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
     limit: 5,
+    dimensionFilter: BOT_COUNTRY_FILTER,
   })
 
   return (response.rows || []).map((row) => ({
@@ -121,9 +140,11 @@ async function getFunnelEvents(startDate: string, endDate: string) {
     dimensions: [{ name: "eventName" }],
     metrics: [{ name: "eventCount" }, { name: "totalUsers" }],
     dimensionFilter: {
-      filter: {
-        fieldName: "eventName",
-        inListFilter: { values: eventNames },
+      andGroup: {
+        expressions: [
+          { filter: { fieldName: "eventName", inListFilter: { values: eventNames } } },
+          BOT_COUNTRY_FILTER,
+        ],
       },
     },
   })
@@ -144,6 +165,57 @@ async function getFunnelEvents(startDate: string, endDate: string) {
   }
 
   return events
+}
+
+// Sessions exclues comme bot (pour afficher ce qu'on ne compte pas)
+async function getExcludedBotSessions(startDate: string, endDate: string) {
+  const [response] = await ga.runReport({
+    property: GA_PROPERTY,
+    dateRanges: [{ startDate, endDate }],
+    metrics: [{ name: "sessions" }],
+    dimensionFilter: {
+      filter: { fieldName: "country", inListFilter: { values: BOT_COUNTRIES } },
+    },
+  })
+  return parseInt(response.rows?.[0]?.metricValues?.[0]?.value || "0")
+}
+
+// Canal assistants IA (ChatGPT, Perplexity, Claude, Gemini) : 3e canal et
+// meilleur taux de generation mesure en aout 2026. Suivi a part.
+async function getAiAssistantSessions(startDate: string, endDate: string) {
+  const [response] = await ga.runReport({
+    property: GA_PROPERTY,
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: "sessionSource" }],
+    metrics: [{ name: "sessions" }],
+    orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+    dimensionFilter: {
+      filter: { fieldName: "sessionMedium", stringFilter: { value: "ai-assistant" } },
+    },
+    limit: 6,
+  })
+  const rows = (response.rows || []).map((row) => ({
+    source: row.dimensionValues?.[0]?.value || "",
+    sessions: parseInt(row.metricValues?.[0]?.value || "0"),
+  }))
+  return { total: rows.reduce((sum, r) => sum + r.sessions, 0), rows }
+}
+
+// Contacts Brevo captures par la gate email (BRIEF-01). null si cle absente
+// ou liste introuvable : on affiche "n/d" plutot qu'un zero trompeur.
+async function getBrevoAudienceCount(): Promise<number | null> {
+  if (!BREVO_API_KEY) return null
+  try {
+    const res = await fetch("https://api.brevo.com/v3/contacts/lists?limit=50", {
+      headers: { "api-key": BREVO_API_KEY },
+    })
+    if (!res.ok) return null
+    const data = (await res.json()) as { lists?: Array<{ name: string; totalSubscribers: number }> }
+    const list = (data.lists || []).find((l) => l.name === BREVO_LIST_NAME)
+    return list ? list.totalSubscribers : null
+  } catch {
+    return null
+  }
 }
 
 // Supabase data
@@ -247,9 +319,13 @@ function buildReport(data: {
   funnelWeek: Awaited<ReturnType<typeof getFunnelEvents>>
   funnelMonth: Awaited<ReturnType<typeof getFunnelEvents>>
   supabase: Awaited<ReturnType<typeof getSupabaseMetrics>>
+  aiWeek: Awaited<ReturnType<typeof getAiAssistantSessions>>
+  aiMonth: Awaited<ReturnType<typeof getAiAssistantSessions>>
+  botSessionsWeek: number
+  brevoAudience: number | null
   dateRange: { weekStart: string; weekEnd: string }
 }) {
-  const { week, prevWeek, month, topPages, topSources, topCountries, funnelWeek, funnelMonth, supabase: sb, dateRange } = data
+  const { week, prevWeek, month, topPages, topSources, topCountries, funnelWeek, funnelMonth, supabase: sb, aiWeek, aiMonth, botSessionsWeek, brevoAudience, dateRange } = data
 
   const metricRow = (label: string, weekVal: number, prevVal: number, monthVal: number, format?: "duration" | "percent") => {
     let wStr = String(weekVal)
@@ -284,9 +360,14 @@ function buildReport(data: {
     `<tr><td style="padding:3px 12px 3px 0;font-size:12px;color:#ddd;">${c.country}</td><td style="padding:3px 0;font-size:12px;text-align:right;">${c.users}</td></tr>`
   ).join("")
 
+  const aiRows = aiWeek.rows.map((r) =>
+    `<tr><td style="padding:2px 0 2px 16px;color:#888;font-size:12px;">${r.source}</td><td style="padding:2px 12px;font-size:12px;text-align:right;" colspan="2">${r.sessions}</td></tr>`
+  ).join("")
+
   const supabaseSection = sb ? `
     <tr><td colspan="3" style="padding:16px 0 8px;color:#C9A84C;font-size:11px;text-transform:uppercase;letter-spacing:2px;">Produit</td></tr>
     <tr><td style="padding:4px 0;color:#aaa;font-size:13px;">Nouvelles inscriptions</td><td style="padding:4px 12px;font-size:14px;font-weight:bold;text-align:right;" colspan="2">${sb.newUsers} (total: ${sb.totalUsers})</td></tr>
+    <tr><td style="padding:4px 0;color:#aaa;font-size:13px;">Contacts Brevo (gate email)</td><td style="padding:4px 12px;font-size:14px;font-weight:bold;text-align:right;" colspan="2">${brevoAudience === null ? "n/d" : brevoAudience}</td></tr>
     <tr><td style="padding:4px 0;color:#aaa;font-size:13px;">Patrons sauvegardés</td><td style="padding:4px 12px;font-size:14px;font-weight:bold;text-align:right;" colspan="2">${sb.newPatterns} (total: ${sb.totalPatterns})</td></tr>
     ${Object.entries(sb.garmentCounts || {}).length > 0 ? Object.entries(sb.garmentCounts).map(([type, count]) =>
       `<tr><td style="padding:2px 0 2px 16px;color:#888;font-size:12px;">${type}</td><td style="padding:2px 12px;font-size:12px;text-align:right;" colspan="2">${count}</td></tr>`
@@ -311,6 +392,10 @@ function buildReport(data: {
   ${metricRow("Nouveaux utilisateurs", week.newUsers, prevWeek.newUsers, month.newUsers)}
   ${metricRow("Sessions", week.sessions, prevWeek.sessions, month.sessions)}
   ${metricRow("Pages vues", week.pageViews, prevWeek.pageViews, month.pageViews)}
+  <tr><td style="padding:0 0 8px 16px;color:#666;font-size:11px;font-style:italic;" colspan="3">Hors trafic bot (${BOT_COUNTRIES.join(", ")}) : ${botSessionsWeek} sessions exclues cette semaine</td></tr>
+  <tr><td colspan="3" style="padding:12px 0 8px;color:#C9A84C;font-size:11px;text-transform:uppercase;letter-spacing:2px;">Assistants IA</td></tr>
+  ${metricRow("Sessions via ChatGPT & co", aiWeek.total, 0, aiMonth.total)}
+  ${aiRows}
   <tr><td colspan="3" style="padding:12px 0 8px;color:#C9A84C;font-size:11px;text-transform:uppercase;letter-spacing:2px;">Engagement</td></tr>
   ${metricRow("Durée moyenne session", week.avgSessionDuration, prevWeek.avgSessionDuration, month.avgSessionDuration, "duration")}
   ${metricRow("Taux de rebond", week.bounceRate, prevWeek.bounceRate, month.bounceRate, "percent")}
@@ -366,7 +451,7 @@ async function main() {
   prevWeekStart.setDate(prevWeekStart.getDate() - 6)
 
   // Fetch all data in parallel
-  const [week, prevWeek, month, topPages, topSources, topCountries, funnelWeek, funnelMonth, sbMetrics] = await Promise.all([
+  const [week, prevWeek, month, topPages, topSources, topCountries, funnelWeek, funnelMonth, sbMetrics, aiWeek, aiMonth, botSessionsWeek, brevoAudience] = await Promise.all([
     getGAMetrics("7daysAgo", "yesterday"),
     getGAMetrics("14daysAgo", "8daysAgo"),
     getGAMetrics("30daysAgo", "yesterday"),
@@ -376,6 +461,10 @@ async function main() {
     getFunnelEvents("7daysAgo", "yesterday"),
     getFunnelEvents("30daysAgo", "yesterday"),
     getSupabaseMetrics(weekStart),
+    getAiAssistantSessions("7daysAgo", "yesterday"),
+    getAiAssistantSessions("30daysAgo", "yesterday"),
+    getExcludedBotSessions("7daysAgo", "yesterday"),
+    getBrevoAudienceCount(),
   ])
 
   console.log("GA4 data:", { week, prevWeek: { activeUsers: prevWeek.activeUsers } })
@@ -392,6 +481,10 @@ async function main() {
     funnelWeek,
     funnelMonth,
     supabase: sbMetrics,
+    aiWeek,
+    aiMonth,
+    botSessionsWeek,
+    brevoAudience,
     dateRange: {
       weekStart: formatDate(weekStart),
       weekEnd: formatDate(weekEnd),

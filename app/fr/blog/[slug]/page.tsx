@@ -1,6 +1,6 @@
 import { permanentRedirect } from "next/navigation";
 import { Metadata } from "next";
-import { getArticleBySlug, getAllArticles, articleLang } from "@/lib/blog-data";
+import { getArticleBySlug, getAllArticles, articleLang, articleMeta } from "@/lib/blog-data";
 import { BlogArticleView } from "@/components/BlogArticleView";
 
 interface Props {
@@ -25,17 +25,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       }
     : undefined;
 
+  const meta = articleMeta(article);
+
   return {
-    title: article.title,
-    description: article.excerpt,
+    title: meta.title,
+    description: meta.description,
     keywords: article.keywords,
     alternates: {
       canonical: `https://la-maille.com/fr/blog/${article.slug}`,
       ...(languages ? { languages } : {}),
     },
     openGraph: {
-      title: article.title,
-      description: article.excerpt,
+      title: meta.title,
+      description: meta.description,
       type: "article",
       publishedTime: article.publishedAt,
       url: `https://la-maille.com/fr/blog/${article.slug}`,

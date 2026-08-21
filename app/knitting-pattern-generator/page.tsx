@@ -39,6 +39,15 @@ export default function KnittingPatternGeneratorPage() {
               isLoading={analysisLoading}
             />
           </div>
+          {/* Reponse directe (GEO) : une definition citable par Google et les assistants IA */}
+          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto mt-10 text-left md:text-center">
+            <strong className="text-foreground">La Maille is a free AI knitting pattern generator</strong> that
+            turns a photo of a sweater, cardigan or vest into a complete written
+            pattern: cast on, increases and decreases, neckline, sleeves and bind
+            off, calculated from your own gauge and measurements. It is not a
+            color chart tool: it reads the garment&apos;s construction and writes
+            the instructions to knit it.
+          </p>
         </div>
       </section>
 
