@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/components/AuthProvider";
 import { UTMCapture } from "@/components/UTMCapture";
 import { LocaleSync } from "@/components/LocaleSync";
-import { useI18n } from "@/lib/i18n";
+import { I18nProvider } from "@/components/I18nSsrInit";
 import { getRequestLocale } from "@/lib/i18n/server";
 import { seoMetadata } from "@/lib/i18n/metadata";
 
@@ -76,13 +76,6 @@ export default function RootLayout({
   const lang = getRequestLocale();
   const m = seoMetadata[lang];
 
-  // SSR: hydrate the singleton store so Client Components rendered on the
-  // server use the correct language. The browser resolves the same locale
-  // (URL first, then cookie), so SSR HTML matches the first client render.
-  if (typeof window === "undefined") {
-    useI18n.setState({ language: lang });
-  }
-
   return (
     <html lang={lang}>
       <Script
@@ -136,6 +129,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
+        <I18nProvider lang={lang}>
         <UTMCapture />
         <LocaleSync />
         <AuthProvider>
@@ -152,6 +146,7 @@ export default function RootLayout({
             closeButton
           />
         </AuthProvider>
+        </I18nProvider>
       </body>
     </html>
   );
