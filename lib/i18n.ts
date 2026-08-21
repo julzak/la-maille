@@ -1,3 +1,4 @@
+import { createContext, useContext } from "react";
 import { create } from "zustand";
 import {
   LANG_COOKIE,
@@ -1560,8 +1561,23 @@ export const translations = {
 
 export type TranslationKey = keyof (typeof translations)["fr"];
 
+/**
+ * Locale de la requete, fournie par <I18nProvider> (components/I18nSsrInit.tsx)
+ * pendant le rendu serveur. Necessaire parce que zustand 5 sert
+ * `getInitialState()` comme snapshot serveur : un `useI18n.setState` cote
+ * serveur n'est jamais vu par les composants rendus en SSR, et /fr sortait en
+ * anglais dans le HTML brut (constate en prod le 2026-08-21).
+ */
+export const SsrLanguageContext = createContext<Language | null>(null);
+
 export function useTranslation() {
-  const { language, setLanguage } = useI18n();
+  const { language: storeLanguage, setLanguage } = useI18n();
+  const ssrLanguage = useContext(SsrLanguageContext);
+  // Serveur : la locale de la requete fait foi. Client : le store (reactif au
+  // selecteur de langue), dont la valeur initiale est deduite de l'URL / du
+  // cookie, donc identique au serveur : pas de mismatch d'hydratation.
+  const language =
+    typeof window === "undefined" && ssrLanguage ? ssrLanguage : storeLanguage;
 
   const t = (key: TranslationKey): string => {
     return translations[language][key] || key;

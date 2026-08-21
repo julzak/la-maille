@@ -3,7 +3,8 @@
 - [ ] Julien : Request Indexing GSC des 14 articles FR + de /blog/knitting-pattern-generators-compared (en attente depuis le chantier blog FR).
 - [ ] Julien : decision Pinterest le 2026-09-05 (seuil 50 sessions/mois, 2 sessions au 2026-08-20). Aucun effort d'ici la.
 - [ ] Julien : BREVO_API_KEY dans .env.local est morte. Le rapport hebdo affiche "n/d" pour les contacts Brevo tant qu'elle n'est pas remplacee.
-- [ ] Bug SEO confirme en prod : /fr (home) est rendue en anglais cote serveur (h2 "How it works" dans le HTML brut), le FR n'arrive qu'a l'hydratation. Touche tout le texte home FR, y compris le FAQPage JSON-LD ajoute le 2026-08-21. A investiguer : useI18n.setState cote serveur dans app/layout.tsx ne semble pas vu par app/page.tsx.
+- [x] Bug SEO /fr rendue en anglais cote serveur : corrige (PR fix/i18n-ssr-client-store). Cause : zustand 5 sert getInitialState() comme snapshot SSR, le setState serveur etait ignore. useTranslation lit desormais la locale de la requete via SsrLanguageContext cote serveur.
+- [ ] Contenu FR manquant : /fr/knitting-pattern-generator et /fr/how-it-works ont des metadonnees FR mais un corps de page ecrit en dur en anglais (re-export de la page EN). Google voit un title FR et un contenu EN. A traduire via i18n (chantier contenu, ~150 lignes + FAQ).
 - [ ] Suivre l'erosion de /knitting-pattern-generator (GSC) apres le lot du 2026-08-21 : si les positions sur "image/photo to knitting pattern" ne remontent pas d'ici fin septembre, envisager de rediriger ou de reorienter photo-to-knitting-pattern-complete-guide.
 - [ ] Mesurer apres 2 semaines : blog_cta_click, generate_pattern par landing /blog/*, make_public, sign_up (doit coller aux profiles Supabase).
 - [ ] Prochain lot FR : maillage dense vers les 2 hubs a volume + contenu "modele gratuit".
