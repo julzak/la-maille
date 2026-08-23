@@ -459,6 +459,8 @@ function generateFlatBodyPiece(ctx: Ctx, opts: FlatPieceOpts): PatternPiece {
   const name = { back: { fr: "Dos", en: "Back" }, front: { fr: "Devant", en: "Front" }, "front-left": { fr: "Devant gauche", en: "Left front" }, "front-right": { fr: "Devant droit", en: "Right front" } }[opts.kind];
   const schematic: PieceSchematic = {
     kind: half ? "cardigan-front" : "panel",
+    mirror: opts.kind === "front-right",
+    buttonCount: half && ctx.analysis.closure.type === "boutons" ? (ctx.analysis.closure.buttonCountEstimate || 6) : 0,
     widthCm: cmForSts(castOn, g),
     lengthCm: cmForRows(endRow, g),
     armholeDepthCm: d.armholeDepthCm,
@@ -490,7 +492,12 @@ function generateFlatSleeve(ctx: Ctx, kind: "setin" | "drop"): PatternPiece {
   const calculations: CalculationStep[] = [];
   const topSts = kind === "drop" ? even(stsFor(d.armholeDepthCm * 2, g)) : d.bicepSts;
   const overhangCm = kind === "drop" ? Math.max(0, (cmForSts(d.backSts, g) - d.crossBackCm) / 2) : 0;
-  const sleeveRows = kind === "drop" ? rowsFor(Math.max(10, d.underarmToWristCm + d.armholeDepthCm - overhangCm), g) : d.sleeveRows;
+  // Manche montée : la tête couvre le haut du bras, donc poignet -> dessous de bras = bras - hauteur de tête.
+  const armSetin = kind === "setin" ? armholeShape(d, g) : null;
+  const capSetin = armSetin ? sleeveCapShape(d, g, armSetin) : null;
+  const sleeveRows = kind === "drop"
+    ? rowsFor(Math.max(10, d.underarmToWristCm + d.armholeDepthCm - overhangCm), g)
+    : rowsFor(Math.max(10, (d.armLengthCm - cmForRows(capSetin!.capRows, g)) * d.sleeveLengthFactor), g);
 
   let row = 1;
   instructions.push({
@@ -513,9 +520,8 @@ function generateFlatSleeve(ctx: Ctx, kind: "setin" | "drop"): PatternPiece {
   row = sleeveRows + 1;
   let totalRows = sleeveRows;
 
-  if (kind === "setin") {
-    const arm = armholeShape(d, g);
-    const cap = sleeveCapShape(d, g, arm);
+  if (kind === "setin" && capSetin) {
+    const cap = capSetin;
     calculations.push({
       description: tx(lang, { fr: "Contrôle tête de manche / emmanchure", en: "Sleeve cap / armhole check" }),
       formula: tx(lang, { fr: `bord de tête ${(cap.perimeterCm + cmForSts(cap.finalBindOff, g) / 2).toFixed(1)} cm vs emmanchure ${cap.armholePerimeterCm.toFixed(1)} cm (par côté)`, en: `cap edge ${(cap.perimeterCm + cmForSts(cap.finalBindOff, g) / 2).toFixed(1)} cm vs armhole ${cap.armholePerimeterCm.toFixed(1)} cm (per side)` }),

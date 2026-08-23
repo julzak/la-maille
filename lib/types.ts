@@ -142,6 +142,8 @@ export interface PieceSchematic {
   capHeightCm?: number; // 0 = haut de manche droit
   neckline?: "crew" | "v";
   isFront?: boolean;
+  mirror?: boolean; // devant droit : dessin en miroir
+  buttonCount?: number;
 }
 
 export interface PatternPiece {

@@ -96,7 +96,7 @@ export function CoverPage({
           <Text
             style={[styles.bodySmall, { marginTop: 8, textAlign: "right" }]}
           >
-            — {t.team}
+            {t.team}
           </Text>
         </View>
       </View>
