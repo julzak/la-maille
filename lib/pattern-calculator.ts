@@ -465,6 +465,7 @@ function generateFlatBodyPiece(ctx: Ctx, opts: FlatPieceOpts): PatternPiece {
     shoulderWidthCm: opts.armholeKind === "drop" ? cmForSts(castOn, g) : half ? d.crossBackCm / 2 : d.crossBackCm,
     necklineWidthCm: half ? d.backNeckWidthCm / 2 : d.backNeckWidthCm,
     necklineDepthCm: isBack ? 1.5 : d.frontNeckDropCm,
+    neckline: !isBack && ctx.neck === "col-v" ? "v" : "crew",
     isFront: !isBack,
   };
   return {
@@ -556,7 +557,7 @@ function generateFlatSleeve(ctx: Ctx, kind: "setin" | "drop"): PatternPiece {
     instructions,
     calculations,
     warnings,
-    schematic: { kind: "sleeve", widthCm: cmForSts(topSts, g), lengthCm: cmForRows(totalRows, g), sleeveTopWidthCm: cmForSts(topSts, g), sleeveCuffWidthCm: cmForSts(d.wristSts, g) },
+    schematic: { kind: "sleeve", widthCm: cmForSts(topSts, g), lengthCm: cmForRows(totalRows, g), sleeveTopWidthCm: cmForSts(topSts, g), sleeveCuffWidthCm: cmForSts(d.wristSts, g), capHeightCm: kind === "setin" ? cmForRows(totalRows - sleeveRows, g) : 0 },
   };
 }
 
@@ -630,7 +631,7 @@ function planRaglan(d: GarmentDims, neck: NecklineKind, openFront: boolean): { p
   if (dist.overflow > 0) {
     yokeRows = even(2 * rounds + 2);
     dist = distribute(rounds, yokeRows - 1, 2);
-    warnings.push({ fr: `Empiècement approfondi pour loger ${rounds} tours d'augmentation (aisance importante) : ${yokeRows} rangs au lieu de ${d.raglanYokeRows}.`, en: `Yoke deepened to fit ${rounds} increase rounds (large ease): yoke depth ${yokeRows} rows instead of ${d.raglanYokeRows}.` });
+    warnings.push({ fr: `Empiècement approfondi pour loger ${rounds} tours d'augmentation : ${yokeRows} rangs au lieu de ${d.raglanYokeRows}.`, en: `Yoke deepened to fit ${rounds} increase rounds: ${yokeRows} rows instead of ${d.raglanYokeRows}.` });
   }
   // Encolure devant
   let neckEdgeSteps = 0, centerCastOn = 0, vDist: Distribution | null = null;
@@ -727,7 +728,7 @@ function generateRaglanYoke(ctx: Ctx, plan: RaglanPlan, openFront: boolean, plan
     instructions,
     calculations: calcSteps(ctx),
     warnings,
-    schematic: { kind: "yoke", widthCm: cmForSts(plan.bodyAtSep, g) / 2, lengthCm: cmForRows(plan.yokeRows, g), necklineWidthCm: cmForSts(castOn, g) / 2, sleeveTopWidthCm: cmForSts(plan.sleeveAtSep, g) },
+    schematic: { kind: "yoke", widthCm: cmForSts(plan.bodyAtSep, g) / 2, lengthCm: cmForRows(plan.yokeRows, g), necklineWidthCm: cmForSts(castOn, g) / 2, sleeveTopWidthCm: cmForSts(plan.sleeveAtSep, g) / 2 },
   };
 }
 
@@ -796,7 +797,7 @@ function generateTopDownSleeve(ctx: Ctx, plan: RaglanPlan): PatternPiece {
     instructions,
     calculations: [],
     warnings,
-    schematic: { kind: "sleeve", widthCm: cmForSts(sleeveSts, g) / 2, lengthCm: sleeveCm, sleeveTopWidthCm: cmForSts(sleeveSts, g) / 2, sleeveCuffWidthCm: cmForSts(d.wristSts, g) / 2 },
+    schematic: { kind: "sleeve", widthCm: cmForSts(sleeveSts, g) / 2, lengthCm: sleeveCm, sleeveTopWidthCm: cmForSts(sleeveSts, g) / 2, sleeveCuffWidthCm: cmForSts(d.wristSts, g) / 2, capHeightCm: 0 },
   };
 }
 
@@ -1092,7 +1093,7 @@ export function estimateYardage(
   yarn: YarnInfo,
   garmentType: string = "pull",
   hasSleeves: boolean = true
-): { meters: number; grams: number; skeinsEstimate: string } {
+): { meters: number; metersMin: number; metersMax: number; grams: number; skeinsEstimate: string } {
   // Une seule source pour le métrage : le modèle de surface de lib/yarn-calculator.ts.
   const needed = calculateYarnNeeded(measurements, gauge, garmentType, hasSleeves);
   const meters = needed.average;
@@ -1101,7 +1102,7 @@ export function estimateYardage(
   const low = Math.round(grams * 0.9);
   const high = Math.round(grams * 1.1);
   const skeinsEstimate = `${low}-${high}g environ`;
-  return { meters, grams, skeinsEstimate };
+  return { meters, metersMin: needed.min, metersMax: needed.max, grams, skeinsEstimate };
 }
 
 // ===========================================

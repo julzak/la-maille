@@ -12,6 +12,8 @@ interface Dimensions {
   necklineDepth?: number;
   sleeveTopWidth?: number;
   sleeveCuffWidth?: number;
+  capHeight?: number; // cm, 0 = haut droit
+  neckline?: "crew" | "v";
 }
 
 interface SchematicSVGProps {
@@ -135,11 +137,13 @@ function PanelShape({
     M ${startX} ${startY + length}
     L ${startX} ${startY + armholeDepth}
     Q ${startX} ${startY + armholeDepth - armholeCurve} ${startX + armholeNotch} ${startY + armholeDepth - armholeCurve}
-    L ${startX + armholeNotch} ${startY + necklineDepth}
-    L ${startX + (width - necklineWidth) / 2} ${startY + necklineDepth}
-    Q ${startX + (width - necklineWidth) / 2 + necklineWidth * 0.1} ${startY} ${startX + width / 2} ${startY}
-    Q ${startX + (width + necklineWidth) / 2 - necklineWidth * 0.1} ${startY} ${startX + (width + necklineWidth) / 2} ${startY + necklineDepth}
-    L ${startX + width - armholeNotch} ${startY + necklineDepth}
+    L ${startX + armholeNotch} ${startY}
+    L ${startX + (width - necklineWidth) / 2} ${startY}
+    ${dimensions.neckline === "v"
+      ? `L ${startX + width / 2} ${startY + necklineDepth} L ${startX + (width + necklineWidth) / 2} ${startY}`
+      : `Q ${startX + (width - necklineWidth) / 2 + necklineWidth * 0.1} ${startY + necklineDepth} ${startX + width / 2} ${startY + necklineDepth}
+    Q ${startX + (width + necklineWidth) / 2 - necklineWidth * 0.1} ${startY + necklineDepth} ${startX + (width + necklineWidth) / 2} ${startY}`}
+    L ${startX + width - armholeNotch} ${startY}
     L ${startX + width - armholeNotch} ${startY + armholeDepth - armholeCurve}
     Q ${startX + width} ${startY + armholeDepth - armholeCurve} ${startX + width} ${startY + armholeDepth}
     L ${startX + width} ${startY + length}
@@ -241,29 +245,28 @@ function CardiganFrontShape({
   const armholeDepth = (dimensions.armholeDepth || 20) * SCALE;
   const necklineDepth = (dimensions.necklineDepth || 15) * SCALE;
 
-  // Points du contour (demi-panneau avec ouverture)
-  const armholeNotch = dimensions.shoulderWidth
-    ? Math.max(0, dimensions.width - dimensions.shoulderWidth) * SCALE
-    : width * 0.12;
+  // Demi-devant, ouverture à gauche (x = 0). Épaule de necklineWidth à shoulderWidth, emmanchure au-delà.
+  const neckW = (dimensions.necklineWidth || dimensions.width * 0.3) * SCALE;
+  const shoulderRight = dimensions.shoulderWidth ? dimensions.shoulderWidth * SCALE : width * 0.88;
   const armholeCurve = armholeDepth * 0.3;
-  const buttonBand = width * 0.15;
+  const isV = dimensions.neckline === "v";
 
   const path = `
     M ${startX} ${startY + length}
-    L ${startX} ${startY}
-    L ${startX + buttonBand} ${startY}
-    L ${startX + buttonBand} ${startY + length * 0.3}
-    Q ${startX + buttonBand} ${startY + necklineDepth * 0.5} ${startX + width * 0.4} ${startY + necklineDepth * 0.3}
-    L ${startX + width - armholeNotch} ${startY + necklineDepth * 0.3}
-    L ${startX + width - armholeNotch} ${startY + armholeDepth - armholeCurve}
+    L ${startX} ${startY + necklineDepth}
+    ${isV
+      ? `L ${startX + neckW} ${startY}`
+      : `Q ${startX + neckW * 0.2} ${startY + necklineDepth * 0.2} ${startX + neckW} ${startY}`}
+    L ${startX + shoulderRight} ${startY}
+    L ${startX + shoulderRight} ${startY + armholeDepth - armholeCurve}
     Q ${startX + width} ${startY + armholeDepth - armholeCurve} ${startX + width} ${startY + armholeDepth}
     L ${startX + width} ${startY + length}
     Z
   `;
 
-  // Boutonnières
+  // Boutonnières le long de l'ouverture
   const buttonCount = 5;
-  const buttonSpacing = (length - 40) / (buttonCount + 1);
+  const buttonSpacing = (length - necklineDepth - 20) / (buttonCount + 1);
 
   return (
     <g>
@@ -279,8 +282,8 @@ function CardiganFrontShape({
       {Array.from({ length: buttonCount }).map((_, i) => (
         <ellipse
           key={i}
-          cx={startX + buttonBand / 2}
-          cy={startY + 30 + buttonSpacing * (i + 1)}
+          cx={startX + 6}
+          cy={startY + necklineDepth + 10 + buttonSpacing * (i + 1)}
           rx={3}
           ry={6}
           fill="none"
@@ -324,6 +327,33 @@ function CardiganFrontShape({
             position="right"
             vertical
           />
+
+          {/* Cote emmanchure (gauche, depuis le haut) */}
+          {dimensions.armholeDepth && (
+            <DimensionLine
+              x1={startX - DIMENSION_LINE_OFFSET}
+              y1={startY}
+              x2={startX - DIMENSION_LINE_OFFSET}
+              y2={startY + armholeDepth}
+              value={dimensions.armholeDepth}
+              unit="cm"
+              position="left"
+              vertical
+            />
+          )}
+
+          {/* Cote encolure (haut) */}
+          {dimensions.necklineWidth && (
+            <DimensionLine
+              x1={startX}
+              y1={startY - DIMENSION_LINE_OFFSET + 5}
+              x2={startX + neckW}
+              y2={startY - DIMENSION_LINE_OFFSET + 5}
+              value={dimensions.necklineWidth}
+              unit="cm"
+              position="above"
+            />
+          )}
         </>
       )}
     </g>
@@ -351,14 +381,22 @@ function SleeveShape({
   const offsetTop = (maxWidth - topWidth) / 2;
   const offsetCuff = (maxWidth - cuffWidth) / 2;
 
-  // Tête de manche arrondie
-  const capHeight = topWidth * 0.25;
+  // Tête de manche : hauteur réelle si connue (0 = haut droit), sinon 25 % de la largeur
+  const capHeight = dimensions.capHeight !== undefined ? dimensions.capHeight * SCALE : topWidth * 0.25;
 
-  const path = `
+  const path = capHeight > 0
+    ? `
     M ${startX + offsetCuff} ${startY + length}
     L ${startX + offsetTop} ${startY + capHeight}
     Q ${startX + offsetTop + topWidth * 0.15} ${startY} ${startX + maxWidth / 2} ${startY}
     Q ${startX + offsetTop + topWidth * 0.85} ${startY} ${startX + offsetTop + topWidth} ${startY + capHeight}
+    L ${startX + offsetCuff + cuffWidth} ${startY + length}
+    Z
+  `
+    : `
+    M ${startX + offsetCuff} ${startY + length}
+    L ${startX + offsetTop} ${startY}
+    L ${startX + offsetTop + topWidth} ${startY}
     L ${startX + offsetCuff + cuffWidth} ${startY + length}
     Z
   `;
@@ -599,6 +637,8 @@ export function getDimensionsFromPiece(
       necklineDepth: schematic.necklineDepthCm,
       sleeveTopWidth: schematic.sleeveTopWidthCm,
       sleeveCuffWidth: schematic.sleeveCuffWidthCm,
+      capHeight: schematic.capHeightCm,
+      neckline: schematic.neckline,
     };
     const piece: SchematicSVGProps["piece"] =
       schematic.kind === "panel" ? (schematic.isFront ? "front" : "back") : schematic.kind;

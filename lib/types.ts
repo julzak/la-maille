@@ -139,6 +139,8 @@ export interface PieceSchematic {
   necklineDepthCm?: number;
   sleeveTopWidthCm?: number;
   sleeveCuffWidthCm?: number;
+  capHeightCm?: number; // 0 = haut de manche droit
+  neckline?: "crew" | "v";
   isFront?: boolean;
 }
 

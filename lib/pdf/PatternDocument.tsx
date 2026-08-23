@@ -157,11 +157,11 @@ export function PatternDocument({
       <MaterialsPage
         yarn={{
           weight: pattern.yarn?.weight || "DK",
-          estimatedMeters: `${Math.round(yardage.meters * 0.9)}-${Math.round(yardage.meters * 1.1)} m (${Math.round(yardage.grams * 0.9)}-${Math.round(yardage.grams * 1.1)} g)`,
+          estimatedMeters: `${yardage.metersMin}-${yardage.metersMax} m (${Math.round(yardage.grams * 0.9)}-${Math.round(yardage.grams * 1.1)} g)`,
           composition: pattern.yarn?.composition,
         }}
-        needles={`${pattern.gauge?.needleSize || 5}mm ${
-          language === "fr" ? "circulaires 80cm" : "circular 32in"
+        needles={`${pattern.gauge?.needleSize || 5} mm ${
+          language === "fr" ? "circulaires 80 cm" : "circular 80 cm"
         }`}
         gauge={{
           stitches: pattern.gauge?.stitchesPer10cm || 18,

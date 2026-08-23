@@ -23,7 +23,7 @@ export function ResumeProjectDialog({
   onResume,
   onNewProject,
 }: ResumeProjectDialogProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [project, setProject] = useState<StoredProject | null>(null);
@@ -95,7 +95,7 @@ export function ResumeProjectDialog({
   const formatDate = (dateString: string) => {
     try {
       const date = new Date(dateString);
-      return date.toLocaleDateString(undefined, {
+      return date.toLocaleDateString(language === "fr" ? "fr-FR" : "en-US", {
         day: "numeric",
         month: "short",
         hour: "2-digit",
@@ -145,9 +145,9 @@ export function ResumeProjectDialog({
               </p>
               {project.step && (
                 <p className="text-xs text-muted-foreground mt-1">
-                  {project.step === "analysis" && "Analyse en cours"}
-                  {project.step === "measurements" && "Mesures en cours"}
-                  {project.step === "pattern" && "Patron genere"}
+                  {project.step === "analysis" && t("projectStepAnalysis")}
+                  {project.step === "measurements" && t("projectStepMeasurements")}
+                  {project.step === "pattern" && t("projectStepPattern")}
                 </p>
               )}
             </div>
