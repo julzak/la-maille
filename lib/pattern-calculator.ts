@@ -652,9 +652,10 @@ function generateRaglanYoke(ctx: Ctx, plan: RaglanPlan, openFront: boolean, plan
     notes: tx(lang, { fr: `Largeur d'encolure dos : ${d.backNeckWidthCm.toFixed(0)} cm`, en: `Back neck width: ${d.backNeckWidthCm.toFixed(0)} cm` }),
   });
 
+  const unit = openFront ? "rows" : "rounds";
   const incText = tx(lang, {
-    fr: `Tour d'augmentation : augmenter 1 m. de chaque côté des 4 m. raglan (8 m. augmentées). Répéter ${distText(lang, dist, "rounds")}.`,
-    en: `Increase round: increase 1 st on each side of the 4 raglan sts (8 sts increased). Repeat ${distText(lang, dist, "rounds")}.`,
+    fr: `${openFront ? "Rang" : "Tour"} d'augmentation : augmenter 1 m. de chaque côté des 4 m. raglan (8 m. augmentées). Répéter ${distText(lang, dist, unit)}.`,
+    en: `Increase ${openFront ? "row" : "round"}: increase 1 st on each side of the 4 raglan sts (8 sts increased). Repeat ${distText(lang, dist, unit)}.`,
   });
   const onlyText = Ib !== Is
     ? (Ib > Is
@@ -692,7 +693,7 @@ function generateRaglanYoke(ctx: Ctx, plan: RaglanPlan, openFront: boolean, plan
   if (straight > 0) {
     instructions.push({
       rowStart: 2 + dist.rowsUsed, rowEnd: plan.yokeRows,
-      text: tx(lang, { fr: `Continuer droit pendant ${nRows(lang, straight, "rounds")}.`, en: `Continue straight for ${nRows(lang, straight, "rounds")}.` }),
+      text: tx(lang, { fr: `Continuer droit pendant ${nRows(lang, straight, unit)}.`, en: `Continue straight for ${nRows(lang, straight, unit)}.` }),
     });
   }
   const backAtSep = B + 2 * Ib;
@@ -855,7 +856,7 @@ function generateArmholeBands(ctx: Ctx): PatternPiece {
   return {
     name: tx(lang, { fr: "Bordures d'emmanchures (x2)", en: "Armhole bands (x2)" }),
     castOn: sts,
-    totalRows: rows,
+    totalRows: rows + 1,
     instructions: [
       { rowStart: 1, rowEnd: 1, text: tx(lang, { fr: `Relever ${sts} m. autour de l'emmanchure (tour : ${perimeter.toFixed(0)} cm).`, en: `Pick up ${sts} sts around the armhole (circumference: ${perimeter.toFixed(0)} cm).` }) },
       { rowStart: 2, rowEnd: rows + 1, text: tx(lang, { fr: `Tricoter ${rows} rangs en côtes 1/1, rabattre souplement.`, en: `Work ${rows} rows in 1x1 rib, bind off loosely.` }) },
@@ -883,7 +884,7 @@ function generateButtonBands(ctx: Ctx, edgeRows: number): PatternPiece {
   } else {
     instructions.push({ rowStart: 1, rowEnd: rows + 1, text: tx(lang, { fr: "Devant droit : idem, sans boutonnières.", en: "Right front: same, without buttonholes." }) });
   }
-  return { name: tx(lang, { fr: "Bandes de boutonnage (x2)", en: "Front bands (x2)" }), castOn: sts, totalRows: rows, instructions, calculations: [], warnings: [] };
+  return { name: tx(lang, { fr: "Bandes de boutonnage (x2)", en: "Front bands (x2)" }), castOn: sts, totalRows: rows + 1, instructions, calculations: [], warnings: [] };
 }
 
 // ===========================================
@@ -951,10 +952,18 @@ export function generateFullPattern(
   const pieces: PatternPiece[] = [];
   const assembly: string[] = [];
   let neckPickUp: number | null = null;
+  let bandEdgeRows = ctx.neck === "col-v" ? d.bodyRows - d.frontNeckRows : d.bodyRows;
 
   if (family === "raglan-topdown") {
+    const extra: Txt[] = [];
+    if (openFront && ctx.neck === "col-v") {
+      // Le col V n'est pas façonné sur l'empiècement raglan ouvert : encolure ras du cou, bandes droites.
+      ctx.neck = "ras-du-cou";
+      extra.push({ fr: "Col V non pris en charge sur un cardigan raglan : encolure ras du cou, à creuser en V via la bande de boutonnage si souhaité.", en: "V-neck not supported on a raglan cardigan: crew neck, shape a V through the front band if desired." });
+    }
     const { plan, warnings } = planRaglan(d, ctx.neck, openFront);
-    pieces.push(generateRaglanYoke(ctx, plan, openFront, warnings));
+    bandEdgeRows = d.bodyRows; // le bord devant court de l'encolure à l'ourlet
+    pieces.push(generateRaglanYoke(ctx, plan, openFront, [...extra, ...warnings]));
     pieces.push(generateTopDownBody(ctx, plan, openFront));
     pieces.push(generateTopDownSleeve(ctx, plan));
     neckPickUp = plan.vDist ? null : plan.B + 2 * plan.S + 4 + 2 + 2 * plan.neckEdgeSteps + plan.centerCastOn;
@@ -1004,7 +1013,7 @@ export function generateFullPattern(
     assembly.push(`${assembly.length + 1}. ` + (openFront ? tp(lang, "pattern.neckbandAssemblyCardigan") : tp(lang, "pattern.neckbandAssembly")));
   }
   if (openFront) {
-    pieces.push(generateButtonBands(ctx, ctx.neck === "col-v" ? d.bodyRows - d.frontNeckRows : d.bodyRows));
+    pieces.push(generateButtonBands(ctx, bandEdgeRows));
     assembly.push(`${assembly.length + 1}. ` + tx(lang, { fr: "Relever les bandes de boutonnage le long des bords devant, coudre les boutons en face des boutonnières.", en: "Pick up the front bands along the front edges, sew the buttons opposite the buttonholes." }));
   }
   assembly.push(`${assembly.length + 1}. ` + tp(lang, "pattern.seamlessNote4"));
