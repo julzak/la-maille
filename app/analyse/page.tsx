@@ -40,6 +40,7 @@ export default function AnalysePage() {
     setAnalysisError,
   } = useLaMailleStore();
 
+  const [isRateLimited, setIsRateLimited] = useState(false);
   const [projectId] = useState(() => generateProjectId());
 
   // Wait for store hydration before making decisions
@@ -121,6 +122,7 @@ export default function AnalysePage() {
 
       if (!response.ok) {
         if (response.status === 429) {
+          setIsRateLimited(true);
           const isAuthenticated = data.code === "RATE_LIMIT_AUTHENTICATED";
           const key: TranslationKey = isAuthenticated
             ? "rateLimitAuthenticated"
@@ -146,7 +148,7 @@ export default function AnalysePage() {
       const errorMessage =
         err instanceof Error ? err.message : ERROR_MESSAGES.generic;
       setAnalysisError(errorMessage);
-      toast.error("Erreur d'analyse", {
+      toast.error(t("analysisErrorTitle"), {
         description: errorMessage,
       });
     }
@@ -292,57 +294,6 @@ export default function AnalysePage() {
               </Card>
             )}
 
-            {/* État de l'analyse - Erreur */}
-            {analysisError && (
-              <Card className="animate-fade-in">
-                <CardContent className="text-center p-8">
-                  <div className="text-6xl mb-4">🧶</div>
-                  <h3 className="font-serif text-xl mb-2">{t("couldntReadThis")}</h3>
-                  <p className="text-muted-foreground mb-6">{analysisError}</p>
-
-                  <div className="bg-muted/50 rounded-xl p-4 mb-6 text-left">
-                    <p className="font-medium mb-2">{t("tipsForGoodPhoto")}</p>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• {t("tipLayFlat")}</li>
-                      <li>• {t("tipGoodLighting")}</li>
-                      <li>• {t("tipSingleItem")}</li>
-                    </ul>
-                  </div>
-
-                  <Button onClick={handleChangeImage} className="w-full">
-                    {t("tryWithAnotherPhotoBtn")}
-                  </Button>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Résultat analyse non analysable */}
-            {analysis && !analysis.analysable && (
-              <Card className="animate-fade-in">
-                <CardContent className="text-center p-8">
-                  <div className="text-6xl mb-4">🧶</div>
-                  <h3 className="font-serif text-xl mb-2">{t("couldntReadThis")}</h3>
-                  <p className="text-muted-foreground mb-6">
-                    {getRejectionMessage(analysis.rejectionReason || undefined)}
-                  </p>
-
-                  <div className="bg-muted/50 rounded-xl p-4 mb-6 text-left">
-                    <p className="font-medium mb-2">{t("tipsForGoodPhoto")}</p>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• {t("tipLayFlat")}</li>
-                      <li>• {t("tipGoodLighting")}</li>
-                      <li>• {t("tipSingleItem")}</li>
-                    </ul>
-                  </div>
-
-                  <Button onClick={handleChangeImage} className="w-full">
-                    {t("tryWithAnotherPhotoBtn")}
-                  </Button>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Résultat analyse OK */}
             {analysis && analysis.analysable && (
               <Card className="animate-fade-in-up">
                 <CardHeader className="pb-3">
@@ -362,7 +313,13 @@ export default function AnalysePage() {
                         <span className="mr-1" aria-hidden="true">
                           {confidenceDisplay.icon}
                         </span>
-                        {confidenceDisplay.label}
+                        {t(
+                          analysis.overallConfidence === "high"
+                            ? "confidenceHigh"
+                            : analysis.overallConfidence === "medium"
+                            ? "confidenceMedium"
+                            : "confidenceLow"
+                        )}
                       </Badge>
                     )}
                   </div>
@@ -454,6 +411,7 @@ export default function AnalysePage() {
                 </CardContent>
               </Card>
             )}
+
           </div>
 
           {/* Colonne droite - Sélection taille (3/5) */}
@@ -466,24 +424,31 @@ export default function AnalysePage() {
               </div>
             ) : analysisError || (analysis && !analysis.analysable) ? (
               <Card className="max-w-md mx-auto text-center p-8 animate-fade-in">
-                <div className="text-6xl mb-4">🧶</div>
-                <h2 className="font-serif text-xl mb-2">{t("couldntReadThis")}</h2>
+                <div className="text-6xl mb-4">{isRateLimited ? "⏳" : "🧶"}</div>
+                <h2 className="font-serif text-xl mb-2">{isRateLimited ? t("dailyLimitTitle") : t("couldntReadThis")}</h2>
                 <p className="text-muted-foreground mb-6">
-                  {analysisError || t("tryWithAnotherPhoto")}
+                  {analysisError ||
+                    (analysis && !analysis.analysable
+                      ? getRejectionMessage(analysis.rejectionReason || undefined)
+                      : t("tryWithAnotherPhoto"))}
                 </p>
 
-                <div className="bg-muted/50 rounded-xl p-4 mb-6 text-left">
-                  <p className="font-medium mb-2">{t("tipsForGoodPhoto")}</p>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• {t("tipLayFlat")}</li>
-                    <li>• {t("tipGoodLighting")}</li>
-                    <li>• {t("tipSingleItem")}</li>
-                  </ul>
-                </div>
+                {!isRateLimited && (
+                  <div className="bg-muted/50 rounded-xl p-4 mb-6 text-left">
+                    <p className="font-medium mb-2">{t("tipsForGoodPhoto")}</p>
+                    <ul className="text-sm text-muted-foreground space-y-1">
+                      <li>• {t("tipLayFlat")}</li>
+                      <li>• {t("tipGoodLighting")}</li>
+                      <li>• {t("tipSingleItem")}</li>
+                    </ul>
+                  </div>
+                )}
 
-                <Button onClick={handleChangeImage} className="w-full">
-                  {t("tryWithAnotherPhotoBtn")}
-                </Button>
+                {!isRateLimited && (
+                  <Button onClick={handleChangeImage} className="w-full">
+                    {t("tryWithAnotherPhotoBtn")}
+                  </Button>
+                )}
               </Card>
             ) : (
               <div className="min-h-[300px] md:min-h-[400px] flex items-center justify-center">

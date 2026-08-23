@@ -152,7 +152,7 @@ function PatronPageContent() {
         language
       );
       setPattern(newPattern, language);
-      toast.success(t("regeneratePattern"));
+      toast.success(t("toastRegenerated"));
     } catch (err) {
       console.error("Erreur lors de la régénération:", err);
       toast.error("Erreur de régénération");
