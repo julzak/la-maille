@@ -354,7 +354,7 @@ describe("generateBackPanel", () => {
     const back = generateBackPanel(standardMeasurements, standardGauge, pullAnalysis);
 
     const ribInstruction = back.instructions.find((i) =>
-      i.text.toLowerCase().includes("cotes") || i.text.toLowerCase().includes("rib")
+      i.text.toLowerCase().includes("côtes") || i.text.toLowerCase().includes("cotes") || i.text.toLowerCase().includes("rib")
     );
     expect(ribInstruction).toBeDefined();
   });
@@ -368,12 +368,13 @@ describe("generateBackPanel", () => {
     expect(armholeInstruction).toBeDefined();
   });
 
-  it("handles raglan construction", () => {
-    const back = generateBackPanel(standardMeasurements, standardGauge, raglanAnalysis);
+  it("handles raglan construction as a top-down yoke (no flat back panel)", () => {
+    const pattern = generateFullPattern(raglanAnalysis, standardGauge, standardMeasurements, { weight: "dk" });
 
-    const raglanInstruction = back.instructions.find((i) =>
-      i.text.toLowerCase().includes("raglan")
-    );
+    const yoke = pattern.pieces.find((p) => p.name.toLowerCase().includes("raglan"));
+    expect(yoke).toBeDefined();
+    expect(pattern.pieces.some((p) => p.name === "Dos")).toBe(false);
+    const raglanInstruction = yoke!.instructions.find((i) => i.text.toLowerCase().includes("raglan"));
     expect(raglanInstruction).toBeDefined();
   });
 
@@ -438,7 +439,7 @@ describe("generateSleeves", () => {
     const sleeves = generateSleeves(standardMeasurements, standardGauge, pullAnalysis);
 
     const capInstruction = sleeves.instructions.find((i) =>
-      i.text.toLowerCase().includes("tete de manche") || i.text.toLowerCase().includes("sleeve cap")
+      i.text.toLowerCase().includes("tête de manche") || i.text.toLowerCase().includes("tete de manche") || i.text.toLowerCase().includes("sleeve cap")
     );
     expect(capInstruction).toBeDefined();
   });

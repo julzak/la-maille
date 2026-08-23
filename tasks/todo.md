@@ -152,3 +152,14 @@ Puis : images (`03_images.py`), convertir le JSON page -> format `Article` et in
 ## Donnees brutes
 - `runs/fr/keywords_fr_filtered.json` (327 kw)
 - `runs/fr/editorial_plan_fr.json` (plan par page)
+
+## Calculateur de patrons v2 (2026-08-23)
+Livre : lib/shaping.ts (table CYC, repartition, geometrie) + reecriture du faconnage dans lib/pattern-calculator.ts.
+Regression : `./node_modules/.bin/tsx scripts/test-calculator.ts` (162 patrons, 0 echec). Rapport : tasks/bench-fiabilite-patrons-2026-08-23.md.
+
+Reste a faire (hors perimetre du fix) :
+- [ ] Schema SVG (components/SchematicSVG.tsx) : deduit la forme du nom de la piece et utilise emmanchure 20 cm / encolure 15 cm en dur ; dessine un "dos" pour l'empiecement raglan, le corps en rond et la bordure. A brancher sur computeDims().
+- [ ] PatternSection : labels "Monter / mailles / Rang / Schema / Masquer" en francais en dur, affiches aussi en anglais.
+- [ ] estimateYardage : "239-293 g" mais "83-106 m" de fil pour un pull M, incoherent (meters = grams * 2 puis /... a revoir).
+- [ ] Raglan top-down : pas de rangs raccourcis pour surelever le dos ; encolure devant creusee par montages progressifs (~3-4 cm), moins profonde qu'un ras du cou classique (7 cm).
+- [ ] Pas de faconnage taille ni d'aisance negative ; aisance = valeur unique sur toutes les circonferences.
