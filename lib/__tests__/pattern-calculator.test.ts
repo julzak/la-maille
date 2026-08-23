@@ -598,7 +598,7 @@ describe("generateFullPattern", () => {
 
     expect(pattern.disclaimer).toBeDefined();
     expect(pattern.disclaimer.length).toBeGreaterThan(50);
-    expect(pattern.disclaimer.toLowerCase()).toContain("echantillon");
+    expect(pattern.disclaimer.toLowerCase()).toContain("échantillon");
   });
 
   it("includes estimated yardage", () => {
