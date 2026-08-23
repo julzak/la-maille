@@ -750,6 +750,7 @@ export const translations = {
     pickYourSize: "Choisissez votre taille",
     // PatternSection (libellés de pièce)
     pieceCastOn: "Monter",
+    pieceStsAbbr: "m.",
     pieceStitches: "mailles",
     pieceKnit: "Tricoter",
     pieceTotalRows: "rangs au total",
@@ -1530,6 +1531,7 @@ export const translations = {
     pickYourSize: "Pick your size",
     // PatternSection (piece labels)
     pieceCastOn: "Cast on",
+    pieceStsAbbr: "sts",
     pieceStitches: "stitches",
     pieceKnit: "Knit",
     pieceTotalRows: "rows total",

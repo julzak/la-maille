@@ -69,7 +69,7 @@ export function PatternSection({
           <span className="font-semibold text-lg">{title}</span>
         </div>
         <Badge variant="outline" className="font-mono">
-          {piece.castOn} m.
+          {piece.castOn} {t("pieceStsAbbr")}
         </Badge>
       </button>
 

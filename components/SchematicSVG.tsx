@@ -14,6 +14,8 @@ interface Dimensions {
   sleeveCuffWidth?: number;
   capHeight?: number; // cm, 0 = haut droit
   neckline?: "crew" | "v";
+  mirror?: boolean;
+  buttonCount?: number;
 }
 
 interface SchematicSVGProps {
@@ -265,11 +267,14 @@ function CardiganFrontShape({
   `;
 
   // Boutonnières le long de l'ouverture
-  const buttonCount = 5;
+  const buttonCount = dimensions.buttonCount ?? 5;
   const buttonSpacing = (length - necklineDepth - 20) / (buttonCount + 1);
+  // Devant droit : miroir horizontal de la forme (les cotes restent lisibles)
+  const mirrorTransform = dimensions.mirror ? `translate(${2 * startX + width} 0) scale(-1 1)` : undefined;
 
   return (
     <g>
+      <g transform={mirrorTransform}>
       {/* Forme principale */}
       <path
         d={path}
@@ -291,6 +296,7 @@ function CardiganFrontShape({
           strokeWidth={0.75}
         />
       ))}
+      </g>
 
       {/* Ligne de côtes */}
       <line
@@ -639,6 +645,8 @@ export function getDimensionsFromPiece(
       sleeveCuffWidth: schematic.sleeveCuffWidthCm,
       capHeight: schematic.capHeightCm,
       neckline: schematic.neckline,
+      mirror: schematic.mirror,
+      buttonCount: schematic.buttonCount,
     };
     const piece: SchematicSVGProps["piece"] =
       schematic.kind === "panel" ? (schematic.isFront ? "front" : "back") : schematic.kind;
