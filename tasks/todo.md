@@ -164,14 +164,11 @@ Reste a faire (hors perimetre du fix) :
 - [ ] Raglan top-down : pas de rangs raccourcis pour surelever le dos ; encolure devant creusee par montages progressifs (~3-4 cm), moins profonde qu'un ras du cou classique (7 cm).
 - [ ] Pas de faconnage taille ni d'aisance negative ; aisance = valeur unique sur toutes les circonferences.
 
-### Findings recette 2026-08-23 (audits/2026-08-23-calculateur-v2/rapport-recette.md), hors perimetre calculateur
-- [ ] B3 "Refine my pattern" sur /patron ignore le changement de taille (measurements inchangees, patron identique)
-- [ ] B4 estimateYardage : grammes et metres incoherents (239-293 g vs 83-106 m), ne depend pas de la famille
-- [ ] B5 Schema SVG generique (meme silhouette pour toutes les pieces, 20 cm en dur, bordure hors viewBox)
-- [ ] B6 UI EN avec labels FR en dur (PatternSection, toasts), textes IA jamais traduits, <html lang> non mis a jour
-- [ ] B7 Analyse photo : epaules tombantes classees "montees" ; libelle UI "Marteau" inadapte
-- [ ] B8 PDF : warnings et calculs absents, couverture "Debutant / 12-18h / Taille XXL" non sourcee, pied de page la-maille.vercel.app
-- [ ] M2 warning "empiecement approfondi" a verifier sur les cas custom 36/50 et corps 40 cm
-- [ ] M9 accents manquants dans les chaines FR hors patron (print, modale projet, messages)
-- [ ] M11/M12/M13 modale "Projet en cours" (date EN), formulaire mesures (valeurs par defaut hors preset, non persistees), badge "Sauvegarde" anonyme
-- [ ] UX : aisance sans champ numerique, validation au blur seulement, "trop large" bloque sans seuil
+### Findings recette 2026-08-23 : B3 a B8, F4, N1 corriges (PR #37 a #41). Restes cosmetiques :
+- [ ] Verifier sur une vraie analyse (quota anonyme 5/j) : photo epaules tombantes classee "marteau", textes IA en anglais sous UI EN
+- [ ] Pieces en rond cotees au demi-tour sur les schemas sans mention "demi-tour"
+- [ ] Calculs carrure/biceps affiches aussi pour les patrons epaules tombantes (non pertinents)
+- [ ] Toast "Pattern generated!" garde la langue du moment de la generation apres bascule
+- [ ] Accents hors patron : "Mailles relevees" (PDF), "confidentialite" (footer), libelle "Regular"
+- [ ] Formulaire mesures : valeurs par defaut hors preset, non persistees au retour ; badge "Sauvegarde" anonyme
+- [ ] UX : aisance sans champ numerique, validation au blur seulement, "trop large" bloquant sans seuil

@@ -45,3 +45,24 @@ deployees. Les reserves portent sur des composants anterieurs a la v2 (metrage, 
 - 1 email dans /api/subscribe : julien+recette-calc@zakoian.com (newsletter decochee). A supprimer dans Brevo si souhaite.
 - 5 analyses anonymes (quota IP atteint pour 24 h sur la machine de recette). Aucune ecriture en base hors
   table generations (log normal).
+
+## Addendum : lot 2 (PR #39, #40, #41), meme journee
+Contre-recettes contre-recette-2.md et contre-recette-3.md par agents frais, puis verification orchestrateur en prod.
+Corrige et verifie en prod :
+- B3 Affiner : le choix d'une taille applique les mesures du preset (M -> XS : 114 -> 100 m).
+- B4 Metrage : un seul modele (surface x 0,09 m/cm2 a 30 rg/10 cm, grammes par densite). Pull M DK : 821-1049 m / 353-431 g,
+  identique a l'ecran et au PDF. Sans manches < avec manches.
+- B5 Schema : dimensions reelles par piece (PieceSchematic) : dos/devant avec carrure et emmanchure de la taille, demi-devant
+  de cardigan (ouverture, V ou ras du cou, miroir a droite, boutons), empiecement en trapeze, corps en tube, manche avec tete
+  reelle ou haut droit, bordures sans schema.
+- B6 i18n : libelles de cartes, toasts, badge de confiance, modale projet, html lang, champs texte de l'analyse dans la
+  langue de l'UI (param language de /api/analyze), confiance traduite dans le disclaimer.
+- B7 Prompt : regles de detection raglan / montees / epaules tombantes (non verifiable en prod : quota anonyme epuise
+  sur la machine de recette ; a confirmer sur une vraie photo).
+- B8 PDF : pied de page la-maille.com, metrage m + g, avertissements et calculs par piece, couverture sans duree inventee,
+  numerotation unique, aiguilles en cm, plus de tiret long.
+- F4 /analyse : une seule carte d'erreur, etat "limite quotidienne" distinct.
+- N1 Manche montee = longueur de bras (bras - hauteur de tete reelle) : 60 cm pour 60 saisis (avant 53).
+
+Verdict final : GO. Reste a verifier avec une vraie analyse (quota) : classification epaules tombantes et langue des textes IA.
+Restes cosmetiques dans tasks/todo.md.
