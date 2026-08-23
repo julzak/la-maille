@@ -101,6 +101,10 @@ export interface GarmentDims {
   wristCm: number;
   /** Longueur de manche du dessous de bras au poignet, cm */
   underarmToWristCm: number;
+  /** Longueur de bras saisie (épaule -> poignet), cm */
+  armLengthCm: number;
+  /** Facteur de longueur de manche (1, 0.7 pour 3/4, 0.3 pour courtes) */
+  sleeveLengthFactor: number;
 
   // En mailles / rangs (toujours des entiers)
   bodySts: number; // tour complet
@@ -146,9 +150,8 @@ export function computeDims(m: DimsInput, g: Gauge, neckline: NecklineKind, slee
   const wristCm = m.wristCircumference + WRIST_EASE_CM;
 
   // Longueur de manche : épaule -> poignet moins la hauteur épaule -> dessous de bras (≈ emmanchure)
-  let underarmToWristCm = Math.max(m.armLength - armholeDepthCm, 10);
-  if (sleeveLength === "3-4") underarmToWristCm *= 0.7;
-  else if (sleeveLength === "courtes") underarmToWristCm *= 0.3;
+  const sleeveLengthFactor = sleeveLength === "3-4" ? 0.7 : sleeveLength === "courtes" ? 0.3 : 1;
+  const underarmToWristCm = Math.max(m.armLength - armholeDepthCm, 10) * sleeveLengthFactor;
 
   // Entiers. Le corps est un multiple de 4 (dos = devant pairs, côtes 2/2), la carrure et
   // l'encolure dos sont pairs (symétrie), donc les épaules sont entières.
@@ -175,7 +178,7 @@ export function computeDims(m: DimsInput, g: Gauge, neckline: NecklineKind, slee
 
   return {
     finishedChestCm, crossBackCm, armholeDepthCm, raglanYokeDepthCm, backNeckWidthCm, frontNeckDropCm,
-    bicepCm, wristCm, underarmToWristCm,
+    bicepCm, wristCm, underarmToWristCm, armLengthCm: m.armLength, sleeveLengthFactor,
     bodySts, backSts, crossBackSts, backNeckSts, shoulderSts, underarmSts, bicepSts, wristSts,
     armholeRows, raglanYokeRows, frontNeckRows, bodyRows, hemRows, cuffRows, sleeveRows,
   };
@@ -219,6 +222,34 @@ export function distribute(count: number, rows: number, minEvery = 1): Distribut
   return { segments, rowsUsed, straightRows: rows - rowsUsed, overflow };
 }
 
+/**
+ * Variante pour le tricot à plat : intervalles pairs uniquement (les façonnages tombent sur
+ * les rangs endroit). Travaille par paires de rangs puis double les intervalles.
+ */
+export function distributeEven(count: number, rows: number): Distribution {
+  const pairs = Math.floor(rows / 2);
+  const d = distribute(count, pairs, 1);
+  const segments = d.segments.map((x) => ({ every: x.every * 2, times: x.times }));
+  const rowsUsed = segments.reduce((a, x) => a + x.every * x.times, 0);
+  return { segments, rowsUsed, straightRows: rows - rowsUsed, overflow: d.overflow };
+}
+
+/**
+ * Tête de manche : diminutions tous les 2 rangs, puis à chaque rang près du sommet (jamais
+ * d'intervalle de 3). Utilise exactement `rows` rangs quand count > rows / 2.
+ */
+export function distributeCap(count: number, rows: number): Distribution {
+  if (count <= 0) return { segments: [], rowsUsed: 0, straightRows: rows, overflow: 0 };
+  if (count > rows) return { segments: [{ every: 1, times: rows }], rowsUsed: rows, straightRows: 0, overflow: count - rows };
+  if (2 * count <= rows) return distributeEven(count, rows);
+  const a = rows - count; // tous les 2 rangs
+  const b = 2 * count - rows; // à chaque rang
+  const segments: Segment[] = [];
+  if (a > 0) segments.push({ every: 2, times: a });
+  if (b > 0) segments.push({ every: 1, times: b });
+  return { segments, rowsUsed: 2 * a + b, straightRows: rows - 2 * a - b, overflow: 0 };
+}
+
 // -------------------------------------------
 // Géométrie : emmanchure montée et tête de manche
 // -------------------------------------------
@@ -239,7 +270,7 @@ export function armholeShape(d: GarmentDims, g: Gauge): ArmholeShape {
   const decreases = removePerSide - bindOffSts;
   // Diminutions sur les rangs endroit, dans la première moitié de l'emmanchure.
   const shapingRows = Math.max(2, Math.floor(d.armholeRows / 2));
-  const decreaseDist = distribute(decreases, shapingRows, 2);
+  const decreaseDist = distributeEven(decreases, shapingRows);
   const rowsForShaping = 2 + decreaseDist.rowsUsed;
   const straightRows = Math.max(0, d.armholeRows - rowsForShaping);
   const perimeterCm =
@@ -272,7 +303,7 @@ export function sleeveCapShape(d: GarmentDims, g: Gauge, armhole: ArmholeShape):
   for (let ratio = 0.55; ratio <= 0.851; ratio += 0.05) {
     const capRows = even(Math.round(d.armholeRows * ratio));
     const shapingRows = Math.max(2, capRows - 4); // 2 rangs de rabattage au départ, 2 à l'arrivée
-    const decreaseDist = distribute(decreases, shapingRows, 1);
+    const decreaseDist = distributeCap(decreases, shapingRows);
     const perimeterCm =
       cmForSts(bindOffSts, g) + Math.hypot(cmForSts(decreases, g), cmForRows(shapingRows, g));
     // Le sommet de la tête (capTop) couvre le haut de l'emmanchure : on le répartit sur les deux côtés.
@@ -287,7 +318,7 @@ export function sleeveCapShape(d: GarmentDims, g: Gauge, armhole: ArmholeShape):
   if (!best) {
     // Impossible de placer les diminutions : tête à 85 %, tout ce qui déborde part en overflow.
     const capRows = even(Math.round(d.armholeRows * 0.85));
-    const decreaseDist = distribute(decreases, Math.max(2, capRows - 4), 1);
+    const decreaseDist = distributeCap(decreases, Math.max(2, capRows - 4));
     best = { capRows, bindOffSts, decreases, decreaseDist, finalBindOff: capTopSts, perimeterCm: 0, armholePerimeterCm: armhole.perimeterCm, diffCm: NaN };
   }
   return best;

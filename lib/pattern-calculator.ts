@@ -14,7 +14,7 @@ import type {
 } from "./types";
 import { tp, type Language } from "./i18n";
 import {
-  computeDims, distribute, armholeShape, sleeveCapShape, neckPerimeterCm, crewFrontNeckShape,
+  computeDims, distribute, distributeEven, armholeShape, sleeveCapShape, neckPerimeterCm, crewFrontNeckShape,
   stsFor, rowsFor, cmForSts, cmForRows, even,
   type GarmentDims, type NecklineKind, type Distribution,
 } from "./shaping";
@@ -206,7 +206,7 @@ type Family = "raglan-topdown" | "setin-pieces" | "setin-round" | "drop-pieces" 
 
 function chooseFamily(analysis: GarmentAnalysis): Family {
   const sleeves = analysis.sleeves.type;
-  const noSleeves = sleeves === "sans-manches" || analysis.sleeves.length === "sans" || analysis.garment.type === "gilet";
+  const noSleeves = sleeves === "sans-manches" || analysis.sleeves.length === "sans" || (analysis.garment.type === "gilet" && sleeves === "unknown");
   if (noSleeves) return "sleeveless";
   if (sleeves === "raglan") return "raglan-topdown";
   if (sleeves === "marteau") return "drop-pieces";
@@ -233,10 +233,17 @@ function distText(lang: Language, dist: Distribution, unit: "rows" | "rounds" = 
   const u = unit === "rounds" ? tx(lang, { fr: "tours", en: "rounds" }) : tx(lang, { fr: "rangs", en: "rows" });
   const parts = dist.segments.map((s) =>
     s.every === 1
-      ? tx(lang, { fr: `à chaque ${unit === "rounds" ? "tour" : "rang"}, ${s.times} fois`, en: `every ${unit === "rounds" ? "round" : "row"}, ${s.times} times` })
-      : tx(lang, { fr: `tous les ${s.every} ${u}, ${s.times} fois`, en: `every ${s.every} ${u}, ${s.times} times` })
+      ? tx(lang, { fr: `à chaque ${unit === "rounds" ? "tour" : "rang"}, ${s.times} fois`, en: `every ${unit === "rounds" ? "round" : "row"}, ${s.times} ${s.times === 1 ? "time" : "times"}` })
+      : tx(lang, { fr: `tous les ${s.every} ${u}, ${s.times} fois`, en: `every ${s.every} ${u}, ${s.times} ${s.times === 1 ? "time" : "times"}` })
   );
   return parts.join(tx(lang, { fr: ", puis ", en: ", then " }));
+}
+
+/** "12 rangs" / "1 rang" / "12 rows" / "1 row" */
+function nRows(lang: Language, n: number, unit: "rows" | "rounds" = "rows"): string {
+  const fr = unit === "rounds" ? "tour" : "rang";
+  const en = unit === "rounds" ? "round" : "row";
+  return lang === "fr" ? `${n} ${fr}${n > 1 ? "s" : ""}` : `${n} ${en}${n > 1 ? "s" : ""}`;
 }
 
 function shoulderSteps(shoulderSts: number): number[] {
@@ -282,20 +289,22 @@ function calcSteps(ctx: Ctx): CalculationStep[] {
 // Encolure devant bottom-up (pull ou un côté de cardigan)
 // -------------------------------------------
 
-function frontNeckInstructions(ctx: Ctx, startRow: number, side: "both" | "left" | "right", shoulderRows: number): PatternInstruction[] {
+function frontNeckInstructions(ctx: Ctx, startRow: number, side: "both" | "left" | "right", shoulderRows: number, selvedge = 0): PatternInstruction[] {
   const { d, lang, neck } = ctx;
   const out: PatternInstruction[] = [];
   const neckRows = d.frontNeckRows;
   if (neck === "col-v") {
     const perSide = d.backNeckSts / 2;
-    const dist = distribute(perSide, Math.max(2, neckRows - shoulderRows), 2);
+    const dist = distributeEven(perSide, Math.max(2, neckRows - shoulderRows));
     const sideTxt = side === "both"
       ? tx(lang, { fr: "Diviser le travail au centre et terminer chaque côté séparément. Côté encolure, ", en: "Divide the work at the center and finish each side separately. At the neck edge, " })
-      : tx(lang, { fr: "Côté encolure, ", en: "At the neck edge, " });
+      : selvedge
+        ? tx(lang, { fr: "Rabattre la m. lisière, puis côté encolure, ", en: "Bind off the selvedge st, then at the neck edge, " })
+        : tx(lang, { fr: "Côté encolure, ", en: "At the neck edge, " });
     out.push({
       rowStart: startRow, rowEnd: startRow + neckRows - shoulderRows - 1,
-      text: tx(lang, { fr: `Col V : ${sideTxt}diminuer 1 m. ${distText(lang, dist)} (${perSide} m. par côté)${dist.straightRows > 0 ? `, puis ${dist.straightRows} rangs droits` : ""}.`,
-                       en: `V-neck: ${sideTxt}decrease 1 st ${distText(lang, dist)} (${perSide} sts per side)${dist.straightRows > 0 ? `, then ${dist.straightRows} rows straight` : ""}.` }),
+      text: tx(lang, { fr: `Col V : ${sideTxt}diminuer 1 m. ${distText(lang, dist)} (${perSide} m. par côté)${dist.straightRows > 0 ? `, puis ${nRows(lang, dist.straightRows)} droits` : ""}.`,
+                       en: `V-neck: ${sideTxt}decrease 1 st ${distText(lang, dist)} (${perSide} sts per side)${dist.straightRows > 0 ? `, then ${nRows(lang, dist.straightRows)} straight` : ""}.` }),
       notes: dist.overflow > 0 ? tx(lang, { fr: `Attention : ${dist.overflow} diminutions n'ont pas pu être placées, creuser le V plus tôt.`, en: `Warning: ${dist.overflow} decreases could not be placed, start the V earlier.` }) : undefined,
     });
     return out;
@@ -309,7 +318,7 @@ function frontNeckInstructions(ctx: Ctx, startRow: number, side: "both" | "left"
   } else {
     out.push({
       rowStart: startRow, rowEnd: startRow,
-      text: tx(lang, { fr: `Encolure : rabattre ${shape.centerBindOff / 2} m. côté encolure.`, en: `Neckline: bind off ${shape.centerBindOff / 2} sts at the neck edge.` }),
+      text: tx(lang, { fr: `Encolure : rabattre ${shape.centerBindOff / 2 + selvedge} m. côté encolure${selvedge ? " (lisière comprise)" : ""}.`, en: `Neckline: bind off ${shape.centerBindOff / 2 + selvedge} sts at the neck edge${selvedge ? " (selvedge included)" : ""}.` }),
     });
   }
   if (shape.sideDecreases > 0) {
@@ -322,7 +331,7 @@ function frontNeckInstructions(ctx: Ctx, startRow: number, side: "both" | "left"
   if (straight > 0) {
     out.push({
       rowStart: startRow + 1 + shape.dist.rowsUsed, rowEnd: startRow + shape.dist.rowsUsed + straight,
-      text: tx(lang, { fr: `Continuer droit pendant ${straight} rangs.`, en: `Continue straight for ${straight} rows.` }),
+      text: tx(lang, { fr: `Continuer droit pendant ${nRows(lang, straight)}.`, en: `Continue straight for ${nRows(lang, straight)}.` }),
     });
   }
   return out;
@@ -342,15 +351,22 @@ function generateFlatBodyPiece(ctx: Ctx, opts: FlatPieceOpts): PatternPiece {
   const instructions: PatternInstruction[] = [];
   const warnings: string[] = [];
   const half = opts.kind === "front-left" || opts.kind === "front-right";
-  const castOn = half ? d.backSts / 2 : d.backSts;
+  // Demi-devant : si le demi-corps est impair, 1 m. lisière côté ouverture (hors épaules et encolure).
+  const selvedge = half && (d.backSts / 2) % 2 === 1 ? 1 : 0;
+  const castOn = half ? d.backSts / 2 + selvedge : d.backSts;
   const arm = armholeShape(d, g);
   const steps = shoulderSteps(d.shoulderSts);
   const shoulderRows = steps.length * 2;
   const isBack = opts.kind === "back";
   const neckRows = isBack ? shoulderRows : d.frontNeckRows;
+  const afterRound = opts.armholeKind === "setin-after-round";
+  // Dernier rang de la pièce : tout le séquencement est calé dessus, pour que dos et devants aient la même hauteur.
+  const endRow = afterRound ? d.armholeRows + 1 : d.bodyRows;
+  const shoulderStart = endRow - shoulderRows + 1;
+  const neckStart = endRow - neckRows + 1;
 
   let row = 1;
-  if (opts.armholeKind === "setin-after-round") {
+  if (afterRound) {
     instructions.push({
       rowStart: row, rowEnd: row,
       text: tx(lang, { fr: `Reprendre les ${castOn - 2 * arm.bindOffSts} m. ${isBack ? "du dos" : "du devant"} laissées en attente après la séparation (les ${arm.bindOffSts} m. de dessous de bras de chaque côté sont déjà rabattues).`,
@@ -360,7 +376,7 @@ function generateFlatBodyPiece(ctx: Ctx, opts: FlatPieceOpts): PatternPiece {
   } else {
     instructions.push({
       rowStart: row, rowEnd: d.hemRows,
-      text: tx(lang, { fr: `Monter ${castOn} m. Tricoter ${d.hemRows} rangs en côtes 2/2.`, en: `Cast on ${castOn} sts. Work ${d.hemRows} rows in 2x2 rib.` }),
+      text: tx(lang, { fr: `Monter ${castOn} m. Tricoter ${d.hemRows} rangs en côtes 2/2${selvedge ? " (la 1re m. côté ouverture reste une m. lisière)" : ""}.`, en: `Cast on ${castOn} sts. Work ${d.hemRows} rows in 2x2 rib${selvedge ? " (the first st on the opening side is a selvedge st)" : ""}.` }),
       notes: tx(lang, { fr: `Largeur : ${cmForSts(castOn, g).toFixed(1)} cm`, en: `Width: ${cmForSts(castOn, g).toFixed(1)} cm` }),
     });
     row = d.hemRows + 1;
@@ -368,17 +384,15 @@ function generateFlatBodyPiece(ctx: Ctx, opts: FlatPieceOpts): PatternPiece {
     if (straightToArmhole < 0) warnings.push(tx(lang, { fr: "Longueur de corps trop courte pour la profondeur d'emmanchure : allongez le corps.", en: "Body length is too short for the armhole depth: lengthen the body." }));
     instructions.push({
       rowStart: row, rowEnd: row + Math.max(0, straightToArmhole) - 1,
-      text: tx(lang, { fr: `Continuer en jersey pendant ${Math.max(0, straightToArmhole)} rangs (jusqu'à ${cmForRows(d.bodyRows - d.armholeRows, g).toFixed(0)} cm depuis le bord).`, en: `Continue in stockinette for ${Math.max(0, straightToArmhole)} rows (to ${cmForRows(d.bodyRows - d.armholeRows, g).toFixed(0)} cm from the edge).` }),
+      text: tx(lang, { fr: `Continuer en jersey pendant ${nRows(lang, Math.max(0, straightToArmhole))} (jusqu'à ${cmForRows(d.bodyRows - d.armholeRows, g).toFixed(0)} cm depuis le bord).`, en: `Continue in stockinette for ${nRows(lang, Math.max(0, straightToArmhole))} (to ${cmForRows(d.bodyRows - d.armholeRows, g).toFixed(0)} cm from the edge).` }),
     });
     row += Math.max(0, straightToArmhole);
   }
 
   // Emmanchures
   let stsNow = castOn;
-  let armholeStraight: number;
   let dropNote: string | undefined;
   if (opts.armholeKind === "drop") {
-    armholeStraight = d.armholeRows;
     dropNote = tx(lang, { fr: `Placer un marqueur de chaque côté au début de ces rangs : début des emmanchures (épaules tombantes, pas de façonnage).`, en: `Place a marker at each side at the start of these rows: armhole start (drop shoulder, no shaping).` });
   } else {
     const sides = half ? 1 : 2;
@@ -389,7 +403,7 @@ function generateFlatBodyPiece(ctx: Ctx, opts: FlatPieceOpts): PatternPiece {
           ? tx(lang, { fr: `Emmanchure : rabattre ${arm.bindOffSts} m. côté emmanchure au début du prochain rang ${opts.kind === "front-left" ? "endroit" : "envers"}.`, en: `Armhole: bind off ${arm.bindOffSts} sts at the armhole edge at the beginning of the next ${opts.kind === "front-left" ? "RS" : "WS"} row.` })
           : tx(lang, { fr: `Emmanchures : rabattre ${arm.bindOffSts} m. au début des 2 prochains rangs.`, en: `Armholes: bind off ${arm.bindOffSts} sts at the beginning of the next 2 rows.` }),
       });
-      row += 2;
+      row += sides;
       stsNow -= arm.bindOffSts * sides;
     } else {
       stsNow -= arm.bindOffSts * 2;
@@ -402,47 +416,49 @@ function generateFlatBodyPiece(ctx: Ctx, opts: FlatPieceOpts): PatternPiece {
       row += arm.decreaseDist.rowsUsed;
       stsNow -= arm.decreases * sides;
     }
-    armholeStraight = arm.straightRows;
   }
+  // `row` = premier rang après le façonnage d'emmanchure ; stsNow = mailles à l'épaule + encolure (+ lisière)
 
-  // Partie droite de l'emmanchure jusqu'au début de l'encolure / des épaules
-  const straightBeforeNeck = armholeStraight - neckRows;
-  if (straightBeforeNeck > 0) {
+  // Partie droite jusqu'au début de l'encolure (devant) ou des épaules (dos)
+  const sectionStart = isBack ? shoulderStart : neckStart;
+  const straightRows = sectionStart - row;
+  if (straightRows > 0) {
     instructions.push({
-      rowStart: row, rowEnd: row + straightBeforeNeck - 1,
-      text: tx(lang, { fr: `Continuer droit pendant ${straightBeforeNeck} rangs sur ${stsNow} m.`, en: `Continue straight for ${straightBeforeNeck} rows on ${stsNow} sts.` }),
+      rowStart: row, rowEnd: sectionStart - 1,
+      text: tx(lang, { fr: `Continuer droit pendant ${nRows(lang, straightRows)} sur ${stsNow} m.`, en: `Continue straight for ${nRows(lang, straightRows)} on ${stsNow} sts.` }),
       notes: dropNote,
     });
-    row += straightBeforeNeck;
-  } else if (straightBeforeNeck < 0) {
-    warnings.push(tx(lang, { fr: "L'encolure devant est plus profonde que l'emmanchure : elle commence avant la fin du façonnage d'emmanchure.", en: "The front neck is deeper than the armhole: it starts before the armhole shaping ends." }));
   }
+  const overlap = straightRows < 0; // l'encolure commence pendant le façonnage d'emmanchure : "en même temps"
 
-  // Encolure
-  const shoulderPerSide = opts.armholeKind === "drop" ? (stsNow - (half ? d.backNeckSts / 2 : d.backNeckSts)) / (half ? 1 : 2) : d.shoulderSts;
+  const shoulderPerSide = opts.armholeKind === "drop"
+    ? (stsNow - selvedge - (half ? d.backNeckSts / 2 : d.backNeckSts)) / (half ? 1 : 2)
+    : d.shoulderSts;
   if (isBack) {
     instructions.push({
-      rowStart: row, rowEnd: row + shoulderRows - 1,
+      rowStart: shoulderStart, rowEnd: endRow,
       text: tx(lang, { fr: `Encolure dos et épaules : rabattre les ${stsNow - 2 * shoulderPerSide} m. centrales, puis de chaque côté ${shoulderText(lang, shoulderSteps(shoulderPerSide))}.`, en: `Back neck and shoulders: bind off the center ${stsNow - 2 * shoulderPerSide} sts, then on each side ${shoulderText(lang, shoulderSteps(shoulderPerSide))}.` }),
     });
-    row += shoulderRows;
   } else {
     const side = half ? (opts.kind === "front-left" ? "left" : "right") : "both";
-    const neckIns = frontNeckInstructions(ctx, row, side, shoulderRows);
+    const neckIns = frontNeckInstructions(ctx, neckStart, side, shoulderRows, selvedge);
+    if (overlap) {
+      const prefix = tx(lang, { fr: "En même temps que les diminutions d'emmanchure : ", en: "At the same time as the armhole decreases: " });
+      neckIns.forEach((i) => { i.text = prefix + i.text; });
+      warnings.push(tx(lang, { fr: `L'encolure devant commence au rang ${neckStart}, pendant le façonnage d'emmanchure : mener les deux en même temps.`, en: `The front neck starts on row ${neckStart}, during the armhole shaping: work both at the same time.` }));
+    }
     instructions.push(...neckIns);
-    row += neckRows - shoulderRows;
     instructions.push({
-      rowStart: row, rowEnd: row + shoulderRows - 1,
+      rowStart: shoulderStart, rowEnd: endRow,
       text: tx(lang, { fr: `Épaule${half ? "" : "s"} : ${shoulderText(lang, shoulderSteps(shoulderPerSide))}.`, en: `Shoulder${half ? "" : "s"}: ${shoulderText(lang, shoulderSteps(shoulderPerSide))}.` }),
     });
-    row += shoulderRows;
   }
 
   const name = { back: { fr: "Dos", en: "Back" }, front: { fr: "Devant", en: "Front" }, "front-left": { fr: "Devant gauche", en: "Left front" }, "front-right": { fr: "Devant droit", en: "Right front" } }[opts.kind];
   return {
-    name: tx(lang, name) + (opts.armholeKind === "setin-after-round" ? tx(lang, { fr: " (à plat, après séparation)", en: " (flat, after separation)" }) : ""),
-    castOn: opts.armholeKind === "setin-after-round" ? castOn - 2 * arm.bindOffSts : castOn,
-    totalRows: opts.armholeKind === "setin-after-round" ? d.armholeRows : d.bodyRows,
+    name: tx(lang, name) + (afterRound ? tx(lang, { fr: " (à plat, après séparation)", en: " (flat, after separation)" }) : ""),
+    castOn: afterRound ? castOn - 2 * arm.bindOffSts : castOn,
+    totalRows: endRow,
     instructions,
     calculations: isBack ? calcSteps(ctx) : [],
     warnings,
@@ -471,13 +487,13 @@ function generateFlatSleeve(ctx: Ctx, kind: "setin" | "drop"): PatternPiece {
   row = d.cuffRows + 1;
   const incPerSide = (topSts - d.wristSts) / 2;
   const incRows = sleeveRows - d.cuffRows - 2;
-  const inc = distribute(incPerSide, Math.max(2, incRows), 2);
+  const inc = distributeEven(incPerSide, Math.max(2, incRows));
   if (inc.overflow > 0) warnings.push(tx(lang, { fr: `Manche trop courte pour ${incPerSide} augmentations par côté : ${inc.overflow} augmentations manquantes, allongez la manche ou augmentez 2 m. par côté sur certains rangs.`, en: `Sleeve too short for ${incPerSide} increases per side: ${inc.overflow} increases missing, lengthen the sleeve or increase 2 sts per side on some rows.` }));
   instructions.push({
     rowStart: row, rowEnd: sleeveRows,
     text: incPerSide > 0
-      ? tx(lang, { fr: `Augmenter 1 m. de chaque côté ${distText(lang, inc)}${inc.straightRows + 2 > 0 ? `, puis ${inc.straightRows + 2} rangs droits` : ""}. On obtient ${topSts} m.`, en: `Increase 1 st each side ${distText(lang, inc)}${inc.straightRows + 2 > 0 ? `, then ${inc.straightRows + 2} rows straight` : ""}. ${topSts} sts.` })
-      : tx(lang, { fr: `Continuer droit pendant ${sleeveRows - d.cuffRows} rangs sur ${topSts} m.`, en: `Continue straight for ${sleeveRows - d.cuffRows} rows on ${topSts} sts.` }),
+      ? tx(lang, { fr: `Augmenter 1 m. de chaque côté ${distText(lang, inc)}${inc.straightRows + 2 > 0 ? `, puis ${nRows(lang, inc.straightRows + 2)} droits` : ""}. On obtient ${topSts} m.`, en: `Increase 1 st each side ${distText(lang, inc)}${inc.straightRows + 2 > 0 ? `, then ${nRows(lang, inc.straightRows + 2)} straight` : ""}. ${topSts} sts.` })
+      : tx(lang, { fr: `Continuer droit pendant ${nRows(lang, sleeveRows - d.cuffRows)} sur ${topSts} m.`, en: `Continue straight for ${nRows(lang, sleeveRows - d.cuffRows)} on ${topSts} sts.` }),
     notes: tx(lang, { fr: `Longueur du poignet au dessous de bras : ${cmForRows(sleeveRows, g).toFixed(0)} cm`, en: `Length from cuff to underarm: ${cmForRows(sleeveRows, g).toFixed(0)} cm` }),
   });
   row = sleeveRows + 1;
@@ -502,7 +518,7 @@ function generateFlatSleeve(ctx: Ctx, kind: "setin" | "drop"): PatternPiece {
     const shapingRows = Math.max(2, cap.capRows - 4);
     instructions.push({
       rowStart: row, rowEnd: row + shapingRows - 1,
-      text: tx(lang, { fr: `Diminuer 1 m. de chaque côté ${distText(lang, cap.decreaseDist)}${cap.decreaseDist.straightRows > 0 ? `, puis ${cap.decreaseDist.straightRows} rangs droits` : ""}. Il reste ${cap.finalBindOff} m.`, en: `Decrease 1 st each side ${distText(lang, cap.decreaseDist)}${cap.decreaseDist.straightRows > 0 ? `, then ${cap.decreaseDist.straightRows} rows straight` : ""}. ${cap.finalBindOff} sts remain.` }),
+      text: tx(lang, { fr: `Diminuer 1 m. de chaque côté ${distText(lang, cap.decreaseDist)}${cap.decreaseDist.straightRows > 0 ? `, puis ${nRows(lang, cap.decreaseDist.straightRows)} droits` : ""}. Il reste ${cap.finalBindOff} m.`, en: `Decrease 1 st each side ${distText(lang, cap.decreaseDist)}${cap.decreaseDist.straightRows > 0 ? `, then ${nRows(lang, cap.decreaseDist.straightRows)} straight` : ""}. ${cap.finalBindOff} sts remain.` }),
       notes: tx(lang, { fr: `Hauteur de tête : ${cmForRows(cap.capRows, g).toFixed(0)} cm`, en: `Cap height: ${cmForRows(cap.capRows, g).toFixed(0)} cm` }),
     });
     row += shapingRows;
@@ -676,7 +692,7 @@ function generateRaglanYoke(ctx: Ctx, plan: RaglanPlan, openFront: boolean, plan
   if (straight > 0) {
     instructions.push({
       rowStart: 2 + dist.rowsUsed, rowEnd: plan.yokeRows,
-      text: tx(lang, { fr: `Continuer droit pendant ${straight} tours.`, en: `Continue straight for ${straight} rounds.` }),
+      text: tx(lang, { fr: `Continuer droit pendant ${nRows(lang, straight, "rounds")}.`, en: `Continue straight for ${nRows(lang, straight, "rounds")}.` }),
     });
   }
   const backAtSep = B + 2 * Ib;
@@ -725,11 +741,15 @@ function generateTopDownBody(ctx: Ctx, plan: RaglanPlan, openFront: boolean): Pa
 }
 
 function generateTopDownSleeve(ctx: Ctx, plan: RaglanPlan): PatternPiece {
-  const { d, lang } = ctx;
+  const { d, g, lang } = ctx;
   const sleeveSts = plan.sleeveAtSep;
   const warnings: string[] = [];
   const decPerSide = (sleeveSts - d.wristSts) / 2;
-  const decRows = d.sleeveRows - d.cuffRows - 1;
+  // Longueur de manche depuis le dessous de bras : bras (épaule -> poignet) moins la hauteur réelle de
+  // l'empiècement le long de la manche (profondeur d'empiècement moins ~3 cm entre encolure et pointe d'épaule).
+  const sleeveCm = Math.max(10, d.armLengthCm - (cmForRows(plan.yokeRows, g) - 3)) * d.sleeveLengthFactor;
+  const sleeveRows = rowsFor(sleeveCm, g);
+  const decRows = sleeveRows - d.cuffRows - 1;
   const dec = distribute(Math.max(0, decPerSide), Math.max(2, decRows), 2);
   if (dec.overflow > 0) warnings.push(tx(lang, { fr: `Manche trop courte pour ${decPerSide} diminutions par côté : ${dec.overflow} diminutions manquantes.`, en: `Sleeve too short for ${decPerSide} decreases per side: ${dec.overflow} decreases missing.` }));
   const instructions: PatternInstruction[] = [
@@ -741,12 +761,12 @@ function generateTopDownSleeve(ctx: Ctx, plan: RaglanPlan): PatternPiece {
     {
       rowStart: 2, rowEnd: 1 + Math.max(2, decRows),
       text: decPerSide > 0
-        ? tx(lang, { fr: `Diminuer 1 m. de chaque côté du marqueur ${distText(lang, dec, "rounds")}${dec.straightRows > 0 ? `, puis ${dec.straightRows} tours droits` : ""}. On obtient ${d.wristSts} m.`, en: `Decrease 1 st on each side of the marker ${distText(lang, dec, "rounds")}${dec.straightRows > 0 ? `, then ${dec.straightRows} rounds straight` : ""}. ${d.wristSts} sts.` })
-        : tx(lang, { fr: `Continuer droit pendant ${Math.max(2, decRows)} tours.`, en: `Continue straight for ${Math.max(2, decRows)} rounds.` }),
-      notes: tp(lang, "pattern.decreaseNote"),
+        ? tx(lang, { fr: `Diminuer 1 m. de chaque côté du marqueur ${distText(lang, dec, "rounds")}${dec.straightRows > 0 ? `, puis ${nRows(lang, dec.straightRows, "rounds")} droits` : ""}. On obtient ${d.wristSts} m.`, en: `Decrease 1 st on each side of the marker ${distText(lang, dec, "rounds")}${dec.straightRows > 0 ? `, then ${nRows(lang, dec.straightRows, "rounds")} straight` : ""}. ${d.wristSts} sts.` })
+        : tx(lang, { fr: `Continuer droit pendant ${nRows(lang, Math.max(2, decRows), "rounds")}.`, en: `Continue straight for ${nRows(lang, Math.max(2, decRows), "rounds")}.` }),
+      notes: tx(lang, { fr: `Longueur du dessous de bras au poignet : ${sleeveCm.toFixed(0)} cm. ${tp(lang, "pattern.decreaseNote")}`, en: `Length from underarm to cuff: ${sleeveCm.toFixed(0)} cm. ${tp(lang, "pattern.decreaseNote")}` }),
     },
     {
-      rowStart: d.sleeveRows - d.cuffRows + 1, rowEnd: d.sleeveRows,
+      rowStart: sleeveRows - d.cuffRows + 1, rowEnd: sleeveRows,
       text: tp(lang, "pattern.cuffRib", d.cuffRows, d.wristSts),
     },
   ];
@@ -754,7 +774,7 @@ function generateTopDownSleeve(ctx: Ctx, plan: RaglanPlan): PatternPiece {
   return {
     name: tp(lang, "pattern.sleeveX2InRound"),
     castOn: sleeveSts,
-    totalRows: d.sleeveRows,
+    totalRows: sleeveRows,
     instructions,
     calculations: [],
     warnings,
@@ -784,12 +804,9 @@ function generateNeckbandPiece(ctx: Ctx, pickUpOverride: number | null): Pattern
   const computed = multiple * Math.round((perimeter * g.stitchesPer10cm / 10 * 0.9) / multiple);
   // Raglan top-down : le bord d'encolure est le montage, on en relève 90 % pour resserrer.
   const neckSts = pickUpOverride !== null ? multiple * Math.round((pickUpOverride * 0.9) / multiple) : computed;
-  calculations.push({
-    description: tx(lang, { fr: "Tour d'encolure", en: "Neck circumference" }),
-    formula: `${perimeter.toFixed(1)} cm × ${g.stitchesPer10cm}/10 × 0.9`,
-    result: perimeter * g.stitchesPer10cm / 10 * 0.9,
-    rounded: neckSts,
-  });
+  calculations.push(pickUpOverride !== null
+    ? { description: tx(lang, { fr: "Mailles du bord d'encolure (montage) × 0,9", en: "Neck edge stitches (cast-on) × 0.9" }), formula: `${pickUpOverride} × 0.9`, result: pickUpOverride * 0.9, rounded: neckSts }
+    : { description: tx(lang, { fr: "Tour d'encolure", en: "Neck circumference" }), formula: `${perimeter.toFixed(1)} cm × ${g.stitchesPer10cm}/10 × 0.9`, result: perimeter * g.stitchesPer10cm / 10 * 0.9, rounded: neckSts });
 
   let neckbandHeight = 3;
   if (neckband) {
@@ -826,7 +843,7 @@ function generateNeckbandPiece(ctx: Ctx, pickUpOverride: number | null): Pattern
   if (neck === "col-v") warnings.push(tx(lang, { fr: "Pour un col V, faire une double diminution centrée à la pointe du V à chaque rang pour un angle net.", en: "For a V-neck, work a centered double decrease at the V point on every row for a clean angle." }));
   if (!isPickedUp) warnings.push(tx(lang, { fr: "Coudre le col en alignant le centre dos avec le milieu du dos.", en: "Sew the collar aligning the center back with the middle of the back." }));
 
-  return { name: tx(lang, { fr: "Bordure d'encolure", en: "Neckband" }), castOn: neckSts, totalRows: neckRows, instructions, calculations, warnings };
+  return { name: tx(lang, { fr: "Bordure d'encolure", en: "Neckband" }), castOn: neckSts, totalRows: neckRows + 2, instructions, calculations, warnings };
 }
 
 function generateArmholeBands(ctx: Ctx): PatternPiece {
@@ -987,7 +1004,7 @@ export function generateFullPattern(
     assembly.push(`${assembly.length + 1}. ` + (openFront ? tp(lang, "pattern.neckbandAssemblyCardigan") : tp(lang, "pattern.neckbandAssembly")));
   }
   if (openFront) {
-    pieces.push(generateButtonBands(ctx, d.bodyRows));
+    pieces.push(generateButtonBands(ctx, ctx.neck === "col-v" ? d.bodyRows - d.frontNeckRows : d.bodyRows));
     assembly.push(`${assembly.length + 1}. ` + tx(lang, { fr: "Relever les bandes de boutonnage le long des bords devant, coudre les boutons en face des boutonnières.", en: "Pick up the front bands along the front edges, sew the buttons opposite the buttonholes." }));
   }
   assembly.push(`${assembly.length + 1}. ` + tp(lang, "pattern.seamlessNote4"));

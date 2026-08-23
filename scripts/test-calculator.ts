@@ -84,6 +84,20 @@ for (const [cname, analysis] of Object.entries(CONFIGS)) for (const [gname, gaug
       if (!simultaneous) prevEnd = Math.max(prevEnd, i.rowEnd)
     }
   }
+  // 2b. hauteur des pièces : dernier rang décrit = totalRows, devants = dos
+  for (const pc of p.pieces) {
+    if (/boutonnage|front bands|bordure|band/i.test(pc.name)) continue
+    const last = Math.max(...pc.instructions.map(i => i.rowEnd))
+    checks++
+    if (last !== pc.totalRows) fail(ctx, `${pc.name}: dernier rang ${last} != totalRows ${pc.totalRows}`)
+  }
+  {
+    const back = p.pieces.find(pc => /^dos|^back/i.test(pc.name))
+    for (const f of p.pieces.filter(pc => /^devant|^front/i.test(pc.name))) {
+      checks++
+      if (back && f.totalRows !== back.totalRows) fail(ctx, `${f.name} ${f.totalRows} rangs != dos ${back.totalRows}`)
+    }
+  }
   // 3. correspondance entre pièces
   const d = computeDims(m, gauge, analysis.neckline.type === "col-v" ? "col-v" : "ras-du-cou", analysis.sleeves.length)
   const sleeve = p.pieces.find(pc => /manche|sleeve/i.test(pc.name))
@@ -119,8 +133,8 @@ for (const [cname, analysis] of Object.entries(CONFIGS)) for (const [gname, gaug
       const fs = shoulders(f.instructions.map(i => i.text).join(" "))
       if (fs !== backSh) fail(ctx, `épaules ${f.name} (${fs}) != dos (${backSh})`)
     }
-    const capWarn = sleeve.warnings.some(w => /tête de manche diffère|cap edge differs/.test(w))
-    if (capWarn) capWarnings++
+    const capWarn = sleeve.warnings.find(w => /tête de manche diffère|cap edge differs/.test(w))
+    if (capWarn) { capWarnings++; if (process.env.VERBOSE) console.log(`cap [${ctx}] ${capWarn.slice(0, 90)}`) }
   }
   if (back) {
     const backTxt = back.instructions.map(i => i.text).join(" ")
