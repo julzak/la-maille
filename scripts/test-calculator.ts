@@ -12,6 +12,7 @@
 import path from "path"
 import { SIZE_PRESETS, SIZE_ORDER } from "../lib/size-presets"
 import { computeDims } from "../lib/shaping"
+import { parsePatternToPieces } from "../hooks/usePatternParsing"
 import type { GarmentAnalysis, Gauge, GeneratedPattern } from "../lib/types"
 
 const calcPath = process.env.CALC ? path.resolve(process.env.CALC) : path.join(__dirname, "../lib/pattern-calculator")
@@ -97,6 +98,14 @@ for (const [cname, analysis] of Object.entries(CONFIGS)) for (const [gname, gaug
       checks++
       if (back && f.totalRows !== back.totalRows) fail(ctx, `${f.name} ${f.totalRows} rangs != dos ${back.totalRows}`)
     }
+  }
+  // 2c. mode Tricot : chaque pièce se parcourt rang par rang de 1 à totalRows, sans trou ni doublon
+  for (const pp of parsePatternToPieces(p, "fr")) {
+    if (/boutonnage|front bands/i.test(pp.name)) continue
+    checks++
+    const rows = pp.instructions.map(i => i.row)
+    const expected = Array.from({ length: pp.totalRows }, (_, i) => i + 1)
+    if (rows.length !== expected.length || rows.some((r, i) => r !== expected[i])) fail(ctx, `${pp.name}: mode tricot ${rows.length} rangs parses pour totalRows ${pp.totalRows} (premier ${rows[0]}, dernier ${rows[rows.length - 1]})`)
   }
   // 3. correspondance entre pièces
   const d = computeDims(m, gauge, analysis.neckline.type === "col-v" ? "col-v" : "ras-du-cou", analysis.sleeves.length)

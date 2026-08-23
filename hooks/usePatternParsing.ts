@@ -55,10 +55,13 @@ export function parsePatternToPieces(
   const pieces: ParsedPiece[] = [];
 
   for (const piece of pattern.pieces) {
-    const parsedInstructions: ParsedInstruction[] = [];
+    // Une entrée par rang, indexée par numéro de rang : deux instructions qui couvrent le même
+    // rang (façonnage "en même temps") sont fusionnées au lieu d'être empilées.
+    const byRow = new Map<number, ParsedInstruction>();
     let currentContext = "";
+    const sorted = [...piece.instructions].sort((a, b) => a.rowStart - b.rowStart);
 
-    for (const instr of piece.instructions) {
+    for (const instr of sorted) {
       const rowCount = instr.rowEnd - instr.rowStart + 1;
       const instrText = instr.text;
 
@@ -71,26 +74,46 @@ export function parsePatternToPieces(
         currentContext = instrText;
       }
 
-      // Add entries for each row in the range
       for (let row = instr.rowStart; row <= instr.rowEnd; row++) {
         const isFirstRowOfRange = row === instr.rowStart;
-
-        parsedInstructions.push({
-          row,
-          instruction: isFirstRowOfRange
-            ? instrText
-            : language === "fr"
+        const continueText =
+          language === "fr"
             ? `Continuer (rang ${row - instr.rowStart + 1}/${rowCount})`
-            : `Continue (row ${row - instr.rowStart + 1}/${rowCount})`,
-          context: currentContext || undefined,
-          technicalNote: instr.notes,
-          isDecrease: isFirstRowOfRange && detection.isDecrease,
-          isIncrease: isFirstRowOfRange && detection.isIncrease,
-          isSpecial: isFirstRowOfRange && detection.isSpecial,
-          specialType: isFirstRowOfRange ? specialType : undefined,
-        });
+            : `Continue (row ${row - instr.rowStart + 1}/${rowCount})`;
+        const existing = byRow.get(row);
+
+        if (!existing) {
+          byRow.set(row, {
+            row,
+            instruction: isFirstRowOfRange ? instrText : continueText,
+            context: currentContext || undefined,
+            technicalNote: instr.notes,
+            isDecrease: isFirstRowOfRange && detection.isDecrease,
+            isIncrease: isFirstRowOfRange && detection.isIncrease,
+            isSpecial: isFirstRowOfRange && detection.isSpecial,
+            specialType: isFirstRowOfRange ? specialType : undefined,
+          });
+          continue;
+        }
+
+        // Chevauchement : la 2e instruction s'ajoute à la 1re sur ce rang.
+        const simultaneous = /en même temps|at the same time/i.test(instrText)
+          ? ""
+          : language === "fr" ? "En même temps : " : "At the same time: ";
+        existing.instruction += isFirstRowOfRange
+          ? ` | ${simultaneous}${instrText}`
+          : ` | ${continueText}`;
+        if (isFirstRowOfRange) {
+          existing.isDecrease = existing.isDecrease || detection.isDecrease;
+          existing.isIncrease = existing.isIncrease || detection.isIncrease;
+          existing.isSpecial = existing.isSpecial || detection.isSpecial;
+          existing.specialType = existing.specialType ?? specialType;
+          if (instr.notes && !existing.technicalNote) existing.technicalNote = instr.notes;
+        }
       }
     }
+
+    const parsedInstructions = Array.from(byRow.values()).sort((a, b) => a.row - b.row);
 
     // Determine piece id from name
     const pieceId = getPieceIdFromName(piece.name, pieces);
