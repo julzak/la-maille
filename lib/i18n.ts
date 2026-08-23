@@ -33,6 +33,7 @@ export const useI18n = create<I18nState>()((set) => ({
     set({ language });
     if (typeof document !== "undefined") {
       document.cookie = `${LANG_COOKIE}=${language}; path=/; max-age=${LANG_COOKIE_MAX_AGE}; samesite=lax`;
+      document.documentElement.lang = language;
     }
   },
 }));
@@ -747,6 +748,21 @@ export const translations = {
 
     // Simplified funnel
     pickYourSize: "Choisissez votre taille",
+    // PatternSection (libellés de pièce)
+    pieceCastOn: "Monter",
+    pieceStitches: "mailles",
+    pieceKnit: "Tricoter",
+    pieceTotalRows: "rangs au total",
+    pieceSchematic: "Schéma",
+    pieceHide: "Masquer",
+    pieceShow: "Afficher",
+    pieceRow: "Rang",
+    pieceRows: "Rangs",
+    pieceSeeCalculations: "Voir les calculs",
+    pieceResult: "Résultat :",
+    toastPatternGenerated: "Patron généré avec succès !",
+    toastAnalysisDone: "Analyse terminée",
+    toastAnalysisDoneDesc: "Choisissez une taille pour générer votre patron.",
     oneClickPattern: "Un clic, un patron",
     orCustomize: "ou personnalisez les mesures",
     customizePattern: "Affiner mon patron",
@@ -1506,6 +1522,21 @@ export const translations = {
 
     // Simplified funnel
     pickYourSize: "Pick your size",
+    // PatternSection (piece labels)
+    pieceCastOn: "Cast on",
+    pieceStitches: "stitches",
+    pieceKnit: "Knit",
+    pieceTotalRows: "rows total",
+    pieceSchematic: "Schematic",
+    pieceHide: "Hide",
+    pieceShow: "Show",
+    pieceRow: "Row",
+    pieceRows: "Rows",
+    pieceSeeCalculations: "See calculations",
+    pieceResult: "Result:",
+    toastPatternGenerated: "Pattern generated!",
+    toastAnalysisDone: "Analysis complete",
+    toastAnalysisDoneDesc: "Pick a size to generate your pattern.",
     oneClickPattern: "One click, one pattern",
     orCustomize: "or customize measurements",
     customizePattern: "Refine my pattern",

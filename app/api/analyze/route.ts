@@ -155,7 +155,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Analyze with Claude
-    const { analysis, usage } = await analyzeGarmentImage({ images });
+    const language = formData.get("language") === "en" ? "en" : "fr";
+    const { analysis, usage } = await analyzeGarmentImage({ images, language });
 
     // Track the generation (best-effort, ne bloque pas la reponse)
     await logGeneration(

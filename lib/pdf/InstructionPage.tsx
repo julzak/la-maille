@@ -13,6 +13,8 @@ interface InstructionPageProps {
   sectionSubtitle: string;
   steps: Step[];
   dimensions?: { label: string; value: string }[];
+  warnings?: string[];
+  calculations?: { label: string; value: string }[];
   pageNumber: number;
   totalPieces?: number;
   pieceIndex?: number;
@@ -24,6 +26,8 @@ export function InstructionPage({
   sectionSubtitle,
   steps,
   dimensions,
+  warnings,
+  calculations,
   pageNumber,
   totalPieces,
   pieceIndex,
@@ -138,14 +142,42 @@ export function InstructionPage({
                   <Text style={styles.mono}>{dim.value}</Text>
                 </View>
               ))}
+              {calculations && calculations.length > 0 && (
+                <View style={{ marginTop: 8, borderTopWidth: 1, borderTopColor: "#E5E5E5", paddingTop: 8 }}>
+                  {calculations.map((c, i) => (
+                    <View key={i} style={{ marginBottom: 4 }}>
+                      <Text style={styles.bodySmall}>{c.label}</Text>
+                      <Text style={[styles.mono, { fontSize: 8 }]}>{c.value}</Text>
+                    </View>
+                  ))}
+                </View>
+              )}
             </View>
+            {warnings && warnings.length > 0 && (
+              <View
+                style={{
+                  backgroundColor: "#FFF7ED",
+                  borderLeftWidth: 3,
+                  borderLeftColor: colors.primary,
+                  padding: 8,
+                  marginTop: 10,
+                  borderRadius: 2,
+                }}
+              >
+                {warnings.map((w, i) => (
+                  <Text key={i} style={[styles.bodySmall, { marginBottom: 3 }]}>
+                    - {w}
+                  </Text>
+                ))}
+              </View>
+            )}
           </View>
         )}
       </View>
 
       {/* Footer */}
       <View style={styles.footer}>
-        <Text style={styles.footerText}>la-maille.vercel.app</Text>
+        <Text style={styles.footerText}>la-maille.com</Text>
         <Text style={styles.pageNumber}>{pageNumber}</Text>
       </View>
     </Page>

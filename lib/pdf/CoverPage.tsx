@@ -5,7 +5,6 @@ interface CoverPageProps {
   garmentType: string;
   imageUrl?: string;
   difficulty: string;
-  estimatedTime: string;
   size: string;
   createdAt: string;
   language: "fr" | "en";
@@ -15,7 +14,6 @@ export function CoverPage({
   garmentType,
   imageUrl,
   difficulty,
-  estimatedTime,
   size,
   createdAt,
   language,
@@ -81,9 +79,6 @@ export function CoverPage({
             <Text style={{ color: "white", fontSize: 9 }}>{difficulty}</Text>
           </View>
           <View style={styles.badgeOutline}>
-            <Text style={{ fontSize: 9 }}>{estimatedTime}</Text>
-          </View>
-          <View style={styles.badgeOutline}>
             <Text style={{ fontSize: 9 }}>{t.sizeLabel} {size}</Text>
           </View>
         </View>
@@ -117,7 +112,7 @@ export function CoverPage({
           justifyContent: "space-between",
         }}
       >
-        <Text style={styles.footerText}>la-maille.vercel.app</Text>
+        <Text style={styles.footerText}>la-maille.com</Text>
         <Text style={styles.footerText}>{t.createdOn} {createdAt}</Text>
       </View>
     </Page>

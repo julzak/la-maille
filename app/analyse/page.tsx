@@ -111,6 +111,7 @@ export default function AnalysePage() {
         formData.append("images", file);
       }
 
+      formData.append("language", language);
       const response = await fetch("/api/analyze", {
         method: "POST",
         body: formData,
@@ -137,8 +138,8 @@ export default function AnalysePage() {
 
       // Toast de succès si analysable
       if (data.analysis.analysable) {
-        toast.success("Analyse terminée", {
-          description: "Remplissez le formulaire pour générer votre patron.",
+        toast.success(t("toastAnalysisDone"), {
+          description: t("toastAnalysisDoneDesc"),
         });
       }
     } catch (err) {

@@ -11,8 +11,10 @@ import type {
   PatternPiece,
   PatternInstruction,
   GeneratedPattern,
+  PieceSchematic,
 } from "./types";
 import { tp, type Language } from "./i18n";
+import { calculateYarnNeeded } from "./yarn-calculator";
 import {
   computeDims, distribute, distributeEven, armholeShape, sleeveCapShape, neckPerimeterCm, crewFrontNeckShape,
   stsFor, rowsFor, cmForSts, cmForRows, even,
@@ -455,6 +457,16 @@ function generateFlatBodyPiece(ctx: Ctx, opts: FlatPieceOpts): PatternPiece {
   }
 
   const name = { back: { fr: "Dos", en: "Back" }, front: { fr: "Devant", en: "Front" }, "front-left": { fr: "Devant gauche", en: "Left front" }, "front-right": { fr: "Devant droit", en: "Right front" } }[opts.kind];
+  const schematic: PieceSchematic = {
+    kind: half ? "cardigan-front" : "panel",
+    widthCm: cmForSts(castOn, g),
+    lengthCm: cmForRows(endRow, g),
+    armholeDepthCm: d.armholeDepthCm,
+    shoulderWidthCm: opts.armholeKind === "drop" ? cmForSts(castOn, g) : half ? d.crossBackCm / 2 : d.crossBackCm,
+    necklineWidthCm: half ? d.backNeckWidthCm / 2 : d.backNeckWidthCm,
+    necklineDepthCm: isBack ? 1.5 : d.frontNeckDropCm,
+    isFront: !isBack,
+  };
   return {
     name: tx(lang, name) + (afterRound ? tx(lang, { fr: " (à plat, après séparation)", en: " (flat, after separation)" }) : ""),
     castOn: afterRound ? castOn - 2 * arm.bindOffSts : castOn,
@@ -462,6 +474,7 @@ function generateFlatBodyPiece(ctx: Ctx, opts: FlatPieceOpts): PatternPiece {
     instructions,
     calculations: isBack ? calcSteps(ctx) : [],
     warnings,
+    schematic,
   };
 }
 
@@ -543,6 +556,7 @@ function generateFlatSleeve(ctx: Ctx, kind: "setin" | "drop"): PatternPiece {
     instructions,
     calculations,
     warnings,
+    schematic: { kind: "sleeve", widthCm: cmForSts(topSts, g), lengthCm: cmForRows(totalRows, g), sleeveTopWidthCm: cmForSts(topSts, g), sleeveCuffWidthCm: cmForSts(d.wristSts, g) },
   };
 }
 
@@ -578,6 +592,7 @@ function generateRoundBodyToUnderarm(ctx: Ctx): PatternPiece {
     instructions,
     calculations: calcSteps(ctx),
     warnings,
+    schematic: { kind: "tube", widthCm: cmForSts(d.bodySts, g) / 2, lengthCm: cmForRows(d.hemRows + Math.max(0, straight) + 1, g) },
   };
 }
 
@@ -712,6 +727,7 @@ function generateRaglanYoke(ctx: Ctx, plan: RaglanPlan, openFront: boolean, plan
     instructions,
     calculations: calcSteps(ctx),
     warnings,
+    schematic: { kind: "yoke", widthCm: cmForSts(plan.bodyAtSep, g) / 2, lengthCm: cmForRows(plan.yokeRows, g), necklineWidthCm: cmForSts(castOn, g) / 2, sleeveTopWidthCm: cmForSts(plan.sleeveAtSep, g) },
   };
 }
 
@@ -738,6 +754,7 @@ function generateTopDownBody(ctx: Ctx, plan: RaglanPlan, openFront: boolean): Pa
     instructions,
     calculations: [],
     warnings,
+    schematic: { kind: "tube", widthCm: cmForSts(plan.bodyAtSep, g) / 2, lengthCm: cmForRows(Math.max(0, straight) + d.hemRows, g) },
   };
 }
 
@@ -779,6 +796,7 @@ function generateTopDownSleeve(ctx: Ctx, plan: RaglanPlan): PatternPiece {
     instructions,
     calculations: [],
     warnings,
+    schematic: { kind: "sleeve", widthCm: cmForSts(sleeveSts, g) / 2, lengthCm: sleeveCm, sleeveTopWidthCm: cmForSts(sleeveSts, g) / 2, sleeveCuffWidthCm: cmForSts(d.wristSts, g) / 2 },
   };
 }
 
@@ -844,7 +862,7 @@ function generateNeckbandPiece(ctx: Ctx, pickUpOverride: number | null): Pattern
   if (neck === "col-v") warnings.push(tx(lang, { fr: "Pour un col V, faire une double diminution centrée à la pointe du V à chaque rang pour un angle net.", en: "For a V-neck, work a centered double decrease at the V point on every row for a clean angle." }));
   if (!isPickedUp) warnings.push(tx(lang, { fr: "Coudre le col en alignant le centre dos avec le milieu du dos.", en: "Sew the collar aligning the center back with the middle of the back." }));
 
-  return { name: tx(lang, { fr: "Bordure d'encolure", en: "Neckband" }), castOn: neckSts, totalRows: neckRows + 2, instructions, calculations, warnings };
+  return { name: tx(lang, { fr: "Bordure d'encolure", en: "Neckband" }), castOn: neckSts, totalRows: neckRows + 2, instructions, calculations, warnings, schematic: { kind: "none", widthCm: 0, lengthCm: 0 } };
 }
 
 function generateArmholeBands(ctx: Ctx): PatternPiece {
@@ -863,6 +881,7 @@ function generateArmholeBands(ctx: Ctx): PatternPiece {
     ],
     calculations: [],
     warnings: [],
+    schematic: { kind: "none", widthCm: 0, lengthCm: 0 },
   };
 }
 
@@ -884,7 +903,7 @@ function generateButtonBands(ctx: Ctx, edgeRows: number): PatternPiece {
   } else {
     instructions.push({ rowStart: 1, rowEnd: rows + 1, text: tx(lang, { fr: "Devant droit : idem, sans boutonnières.", en: "Right front: same, without buttonholes." }) });
   }
-  return { name: tx(lang, { fr: "Bandes de boutonnage (x2)", en: "Front bands (x2)" }), castOn: sts, totalRows: rows + 1, instructions, calculations: [], warnings: [] };
+  return { name: tx(lang, { fr: "Bandes de boutonnage (x2)", en: "Front bands (x2)" }), castOn: sts, totalRows: rows + 1, instructions, calculations: [], warnings: [], schematic: { kind: "none", widthCm: 0, lengthCm: 0 } };
 }
 
 // ===========================================
@@ -1022,7 +1041,7 @@ export function generateFullPattern(
   if (analysis.closure.type === "boutons") finishing.push("- " + tp(lang, "pattern.sewButtons", analysis.closure.buttonCountEstimate || 6));
   else if (analysis.closure.type === "zip") finishing.push("- " + tp(lang, "pattern.sewZipper"));
 
-  const yardage = estimateYardage(measurements, gauge, yarn);
+  const yardage = estimateYardage(measurements, gauge, yarn, analysis.garment.type, family !== "sleeveless");
   const constructionNote = family === "raglan-topdown"
     ? tp(lang, "pattern.constructionSeamless")
     : tp(lang, "pattern.constructionFlat");
@@ -1042,7 +1061,7 @@ ${tp(lang, "pattern.disclaimerWork")}
 - ${tp(lang, "pattern.disclaimerYarn")}
 - ${tp(lang, "pattern.disclaimerFit")}
 
-${tp(lang, "pattern.disclaimerConfidence", analysis.overallConfidence)}
+${tp(lang, "pattern.disclaimerConfidence", tx(lang, { high: { fr: "élevée", en: "high" }, medium: { fr: "moyenne", en: "medium" }, low: { fr: "faible", en: "low" }, insufficient: { fr: "insuffisante", en: "insufficient" } }[analysis.overallConfidence] ?? { fr: analysis.overallConfidence, en: analysis.overallConfidence }))}
 ${limitationsText}
 
 ${tp(lang, "pattern.disclaimerAdvice")}
@@ -1061,57 +1080,27 @@ ${tp(lang, "pattern.disclaimerAdvice")}
 // ESTIMATION MÉTRAGE
 // ===========================================
 
+// Grammes par mètre selon la catégorie de fil (pelote de 50 g : lace ~400 m, fingering ~200 m,
+// sport ~150 m, DK ~115 m, worsted ~100 m, aran ~85 m, bulky ~60 m).
+const GRAMS_PER_METER: Record<YarnInfo["weight"], number> = {
+  lace: 0.125, fingering: 0.25, sport: 0.33, dk: 0.43, worsted: 0.5, aran: 0.6, bulky: 0.85,
+};
+
 export function estimateYardage(
   measurements: Measurements,
   gauge: Gauge,
-  yarn: YarnInfo
+  yarn: YarnInfo,
+  garmentType: string = "pull",
+  hasSleeves: boolean = true
 ): { meters: number; grams: number; skeinsEstimate: string } {
-  log("Estimating yardage...");
-
-  const backSurface = (measurements.chestCircumference / 2) * measurements.bodyLength;
-  const frontSurface = backSurface;
-  const sleeveSurface = ((measurements.wristCircumference + measurements.bicepCircumference) / 2) * measurements.armLength * 2;
-  const totalSurface = backSurface + frontSurface + sleeveSurface;
-
-  log(`Surface totale estimée: ${totalSurface} cm²`);
-
-  let stitchCoefficient = 1.0;
-  switch (yarn.weight) {
-    case "lace":
-      stitchCoefficient = 0.6;
-      break;
-    case "fingering":
-      stitchCoefficient = 0.7;
-      break;
-    case "sport":
-      stitchCoefficient = 0.8;
-      break;
-    case "dk":
-      stitchCoefficient = 1.0;
-      break;
-    case "worsted":
-      stitchCoefficient = 1.2;
-      break;
-    case "aran":
-      stitchCoefficient = 1.4;
-      break;
-    case "bulky":
-      stitchCoefficient = 1.8;
-      break;
-  }
-
-  const density = gauge.stitchesPer10cm * gauge.rowsPer10cm / 100;
-  const baseGrams = (totalSurface / 100) * density * 0.4 * stitchCoefficient;
-
-  const grams = Math.round(baseGrams * 1.15);
-  const meters = Math.round(grams * 2);
-
+  // Une seule source pour le métrage : le modèle de surface de lib/yarn-calculator.ts.
+  const needed = calculateYarnNeeded(measurements, gauge, garmentType, hasSleeves);
+  const meters = needed.average;
+  const grams = Math.round(meters * GRAMS_PER_METER[yarn.weight]);
   log(`Estimation: ${grams}g, ~${meters}m`);
-
   const low = Math.round(grams * 0.9);
   const high = Math.round(grams * 1.1);
   const skeinsEstimate = `${low}-${high}g environ`;
-
   return { meters, grams, skeinsEstimate };
 }
 

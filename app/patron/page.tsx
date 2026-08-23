@@ -26,6 +26,7 @@ import { EmailGateModal } from "@/components/EmailGateModal";
 import { getStitchWarning } from "@/lib/messages";
 import { useTranslation, translateLimitation } from "@/lib/i18n";
 import { generateFullPattern } from "@/lib/pattern-calculator";
+import { SIZE_PRESETS, type SizeKey } from "@/lib/size-presets";
 import {
   generatePatternPDF,
   getPatternFilename,
@@ -43,7 +44,6 @@ import { trackEvent, getStoredUTMs } from "@/lib/analytics";
 import type { StoredProject } from "@/lib/storage";
 import type { YarnStock } from "@/lib/yarn-calculator";
 import type { Gauge, Measurements, YarnInfo } from "@/lib/types";
-import type { SizeKey } from "@/lib/size-presets";
 
 function PatronPageContent() {
   const router = useRouter();
@@ -605,7 +605,12 @@ function PatronPageContent() {
                   measurements={refineMeasurements}
                   onChange={setRefineMeasurements}
                   selectedSize={refineSelectedSize}
-                  onSizeSelect={setRefineSelectedSize}
+                  onSizeSelect={(size) => {
+                    setRefineSelectedSize(size);
+                    if (size !== "custom") {
+                      setRefineMeasurements((m) => (m ? { ...m, ...SIZE_PRESETS[size].measurements } : m));
+                    }
+                  }}
                   errors={refineErrors}
                   touched={refineTouched}
                   onBlur={() => {}}

@@ -176,7 +176,7 @@ export function MaterialsPage({
 
       {/* Footer */}
       <View style={styles.footer}>
-        <Text style={styles.footerText}>la-maille.vercel.app</Text>
+        <Text style={styles.footerText}>la-maille.com</Text>
         <Text style={styles.pageNumber}>2</Text>
       </View>
     </Page>
