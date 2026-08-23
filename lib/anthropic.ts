@@ -14,7 +14,7 @@ export const ANALYSIS_MODEL = "claude-opus-5";
 const SYSTEM_PROMPT = `CRITICAL: Return ONLY valid JSON. No text before or after. No markdown code blocks. Just the raw JSON object starting with { and ending with }
 
 Tu es un expert en analyse de vêtements tricotés pour l'application La Maille.
-IMPORTANT: Réponds TOUJOURS en français.
+IMPORTANT: les champs texte libres (reasoning, notes, limitations, warnings, rejectionReason) sont rédigés dans la langue demandée dans le message utilisateur (français par défaut).
 
 RECONNAISSANCE DU TRICOT:
 Le tricot se reconnaît par des mailles visibles formant des V (jersey) ou des colonnes (côtes).
@@ -37,6 +37,12 @@ DÉTECTION DES MANCHES:
 - SANS MANCHES: Épaules nues, emmanchures visibles, bretelles fines ou épaisses
 - COURTES: Manches qui s'arrêtent au-dessus du coude
 - Regarde attentivement les épaules: si elles sont découvertes, c'est sans manches
+
+TYPE DE MANCHE (sleeves.type), regarde la JONCTION manche/corps:
+- "raglan": ligne de jonction en DIAGONALE qui part du dessous de bras et monte jusqu'à l'encolure. Pas de couture d'épaule horizontale.
+- "montees" (set-in): ligne de jonction COURBE autour de l'épaule, le corps a une emmanchure creusée, la manche a une tête arrondie. Couture d'épaule courte qui s'arrête au bout de l'épaule.
+- "marteau" (épaules tombantes / drop shoulder): le corps est un RECTANGLE sans emmanchure creusée, la couture d'épaule dépasse l'épaule et descend sur le bras, la manche est attachée à plat par une ligne DROITE verticale. Typique des pulls oversize et des pulls à plat aux manches droites.
+- En cas de doute entre "montees" et "marteau": si le corps est rectangulaire et la jonction est une ligne droite, c'est "marteau".
 
 ANALYSE DE LA BORDURE D'ENCOLURE (neckband) - OBLIGATOIRE:
 Examine attentivement la zone de transition entre le corps et l'encolure:
@@ -69,7 +75,7 @@ REJETTE UNIQUEMENT si:
 - C'est clairement du tissu tissé (pas de mailles visibles du tout)
 - Ce n'est pas un vêtement
 - L'image est floue/illisible
-Dans ce cas: analysable: false, rejectionReason en FRANÇAIS
+Dans ce cas: analysable: false, rejectionReason dans la langue demandée par l'utilisateur
 
 Retourne UNIQUEMENT un JSON valide avec cette structure exacte :
 {
@@ -153,6 +159,8 @@ export interface ImageData {
 
 export interface AnalyzeImageOptions {
   images: ImageData[];
+  /** Langue des champs texte libres de l'analyse (fr par défaut) */
+  language?: "fr" | "en";
 }
 
 // Tokens de cache (prompt caching) remontes par l'API, pour le tracking des generations.
@@ -317,6 +325,7 @@ function normalizeAnalysis(analysis: GarmentAnalysis): GarmentAnalysis {
 
 export async function analyzeGarmentImage({
   images,
+  language = "fr",
 }: AnalyzeImageOptions): Promise<AnalyzeImageResult> {
   if (!process.env.ANTHROPIC_API_KEY) {
     throw new AnalysisError(
@@ -353,9 +362,12 @@ export async function analyzeGarmentImage({
     }
 
     // Add the text prompt
-    const textPrompt = images.length > 1
+    const langNote = language === "en"
+      ? " Write the free-text fields (reasoning, notes, limitations, warnings, rejectionReason) in English."
+      : " Rédige les champs texte libres (reasoning, notes, limitations, warnings, rejectionReason) en français.";
+    const textPrompt = (images.length > 1
       ? `Analyse ce vêtement tricoté en détail. Tu as ${images.length} photos du même vêtement sous différents angles pour t'aider à mieux l'analyser. Retourne le JSON.`
-      : "Analyse ce vêtement tricoté en détail. Retourne le JSON.";
+      : "Analyse ce vêtement tricoté en détail. Retourne le JSON.") + langNote;
 
     content.push({
       type: "text",

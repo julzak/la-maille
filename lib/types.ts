@@ -128,6 +128,20 @@ export interface CalculationStep {
 // Pièce du patron
 // ===========================================
 
+// Données du schéma coté d'une pièce (toutes les valeurs en cm, calculées par le générateur)
+export interface PieceSchematic {
+  kind: "panel" | "cardigan-front" | "sleeve" | "yoke" | "tube" | "none";
+  widthCm: number;
+  lengthCm: number;
+  armholeDepthCm?: number;
+  shoulderWidthCm?: number; // carrure (panneaux)
+  necklineWidthCm?: number;
+  necklineDepthCm?: number;
+  sleeveTopWidthCm?: number;
+  sleeveCuffWidthCm?: number;
+  isFront?: boolean;
+}
+
 export interface PatternPiece {
   name: string;
   castOn: number;
@@ -135,6 +149,7 @@ export interface PatternPiece {
   instructions: PatternInstruction[];
   calculations: CalculationStep[];
   warnings: string[];
+  schematic?: PieceSchematic;
 }
 
 export interface PatternInstruction {

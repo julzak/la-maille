@@ -60,8 +60,8 @@ export function FinishingPage({
                 key={i}
                 style={[styles.row, { marginBottom: 6, gap: 6, alignItems: "flex-start" }]}
               >
-                <Text style={[styles.mono, { width: 18 }]}>{i + 1}.</Text>
-                <Text style={[styles.body, { flex: 1 }]}>{step}</Text>
+                <Text style={[styles.mono, { width: 24 }]}>{i + 1}.</Text>
+                <Text style={[styles.body, { flex: 1 }]}>{step.replace(/^\d+[.\-]\s*/, "")}</Text>
               </View>
             ))}
           </View>
@@ -172,7 +172,7 @@ export function FinishingPage({
 
       {/* Footer */}
       <View style={styles.footer}>
-        <Text style={styles.footerText}>la-maille.vercel.app</Text>
+        <Text style={styles.footerText}>la-maille.com</Text>
         <Text style={styles.pageNumber}>{pageNumber}</Text>
       </View>
     </Page>

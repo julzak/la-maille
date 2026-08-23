@@ -41,10 +41,15 @@ export function calculateYarnNeeded(
   // Constants for yarn consumption calculation
   // Average yarn consumption per cm² in meters (varies by gauge)
   // Thicker yarn = more meters per area, but also more coverage per meter
-  const baseConsumptionPerCm2 = 0.008; // Base: ~0.008m per cm²
+  // Ordre de grandeur mesuré : un carré de 10 x 10 cm en jersey DK (22 m x 30 rg) consomme 8 à 10 m de fil,
+  // soit ~0,09 m/cm². Un pull adulte M en DK (~10 000 cm² de surface) donne ainsi ~900 à 1 000 m, conforme
+  // aux métrages indiqués par les patrons du commerce (1 000 à 1 300 m).
+  const baseConsumptionPerCm2 = 0.09;
 
-  // Adjust for gauge - finer gauge = more stitches = more yarn
-  const gaugeMultiplier = (gauge.stitchesPer10cm * gauge.rowsPer10cm) / 600;
+  // Mise à l'échelle par l'échantillon : la longueur de fil d'une maille est proportionnelle à sa largeur
+  // (10 / mailles par 10 cm), donc fil par cm² = mailles/cm × rangs/cm × largeur ≈ k × rangs par 10 cm.
+  // Référence 30 rangs / 10 cm (DK).
+  const gaugeMultiplier = gauge.rowsPer10cm / 30;
   const consumptionPerCm2 = baseConsumptionPerCm2 * gaugeMultiplier;
 
   // Calculate body dimensions
@@ -57,7 +62,7 @@ export function calculateYarnNeeded(
 
   // Sleeve surface area (if applicable)
   let sleeveSurface = 0;
-  if (hasLongSleeves && garmentType !== "gilet") {
+  if (hasLongSleeves) {
     const armLength = measurements.armLength;
     const bicepCirc = measurements.bicepCircumference + 4; // ease for sleeves
     const wristCirc = measurements.wristCircumference + 2;
@@ -75,11 +80,6 @@ export function calculateYarnNeeded(
   // Cardigan adjustment (button bands add ~5%)
   if (garmentType === "cardigan") {
     totalSurface *= 1.05;
-  }
-
-  // Gilet adjustment (no sleeves, less yarn)
-  if (garmentType === "gilet") {
-    totalSurface *= 0.7;
   }
 
   // Calculate meters needed

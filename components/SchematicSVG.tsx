@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import type { PieceSchematic } from "@/lib/types";
 
 interface Dimensions {
   width: number; // cm
@@ -14,7 +15,7 @@ interface Dimensions {
 }
 
 interface SchematicSVGProps {
-  piece: "back" | "front" | "sleeve" | "cardigan-front";
+  piece: "back" | "front" | "sleeve" | "cardigan-front" | "yoke" | "tube";
   dimensions: Dimensions;
   showMeasurements?: boolean;
   className?: string;
@@ -69,6 +70,20 @@ export function SchematicSVG({
           dimensions={dimensions}
           showMeasurements={showMeasurements}
         />
+      ) : piece === "yoke" ? (
+        <YokeShape
+          startX={startX}
+          startY={startY}
+          dimensions={dimensions}
+          showMeasurements={showMeasurements}
+        />
+      ) : piece === "tube" ? (
+        <TubeShape
+          startX={startX}
+          startY={startY}
+          dimensions={dimensions}
+          showMeasurements={showMeasurements}
+        />
       ) : piece === "cardigan-front" ? (
         <CardiganFrontShape
           startX={startX}
@@ -109,8 +124,10 @@ function PanelShape({
   const necklineWidth = (dimensions.necklineWidth || dimensions.width * 0.3) * SCALE;
   const necklineDepth = (dimensions.necklineDepth || (isFront ? 8 : 3)) * SCALE;
 
-  // Points du contour
-  const armholeNotch = width * 0.08;
+  // Points du contour : le retrait d'emmanchure vient de la carrure réelle quand elle est connue
+  const armholeNotch = dimensions.shoulderWidth
+    ? Math.max(0, (dimensions.width - dimensions.shoulderWidth) / 2) * SCALE
+    : width * 0.08;
   const armholeCurve = armholeDepth * 0.3;
 
   // Construire le path
@@ -225,7 +242,9 @@ function CardiganFrontShape({
   const necklineDepth = (dimensions.necklineDepth || 15) * SCALE;
 
   // Points du contour (demi-panneau avec ouverture)
-  const armholeNotch = width * 0.12;
+  const armholeNotch = dimensions.shoulderWidth
+    ? Math.max(0, dimensions.width - dimensions.shoulderWidth) * SCALE
+    : width * 0.12;
   const armholeCurve = armholeDepth * 0.3;
   const buttonBand = width * 0.15;
 
@@ -406,6 +425,52 @@ function SleeveShape({
   );
 }
 
+// Empiècement raglan top-down : trapèze de l'encolure (haut) au tour de corps (bas), manches en pointillé
+function YokeShape({ startX, startY, dimensions, showMeasurements }: { startX: number; startY: number; dimensions: Dimensions; showMeasurements: boolean }) {
+  const width = dimensions.width * SCALE;
+  const length = dimensions.length * SCALE;
+  const neck = (dimensions.necklineWidth || dimensions.width * 0.4) * SCALE;
+  const left = startX + (width - neck) / 2;
+  const path = `M ${startX} ${startY + length} L ${left} ${startY} L ${left + neck} ${startY} L ${startX + width} ${startY + length} Z`;
+  const sleeveTop = dimensions.sleeveTopWidth;
+  return (
+    <g>
+      <path d={path} fill="none" stroke="#333" strokeWidth={STROKE_WIDTH} />
+      {/* Lignes raglan */}
+      <line x1={left} y1={startY} x2={startX + width * 0.2} y2={startY + length} stroke="#999" strokeWidth={0.8} strokeDasharray="3,2" />
+      <line x1={left + neck} y1={startY} x2={startX + width * 0.8} y2={startY + length} stroke="#999" strokeWidth={0.8} strokeDasharray="3,2" />
+      {showMeasurements && (
+        <>
+          <DimensionLine x1={left} y1={startY - DIMENSION_LINE_OFFSET + 5} x2={left + neck} y2={startY - DIMENSION_LINE_OFFSET + 5} value={dimensions.necklineWidth || 0} unit="cm" position="above" />
+          <DimensionLine x1={startX} y1={startY + length + DIMENSION_LINE_OFFSET} x2={startX + width} y2={startY + length + DIMENSION_LINE_OFFSET} value={dimensions.width} unit="cm" position="below" />
+          <DimensionLine x1={startX + width + DIMENSION_LINE_OFFSET} y1={startY} x2={startX + width + DIMENSION_LINE_OFFSET} y2={startY + length} value={dimensions.length} unit="cm" position="right" vertical />
+          {sleeveTop && (
+            <text x={startX + width * 0.1} y={startY + length * 0.6} fontSize={FONT_SIZE} fill="#666">{`${sleeveTop.toFixed(0)} cm`}</text>
+          )}
+        </>
+      )}
+    </g>
+  );
+}
+
+// Corps en rond : rectangle (largeur = demi-tour), côtes en bas
+function TubeShape({ startX, startY, dimensions, showMeasurements }: { startX: number; startY: number; dimensions: Dimensions; showMeasurements: boolean }) {
+  const width = dimensions.width * SCALE;
+  const length = dimensions.length * SCALE;
+  return (
+    <g>
+      <rect x={startX} y={startY} width={width} height={length} fill="none" stroke="#333" strokeWidth={STROKE_WIDTH} />
+      <line x1={startX} y1={startY + length - 5} x2={startX + width} y2={startY + length - 5} stroke="#666" strokeWidth={0.5} strokeDasharray="2,2" />
+      {showMeasurements && (
+        <>
+          <DimensionLine x1={startX} y1={startY + length + DIMENSION_LINE_OFFSET} x2={startX + width} y2={startY + length + DIMENSION_LINE_OFFSET} value={dimensions.width} unit="cm" position="below" />
+          <DimensionLine x1={startX + width + DIMENSION_LINE_OFFSET} y1={startY} x2={startX + width + DIMENSION_LINE_OFFSET} y2={startY + length} value={dimensions.length} unit="cm" position="right" vertical />
+        </>
+      )}
+    </g>
+  );
+}
+
 // Composant pour ligne de cote
 function DimensionLine({
   x1,
@@ -519,8 +584,27 @@ export function getDimensionsFromPiece(
     armLength?: number;
     wristCircumference?: number;
     bicepCircumference?: number;
+  },
+  schematic?: PieceSchematic
+): { piece: SchematicSVGProps["piece"]; dimensions: Dimensions } | null {
+  // Données calculées par le générateur (patrons v2) : prioritaires sur la déduction par nom
+  if (schematic) {
+    if (schematic.kind === "none") return null;
+    const dims: Dimensions = {
+      width: schematic.widthCm,
+      length: schematic.lengthCm,
+      armholeDepth: schematic.armholeDepthCm,
+      shoulderWidth: schematic.shoulderWidthCm,
+      necklineWidth: schematic.necklineWidthCm,
+      necklineDepth: schematic.necklineDepthCm,
+      sleeveTopWidth: schematic.sleeveTopWidthCm,
+      sleeveCuffWidth: schematic.sleeveCuffWidthCm,
+    };
+    const piece: SchematicSVGProps["piece"] =
+      schematic.kind === "panel" ? (schematic.isFront ? "front" : "back") : schematic.kind;
+    return { piece, dimensions: dims };
   }
-): { piece: SchematicSVGProps["piece"]; dimensions: Dimensions } {
+
   const width = (castOn / gauge.stitchesPer10cm) * 10;
   const length = (totalRows / gauge.rowsPer10cm) * 10;
 

@@ -12,7 +12,6 @@ import { SIZE_PRESETS, SIZE_ORDER, type SizeKey } from "@/lib/size-presets";
 import { generateFullPattern } from "@/lib/pattern-calculator";
 import { useLaMailleStore } from "@/lib/store";
 import { trackEvent, getStoredUTMs } from "@/lib/analytics";
-import { SUCCESS_MESSAGES } from "@/lib/messages";
 import type { GarmentAnalysis, Gauge, Measurements, YarnInfo } from "@/lib/types";
 
 interface SizeSelectorProps {
@@ -78,7 +77,7 @@ export function SizeSelector({ analysis }: SizeSelectorProps) {
         language
       );
       setPattern(pattern, language);
-      toast.success(SUCCESS_MESSAGES.patternGenerated);
+      toast.success(t("toastPatternGenerated"));
       router.push("/patron");
     } catch (err) {
       console.error("Erreur lors de la génération:", err);
@@ -109,7 +108,7 @@ export function SizeSelector({ analysis }: SizeSelectorProps) {
         language
       );
       setPattern(pattern, language);
-      toast.success(SUCCESS_MESSAGES.patternGenerated);
+      toast.success(t("toastPatternGenerated"));
       router.push("/patron");
     } catch (err) {
       console.error("Erreur lors de la génération:", err);

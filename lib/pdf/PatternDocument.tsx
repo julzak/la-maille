@@ -1,5 +1,6 @@
 import { Document } from "@react-pdf/renderer";
 import { CoverPage } from "./CoverPage";
+import { estimateYardage } from "@/lib/pattern-calculator";
 import { MaterialsPage } from "./MaterialsPage";
 import { InstructionPage } from "./InstructionPage";
 import { FinishingPage } from "./FinishingPage";
@@ -40,24 +41,22 @@ export function PatternDocument({
     return labels[level][language];
   };
 
-  // Estime le temps basé sur la complexité
-  const getEstimatedTime = () => {
-    const level = getDifficultyLevel();
-    if (level === "beginner") return "12-18h";
-    if (level === "intermediate") return "18-25h";
-    return "25-35h";
+  // Taille affichée : le tour de poitrine fini (mesure + aisance), pas une lettre devinée.
+  const getSize = () => {
+    const chest = (pattern.measurements?.chestCircumference || 0) + (pattern.measurements?.ease || 0);
+    return chest > 0
+      ? language === "fr" ? `poitrine ${chest} cm` : `chest ${chest} cm`
+      : language === "fr" ? "personnalisée" : "custom";
   };
 
-  // Calcule la taille approximative
-  const getSize = () => {
-    const chest = pattern.measurements?.chestCircumference || 100;
-    if (chest < 90) return "XS";
-    if (chest < 98) return "S";
-    if (chest < 106) return "M";
-    if (chest < 114) return "L";
-    if (chest < 122) return "XL";
-    return "XXL";
-  };
+  // Métrage : même modèle que l'écran (grammes et mètres cohérents)
+  const yardage = estimateYardage(
+    pattern.measurements,
+    pattern.gauge,
+    pattern.yarn,
+    analysis.garment?.type || "pull",
+    analysis.sleeves?.length !== "sans"
+  );
 
   // Génère les abréviations
   const abbreviations =
@@ -149,7 +148,6 @@ export function PatternDocument({
         garmentType={getGarmentName()}
         imageUrl={imageUrl}
         difficulty={getDifficultyLabel()}
-        estimatedTime={getEstimatedTime()}
         size={getSize()}
         createdAt={new Date().toLocaleDateString(language === "fr" ? "fr-FR" : "en-US")}
         language={language}
@@ -159,9 +157,7 @@ export function PatternDocument({
       <MaterialsPage
         yarn={{
           weight: pattern.yarn?.weight || "DK",
-          estimatedMeters: `${pattern.estimatedYardage || 800}m ${
-            language === "fr" ? "environ" : "approx"
-          }`,
+          estimatedMeters: `${Math.round(yardage.meters * 0.9)}-${Math.round(yardage.meters * 1.1)} m (${Math.round(yardage.grams * 0.9)}-${Math.round(yardage.grams * 1.1)} g)`,
           composition: pattern.yarn?.composition,
         }}
         needles={`${pattern.gauge?.needleSize || 5}mm ${
@@ -185,9 +181,9 @@ export function PatternDocument({
           steps={piece.instructions.map((instr, j) => ({
             number: j + 1,
             title:
-              language === "fr"
-                ? `Rangs ${instr.rowStart}-${instr.rowEnd}`
-                : `Rows ${instr.rowStart}-${instr.rowEnd}`,
+              instr.rowStart === instr.rowEnd
+                ? (language === "fr" ? `Rang ${instr.rowStart}` : `Row ${instr.rowStart}`)
+                : (language === "fr" ? `Rangs ${instr.rowStart}-${instr.rowEnd}` : `Rows ${instr.rowStart}-${instr.rowEnd}`),
             instructions: [instr.text],
             notes: instr.notes,
           }))}
@@ -201,6 +197,11 @@ export function PatternDocument({
               value: `${piece.totalRows} ${language === "fr" ? "rg" : "rows"}`,
             },
           ]}
+          warnings={piece.warnings}
+          calculations={piece.calculations.map((c) => ({
+            label: c.description,
+            value: `${c.formula} = ${c.rounded}`,
+          }))}
           pageNumber={pageNumber++}
           totalPieces={pattern.pieces.length}
           pieceIndex={i}

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { PatternPiece, CalculationStep, Gauge } from "@/lib/types";
 import { SchematicSVG, getDimensionsFromPiece } from "@/components/SchematicSVG";
+import { useTranslation } from "@/lib/i18n";
 
 interface PatternSectionProps {
   title: string;
@@ -30,6 +31,7 @@ export function PatternSection({
   measurements,
   id,
 }: PatternSectionProps) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const [showCalculations, setShowCalculations] = useState(false);
   const [showSchematic, setShowSchematic] = useState(true);
@@ -45,7 +47,7 @@ export function PatternSection({
 
   // Calculer les dimensions pour le schéma
   const schematicData = gauge
-    ? getDimensionsFromPiece(title, piece.castOn, piece.totalRows, gauge, measurements)
+    ? getDimensionsFromPiece(title, piece.castOn, piece.totalRows, gauge, measurements, piece.schematic)
     : null;
 
   return (
@@ -85,15 +87,15 @@ export function PatternSection({
             <div className="flex-1">
               <div className="flex flex-wrap gap-4 p-3 bg-muted/30 rounded-lg h-full items-center">
                 <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground text-sm">Monter</span>
+                  <span className="text-muted-foreground text-sm">{t("pieceCastOn")}</span>
                   <span className="font-mono font-semibold text-lg">{piece.castOn}</span>
-                  <span className="text-muted-foreground text-sm">mailles</span>
+                  <span className="text-muted-foreground text-sm">{t("pieceStitches")}</span>
                 </div>
                 <div className="w-px h-6 bg-border" />
                 <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground text-sm">Tricoter</span>
+                  <span className="text-muted-foreground text-sm">{t("pieceKnit")}</span>
                   <span className="font-mono font-semibold text-lg">{piece.totalRows}</span>
-                  <span className="text-muted-foreground text-sm">rangs au total</span>
+                  <span className="text-muted-foreground text-sm">{t("pieceTotalRows")}</span>
                 </div>
               </div>
             </div>
@@ -103,14 +105,14 @@ export function PatternSection({
               <div className="sm:w-48 shrink-0">
                 <div className="border rounded-lg p-2 bg-background">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-muted-foreground">Schéma</span>
+                    <span className="text-xs text-muted-foreground">{t("pieceSchematic")}</span>
                     <Button
                       variant="ghost"
                       size="sm"
                       className="h-6 px-2 text-xs"
                       onClick={() => setShowSchematic(!showSchematic)}
                     >
-                      {showSchematic ? "Masquer" : "Afficher"}
+                      {showSchematic ? t("pieceHide") : t("pieceShow")}
                     </Button>
                   </div>
                   {showSchematic && (
@@ -142,8 +144,8 @@ export function PatternSection({
                     {instruction.rowStart > 0 && (
                       <span className="font-mono text-sm text-muted-foreground">
                         {instruction.rowStart === instruction.rowEnd
-                          ? `Rang ${instruction.rowStart}`
-                          : `Rangs ${instruction.rowStart}-${instruction.rowEnd}`}
+                          ? `${t("pieceRow")} ${instruction.rowStart}`
+                          : `${t("pieceRows")} ${instruction.rowStart}-${instruction.rowEnd}`}
                       </span>
                     )}
                   </div>
@@ -178,7 +180,7 @@ export function PatternSection({
                 ) : (
                   <ChevronRight className="h-4 w-4 mr-1" aria-hidden="true" />
                 )}
-                Voir les calculs ({piece.calculations.length})
+                {t("pieceSeeCalculations")} ({piece.calculations.length})
               </Button>
 
               {showCalculations && (
@@ -217,6 +219,7 @@ export function PatternSection({
 
 // Sous-composant pour afficher un calcul
 function CalculationDisplay({ calculation }: { calculation: CalculationStep }) {
+  const { t } = useTranslation();
   const hasRounding = calculation.result !== calculation.rounded;
 
   return (
@@ -226,7 +229,7 @@ function CalculationDisplay({ calculation }: { calculation: CalculationStep }) {
         {calculation.formula}
       </p>
       <div className="flex items-center gap-2 text-sm">
-        <span className="text-muted-foreground">Résultat :</span>
+        <span className="text-muted-foreground">{t("pieceResult")}</span>
         {hasRounding ? (
           <>
             <span className="font-mono text-muted-foreground line-through">
