@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { getArticleBySlug, getAllArticles, articleLang } from "@/lib/blog-data";
+import { getArticleBySlug, getAllArticles, articleLang, resolveInternalBlogHref } from "@/lib/blog-data";
 import { BlogInlineCta } from "@/components/BlogInlineCta";
 import type { Language } from "@/lib/i18n/detect";
 
@@ -248,7 +248,7 @@ function formatInline(text: string): string {
     .replace(
       /\[(.+?)\]\((.+?)\)/g,
       (_, label, url) =>
-        `<a href="${sanitizeUrl(url)}" class="text-primary hover:underline">${label}</a>`
+        `<a href="${sanitizeUrl(resolveInternalBlogHref(url))}" class="text-primary hover:underline">${label}</a>`
     );
 }
 

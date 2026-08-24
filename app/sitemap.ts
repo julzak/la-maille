@@ -98,14 +98,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.7,
     },
-    {
-      url: `${baseUrl}/photo-to-knitting-pattern`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
     ...getAllArticles("en").map((article) => ({
       url: `${baseUrl}/blog/${article.slug}`,
+      ...(article.translationSlug
+        ? {
+            alternates: {
+              languages: {
+                en: `${baseUrl}/blog/${article.slug}`,
+                fr: `${baseUrl}/fr/blog/${article.translationSlug}`,
+                "x-default": `${baseUrl}/blog/${article.slug}`,
+              },
+            },
+          }
+        : {}),
       lastModified: new Date(article.publishedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,
@@ -164,6 +169,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...getAllArticles("fr").map((article) => ({
       url: `${baseUrl}/fr/blog/${article.slug}`,
+      ...(article.translationSlug
+        ? {
+            alternates: {
+              languages: {
+                en: `${baseUrl}/blog/${article.translationSlug}`,
+                fr: `${baseUrl}/fr/blog/${article.slug}`,
+                "x-default": `${baseUrl}/blog/${article.translationSlug}`,
+              },
+            },
+          }
+        : {}),
       lastModified: new Date(article.publishedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,

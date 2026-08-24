@@ -183,7 +183,7 @@ Les aiguilles droites conviennent aux pièces tricotées à plat, comme un carr�
 
 ## Les points de tricot indispensables pour un débutant
 
-Le tricot repose sur deux points fondamentaux : la maille endroit et la maille envers. Toutes les textures, tous les motifs et tous les reliefs que vous voyez sur un tricot sont des combinaisons de ces deux mouvements. En jersey, vous tricotez toutes les mailles endroit sur les rangs côté endroit et toutes les mailles envers sur les rangs côté envers. Le résultat est une surface lisse d'un côté et une surface granuleuse de l'autre. C'est le point de base de la majorité des pulls. En [point mousse](/blog/point-mousse-tricot), vous tricotez toutes les mailles endroit sur tous les rangs, ce qui produit un tissu épais, réversible et non enroulant sur les bords. C'est le point idéal pour les écharpes et les bordures. Les côtes, elles, alternent mailles endroit et mailles envers sur le même rang. Les côtes 1/1 (une maille endroit, une maille envers en alternance) ou les côtes 2/2 (deux mailles endroit, deux mailles envers) produisent un tissu élastique très utilisé pour les poignets, les bords côte et les encolures. Une côte 2/2 sur 20 mailles reprend exactement la même séquence toutes les 4 mailles : c'est la prévisibilité qui permet de tricoter ces rangs presque sans regarder une fois le rythme installé. Avant de vous lancer dans un patron complexe, entraînez-vous à passer d'un point à l'autre sur un même rang : c'est la transition entre la maille endroit et la maille envers (ramener le fil devant avant de piquer) qui trébuche le plus souvent au début.
+Le tricot repose sur deux points fondamentaux : la maille endroit et la maille envers. Toutes les textures, tous les motifs et tous les reliefs que vous voyez sur un tricot sont des combinaisons de ces deux mouvements. En jersey, vous tricotez toutes les mailles endroit sur les rangs côté endroit et toutes les mailles envers sur les rangs côté envers. Le résultat est une surface lisse d'un côté et une surface granuleuse de l'autre. C'est le point de base de la majorité des pulls. En [point mousse](/blog/point-mousse-tricot), vous tricotez toutes les mailles endroit sur tous les rangs, ce qui produit un tissu épais, réversible et non enroulant sur les bords. C'est le point idéal pour les écharpes et les bordures. Les côtes, elles, alternent mailles endroit et mailles envers sur le même rang. Les côtes 1/1 (une maille endroit, une maille envers en alternance) ou les côtes 2/2 (deux mailles endroit, deux mailles envers) produisent un tissu élastique très utilisé pour les poignets, les bords côte et les encolures. Une côte 2/2 sur 20 mailles reprend exactement la même séquence toutes les 4 mailles : c'est la prévisibilité qui permet de tricoter ces rangs presque sans regarder une fois le rythme installé. Avant de vous lancer dans un patron complexe, entraînez-vous à passer d'un point à l'autre sur un même rang : c'est la transition entre la maille endroit et la maille envers (ramener le fil devant avant de piquer) qui trébuche le plus souvent au début. Pour un panorama complet des familles de points et de leur impact sur l'échantillon, consultez notre [guide des points de tricot](/fr/blog/les-points-de-tricot).
 
 ### Pourquoi le point mousse ne s'enroule pas et le jersey si ?
 
@@ -201,7 +201,7 @@ Posez votre carré à plat sans l'étirer. Placez un mètre ruban horizontal sur
 
 ## Comment choisir sa laine quand on débute ?
 
-Le choix de la laine influence directement la facilité d'apprentissage. Quatre critères méritent votre attention : la grosseur du fil, la matière, la torsion et la couleur. La grosseur du fil détermine la taille des aiguilles et la vitesse du projet. Une laine épaisse (50 g pour 80 à 100 m) se tricote sur des aiguilles de 5 à 7 mm et avance vite, ce qui maintient la motivation. Une laine fine (50 g pour 200 m) sur des aiguilles de 2,5 à 3,5 mm demande plus de mailles et de rangs pour le même résultat. La matière conditionne le comportement du tissu. La laine mérinos est douce, élastique et pardonne les irrégularités de tension. L'acrylique est lavable en machine et économique, mais glisse plus facilement sur les aiguilles, ce que certains débutants trouvent difficile à contrôler. Le coton est lourd, peu extensible et révèle chaque maille inégale. Réservez-le à une étape ultérieure. La torsion du fil joue sur la solidité et l'aspect. Un fil très torsadé (plied yarn) est solide et régulier. Un fil peu torsadé (single) est doux mais se défait facilement si vous devez défaire et retricoter des rangs, ce qui arrive souvent en phase d'apprentissage. La couleur, enfin, est fonctionnelle au stade débutant : une couleur claire (blanc cassé, beige, gris perle) vous permet de voir les mailles distinctement, de repérer les erreurs et de compter les rangs sans effort. Les couleurs très sombres masquent les détails.
+Le choix de la laine influence directement la facilité d'apprentissage. Quatre critères méritent votre attention : la grosseur du fil, la matière, la torsion et la couleur. Pour un guide détaillé par type de projet, consultez notre article [quelle laine choisir](/fr/blog/quelle-laine-pour-tricoter-un-pull). La grosseur du fil détermine la taille des aiguilles et la vitesse du projet. Une laine épaisse (50 g pour 80 à 100 m) se tricote sur des aiguilles de 5 à 7 mm et avance vite, ce qui maintient la motivation. Une laine fine (50 g pour 200 m) sur des aiguilles de 2,5 à 3,5 mm demande plus de mailles et de rangs pour le même résultat. La matière conditionne le comportement du tissu. La laine mérinos est douce, élastique et pardonne les irrégularités de tension. L'acrylique est lavable en machine et économique, mais glisse plus facilement sur les aiguilles, ce que certains débutants trouvent difficile à contrôler. Le coton est lourd, peu extensible et révèle chaque maille inégale. Réservez-le à une étape ultérieure. La torsion du fil joue sur la solidité et l'aspect. Un fil très torsadé (plied yarn) est solide et régulier. Un fil peu torsadé (single) est doux mais se défait facilement si vous devez défaire et retricoter des rangs, ce qui arrive souvent en phase d'apprentissage. La couleur, enfin, est fonctionnelle au stade débutant : une couleur claire (blanc cassé, beige, gris perle) vous permet de voir les mailles distinctement, de repérer les erreurs et de compter les rangs sans effort. Les couleurs très sombres masquent les détails.
 
 ## Comprendre la construction top-down pour tricoter un pull
 
@@ -237,7 +237,7 @@ Un patron de tricot est un document technique. Il contient des informations dans
 
 ### Par quel projet commencer quand on débute le tricot ?
 
-Commencez par une écharpe ou un snood en point mousse ou en côtes sur des aiguilles de 6 mm avec une laine épaisse. Ces projets rectangulaires n'impliquent ni augmentation, ni diminution, ni façonnage. Vous vous concentrez uniquement sur le geste et la régularité de la tension. Une fois ces deux compétences acquises, un [bonnet](/blog/bonnet-a-tricoter) tricoté en rond constitue une progression logique avant de vous lancer dans un pull.
+Commencez par une écharpe ou un snood en point mousse ou en côtes sur des aiguilles de 6 mm avec une laine épaisse. Ces projets rectangulaires n'impliquent ni augmentation, ni diminution, ni façonnage. Vous vous concentrez uniquement sur le geste et la régularité de la tension. Une fois ces deux compétences acquises, un [bonnet](/blog/bonnet-a-tricoter) tricoté en rond constitue une progression logique avant de vous lancer dans un pull. La [layette](/fr/blog/layette-bebe-tricot) est un autre excellent terrain d'entraînement : les pièces sont petites, rapides à tricoter, et permettent de tester le façonnage sans engager des semaines de travail.
 
 ### Est-ce que l'échantillon change vraiment autant le résultat ?
 
@@ -548,7 +548,7 @@ En point mousse, il est plus fiable de compter les bourrelets que les rangs. Un 
 
 ## En resume
 
-Le point mousse tricot est bien plus qu'un simple point de départ pour les débutants. Sa structure symétrique, son absence de roulottage et son élasticité verticale en font un outil technique à part entière dans la construction d'un ouvrage. Retenir trois points essentiels suffit pour l'utiliser correctement : compter en bourrelets et non en rangs, ajuster la méthode selon que vous tricotez sur aiguilles droites ou circulaires, et toujours réaliser et bloquer un échantillon avant de lancer les calculs. Que vous l'utilisiez pour stabiliser les bords d'un pull en jersey, pour une écharpe réversible ou comme base d'un point texturé plus complexe, le point mousse mérite d'être compris dans sa logique plutôt que simplement exécuté mécaniquement.
+Le point mousse tricot est bien plus qu'un simple point de départ pour les débutants. Sa structure symétrique, son absence de roulottage et son élasticité verticale en font un outil technique à part entière dans la construction d'un ouvrage. Retenir trois points essentiels suffit pour l'utiliser correctement : compter en bourrelets et non en rangs, ajuster la méthode selon que vous tricotez sur aiguilles droites ou circulaires, et toujours réaliser et bloquer un échantillon avant de lancer les calculs. Que vous l'utilisiez pour stabiliser les bords d'un pull en jersey, pour une écharpe réversible ou comme base d'un point texturé plus complexe, le point mousse mérite d'être compris dans sa logique plutôt que simplement exécuté mécaniquement. Pour situer le point mousse parmi les autres familles de points et savoir lequel choisir selon le projet, poursuivez avec notre [guide des points de tricot](/fr/blog/les-points-de-tricot).
 `,
   },
   {
@@ -690,7 +690,7 @@ Si votre tissu présente des colonnes verticales régulières et un aspect élas
 
 ## En resume
 
-Le point de riz au tricot est un point de structure fiable, polyvalent et accessible à toute personne qui maîtrise les bases du tricot. Sa règle fondamentale est simple : tricoter toujours le contraire de ce que vous voyez, rang après rang. Il produit un tissu réversible, stable, qui ne gondole pas et qui convient aussi bien pour des bordures que pour des projets entiers. Son principal impact technique est le resserrement du tissu en largeur par rapport au jersey, ce qui rend la réalisation d'un échantillon dédié indispensable. Le point de blé, variante proche, offre davantage de souplesse pour les projets en tissu plein. En comprenant ces mécanismes, vous pouvez intégrer le point de riz dans n'importe quel patron avec confiance et précision.
+Le point de riz au tricot est un point de structure fiable, polyvalent et accessible à toute personne qui maîtrise les bases du tricot. Sa règle fondamentale est simple : tricoter toujours le contraire de ce que vous voyez, rang après rang. Il produit un tissu réversible, stable, qui ne gondole pas et qui convient aussi bien pour des bordures que pour des projets entiers. Son principal impact technique est le resserrement du tissu en largeur par rapport au jersey, ce qui rend la réalisation d'un échantillon dédié indispensable. Le [point de blé](/fr/blog/point-de-ble-tricot), variante proche, offre davantage de souplesse pour les projets en tissu plein. En comprenant ces mécanismes, vous pouvez intégrer le point de riz dans n'importe quel patron avec confiance et précision.
 `,
   },
   {
@@ -1073,9 +1073,9 @@ On distingue trois grandes familles de points au tricot, chacune avec des propri
 
 La première famille regroupe les points unis : le jersey endroit et le jersey envers, ainsi que le point mousse. Le jersey endroit alterne des rangs entièrement à l'endroit (aller) et des rangs entièrement à l'envers (retour). Il produit un tissu souple, léger, mais qui s'enroule sur ses bords sans traitement des lisières. Le point mousse, lui, se tricote en mailles endroit sur tous les rangs ; il est plus épais, réversible, et ne s'enroule pas.
 
-La deuxième famille est celle des points élastiques, dont les côtes sont le meilleur exemple. Les côtes 1/1, 2/2 ou 2/1 alternent colonnes de mailles endroit et colonnes de mailles envers. Leur élasticité transversale est bien supérieure à celle du jersey, ce qui en fait le point de prédilection pour les poignets, les encolures et les bas de pulls.
+La deuxième famille est celle des points élastiques, dont les côtes sont le meilleur exemple. Les côtes 1/1, 2/2 ou 2/1 alternent colonnes de mailles endroit et colonnes de mailles envers. Leur élasticité transversale est bien supérieure à celle du jersey, ce qui en fait le point de prédilection pour les poignets, les encolures et les bas de pulls. Dans la même famille, les [côtes anglaises](/fr/blog/cotes-anglaises-tricot) produisent un tissu plus épais et moelleux, avec une technique de jeté qui mérite un apprentissage à part.
 
-La troisième famille regroupe les points de fantaisie : torsades, dentelles, nopes, points de riz, point de grains. Ces points combinent des structures endroit/envers, des jetés, des diminutions ou des croisements de mailles pour créer texture ou transparence. Leur impact sur la tension est variable et doit systématiquement être mesuré par un échantillon dans le point exact prévu pour le projet.
+La troisième famille regroupe les points de fantaisie : torsades, dentelles, nopes, points de riz, [point de blé](/fr/blog/point-de-ble-tricot), point de grains. Ces points combinent des structures endroit/envers, des jetés, des diminutions ou des croisements de mailles pour créer texture ou transparence. Leur impact sur la tension est variable et doit systématiquement être mesuré par un échantillon dans le point exact prévu pour le projet.
 
 ### Le jersey : point de référence pour les calculs
 
@@ -1552,7 +1552,7 @@ Les fibres naturelles comme la laine mérinos et l'alpaga respirent mieux et ré
 
 ## Quel point choisir pour une écharpe tricot qui ne s'enroule pas
 
-C'est l'un des problèmes les plus fréquents : une écharpe tricotée en jersey s'enroule inexorablement sur elle-même vers l'endroit sur les bords latéraux et vers l'envers sur les bords supérieur et inférieur. Ce phénomène est inhérent au jersey car les mailles endroit et envers exercent des tensions différentes dans le tissu. Pour une écharpe, il est donc conseillé d'éviter le jersey pur sur toute la largeur, ou de l'encadrer d'une bordure de 3 à 5 mailles en [point mousse](/blog/point-mousse-tricot) ou en côtes sur chaque lisière. Le point mousse, obtenu en tricotant tous les rangs à l'endroit, est le point le plus stable pour une écharpe. Il est réversible, n'exige aucun calcul de répétition et convient à toutes les laines. Son seul inconvénient est d'utiliser plus de laine que le jersey (environ 10% de plus) et de donner un tissu légèrement plus court en hauteur. Les côtes 2/2 (deux mailles endroit, deux mailles envers, en alternance) produisent un tissu très élastique qui reprend bien sa forme après lavage. Elles conviennent particulièrement aux écharpes enroulables que l'on noue autour du cou. Pour monter les mailles d'un projet en côtes, le nombre de mailles doit être un multiple de 4 (pour les côtes 2/2) ou de 2 (pour les côtes 1/1). Les points de texture comme le [point de riz](/blog/point-de-riz-tricot) (une maille endroit, une maille envers en quinconce d'un rang à l'autre) sont également très adaptés et créent un tissu plat et légèrement structuré.
+C'est l'un des problèmes les plus fréquents : une écharpe tricotée en jersey s'enroule inexorablement sur elle-même vers l'endroit sur les bords latéraux et vers l'envers sur les bords supérieur et inférieur. Ce phénomène est inhérent au jersey car les mailles endroit et envers exercent des tensions différentes dans le tissu. Pour une écharpe, il est donc conseillé d'éviter le jersey pur sur toute la largeur, ou de l'encadrer d'une bordure de 3 à 5 mailles en [point mousse](/blog/point-mousse-tricot) ou en côtes sur chaque lisière. Le point mousse, obtenu en tricotant tous les rangs à l'endroit, est le point le plus stable pour une écharpe. Il est réversible, n'exige aucun calcul de répétition et convient à toutes les laines. Son seul inconvénient est d'utiliser plus de laine que le jersey (environ 10% de plus) et de donner un tissu légèrement plus court en hauteur. Les côtes 2/2 (deux mailles endroit, deux mailles envers, en alternance) produisent un tissu très élastique qui reprend bien sa forme après lavage. Elles conviennent particulièrement aux écharpes enroulables que l'on noue autour du cou. Pour monter les mailles d'un projet en côtes, le nombre de mailles doit être un multiple de 4 (pour les côtes 2/2) ou de 2 (pour les côtes 1/1). Les points de texture comme le [point de riz](/blog/point-de-riz-tricot) (une maille endroit, une maille envers en quinconce d'un rang à l'autre) sont également très adaptés et créent un tissu plat et légèrement structuré. Enfin, les [côtes anglaises](/fr/blog/cotes-anglaises-tricot) donnent une écharpe épaisse, moelleuse et parfaitement réversible : c'est l'un des points les plus utilisés pour les écharpes d'hiver.
 
 ### Le point de riz et le point de blé : des alternatives texturées
 
@@ -2026,7 +2026,7 @@ Oui, même pour des chaussons. Une différence de 2 mailles pour 10 cm entre vot
 
 ## En resume
 
-Tricoter des chaussons faciles et gratuits, c'est avant tout comprendre quelques principes fondamentaux : l'échantillon conditionne la taille finale, la construction détermine la forme du talon, le choix du fil influence la durabilité, et chaque point à une fonction précise. Un patron gratuit de qualité vous donne les instructions ; la compréhension technique vous donne l'autonomie pour les adapter. Qu'il s'agisse de votre première paire ou de la dixième, les points de vigilance restent les mêmes : vérifiez votre échantillon, choisissez votre construction en fonction de votre niveau, renforcez la semelle si vous marchez souvent sans chaussettes épaisses. Et si vous souhaitez aller plus loin que les patrons standard, La Maille vous permet de générer un patron entièrement adapté à vos mesures et à votre fil.
+Tricoter des chaussons faciles et gratuits, c'est avant tout comprendre quelques principes fondamentaux : l'échantillon conditionne la taille finale, la construction détermine la forme du talon, le choix du fil influence la durabilité, et chaque point à une fonction précise. Un patron gratuit de qualité vous donne les instructions ; la compréhension technique vous donne l'autonomie pour les adapter. Qu'il s'agisse de votre première paire ou de la dixième, les points de vigilance restent les mêmes : vérifiez votre échantillon, choisissez votre construction en fonction de votre niveau, renforcez la semelle si vous marchez souvent sans chaussettes épaisses. Si vous tricotez pour un bébé, notre guide [layette](/fr/blog/layette-bebe-tricot) complète naturellement ces chaussons avec brassières et bonnets assortis. Et si vous souhaitez aller plus loin que les patrons standard, La Maille vous permet de générer un patron entièrement adapté à vos mesures et à votre fil.
 `,
   },
   {
@@ -2219,7 +2219,7 @@ Yes, you can recreate any sweater from just a photo. With the right measurements
 
 Sometimes the perfect pattern simply doesn't exist. Maybe the sweater is vintage, discontinued, or a one-of-a-kind handmade piece spotted on someone at a café. Or perhaps you've found a commercial sweater you love but want to knit it yourself in a higher-quality yarn — or in a color that the brand never produced.
 
-Recreating a knitting pattern from a photo gives you complete control over the fit, the yarn, and the details. You're not locked into someone else's sizing, ease preferences, or construction choices. You become the designer.
+Recreating a knitting pattern from a photo gives you complete control over the fit, the yarn, and the details. You're not locked into someone else's sizing, ease preferences, or construction choices. You become the designer. If you want to go one step further and start from a blank page rather than a photo, see our guide on [how to design your own knitting pattern](/blog/how-to-design-your-own-knitting-pattern).
 
 There's also a deeply practical reason: patterns go out of print. Vintage knitting books disappear, Ravelry designers remove their PDFs, and beloved patterns become unavailable overnight. Learning to copy a sweater pattern — even roughly — is one of the most valuable skills a knitter can develop. It transforms any sweater you see, whether in a museum, a magazine, or your grandmother's wardrobe, into a potential project.
 
@@ -3064,7 +3064,7 @@ A useful mental model: knit stitches recede into the fabric and create smooth su
 
 **What it looks like**: Multiple colors appearing within single rows to form geometric patterns. The background and motif colors alternate frequently — typically every 2 to 7 stitches — creating a dense, warm fabric.
 
-**How to identify**: Colors change frequently across a single row. The pattern repeats horizontally at regular intervals. On the wrong side, you would see horizontal floats — strands of the unused color carried across the back. True Fair Isle uses only 2 colors per row, though stranded colorwork can use more.
+**How to identify**: Colors change frequently across a single row. The pattern repeats horizontally at regular intervals. On the wrong side, you would see horizontal floats — strands of the unused color carried across the back. True Fair Isle uses only 2 colors per row, though stranded colorwork can use more. If you want to try these techniques yourself, our [colorwork knitting for beginners](/blog/colorwork-knitting-for-beginners) guide covers the fundamentals.
 
 ### Intarsia
 
@@ -4059,7 +4059,7 @@ Two sweaters knit from the same pattern, with the same yarn, to identical finish
 
 Same pattern. Same yarn. Same numbers. Three entirely different wearing experiences.
 
-This is why choosing a pattern size by the size label alone — Small, Medium, Large — is unreliable. Sizing conventions vary significantly between designers, brands, and even countries. The only number that matters is the finished garment measurement, compared against your own body measurement, with your ease preference factored in.
+This is why choosing a pattern size by the size label alone — Small, Medium, Large — is unreliable. Sizing conventions vary significantly between designers, brands, and even countries. The only number that matters is the finished garment measurement, compared against your own body measurement, with your ease preference factored in. Our guide on [how to measure yourself for a knitted sweater](/blog/how-to-measure-yourself-for-knitted-sweater) shows exactly how to take those body measurements.
 
 ## How Patterns Handle Ease
 
@@ -4249,7 +4249,7 @@ At minimum, you need:
 - Wrist circumference
 - Torso length (from shoulder to waist, and waist to hip)
 
-Write these down in a dedicated notebook or digital document. Reference them for every single project. Your measurements change over time, so re-measure at least once a year. Many knitters find that having accurate measurements on hand saves hours of second-guessing and ripping back.
+Write these down in a dedicated notebook or digital document. Reference them for every single project. For a step-by-step walkthrough of each measurement point, see [how to measure yourself for a knitted sweater](/blog/how-to-measure-yourself-for-knitted-sweater). Your measurements change over time, so re-measure at least once a year. Many knitters find that having accurate measurements on hand saves hours of second-guessing and ripping back.
 
 It also helps to identify what your "fit priority" measurement is — the measurement you most want to match. For many knitters, this is the bust or upper arm. Knowing your priority helps you make smarter decisions when you're between sizes.
 
@@ -5263,7 +5263,7 @@ Set-in sleeve caps are the most mathematical part of garment knitting. If this l
 
 ![Pattern schematic highlighting different sizes used for different body sections](/images/blog/how-to-adapt-knitting-pattern-to-your-size/size-blending-schematic.webp)
 
-Most knitters do not fit neatly into one pattern size. Bodies are not standardized, and pattern sizing rarely accounts for the full range of proportions. If your measurements land between sizes or across sizes in different body zones, you have two main strategies.
+Most knitters do not fit neatly into one pattern size. Bodies are not standardized, and pattern sizing rarely accounts for the full range of proportions. If your measurements land between sizes or across sizes in different body zones, you have two main strategies. And if no size in the pattern comes close to your numbers, our guide on [how to resize a knitting pattern](/blog/how-to-resize-knitting-pattern) covers the full recalculation.
 
 ### Blend Sizes
 
@@ -6072,7 +6072,7 @@ Upload a sweater photo and get your custom knitting pattern in minutes.
     publishedAt: "2026-02-25",
     readingTime: "17 min read",
     content: `
-Intarsia and Fair Isle are two distinct colorwork knitting techniques: intarsia uses separate yarn bobbins for each color block with no floats, while Fair Isle (stranded knitting) carries two or more yarns across the entire row, creating horizontal floats on the wrong side. The choice between them depends primarily on whether the color areas are isolated blocks or repeat patterns across the full width of the fabric.
+Intarsia and Fair Isle are two distinct colorwork knitting techniques: intarsia uses separate yarn bobbins for each color block with no floats, while Fair Isle (stranded knitting) carries two or more yarns across the entire row, creating horizontal floats on the wrong side. The choice between them depends primarily on whether the color areas are isolated blocks or repeat patterns across the full width of the fabric. If you are new to knitting with multiple colors, start with our [colorwork knitting for beginners](/blog/colorwork-knitting-for-beginners) guide before picking a technique.
 
 ![Two knitted swatches comparing intarsia colorwork with a bold terracotta diamond and Fair Isle stranded colorwork with repeating geometric pattern, wrong side of Fair Isle swatch showing floats](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772031736/seo/en/intarsia-vs-fair-isle-knitting/intarsia-vs-fair-isle-knitting/intarsia-vs-fair-isle-knitting-swatches-comparison.webp)
 
@@ -6434,7 +6434,7 @@ Knitting neckline shaping is the process of reducing stitches at the top of a sw
 
 ![Three knitted swatches showing crew neck, V-neck, and scoop neck neckline shaping shapes side by side on a linen surface](https://res.cloudinary.com/dw6idlz0n/image/upload/v1772031936/seo/en/knitting-neckline-shaping/knitting-neckline-shaping/knitting-neckline-shaping-three-styles.jpg)
 
-Knitting neckline shaping is one of the most satisfying techniques to master — it transforms a flat rectangle of fabric into a garment that actually fits a human body. Whether you are working a classic crew neck, a flattering V-neck, or a relaxed scoop neck, the core logic is the same: you remove stitches at the center, then taper each side gradually with decreases. The difference between neckline styles comes down to how many stitches you remove at once and how quickly you work those side decreases. In this guide, you will learn how to calculate stitch counts, work each neckline style step by step, choose the right decreases for clean edges, and finish with a tidy neckband. Every example uses concrete stitch numbers based on a typical worsted-weight gauge of 20 stitches and 28 rows per 4 inches (10 cm), so you can see exactly how the math works before adapting it to your own swatch. If you would rather skip the calculations, La Maille's [knitting pattern generator](/knitting-pattern-generator) works out neckline shaping for you from a single photo.
+Knitting neckline shaping is one of the most satisfying techniques to master — it transforms a flat rectangle of fabric into a garment that actually fits a human body. Whether you are working a classic crew neck, a flattering V-neck, or a relaxed scoop neck, the core logic is the same: you remove stitches at the center, then taper each side gradually with decreases. The difference between neckline styles comes down to how many stitches you remove at once and how quickly you work those side decreases. In this guide, you will learn how to calculate stitch counts, work each neckline style step by step, choose the right decreases for clean edges, and finish with a tidy neckband. Every example uses concrete stitch numbers based on a typical worsted-weight gauge of 20 stitches and 28 rows per 4 inches (10 cm), so you can see exactly how the math works before adapting it to your own swatch. Many top-down patterns also raise the back neck with [short rows](/blog/knitting-short-rows-technique), a technique worth learning alongside neckline shaping. If you would rather skip the calculations, La Maille's [knitting pattern generator](/knitting-pattern-generator) works out neckline shaping for you from a single photo.
 
 ## Key Facts
 
@@ -6620,7 +6620,7 @@ Size labels like XS, S, M, L, XL, 2XL are used in patterns for convenience, but 
 
 ### Body Measurements vs. Finished Garment Measurements
 
-Many knitters make the mistake of matching their body measurement directly to the finished garment column. These are two different numbers. Your body measurement is what a tape measure reads around your bust. The finished garment measurement is the circumference of the sweater itself. A pattern graded for a 38-inch bust might have a finished measurement of 40, 41, or even 44 inches depending on how much ease is built in. Always identify which column you're reading before making a size decision.
+Many knitters make the mistake of matching their body measurement directly to the finished garment column. These are two different numbers. Your body measurement is what a tape measure reads around your bust. The finished garment measurement is the circumference of the sweater itself. A pattern graded for a 38-inch bust might have a finished measurement of 40, 41, or even 44 inches depending on how much ease is built in. Always identify which column you're reading before making a size decision. When the chart offers no size that matches your measurements, you can [resize the knitting pattern](/blog/how-to-resize-knitting-pattern) yourself with a gauge-based recalculation.
 
 ## How to Take Your Body Measurements Correctly for Knitting
 
@@ -6984,7 +6984,7 @@ The mathematical plan is essential, but execution at the needle is where sleeve 
 
 **Count rows carefully.** Sleeve cap shaping involves switching between decrease frequencies (every 2 rows, every 4 rows, every row). Keep a row counter and mark each zone transition with a stitch marker or paper note. A single missed or extra row in the middle zone shifts all subsequent decreases and distorts the curve.
 
-**Work short-row smoothing at the crown (optional).** In the final 8–10 rows of a sleeve cap, some knitters work 2–4 pairs of short rows to soften the transition to the final bind-off. This is particularly effective in thicker yarns where each row represents significant height. Short rows here reduce the visual 'bump' at the cap crown.
+**Work short-row smoothing at the crown (optional).** In the final 8–10 rows of a sleeve cap, some knitters work 2–4 pairs of [short rows](/blog/knitting-short-rows-technique) to soften the transition to the final bind-off. This is particularly effective in thicker yarns where each row represents significant height. Short rows here reduce the visual 'bump' at the cap crown.
 
 **Block the cap before seaming.** Wet block or steam block your sleeve cap flat before assembling the garment. This reveals the true shape of the curve, allows you to measure actual seam length, and makes easing into the armhole significantly easier. A blocked seam edge behaves predictably; an unblocked one may contract or distort as you pin.
 
@@ -7069,7 +7069,7 @@ Upload a sweater photo and get your custom knitting pattern in minutes.
     content: `
 **A knitting pattern generator is any tool that produces knitting instructions from an input you give it. In practice the name covers four very different things: image-to-chart converters (which turn a picture into a colorwork grid), measurement-based calculators (which output a basic sweater recipe from your gauge and sizes), general AI chatbots (which write pattern text from a description), and photo-to-pattern generators (which read a garment's construction from a photo and write the full pattern to your measurements). They are not interchangeable, and the most common disappointment comes from using a chart tool when you wanted a garment pattern.**
 
-This guide compares the four categories on one question: what do you actually get at the end? We look at the input each tool needs, the output it produces, where it shines, and where it quietly fails. The goal is not to crown a winner but to match the tool to the project in front of you. If you already know you want row-by-row instructions for a sweater you photographed, jump to the [AI knitting pattern generator](/knitting-pattern-generator) section; if you are designing a colorwork motif, the chart tools are what you need.
+This guide compares the four categories on one question: what do you actually get at the end? We look at the input each tool needs, the output it produces, where it shines, and where it quietly fails. The goal is not to crown a winner but to match the tool to the project in front of you. If you already know you want row-by-row instructions for a sweater you photographed, jump to the [AI knitting pattern generator](/knitting-pattern-generator) section; if you are designing a colorwork motif, the chart tools are what you need. And if you would rather work everything out by hand, our guide on [how to design your own knitting pattern](/blog/how-to-design-your-own-knitting-pattern) covers the manual route from sketch to stitch counts.
 
 ## Type 1: image-to-chart converters
 
@@ -7167,6 +7167,21 @@ Always. Every tool in the calculator and photo-to-pattern families computes from
 
 export function getArticleBySlug(slug: string): Article | undefined {
   return articles.find((a) => a.slug === slug);
+}
+
+/**
+ * Resout un lien interne vers un article de blog sur son URL canonique
+ * (prefixe /fr pour les articles FR). Evite les 308 sur le maillage interne
+ * quand le contenu reference /blog/<slug> pour un article FR. Les URLs qui ne
+ * pointent pas vers un article connu sont rendues telles quelles.
+ */
+export function resolveInternalBlogHref(url: string): string {
+  const match = url.match(/^\/(?:fr\/)?blog\/([a-z0-9-]+)$/);
+  if (!match) return url;
+  const article = getArticleBySlug(match[1]);
+  if (!article) return url;
+  const prefix = articleLang(article) === "fr" ? "/fr" : "";
+  return `${prefix}/blog/${article.slug}`;
 }
 
 export function getAllArticles(lang?: ArticleLang): Article[] {
