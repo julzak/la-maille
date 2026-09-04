@@ -6452,7 +6452,7 @@ Every neckline shaping sequence follows a three-part structure. First, you work 
 
 The ratio between these three stages defines the neckline style. A crew neck devotes most of its width to the central bind-off and only a few rows to side decreases, producing a shallow, nearly circular opening. A V-neck has no wide central bind-off at all — the entire shaping happens through side decreases worked slowly over many rows. A scoop neck sits between these two extremes, with a moderate central bind-off and a longer decrease section than a crew neck.
 
-Understanding this structure means you can troubleshoot any pattern you read. If your crew neck looks too pointed, the central bind-off was too small. If your V-neck looks too wide at the shoulders, the decreases were worked too quickly. The geometry is always in control.
+Understanding this structure means you can troubleshoot any pattern you read (if pattern notation itself is still new to you, start with our guide on [how to read a knitting pattern](/blog/how-to-read-knitting-pattern-beginners), which decodes the abbreviations used in every neckline instruction below). If your crew neck looks too pointed, the central bind-off was too small. If your V-neck looks too wide at the shoulders, the decreases were worked too quickly. The geometry is always in control.
 
 ### How gauge affects your stitch counts
 
@@ -6546,7 +6546,7 @@ Mistake 3: The crew neck looks square rather than rounded. The central bind-off 
 
 Mistake 4: The scoop neck ruffles outward. Too many stitches were picked up for the neckband, or the neckband needle was too large. Solution: pick up fewer stitches or go down a needle size.
 
-Mistake 5: The two sides of the neckline shaping are not symmetrical. One side was decreased on the wrong row type (wrong-side vs. right-side). Always note which row you began each side's shaping on, and use a row counter to stay consistent.
+Mistake 5: The two sides of the neckline shaping are not symmetrical. One side was decreased on the wrong row type (wrong-side vs. right-side). Always note which row you began each side's shaping on, and use a row counter to stay consistent. If RS and WS instructions still trip you up, the [beginner's guide to reading knitting patterns](/blog/how-to-read-knitting-pattern-beginners) explains how row-by-row instructions are written.
 
 ## Glossary
 
