@@ -515,6 +515,124 @@ export const translations = {
     "seo.getStarted": "Commencer",
     "seo.learnHow": "Comment ça marche",
 
+    // /knitting-pattern-generator page
+    "generator.heroTitle": "Générateur de patron de tricot par IA",
+    "generator.heroSubtitle":
+      "Transformez n'importe quelle photo en patron de tricot sur-mesure, avec des instructions rang par rang adaptées à votre échantillon et à vos mesures.",
+    "generator.geoLeadStrong": "La Maille est un générateur de patron de tricot par IA gratuit",
+    "generator.geoLeadRest":
+      "qui transforme la photo d'un pull, d'un cardigan ou d'un gilet en patron complet rédigé : montage des mailles, augmentations et diminutions, encolure, manches et rabattage des mailles, calculé à partir de votre propre échantillon et de vos mesures. Ce n'est pas un outil de grille de couleurs : il lit la construction du vêtement et rédige les instructions pour le tricoter.",
+    "generator.howItWorksTitle": "Comment ça marche",
+    "generator.stepsIntro": "De la photo au patron en 4 étapes simples.",
+    "generator.seeDetailedGuide": "Voir le guide détaillé",
+    "generator.differentTitle": "Ce qui rend La Maille différent",
+    "generator.differentSubtitle":
+      "La plupart des « générateurs de patron de tricot » en ligne sont en réalité des outils de grille de couleurs : ils transforment une photo en grille de pixels pour le jacquard. La Maille fait quelque chose de complètement différent.",
+    "generator.card1Title": "Des patrons complets, pas des grilles",
+    "generator.card1Desc":
+      "Obtenez des instructions complètes rang par rang : montage des mailles, façonnage, encolure, manches, rabattage des mailles. Tout ce qu'il vous faut pour tricoter le vêtement du début à la fin.",
+    "generator.card2Title": "Adapté à votre échantillon",
+    "generator.card2Desc":
+      "Chaque patron est calculé à partir de votre échantillon de tension et de vos mesures réelles. Fini les approximations et les recalculs : les calculs sont faits pour vous.",
+    "generator.card3Title": "Lit la construction",
+    "generator.card3Desc":
+      "L'IA identifie la méthode de construction (top-down, bottom-up), le type d'encolure, le style de manches et le point utilisé : pas seulement les couleurs.",
+    "generator.createTitle": "Ce que vous pouvez créer",
+    "generator.garmentPullovers": "Pulls",
+    "generator.garmentCardigans": "Cardigans",
+    "generator.garmentVests": "Gilets",
+    "generator.garmentTops": "Débardeurs",
+    "generator.createNote":
+      "Fonctionne avec le jersey, les côtes et le point mousse. Les motifs en dentelle complexe et le jacquard arrivent bientôt.",
+    "generator.faqTitle": "Questions fréquentes",
+    "generator.faq1Q": "Comment fonctionne le générateur de patron de tricot par IA ?",
+    "generator.faq1A":
+      "Uploadez la photo d'un vêtement tricoté. Notre IA analyse la construction, le point utilisé et les proportions, puis génère un patron de tricot complet avec des instructions rang par rang adaptées à votre échantillon et à vos mesures.",
+    "generator.faq2Q": "Le générateur de patron de tricot est-il gratuit ?",
+    "generator.faq2A":
+      "Oui, La Maille est gratuit. Vous pouvez uploader des photos et générer des patrons de tricot sur-mesure sans frais.",
+    "generator.faq3Q": "Pour quels types de vêtements puis-je générer un patron ?",
+    "generator.faq3A":
+      "La Maille fonctionne mieux avec des pulls basiques, cardigans et gilets. Il gère le jersey, les côtes et le point mousse. La dentelle complexe et le jacquard ne sont pas encore pris en charge.",
+    "generator.faq4Q": "Dois-je connaître mon échantillon ?",
+    "generator.faq4A":
+      "Oui, vous avez besoin de votre échantillon de tension (mailles et rangs pour 10 cm) pour obtenir un patron précis. Tricotez toujours un échantillon avec la laine et les aiguilles que vous comptez utiliser.",
+    "generator.faq5Q": "Les patrons générés sont-ils testés ?",
+    "generator.faq5A":
+      "Les patrons sont des estimations générées par IA à partir de l'analyse de l'image. Ils constituent une bonne base de travail mais peuvent nécessiter des ajustements. Nous recommandons de vérifier les calculs et de toujours tricoter un échantillon.",
+    "generator.faq6Q": "Quelle photo fonctionne le mieux pour générer un patron ?",
+    "generator.faq6A":
+      "Une photo de face bien éclairée fonctionne le mieux. Posez le vêtement à plat ou photographiez-le sur un cintre. Évitez les angles, les plis et les arrière-plans chargés. Plus la photo est nette, meilleure est l'analyse.",
+    "generator.learnMoreTitle": "En savoir plus sur les patrons de tricot",
+    "generator.learnMoreSubtitle": "Approfondissez vos connaissances en tricot avec ces guides.",
+    "generator.viewAllArticles": "Voir tous les articles →",
+    "generator.article1": "Comment recréer n'importe quel pull à partir d'une photo",
+    "generator.article2": "Quelle laine choisir pour votre premier pull",
+    "generator.article3": "Manches raglan ou manches montées : laquelle choisir ?",
+    "generator.article4": "Bloquer un pull tricoté : le guide complet",
+    "generator.article5": "Tricoter en rond ou à plat",
+    "generator.article6": "Guide du patron de pull torsadé",
+    "generator.finalCtaTitle": "Prêt à créer votre patron ?",
+    "generator.finalCtaSubtitle":
+      "Uploadez la photo d'un pull ou d'un cardigan et obtenez votre patron sur-mesure en quelques minutes.",
+
+    // /how-it-works page
+    "howItWorks.heroTitle": "Comment créer un patron de tricot à partir de n'importe quelle photo",
+    "howItWorks.heroSubtitle":
+      "Vous avez vu un modèle qui vous plaît ? Uploadez une photo et obtenez un patron de tricot complet en quelques minutes : voici comment.",
+    "howItWorks.step1Title": "Uploadez votre photo",
+    "howItWorks.step1Desc":
+      "Prenez en photo n'importe quel vêtement tricoté que vous voulez recréer : pull, cardigan, gilet. Vous pouvez uploader jusqu'à 5 images pour donner à l'IA plusieurs angles de vue.",
+    "howItWorks.step1TipsTitle": "Conseils pour un bon résultat",
+    "howItWorks.step1Tip1": "Vue de face, bien éclairée : la lumière naturelle donne les meilleurs résultats",
+    "howItWorks.step1Tip2": "Posez le vêtement à plat sur une surface unie ou photographiez-le sur un cintre",
+    "howItWorks.step1Tip3": "Évitez les arrière-plans chargés, les froissures et les plis importants",
+    "howItWorks.step1Tip4": "Assez proche pour voir la texture des mailles si possible",
+    "howItWorks.step2Title": "L'IA lit votre tricot",
+    "howItWorks.step2Desc": "L'IA de La Maille analyse votre photo et identifie tout ce qu'elle peut sur le vêtement :",
+    "howItWorks.step2Item1": "Type de vêtement (pull, cardigan, gilet...)",
+    "howItWorks.step2Item2": "Méthode de construction (top-down, bottom-up, en rond)",
+    "howItWorks.step2Item3": "Type d'encolure (ronde, en V, montante...)",
+    "howItWorks.step2Item4": "Type de manche (montée, raglan, tombante...)",
+    "howItWorks.step2Item5": "Point utilisé (jersey, côtes, point mousse...)",
+    "howItWorks.step2Item6": "Proportions générales et coupe",
+    "howItWorks.step2Note": "Vous pouvez vérifier et ajuster l'analyse avant de générer le patron.",
+    "howItWorks.step3Title": "Entrez vos mesures et votre échantillon",
+    "howItWorks.step3Desc":
+      "C'est ce qui rend votre patron réellement sur-mesure. Entrez vos mensurations et votre échantillon de tension pour que chaque nombre de mailles soit calculé pour vous.",
+    "howItWorks.step3NeedTitle": "Ce dont vous aurez besoin",
+    "howItWorks.step3GaugeLabel": "Échantillon :",
+    "howItWorks.step3GaugeDesc": "Mailles et rangs pour 10 cm, avec la laine et les aiguilles que vous comptez utiliser",
+    "howItWorks.step3ChestLabel": "Tour de poitrine :",
+    "howItWorks.step3ChestDesc": "Mesuré autour de la partie la plus large",
+    "howItWorks.step3LengthLabel": "Longueur souhaitée :",
+    "howItWorks.step3LengthDesc": "La longueur que vous voulez pour le vêtement fini",
+    "howItWorks.step4Title": "Recevez votre patron sur-mesure",
+    "howItWorks.step4Desc": "La Maille génère un patron de tricot complet avec :",
+    "howItWorks.step4Item1": "Instructions rang par rang pour chaque pièce",
+    "howItWorks.step4Item2": "Détails du façonnage (augmentations, diminutions, rabattages de mailles)",
+    "howItWorks.step4Item3": "Instructions pour l'encolure et les manches",
+    "howItWorks.step4Item4": "Instructions de montage",
+    "howItWorks.step4Item5": "Vue imprimable",
+    "howItWorks.step4Note":
+      "Sauvegardez votre patron dans votre compte pour y accéder à tout moment, ou imprimez-le directement.",
+    "howItWorks.tipsTitle": "Conseils pour un résultat optimal",
+    "howItWorks.tip1Title": "Tricotez toujours un échantillon",
+    "howItWorks.tip1Desc":
+      "Votre échantillon de tension est le fondement de tout le patron. Un échantillon de 10x10 cm avec votre laine et vos aiguilles réelles change tout.",
+    "howItWorks.tip2Title": "Vérifiez l'analyse de l'IA",
+    "howItWorks.tip2Desc":
+      "Avant de générer le patron, vérifiez que l'IA a correctement identifié la construction, l'encolure et les manches. Vous pouvez corriger tout ce qui semble incorrect.",
+    "howItWorks.tip3Title": "Utilisez des photos nettes",
+    "howItWorks.tip3Desc":
+      "Meilleure est la photo, plus l'analyse est précise. Une vue de face, un bon éclairage et un arrière-plan sobre font une grande différence.",
+    "howItWorks.tip4Title": "Considérez-le comme un point de départ",
+    "howItWorks.tip4Desc":
+      "Le patron est une estimation générée par IA. Les tricoteuses et tricoteurs expérimentés voudront vérifier les calculs et l'adapter à leur style.",
+    "howItWorks.ctaTitle": "Prêt à essayer ?",
+    "howItWorks.ctaSubtitle": "Choisissez une photo de pull dans votre pellicule et découvrez ce que La Maille peut faire.",
+    "howItWorks.ctaLearnMore": "En savoir plus sur le générateur",
+
     // Privacy & Terms
     "privacy.title": "Politique de confidentialite",
     "privacy.lastUpdated": "Derniere mise a jour",
@@ -1295,6 +1413,124 @@ export const translations = {
     "seo.uploadPhoto": "Upload a photo",
     "seo.getStarted": "Get started",
     "seo.learnHow": "How it works",
+
+    // /knitting-pattern-generator page
+    "generator.heroTitle": "AI Knitting Pattern Generator",
+    "generator.heroSubtitle":
+      "Turn any photo into a custom knitting pattern with row-by-row instructions, adapted to your gauge and measurements.",
+    "generator.geoLeadStrong": "La Maille is a free AI knitting pattern generator",
+    "generator.geoLeadRest":
+      "that turns a photo of a sweater, cardigan or vest into a complete written pattern: cast on, increases and decreases, neckline, sleeves and bind off, calculated from your own gauge and measurements. It is not a color chart tool: it reads the garment's construction and writes the instructions to knit it.",
+    "generator.howItWorksTitle": "How It Works",
+    "generator.stepsIntro": "From photo to pattern in 4 simple steps.",
+    "generator.seeDetailedGuide": "See the detailed guide",
+    "generator.differentTitle": "What Makes La Maille Different",
+    "generator.differentSubtitle":
+      "Most \"knitting pattern generators\" online are actually color chart tools: they turn a photo into a pixel grid for colorwork. La Maille does something completely different.",
+    "generator.card1Title": "Complete Patterns, Not Charts",
+    "generator.card1Desc":
+      "Get full row-by-row instructions: cast on, shaping, neckline, sleeves, bind off. Everything you need to knit the garment from start to finish.",
+    "generator.card2Title": "Adapted to Your Gauge",
+    "generator.card2Desc":
+      "Every pattern is calculated from your actual stitch gauge and body measurements. No more guessing or rescaling: the math is done for you.",
+    "generator.card3Title": "Reads the Construction",
+    "generator.card3Desc":
+      "The AI identifies construction method (top-down, bottom-up), neckline type, sleeve style, and stitch pattern: not just colors.",
+    "generator.createTitle": "What You Can Create",
+    "generator.garmentPullovers": "Pullovers",
+    "generator.garmentCardigans": "Cardigans",
+    "generator.garmentVests": "Vests",
+    "generator.garmentTops": "Sleeveless tops",
+    "generator.createNote":
+      "Works with stockinette, ribbing, and garter stitch. Complex lace and colorwork designs are coming soon.",
+    "generator.faqTitle": "Frequently Asked Questions",
+    "generator.faq1Q": "How does the AI knitting pattern generator work?",
+    "generator.faq1A":
+      "Upload a photo of any knitted garment. Our AI analyzes the construction, stitch pattern, and proportions, then generates a complete knitting pattern with row-by-row instructions adapted to your gauge and measurements.",
+    "generator.faq2Q": "Is the knitting pattern generator free?",
+    "generator.faq2A":
+      "Yes, La Maille is free to use. You can upload photos and generate custom knitting patterns at no cost.",
+    "generator.faq3Q": "What types of garments can I generate patterns for?",
+    "generator.faq3A":
+      "La Maille works best with basic sweaters, pullovers, cardigans, and vests. It handles stockinette, ribbing, and garter stitch patterns. Complex lace and colorwork designs are not yet supported.",
+    "generator.faq4Q": "Do I need to know my gauge?",
+    "generator.faq4A":
+      "Yes, you'll need your stitch gauge (stitches and rows per 10cm/4 inches) to get accurate patterns. Always knit a swatch first with your chosen yarn and needles.",
+    "generator.faq5Q": "Are the generated patterns tested?",
+    "generator.faq5A":
+      "The patterns are AI-generated estimates based on image analysis. They provide a solid working base but may need adjustments. We recommend verifying calculations and always knitting a gauge swatch.",
+    "generator.faq6Q": "What photo works best for pattern generation?",
+    "generator.faq6A":
+      "A well-lit front view of the garment works best. Lay it flat or photograph it on a hanger. Avoid angles, folds, or busy backgrounds. The clearer the photo, the better the analysis.",
+    "generator.learnMoreTitle": "Learn More About Knitting Patterns",
+    "generator.learnMoreSubtitle": "Deepen your knitting knowledge with these guides.",
+    "generator.viewAllArticles": "View all articles →",
+    "generator.article1": "How to Recreate Any Sweater From a Photo",
+    "generator.article2": "Best Yarn for Your First Sweater",
+    "generator.article3": "Raglan vs Set-In Sleeves: Which to Choose?",
+    "generator.article4": "Blocking a Knitted Sweater: Complete Guide",
+    "generator.article5": "Knitting in the Round vs Flat",
+    "generator.article6": "Cable Knit Sweater Pattern Guide",
+    "generator.finalCtaTitle": "Ready to Create Your Pattern?",
+    "generator.finalCtaSubtitle":
+      "Upload a photo of any sweater or cardigan and get your custom pattern in minutes.",
+
+    // /how-it-works page
+    "howItWorks.heroTitle": "How to Create a Knitting Pattern from Any Photo",
+    "howItWorks.heroSubtitle":
+      "See something you love? Upload a photo and get a complete knitting pattern in minutes: here's how.",
+    "howItWorks.step1Title": "Upload Your Photo",
+    "howItWorks.step1Desc":
+      "Take a photo of any knitted garment you want to recreate: a sweater, cardigan, vest, or pullover. You can upload up to 5 images to give the AI more angles to work with.",
+    "howItWorks.step1TipsTitle": "Tips for the best results",
+    "howItWorks.step1Tip1": "Front view, well-lit: natural light works best",
+    "howItWorks.step1Tip2": "Lay flat on a plain surface or photograph on a hanger",
+    "howItWorks.step1Tip3": "Avoid busy backgrounds, wrinkles, or heavy folds",
+    "howItWorks.step1Tip4": "Close enough to see the stitch texture if possible",
+    "howItWorks.step2Title": "AI Reads Your Knit",
+    "howItWorks.step2Desc": "La Maille's AI analyzes your photo and identifies everything it can about the garment:",
+    "howItWorks.step2Item1": "Garment type (pullover, cardigan, vest...)",
+    "howItWorks.step2Item2": "Construction method (top-down, bottom-up, in-the-round)",
+    "howItWorks.step2Item3": "Neckline style (crew, V-neck, mock neck...)",
+    "howItWorks.step2Item4": "Sleeve type (set-in, raglan, drop shoulder...)",
+    "howItWorks.step2Item5": "Stitch pattern (stockinette, ribbing, garter...)",
+    "howItWorks.step2Item6": "Overall proportions and fit",
+    "howItWorks.step2Note": "You can review and adjust the analysis before generating the pattern.",
+    "howItWorks.step3Title": "Enter Your Measurements & Gauge",
+    "howItWorks.step3Desc":
+      "This is what makes your pattern truly custom. Enter your body measurements and knitting gauge so every stitch count is calculated for you.",
+    "howItWorks.step3NeedTitle": "What you'll need",
+    "howItWorks.step3GaugeLabel": "Gauge:",
+    "howItWorks.step3GaugeDesc": "Stitches and rows per 10cm (4\") with your chosen yarn and needles",
+    "howItWorks.step3ChestLabel": "Chest circumference:",
+    "howItWorks.step3ChestDesc": "Measured around the fullest part",
+    "howItWorks.step3LengthLabel": "Desired length:",
+    "howItWorks.step3LengthDesc": "How long you want the finished garment",
+    "howItWorks.step4Title": "Get Your Custom Pattern",
+    "howItWorks.step4Desc": "La Maille generates a complete knitting pattern with:",
+    "howItWorks.step4Item1": "Row-by-row instructions for each piece",
+    "howItWorks.step4Item2": "Shaping details (increases, decreases, bind-offs)",
+    "howItWorks.step4Item3": "Neckline and sleeve instructions",
+    "howItWorks.step4Item4": "Assembly instructions",
+    "howItWorks.step4Item5": "Print-friendly view",
+    "howItWorks.step4Note":
+      "Save your pattern to your account and access it anytime, or print it right away.",
+    "howItWorks.tipsTitle": "Tips for Best Results",
+    "howItWorks.tip1Title": "Always knit a gauge swatch",
+    "howItWorks.tip1Desc":
+      "Your gauge is the foundation of the entire pattern. A 10x10cm swatch with your actual yarn and needles makes all the difference.",
+    "howItWorks.tip2Title": "Review the AI analysis",
+    "howItWorks.tip2Desc":
+      "Before generating, check that the AI correctly identified the construction, neckline, and sleeves. You can adjust anything that looks off.",
+    "howItWorks.tip3Title": "Use clear photos",
+    "howItWorks.tip3Desc":
+      "The better the photo, the more accurate the analysis. Front view, good lighting, and minimal background noise go a long way.",
+    "howItWorks.tip4Title": "Treat it as a starting point",
+    "howItWorks.tip4Desc":
+      "The pattern is an AI-generated estimate. Experienced knitters will want to double-check the math and adapt to their style.",
+    "howItWorks.ctaTitle": "Ready to Try It?",
+    "howItWorks.ctaSubtitle": "Pick a sweater photo from your camera roll and see what La Maille can do.",
+    "howItWorks.ctaLearnMore": "Learn more about the generator",
 
     // Privacy & Terms
     "privacy.title": "Privacy Policy",

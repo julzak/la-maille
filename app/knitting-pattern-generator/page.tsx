@@ -10,8 +10,14 @@ import { clearProject } from "@/lib/storage";
 
 export default function KnittingPatternGeneratorPage() {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const { setImages, setAnalysisLoading, analysisLoading } = useLaMailleStore();
+
+  const homeHref = language === "fr" ? "/fr" : "/";
+  const howItWorksHref = language === "fr" ? "/fr/how-it-works" : "/how-it-works";
+  const blogHref = language === "fr" ? "/fr/blog" : "/blog";
+  const articleHref = (slug: string) =>
+    language === "fr" ? `/fr/blog/${slug}` : `/blog/${slug}`;
 
   const handleImagesSelected = async (files: File[], previews: string[]) => {
     clearProject();
@@ -27,11 +33,10 @@ export default function KnittingPatternGeneratorPage() {
       <section className="text-center py-16 md:py-24 px-4">
         <div className="container mx-auto max-w-3xl">
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 text-balance">
-            AI Knitting Pattern Generator
+            {t("generator.heroTitle")}
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-            Turn any photo into a custom knitting pattern with row-by-row
-            instructions — adapted to your gauge and measurements.
+            {t("generator.heroSubtitle")}
           </p>
           <div className="max-w-2xl mx-auto">
             <ImageUploader
@@ -41,12 +46,10 @@ export default function KnittingPatternGeneratorPage() {
           </div>
           {/* Reponse directe (GEO) : une definition citable par Google et les assistants IA */}
           <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto mt-10 text-left md:text-center">
-            <strong className="text-foreground">La Maille is a free AI knitting pattern generator</strong> that
-            turns a photo of a sweater, cardigan or vest into a complete written
-            pattern: cast on, increases and decreases, neckline, sleeves and bind
-            off, calculated from your own gauge and measurements. It is not a
-            color chart tool: it reads the garment&apos;s construction and writes
-            the instructions to knit it.
+            <strong className="text-foreground">
+              {t("generator.geoLeadStrong")}
+            </strong>{" "}
+            {t("generator.geoLeadRest")}
           </p>
         </div>
       </section>
@@ -55,15 +58,15 @@ export default function KnittingPatternGeneratorPage() {
       <section className="py-20 px-4 bg-muted/30">
         <div className="container mx-auto max-w-4xl">
           <h2 className="font-serif text-3xl text-center mb-4">
-            How It Works
+            {t("generator.howItWorksTitle")}
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            From photo to pattern in 4 simple steps.{" "}
+            {t("generator.stepsIntro")}{" "}
             <Link
-              href="/how-it-works"
+              href={howItWorksHref}
               className="text-primary hover:underline"
             >
-              See the detailed guide
+              {t("generator.seeDetailedGuide")}
             </Link>
           </p>
           <div className="grid md:grid-cols-2 gap-6">
@@ -119,12 +122,10 @@ export default function KnittingPatternGeneratorPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-4xl">
           <h2 className="font-serif text-3xl text-center mb-4">
-            What Makes La Maille Different
+            {t("generator.differentTitle")}
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Most &quot;knitting pattern generators&quot; online are actually
-            color chart tools — they turn a photo into a pixel grid for
-            colorwork. La Maille does something completely different.
+            {t("generator.differentSubtitle")}
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -132,12 +133,10 @@ export default function KnittingPatternGeneratorPage() {
                 <Sparkles className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-serif text-lg mb-2">
-                Complete Patterns, Not Charts
+                {t("generator.card1Title")}
               </h3>
               <p className="text-sm text-muted-foreground">
-                Get full row-by-row instructions — cast on, shaping, neckline,
-                sleeves, bind off. Everything you need to knit the garment from
-                start to finish.
+                {t("generator.card1Desc")}
               </p>
             </div>
             <div className="text-center">
@@ -145,12 +144,10 @@ export default function KnittingPatternGeneratorPage() {
                 <Ruler className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-serif text-lg mb-2">
-                Adapted to Your Gauge
+                {t("generator.card2Title")}
               </h3>
               <p className="text-sm text-muted-foreground">
-                Every pattern is calculated from your actual stitch gauge and
-                body measurements. No more guessing or rescaling — the math is
-                done for you.
+                {t("generator.card2Desc")}
               </p>
             </div>
             <div className="text-center">
@@ -158,12 +155,10 @@ export default function KnittingPatternGeneratorPage() {
                 <BookOpen className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-serif text-lg mb-2">
-                Reads the Construction
+                {t("generator.card3Title")}
               </h3>
               <p className="text-sm text-muted-foreground">
-                The AI identifies construction method (top-down, bottom-up),
-                neckline type, sleeve style, and stitch pattern — not just
-                colors.
+                {t("generator.card3Desc")}
               </p>
             </div>
           </div>
@@ -174,14 +169,14 @@ export default function KnittingPatternGeneratorPage() {
       <section className="py-20 px-4 bg-muted/30">
         <div className="container mx-auto max-w-4xl">
           <h2 className="font-serif text-3xl text-center mb-12">
-            What You Can Create
+            {t("generator.createTitle")}
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { label: "Pullovers", icon: "🧶" },
-              { label: "Cardigans", icon: "🧥" },
-              { label: "Vests", icon: "🦺" },
-              { label: "Sleeveless tops", icon: "👕" },
+              { label: t("generator.garmentPullovers"), icon: "🧶" },
+              { label: t("generator.garmentCardigans"), icon: "🧥" },
+              { label: t("generator.garmentVests"), icon: "🦺" },
+              { label: t("generator.garmentTops"), icon: "👕" },
             ].map(({ label, icon }) => (
               <div
                 key={label}
@@ -195,8 +190,7 @@ export default function KnittingPatternGeneratorPage() {
             ))}
           </div>
           <p className="text-center text-sm text-muted-foreground mt-6">
-            Works with stockinette, ribbing, and garter stitch. Complex lace and
-            colorwork designs are coming soon.
+            {t("generator.createNote")}
           </p>
         </div>
       </section>
@@ -205,34 +199,16 @@ export default function KnittingPatternGeneratorPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-3xl">
           <h2 className="font-serif text-3xl text-center mb-12">
-            Frequently Asked Questions
+            {t("generator.faqTitle")}
           </h2>
           <div className="space-y-6">
             {[
-              {
-                q: "How does the AI knitting pattern generator work?",
-                a: "Upload a photo of any knitted garment. Our AI analyzes the construction, stitch pattern, and proportions, then generates a complete knitting pattern with row-by-row instructions adapted to your gauge and measurements.",
-              },
-              {
-                q: "Is the knitting pattern generator free?",
-                a: "Yes, La Maille is free to use. You can upload photos and generate custom knitting patterns at no cost.",
-              },
-              {
-                q: "What types of garments can I generate patterns for?",
-                a: "La Maille works best with basic sweaters, pullovers, cardigans, and vests. It handles stockinette, ribbing, and garter stitch patterns. Complex lace and colorwork designs are not yet supported.",
-              },
-              {
-                q: "Do I need to know my gauge?",
-                a: "Yes, you'll need your stitch gauge (stitches and rows per 10cm/4 inches) to get accurate patterns. Always knit a swatch first with your chosen yarn and needles.",
-              },
-              {
-                q: "Are the generated patterns tested?",
-                a: "The patterns are AI-generated estimates based on image analysis. They provide a solid working base but may need adjustments. We recommend verifying calculations and always knitting a gauge swatch.",
-              },
-              {
-                q: "What photo works best for pattern generation?",
-                a: "A well-lit front view of the garment works best. Lay it flat or photograph it on a hanger. Avoid angles, folds, or busy backgrounds. The clearer the photo, the better the analysis.",
-              },
+              { q: t("generator.faq1Q"), a: t("generator.faq1A") },
+              { q: t("generator.faq2Q"), a: t("generator.faq2A") },
+              { q: t("generator.faq3Q"), a: t("generator.faq3A") },
+              { q: t("generator.faq4Q"), a: t("generator.faq4A") },
+              { q: t("generator.faq5Q"), a: t("generator.faq5A") },
+              { q: t("generator.faq6Q"), a: t("generator.faq6A") },
             ].map(({ q, a }) => (
               <details
                 key={q}
@@ -255,23 +231,23 @@ export default function KnittingPatternGeneratorPage() {
       <section className="py-20 px-4 bg-muted/30">
         <div className="container mx-auto max-w-3xl">
           <h2 className="font-serif text-3xl text-center mb-3">
-            Learn More About Knitting Patterns
+            {t("generator.learnMoreTitle")}
           </h2>
           <p className="text-center text-muted-foreground mb-10">
-            Deepen your knitting knowledge with these guides.
+            {t("generator.learnMoreSubtitle")}
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { slug: "how-to-recreate-sweater-from-photo", title: "How to Recreate Any Sweater From a Photo" },
-              { slug: "best-yarn-for-first-sweater", title: "Best Yarn for Your First Sweater" },
-              { slug: "raglan-vs-set-in-sleeves-which-to-choose", title: "Raglan vs Set-In Sleeves: Which to Choose?" },
-              { slug: "blocking-knitted-sweater", title: "Blocking a Knitted Sweater: Complete Guide" },
-              { slug: "knitting-in-the-round-vs-flat", title: "Knitting in the Round vs Flat" },
-              { slug: "cable-knit-sweater-pattern", title: "Cable Knit Sweater Pattern Guide" },
+              { slug: "how-to-recreate-sweater-from-photo", title: t("generator.article1") },
+              { slug: "best-yarn-for-first-sweater", title: t("generator.article2") },
+              { slug: "raglan-vs-set-in-sleeves-which-to-choose", title: t("generator.article3") },
+              { slug: "blocking-knitted-sweater", title: t("generator.article4") },
+              { slug: "knitting-in-the-round-vs-flat", title: t("generator.article5") },
+              { slug: "cable-knit-sweater-pattern", title: t("generator.article6") },
             ].map(({ slug, title }) => (
               <Link
                 key={slug}
-                href={`/blog/${slug}`}
+                href={articleHref(slug)}
                 className="group block bg-card rounded-lg border border-border p-5 hover:border-primary/40 transition-colors"
               >
                 <h3 className="font-serif text-sm font-medium group-hover:text-primary transition-colors">
@@ -282,10 +258,10 @@ export default function KnittingPatternGeneratorPage() {
           </div>
           <div className="text-center mt-6">
             <Link
-              href="/blog"
+              href={blogHref}
               className="text-sm text-primary hover:underline"
             >
-              View all articles →
+              {t("generator.viewAllArticles")}
             </Link>
           </div>
         </div>
@@ -295,22 +271,21 @@ export default function KnittingPatternGeneratorPage() {
       <section className="py-20 px-4 bg-primary/5">
         <div className="container mx-auto max-w-2xl text-center">
           <h2 className="font-serif text-3xl mb-4">
-            Ready to Create Your Pattern?
+            {t("generator.finalCtaTitle")}
           </h2>
           <p className="text-muted-foreground mb-8">
-            Upload a photo of any sweater or cardigan and get your custom pattern
-            in minutes.
+            {t("generator.finalCtaSubtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/"
+              href={homeHref}
               className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               {t("seo.tryFree")}
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/how-it-works"
+              href={howItWorksHref}
               className="inline-flex items-center justify-center gap-2 rounded-md border border-border px-6 py-3 text-sm font-medium hover:bg-muted transition-colors"
             >
               {t("seo.learnHow")}
