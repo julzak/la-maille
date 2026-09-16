@@ -13,6 +13,7 @@ export default function KnittingPatternGeneratorPage() {
   const { t, language } = useTranslation();
   const { setImages, setAnalysisLoading, analysisLoading } = useLaMailleStore();
 
+  const homeHref = language === "fr" ? "/fr" : "/";
   const howItWorksHref = language === "fr" ? "/fr/how-it-works" : "/how-it-works";
   const blogHref = language === "fr" ? "/fr/blog" : "/blog";
   const articleHref = (slug: string) =>
@@ -277,7 +278,7 @@ export default function KnittingPatternGeneratorPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/"
+              href={homeHref}
               className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               {t("seo.tryFree")}

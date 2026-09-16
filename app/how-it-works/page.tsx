@@ -7,6 +7,7 @@ import { useTranslation } from "@/lib/i18n";
 export default function HowItWorksPage() {
   const { t, language } = useTranslation();
 
+  const homeHref = language === "fr" ? "/fr" : "/";
   const generatorHref =
     language === "fr" ? "/fr/knitting-pattern-generator" : "/knitting-pattern-generator";
 
@@ -260,7 +261,7 @@ export default function HowItWorksPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/"
+              href={homeHref}
               className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               {t("seo.uploadPhoto")}
