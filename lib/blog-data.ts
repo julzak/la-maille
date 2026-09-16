@@ -237,7 +237,7 @@ Un patron de tricot est un document technique. Il contient des informations dans
 
 ### Par quel projet commencer quand on débute le tricot ?
 
-Commencez par une écharpe ou un snood en point mousse ou en côtes sur des aiguilles de 6 mm avec une laine épaisse. Ces projets rectangulaires n'impliquent ni augmentation, ni diminution, ni façonnage. Vous vous concentrez uniquement sur le geste et la régularité de la tension. Une fois ces deux compétences acquises, un [bonnet](/blog/bonnet-a-tricoter) tricoté en rond constitue une progression logique avant de vous lancer dans un pull. La [layette](/fr/blog/layette-bebe-tricot) est un autre excellent terrain d'entraînement : les pièces sont petites, rapides à tricoter, et permettent de tester le façonnage sans engager des semaines de travail.
+Commencez par une écharpe ou un snood en point mousse ou en côtes sur des aiguilles de 6 mm avec une laine épaisse. Ces projets rectangulaires n'impliquent ni augmentation, ni diminution, ni façonnage. Vous vous concentrez uniquement sur le geste et la régularité de la tension. Une fois ces deux compétences acquises, un [bonnet](/blog/bonnet-a-tricoter) tricoté en rond ou une paire de [chaussons](/blog/chaussons-a-tricoter) constituent une progression logique avant de vous lancer dans un pull, et un [gilet sans manche](/blog/gilet-cardigan-tricot) est une bonne étape intermédiaire avant un pull avec manches. La [layette](/fr/blog/layette-bebe-tricot) est un autre excellent terrain d'entraînement : les pièces sont petites, rapides à tricoter, et permettent de tester le façonnage sans engager des semaines de travail.
 
 ### Est-ce que l'échantillon change vraiment autant le résultat ?
 
@@ -476,7 +476,7 @@ En construction top-down (du haut vers le bas), les emmanchures et l'encolure b�
 
 Le point mousse est également la base de nombreux points texturés plus complexes. Le point noisette, le [point de riz](/blog/point-de-riz-tricot) ou certains points ajourés tricot intègrent des séquences de mailles endroit et envers dont le point mousse constitue le fondement. Comprendre la logique du point mousse vous permet donc d'aborder ces points avec une meilleure intuition des tensions en jeu.
 
-Pour les écharpes et les snuds, le point mousse est un excellent choix : il produit un tissu épais et chaud, ne se roule pas, et est agréable au toucher grâce à sa texture boursouflée qui piège l'air.
+Pour les écharpes et les snuds, le point mousse est un excellent choix : il produit un tissu épais et chaud, ne se roule pas, et est agréable au toucher grâce à sa texture boursouflée qui piège l'air. On le retrouve aussi en bordure de [chaussons tricotés](/blog/chaussons-a-tricoter), où sa stabilité évite au bord de rouler sous le pied.
 
 ### Point mousse et point ajouré tricot : peuvent-ils cohabiter ?
 
@@ -553,6 +553,9 @@ Le point mousse tricot est bien plus qu'un simple point de départ pour les déb
   },
   {
     slug: "point-de-riz-tricot",
+    seoTitle: "Point de riz au tricot : explications et point de riz double",
+    seoDescription:
+      "Comment tricoter le point de riz : technique, différence avec le point de riz double et le point de blé, échantillon. Explications gratuites et pas à pas.",
     title: "Point de riz au tricot : technique, usages et astuces",
     excerpt:
       "Apprenez le point de riz au tricot : comment le réaliser, pourquoi il ne gondole pas et dans quels projets l'utiliser. Guide complet avec exemples concrets.",
@@ -688,6 +691,14 @@ Oui, le point de riz est tout à fait adapté à la confection d'un pull entier.
 
 Si votre tissu présente des colonnes verticales régulières et un aspect élastique, vous tricoter probablement des côtes 1/1 plutôt que du point de riz. Cela arrive quand vous répétez le même rang sans inverser le décalage. En point de riz, la règle est simple : tricotez toujours une maille endroit au-dessus d'une maille envers, et inversement. Regardez chaque maille avant de la tricoter et faites le contraire de ce que vous voyez.
 
+### Qu'est-ce que le point de riz double ?
+
+Le terme «point de riz double» désigne, selon les sources, une variante tricotée sur 4 rangs plutôt que sur 2 : la même séquence est répétée sur deux rangs avant d'inverser le décalage, ce qui la rapproche du [point de blé](/blog/point-de-ble-tricot) décrit plus haut. L'appellation n'est pas parfaitement standardisée d'un patron à l'autre : vérifiez toujours la légende exacte donnée par votre modèle avant de tricoter, plutôt que de vous fier uniquement au nom.
+
+### Existe-t-il un modèle PDF gratuit du point de riz ?
+
+Il n'existe pas de PDF officiel unique, mais la technique tient en une seule règle que vous pouvez noter sur une fiche : monter un nombre pair (ou impair) de mailles, puis tricoter à l'opposé de la maille que vous voyez à chaque rang. Cette page peut servir de référence à imprimer. Si vous voulez des explications rang par rang calculées pour votre propre nombre de mailles, La Maille génère un patron gratuit et personnalisé à partir de votre échantillon.
+
 ## En resume
 
 Le point de riz au tricot est un point de structure fiable, polyvalent et accessible à toute personne qui maîtrise les bases du tricot. Sa règle fondamentale est simple : tricoter toujours le contraire de ce que vous voyez, rang après rang. Il produit un tissu réversible, stable, qui ne gondole pas et qui convient aussi bien pour des bordures que pour des projets entiers. Son principal impact technique est le resserrement du tissu en largeur par rapport au jersey, ce qui rend la réalisation d'un échantillon dédié indispensable. Le [point de blé](/fr/blog/point-de-ble-tricot), variante proche, offre davantage de souplesse pour les projets en tissu plein. En comprenant ces mécanismes, vous pouvez intégrer le point de riz dans n'importe quel patron avec confiance et précision.
@@ -709,7 +720,7 @@ Le point de riz au tricot est un point de structure fiable, polyvalent et access
     content: `
 **Le point de blé au tricot est un point de texture obtenu en alternant des mailles endroit et des mailles envers sur le même rang, puis en inversant leur position au rang suivant. Il produit un tissu réversible, légèrement élastique et plus dense que le jersey, dont l'aspect rappelle des grains de blé alignés.**
 
-Le point de blé tricot est l'un des points de texture les plus polyvalents qui existent. Il suffit d'alterner une maille endroit et une maille envers sur chaque rang, en décalant la séquence d'un rang à l'autre, pour obtenir un tissu au relief régulier, agréable à toucher et identique sur les deux faces. C'est précisément cette réversibilité qui le rend si apprécié pour les [écharpe](/blog/echarpe-snood-tricot)s, les bordures de pulls et les pièces portées à plat. Pourtant, beaucoup de tricoteuses et tricoteurs sous-estiment l'impact de ce point sur leur échantillon et leurs calculs de laine. Un pull tricoté en point de blé ne se calcule pas comme un pull en jersey : les mailles sont plus serrées, la consommation de fil augmente, et la tombée du tissu change. Cet article vous explique comment fonctionne le point de blé, comment réaliser votre échantillon correctement, et comment l'intégrer dans vos projets de façon maîtrisée.
+Le point de blé tricot est l'un des points de texture les plus polyvalents qui existent. Il suffit d'alterner une maille endroit et une maille envers sur chaque rang, en décalant la séquence d'un rang à l'autre, pour obtenir un tissu au relief régulier, agréable à toucher et identique sur les deux faces. C'est précisément cette réversibilité qui le rend si apprécié pour les [écharpe](/blog/echarpe-snood-tricot)s, les bordures de pulls et les pièces portées à plat. Ne le confondez pas avec son proche cousin, le [point de riz](/blog/point-de-riz-tricot), dont le décalage s'effectue à chaque rang plutôt que tous les deux rangs. Pourtant, beaucoup de tricoteuses et tricoteurs sous-estiment l'impact de ce point sur leur échantillon et leurs calculs de laine. Un pull tricoté en point de blé ne se calcule pas comme un pull en jersey : les mailles sont plus serrées, la consommation de fil augmente, et la tombée du tissu change. Cet article vous explique comment fonctionne le point de blé, comment réaliser votre échantillon correctement, et comment l'intégrer dans vos projets de façon maîtrisée.
 
 ![Carré d'échantillon tricoté en point de blé, laine mérinos crème sur fond de lin naturel, montrant le relief en quinconce des mailles endroit et envers](/images/blog/point-de-ble-tricot/point-de-ble-tricot-echantillon-texture.webp)
 
@@ -881,7 +892,7 @@ Plusieurs sources proposent des modèles tricots gratuits de qualité documenté
 
 Bergère de France propose une bibliothèque de modèles de tricots gratuits à télécharger directement sur son site, calibrés pour ses propres fils. L'avantage est la cohérence entre les recommandations de tension et les fils disponibles. L'inconvénient est que les patrons sont optimisés pour les références de la marque et peuvent demander des ajustements si vous utilisez un fil différent.
 
-D'autres sources françaises de qualité incluent les sites des petites marques de laine indépendantes, qui proposent souvent un ou deux patrons gratuits en vitrine, et certains blogs de créateurs dont les patrons sont testés par la communauté.
+D'autres sources françaises de qualité incluent les sites des petites marques de laine indépendantes, qui proposent souvent un ou deux patrons gratuits en vitrine, et certains blogs de créateurs dont les patrons sont testés par la communauté. Pour un projet précis, nos guides dédiés détaillent aussi un [modèle de gilet à tricoter](/blog/gilet-cardigan-tricot), le [point de riz](/blog/point-de-riz-tricot) et des [chaussons à tricoter](/blog/chaussons-a-tricoter), chacun avec explications rang par rang.
 
 Pour organiser vos téléchargements, adoptez une convention de nommage simple : nom du projet, type d'ouvrage, taille choisie et date. Un patron nommé «pull-marine-taille40-2024» sera retrouvé en dix secondes dans deux ans. Imprimez toujours le patron avant de commencer, annotez les modifications et conservez le carré d'échantillon agrafé à la première page.
 
@@ -1045,7 +1056,7 @@ Il faut d'abord réaliser votre échantillon, puis calculer votre densité en ma
 
 ## En resume
 
-Trouver un modèle de pull à tricoter avec explication gratuit est un bon point de départ, à condition de comprendre ce que vous lisez et de vérifier que le patron contient tous les éléments nécessaires : échantillon de référence, explications rang par rang, schémas de mesures finies. L'échantillon reste l'étape la plus importante de tout projet de pull : un écart d'une maille pour 10 cm peut décaler l'ensemble des dimensions de plusieurs centimètres. La construction top-down offre la flexibilité nécessaire pour ajuster en cours de travail, et le choix de la laine conditionne directement le résultat. Si vous souhaitez éviter les recalculs et partir directement de vos mesures, La Maille génère un patron complet et personnalisé à partir d'une simple photo.
+Trouver un modèle de pull à tricoter avec explication gratuit est un bon point de départ, à condition de comprendre ce que vous lisez et de vérifier que le patron contient tous les éléments nécessaires : échantillon de référence, explications rang par rang, schémas de mesures finies. Si le pull n'est pas encore votre projet du moment, nos guides sur le [gilet à tricoter](/blog/gilet-cardigan-tricot), le [point de riz](/blog/point-de-riz-tricot) ou les [chaussons à tricoter](/blog/chaussons-a-tricoter) sont d'autres bons points de départ. L'échantillon reste l'étape la plus importante de tout projet de pull : un écart d'une maille pour 10 cm peut décaler l'ensemble des dimensions de plusieurs centimètres. La construction top-down offre la flexibilité nécessaire pour ajuster en cours de travail, et le choix de la laine conditionne directement le résultat. Si vous souhaitez éviter les recalculs et partir directement de vos mesures, La Maille génère un patron complet et personnalisé à partir d'une simple photo.
 `,
   },
   {
@@ -1374,11 +1385,14 @@ Techniquement oui, mais ce n'est pas une simple réduction proportionnelle. La c
 
 ## En resume
 
-Tricoter une layette de naissance, c'est maîtriser la précision dans un format réduit : chaque maille compte davantage car les pièces sont petites et les marges d'erreur étroites. Ce que vous avez lu ici vous donne les outils concrets pour réussir bonnet, chaussons et brassière, à condition de vérifier systématiquement votre échantillon avant de commencer, de choisir une laine adaptée à la peau d'un nouveau-né, et de lire chaque rang du patron sans sauter d'étape. Si vous souhaitez aller plus loin et générer un patron entièrement adapté à vos mesures et à votre tension, La Maille vous permet de le faire en quelques minutes à partir d'une photo. Le tricot sur mesure commence par un bon calcul, et un bon calcul commence par un bon échantillon.
+Tricoter une layette de naissance, c'est maîtriser la précision dans un format réduit : chaque maille compte davantage car les pièces sont petites et les marges d'erreur étroites. Ce que vous avez lu ici vous donne les outils concrets pour réussir bonnet, chaussons et brassière, à condition de vérifier systématiquement votre échantillon avant de commencer, de choisir une laine adaptée à la peau d'un nouveau-né, et de lire chaque rang du patron sans sauter d'étape. Pour une version plus grande, enfant ou adulte, notre guide du [gilet à tricoter](/blog/gilet-cardigan-tricot) reprend la même logique de construction et d'échantillon. Si vous souhaitez aller plus loin et générer un patron entièrement adapté à vos mesures et à votre tension, La Maille vous permet de le faire en quelques minutes à partir d'une photo. Le tricot sur mesure commence par un bon calcul, et un bon calcul commence par un bon échantillon.
 `,
   },
   {
     slug: "gilet-cardigan-tricot",
+    seoTitle: "Modèle de gilet à tricoter femme : explications gratuites",
+    seoDescription:
+      "Modèle de gilet à tricoter pour femme avec explications gratuites : construction, échantillon, laine. Comment tricoter un gilet tricoté à votre taille.",
     title: "Modèle tricot gilet femme facile gratuit : guide complet",
     excerpt:
       "Trouvez un modèle tricot gilet femme facile et gratuit, comprenez les constructions, les points et les mesures. Générez votre patron sur mesure avec La Maille.",
@@ -1493,9 +1507,9 @@ Pour un gilet femme polyvalent, une laine de poids DK ou Aran en mérinos superw
 
 Le nombre de mailles à monter dépend de votre échantillon et de la construction choisie. Pour un gilet en construction à plat en jersey avec un échantillon de 20 mailles aux 10 cm, le dos d'un gilet taille 40 (tour de buste 88-92 cm, soit 46 cm de demi-tour) nécessite environ 92 mailles, auxquelles on ajoute 2 mailles de lisière de chaque côté, soit 96 mailles. Ce calcul doit toujours être refait à partir de votre propre densité mesurée sur votre échantillon.
 
-### Où trouver un patron tricot gilet sans manche femme gratuit fiable ?
+### Où trouver un modèle de gilet à tricoter avec des explications gratuites ?
 
-Des plateformes comme Ravelry, Drops Design ou les blogs de tricoteuses francophones publient régulièrement des patrons de gilet sans manche gratuits en français. Vérifiez toujours que le patron inclut un tableau de mesures en centimètres, une indication d'échantillon précise et des notes claires sur la construction. Un patron sans ces trois éléments sera difficile à adapter à votre morphologie.
+Des plateformes comme Ravelry, Drops Design ou les blogs de tricoteuses francophones publient régulièrement des modèles de gilet gratuits en français, avec explications. Vérifiez toujours que le patron inclut un tableau de mesures en centimètres, une indication d'échantillon précise et des notes claires sur la construction. Un patron sans ces trois éléments sera difficile à adapter à votre morphologie.
 
 ### Peut-on générer un patron de gilet sur mesure sans passer par un patron standard ?
 
@@ -1750,7 +1764,7 @@ Les côtes anglaises sont bien plus qu'un simple point de fantaisie : c'est une 
     content: `
 **Tricoter un pull désigne la réalisation d'un vêtement complet en tricot à partir d'un fil et d'aiguilles, selon un patron qui définit le nombre de mailles, les rangs et les techniques de construction. Pour un [débutant](/blog/tricot-debutant), un pull en jersey avec une construction top-down (du col vers le bas) est la méthode la plus accessible car elle évite les coutures et permet d'essayer le vêtement en cours de travail.**
 
-Vous souhaitez tricoter un pull facile et vous cherchez un point de départ clair, gratuit et sans détour ? Ce guide est fait pour vous. Tricoter un pull est souvent perçu comme une étape intimidante après les [écharpe](/blog/echarpe-snood-tricot)s et les [bonnet](/blog/bonnet-a-tricoter)s, mais avec la bonne méthode et les bons repères, c'est un projet tout à fait accessible dès votre première année de pratique. Dans cet article, vous trouverez les explications concrètes sur le choix de la laine, la réalisation de l'échantillon, la construction top-down et la lecture d'un patron. Pas de raccourcis ni de promesses vagues : chaque étape est expliquée avec des chiffres et des exemples précis. À la fin, vous saurez exactement par où commencer, [quelle laine](/blog/quelle-laine-pour-tricoter-un-pull) acheter, combien de mailles monter et pourquoi chaque décision technique compte pour que votre pull vous aille vraiment.
+Vous souhaitez tricoter un pull facile et vous cherchez un point de départ clair, gratuit et sans détour ? Ce guide est fait pour vous. Tricoter un pull est souvent perçu comme une étape intimidante après les [écharpe](/blog/echarpe-snood-tricot)s, les [bonnet](/blog/bonnet-a-tricoter)s et les [chaussons](/blog/chaussons-a-tricoter), mais avec la bonne méthode et les bons repères, c'est un projet tout à fait accessible dès votre première année de pratique. Si vous préférez avancer par étapes, un [gilet sans manche](/blog/gilet-cardigan-tricot) est une bonne transition avant un pull avec manches. Dans cet article, vous trouverez les explications concrètes sur le choix de la laine, la réalisation de l'échantillon, la construction top-down et la lecture d'un patron. Pas de raccourcis ni de promesses vagues : chaque étape est expliquée avec des chiffres et des exemples précis. À la fin, vous saurez exactement par où commencer, [quelle laine](/blog/quelle-laine-pour-tricoter-un-pull) acheter, combien de mailles monter et pourquoi chaque décision technique compte pour que votre pull vous aille vraiment.
 
 ![Aiguilles circulaires en bois avec un échantillon de jersey en laine mérinos crème sur fond neutre, lumière naturelle douce](/images/blog/tricoter-un-pull-facile-debutant-gratuit/tricoter-un-pull-facile-debutant-gratuit-echantillon-jersey.webp)
 
@@ -1883,9 +1897,12 @@ Tricoter un premier pull est un projet structurant : il vous oblige à comprendr
   },
   {
     slug: "chaussons-a-tricoter",
-    title: "Chaussons tricot facile et gratuit : guide complet",
+    seoTitle: "Chaussons tricot facile et gratuit pour adultes : explications",
+    seoDescription:
+      "Patron gratuit de chaussons tricot pour adultes, avec explications claires : échantillon, construction, points. Idéal pour un tricoteur débutant.",
+    title: "Chaussons tricot facile et gratuit pour adultes : guide complet",
     excerpt:
-      "Tricoter des chaussons faciles et gratuits, c'est possible dès vos premières aiguilles. Échantillon, montage, construction : tout est expliqué. Obtenez votre patron sur mesure.",
+      "Tricoter des chaussons faciles et gratuits pour adultes, c'est possible dès vos premières aiguilles. Échantillon, montage, construction : tout est expliqué. Obtenez votre patron sur mesure.",
     keywords: [
       "chaussons tricot facile gratuit",
       "patron chaussons tricot",
@@ -2004,7 +2021,7 @@ La Maille a précisément été conçue pour simplifier cette étape : en import
 
 ## Questions frequentes
 
-### Comment tricoter des chaussons faciles pour débutant sans patron compliqué ?
+### Comment tricoter des chaussons faciles pour adulte débutant, sans patron compliqué ?
 
 La méthode la plus accessible est la construction en L à plat sur deux aiguilles droites. Vous montez les mailles de la semelle, vous tricotez en jersey jusqu'à la longueur souhaitée, puis vous formez le talon par des diminutions simples et vous rabattez les mailles restantes. Une seule couture latérale termine l'ouvrage. Cette méthode ne nécessite pas de tricoter en rond et utilise uniquement le jersey et les côtes de base.
 
