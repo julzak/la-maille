@@ -42,8 +42,8 @@ function emailHtml(variant: Variant): { subject: string; html: string } {
     : "You created an account on La Maille but haven't tried it yet. Send a photo of a sweater you like and get a pattern back.";
 
   const bodyFr = isA
-    ? "Vous avez commence un patron sur La Maille il y a quelques jours. Il est toujours enregistre, la ou vous l'avez laisse."
-    : "Vous avez cree un compte sur La Maille mais vous n'avez pas encore essaye. Envoyez la photo d'un pull qui vous plait et recuperez un patron.";
+    ? "Vous avez commencé un patron sur La Maille il y a quelques jours. Il est toujours enregistré, là où vous l'avez laissé."
+    : "Vous avez créé un compte sur La Maille mais vous n'avez pas encore essayé. Envoyez la photo d'un pull qui vous plaît et récupérez un patron.";
 
   const html = `
 <!DOCTYPE html>
@@ -88,7 +88,7 @@ function emailHtml(variant: Variant): { subject: string; html: string } {
       </div>
 
       <p style="color: #888; font-size: 13px; margin: 0; line-height: 1.6;">
-        Pour ne plus recevoir ces emails, repondez simplement a celui-ci.
+        Pour ne plus recevoir ces emails, répondez simplement à celui-ci.
       </p>
 
     </div>
@@ -173,7 +173,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const candidates = await listRecentConfirmedUsers(supabase);
 
-    // Filtre les users deja relances (kind = 'j3'), quel que soit le mode.
+    // Filtre les users déjà relancés (kind = 'j3'), quel que soit le mode.
     let alreadySent = new Set<string>();
     if (candidates.length > 0) {
       const { data: already, error: alreadyError } = await supabase
@@ -203,7 +203,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     if (!RELANCE_J3_ENABLED) {
-      console.info(`DRY RUN: ${recipients.length} destinataire(s) auraient recu la relance J3, aucun email envoye.`);
+      console.info(`DRY RUN: ${recipients.length} destinataire(s) auraient reçu la relance J3, aucun email envoyé.`);
       return new Response(
         JSON.stringify({
           mode: "dry_run",
@@ -233,7 +233,7 @@ const handler = async (req: Request): Promise<Response> => {
         sent += 1;
       } catch (err) {
         errors += 1;
-        console.error(`Erreur relance J3 pour ${maskEmail(recipient.email)}:`, err);
+        console.error(`Erreur relance J3 pour ${maskEmail(recipient.email)} :`, err);
       }
     }
 
@@ -242,7 +242,7 @@ const handler = async (req: Request): Promise<Response> => {
       { status: 200, headers: { "Content-Type": "application/json" } },
     );
   } catch (error) {
-    console.error("Erreur relance-j3:", error);
+    console.error("Erreur relance-j3 :", error);
     return new Response(JSON.stringify({ error: (error as Error).message }), {
       status: 500,
       headers: { "Content-Type": "application/json" },

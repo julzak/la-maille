@@ -1,8 +1,8 @@
--- Relance J3 : email de relance envoye 3 jours apres l'inscription
--- (users crees, confirmes, jamais revenus). Fonction Edge relance-j3
--- appelee chaque jour a 8h UTC par pg_cron.
+-- Relance J3 : email de relance envoyé 3 jours après l'inscription
+-- (users créés, confirmés, jamais revenus). Fonction Edge relance-j3
+-- appelée chaque jour à 8h UTC par pg_cron.
 
--- Table d'idempotence : un user n'est jamais relance deux fois pour un meme "kind".
+-- Table d'idempotence : un user n'est jamais relancé deux fois pour un même "kind".
 create table if not exists public.relance_emails (
   user_id uuid not null references auth.users(id) on delete cascade,
   kind text not null default 'j3',
@@ -11,24 +11,24 @@ create table if not exists public.relance_emails (
 );
 
 alter table public.relance_emails enable row level security;
--- Aucune policy : accessible uniquement via service_role (utilise par la fonction Edge),
--- meme logique que les autres tables ecrites en service_role only du projet.
+-- Aucune policy : accessible uniquement via service_role (utilisé par la fonction Edge),
+-- même logique que les autres tables écrites en service_role only du projet.
 
 create extension if not exists pg_cron;
 
 -- IMPORTANT (secret) : le header Authorization ci-dessous contient un placeholder,
--- __SERVICE_ROLE_KEY__, volontairement. La vraie cle service_role de jazzy-apps
--- n'est JAMAIS committee dans ce fichier ni dans aucun fichier versionne.
+-- __SERVICE_ROLE_KEY__, volontairement. La vraie clé service_role de jazzy-apps
+-- n'est JAMAIS committée dans ce fichier ni dans aucun fichier versionné.
 --
--- Apres application de cette migration, la vraie valeur est injectee directement
--- en base par une commande SQL non versionnee (executee une seule fois, hors git) :
+-- Après application de cette migration, la vraie valeur est injectée directement
+-- en base par une commande SQL non versionnée (exécutée une seule fois, hors git) :
 --
 --   update cron.job
---   set command = replace(command, '__SERVICE_ROLE_KEY__', '<vraie cle service_role jazzy-apps>')
+--   set command = replace(command, '__SERVICE_ROLE_KEY__', '<vraie clé service_role jazzy-apps>')
 --   where jobname = 'relance-j3-daily';
 --
 -- Voir tasks/relance-j3-copy.md et la description de la PR feat/relance-j3 pour le
--- detail de cette etape post-migration.
+-- détail de cette étape post-migration.
 select cron.schedule(
   'relance-j3-daily',
   '0 8 * * *',
