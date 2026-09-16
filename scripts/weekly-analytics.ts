@@ -201,6 +201,30 @@ async function getAiAssistantSessions(startDate: string, endDate: string) {
   return { total: rows.reduce((sum, r) => sum + r.sessions, 0), rows }
 }
 
+// Pinterest ventile par pin (utm_content=pin-XX, ajoute en septembre 2026).
+// Le test d'aout a atteint 61 sessions mais 53 venaient d'un seul pin : la
+// decision se prend pin par pin, pas sur le total.
+async function getPinterestPins(startDate: string, endDate: string) {
+  const [response] = await ga.runReport({
+    property: GA_PROPERTY,
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: "sessionManualAdContent" }, { name: "landingPage" }],
+    metrics: [{ name: "sessions" }, { name: "engagedSessions" }],
+    orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+    dimensionFilter: {
+      filter: { fieldName: "sessionSource", stringFilter: { matchType: "CONTAINS", value: "pinterest", caseSensitive: false } },
+    },
+    limit: 30,
+  })
+  const rows = (response.rows || []).map((row) => ({
+    pin: (row.dimensionValues?.[0]?.value && row.dimensionValues[0].value !== "(not set)") ? row.dimensionValues[0].value : "(sans utm_content)",
+    landing: row.dimensionValues?.[1]?.value || "",
+    sessions: parseInt(row.metricValues?.[0]?.value || "0"),
+    engaged: parseInt(row.metricValues?.[1]?.value || "0"),
+  }))
+  return { total: rows.reduce((sum, r) => sum + r.sessions, 0), rows }
+}
+
 // Contacts Brevo captures par la gate email (BRIEF-01). null si cle absente
 // ou liste introuvable : on affiche "n/d" plutot qu'un zero trompeur.
 async function getBrevoAudienceCount(): Promise<number | null> {
@@ -232,9 +256,14 @@ async function getSupabaseMetrics(since: Date) {
     supabase.from("saved_patterns").select("id", { count: "exact", head: true }).gte("created_at", sinceISO),
   ])
 
-  const [totalProfiles, totalPatterns] = await Promise.all([
+  // Inscriptions sur 30 jours : profiles est alimente par le trigger DB a chaque
+  // creation dans auth.users, c'est la source de verite (l'event GA sign_up
+  // sous-comptait les inscriptions OAuth jusqu'en septembre 2026).
+  const monthISO = new Date(since.getTime() - 23 * 24 * 3600 * 1000).toISOString()
+  const [totalProfiles, totalPatterns, profilesMonth] = await Promise.all([
     supabase.from("profiles").select("id", { count: "exact", head: true }),
     supabase.from("saved_patterns").select("id", { count: "exact", head: true }),
+    supabase.from("profiles").select("id", { count: "exact", head: true }).gte("created_at", monthISO),
   ])
 
   // Top garment types this week
@@ -269,6 +298,7 @@ async function getSupabaseMetrics(since: Date) {
 
   return {
     newUsers: profiles.count || 0,
+    newUsersMonth: profilesMonth.count || 0,
     newPatterns: patterns.count || 0,
     totalUsers: totalProfiles.count || 0,
     totalPatterns: totalPatterns.count || 0,
@@ -321,11 +351,12 @@ function buildReport(data: {
   supabase: Awaited<ReturnType<typeof getSupabaseMetrics>>
   aiWeek: Awaited<ReturnType<typeof getAiAssistantSessions>>
   aiMonth: Awaited<ReturnType<typeof getAiAssistantSessions>>
+  pinsMonth: Awaited<ReturnType<typeof getPinterestPins>>
   botSessionsWeek: number
   brevoAudience: number | null
   dateRange: { weekStart: string; weekEnd: string }
 }) {
-  const { week, prevWeek, month, topPages, topSources, topCountries, funnelWeek, funnelMonth, supabase: sb, aiWeek, aiMonth, botSessionsWeek, brevoAudience, dateRange } = data
+  const { week, prevWeek, month, topPages, topSources, topCountries, funnelWeek, funnelMonth, supabase: sb, aiWeek, aiMonth, pinsMonth, botSessionsWeek, brevoAudience, dateRange } = data
 
   const metricRow = (label: string, weekVal: number, prevVal: number, monthVal: number, format?: "duration" | "percent") => {
     let wStr = String(weekVal)
@@ -363,6 +394,15 @@ function buildReport(data: {
   const aiRows = aiWeek.rows.map((r) =>
     `<tr><td style="padding:2px 0 2px 16px;color:#888;font-size:12px;">${r.source}</td><td style="padding:2px 12px;font-size:12px;text-align:right;" colspan="2">${r.sessions}</td></tr>`
   ).join("")
+
+  const pinRows = pinsMonth.rows.map((r) =>
+    `<tr><td style="padding:2px 0 2px 16px;color:#888;font-size:12px;">${r.pin} <span style="color:#555;">${r.landing}</span></td><td style="padding:2px 12px;font-size:12px;text-align:right;" colspan="2">${r.sessions} (${r.engaged} eng.)</td></tr>`
+  ).join("")
+  const pinterestSection = pinsMonth.total > 0 ? `
+    <tr><td colspan="3" style="padding:12px 0 8px;color:#C9A84C;font-size:11px;text-transform:uppercase;letter-spacing:2px;">Pinterest par pin (30j)</td></tr>
+    <tr><td style="padding:4px 0;color:#aaa;font-size:13px;">Sessions Pinterest</td><td style="padding:4px 12px;font-size:14px;font-weight:bold;text-align:right;" colspan="2">${pinsMonth.total}</td></tr>
+    ${pinRows}
+  ` : ""
 
   const supabaseSection = sb ? `
     <tr><td colspan="3" style="padding:16px 0 8px;color:#C9A84C;font-size:11px;text-transform:uppercase;letter-spacing:2px;">Produit</td></tr>
@@ -407,9 +447,11 @@ function buildReport(data: {
   ${metricRow("Formulaire commencé", funnelWeek.form_start.count, 0, funnelMonth.form_start.count)}
   ${metricRow("Taille sélectionnée", funnelWeek.select_size.count, 0, funnelMonth.select_size.count)}
   ${metricRow("Patron généré", funnelWeek.generate_pattern.count, 0, funnelMonth.generate_pattern.count)}
-  ${metricRow("Inscription", funnelWeek.sign_up.count, 0, funnelMonth.sign_up.count)}
+  ${sb ? metricRow("Inscription (Supabase)", sb.newUsers, 0, sb.newUsersMonth) : ""}
+  ${metricRow("Inscription (event GA)", funnelWeek.sign_up.count, 0, funnelMonth.sign_up.count)}
   ${metricRow("Patron sauvegardé", funnelWeek.save_pattern.count, 0, funnelMonth.save_pattern.count)}
   <tr><td style="padding:6px 0;color:#aaa;font-size:13px;">Taux de conversion visiteur → patron</td><td style="padding:6px 12px;font-size:14px;font-weight:bold;text-align:right;" colspan="2">${week.activeUsers > 0 ? ((funnelWeek.generate_pattern.count / week.activeUsers) * 100).toFixed(1) : 0}%</td></tr>
+  ${pinterestSection}
   ${supabaseSection}
 </table>
 
@@ -451,7 +493,7 @@ async function main() {
   prevWeekStart.setDate(prevWeekStart.getDate() - 6)
 
   // Fetch all data in parallel
-  const [week, prevWeek, month, topPages, topSources, topCountries, funnelWeek, funnelMonth, sbMetrics, aiWeek, aiMonth, botSessionsWeek, brevoAudience] = await Promise.all([
+  const [week, prevWeek, month, topPages, topSources, topCountries, funnelWeek, funnelMonth, sbMetrics, aiWeek, aiMonth, pinsMonth, botSessionsWeek, brevoAudience] = await Promise.all([
     getGAMetrics("7daysAgo", "yesterday"),
     getGAMetrics("14daysAgo", "8daysAgo"),
     getGAMetrics("30daysAgo", "yesterday"),
@@ -463,6 +505,7 @@ async function main() {
     getSupabaseMetrics(weekStart),
     getAiAssistantSessions("7daysAgo", "yesterday"),
     getAiAssistantSessions("30daysAgo", "yesterday"),
+    getPinterestPins("30daysAgo", "yesterday"),
     getExcludedBotSessions("7daysAgo", "yesterday"),
     getBrevoAudienceCount(),
   ])
@@ -483,6 +526,7 @@ async function main() {
     supabase: sbMetrics,
     aiWeek,
     aiMonth,
+    pinsMonth,
     botSessionsWeek,
     brevoAudience,
     dateRange: {

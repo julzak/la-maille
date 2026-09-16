@@ -60,9 +60,22 @@ export async function GET(request: Request) {
         }
       }
 
+      // Le trigger DB on_auth_user_created cree le profil des l'insertion dans
+      // auth.users, donc `isNewUser` (profil absent) est toujours faux ici et
+      // l'event GA sign_up n'etait jamais pose pour les inscriptions OAuth
+      // (aout 2026 : 7 events GA pour 19 comptes, les 7 = inscriptions email,
+      // deja trackees dans AuthModal). On detecte le nouvel inscrit par l'age
+      // du compte. Les comptes email sont exclus pour ne pas doubler l'event
+      // au clic sur le lien de confirmation.
+      const provider = user?.app_metadata?.provider ?? "google";
+      const accountAgeMs = user?.created_at
+        ? Date.now() - new Date(user.created_at).getTime()
+        : Number.POSITIVE_INFINITY;
+      const isNewSignup =
+        isNewUser || (provider !== "email" && accountAgeMs < 10 * 60 * 1000);
+
       const redirectUrl = new URL(`${origin}${next}`);
-      if (isNewUser) {
-        const provider = user?.app_metadata?.provider ?? "google";
+      if (isNewSignup) {
         redirectUrl.searchParams.set("signup", provider === "email" ? "email" : "google");
       }
       return NextResponse.redirect(redirectUrl.toString());
