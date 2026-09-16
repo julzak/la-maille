@@ -61,4 +61,7 @@ Décision de continuer prise (seuil atteint). Il faut une session de ~1 h dans t
 `BREVO_API_KEY` de `.env.local` est morte depuis août. Il faut la copier depuis Vercel (Settings > Environment Variables) pour tester D2 et le compteur du rapport hebdo en local.
 
 ## État
-- 2026-09-16 : lot C mergé (PR #44, prod vérifiée), lot B mergé (PR #46), lot A mergé (PR #45, avec layouts JSON-LD FR en plus). Lots E et F en attente des décisions D1 et D2.
+- 2026-09-16 : lot C mergé (PR #44, prod vérifiée), lot B mergé (PR #46), lot A mergé (PR #45, avec layouts JSON-LD FR en plus).
+- 2026-09-16, décisions Julien : D1 go, D2 go, D3 on attend, D4 inchangé, D5 rappel posé dans le vault (00-Inbox, semaine du 21/09), D6 pas prioritaire.
+- Lot E (PR #48) mergé et vérifié en prod : upload réel depuis /blog/knitting-neckline-shaping, redirection /analyse, analyse complète. Event `blog_upload_start`, hook partagé `hooks/useStartAnalysis.ts`.
+- Lot F (PR #49) mergé, fonction `relance-j3` déployée, interrupteur `RELANCE_J3_ENABLED` fermé. RESTE côté Julien (le harnais Claude Code refuse les migrations prod) : `supabase db push --linked` puis injection de la clé service_role dans le job cron (voir migration 20260916120000_relance_j3.sql), puis validation du texte `tasks/relance-j3-copy.md` avant `supabase secrets set RELANCE_J3_ENABLED=true`.
