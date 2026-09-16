@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { ImageUploader } from "@/components/ImageUploader";
 import { ResumeProjectDialog } from "@/components/ResumeProjectDialog";
 import { useLaMailleStore } from "@/lib/store";
 import { useTranslation } from "@/lib/i18n";
-import { clearProject } from "@/lib/storage";
+import { useStartAnalysis } from "@/hooks/useStartAnalysis";
 
 const HOME_FAQ = [
   { q: "homeFaq.q1", a: "homeFaq.a1" },
@@ -19,9 +18,9 @@ const HOME_FAQ = [
 ] as const;
 
 export default function Home() {
-  const router = useRouter();
   const { t } = useTranslation();
-  const { setImages, setAnalysisLoading, analysisLoading } = useLaMailleStore();
+  const { setAnalysisLoading, analysisLoading } = useLaMailleStore();
+  const { startAnalysis } = useStartAnalysis();
 
   // Reset loading state when returning to home page (prevents stuck disabled button)
   useEffect(() => {
@@ -30,25 +29,6 @@ export default function Home() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleImagesSelected = async (files: File[], previews: string[]) => {
-    try {
-      // Clear any previous project when starting new
-      clearProject();
-      setImages(files, previews);
-      setAnalysisLoading(true);
-
-      // Wait for Zustand persist to flush to sessionStorage before navigation
-      await new Promise(resolve => setTimeout(resolve, 100));
-
-      router.push("/analyse");
-    } catch (err) {
-      console.error("[Home] Error in handleImagesSelected:", err);
-      // Even if persist fails, force navigation with in-memory state
-      setAnalysisLoading(true);
-      router.push("/analyse");
-    }
-  };
 
   return (
     <div>
@@ -71,7 +51,7 @@ export default function Home() {
       <section className="px-4 pb-8 md:pb-12">
         <div className="container mx-auto max-w-2xl">
           <ImageUploader
-            onImagesSelected={handleImagesSelected}
+            onImagesSelected={startAnalysis}
             isLoading={analysisLoading}
           />
         </div>

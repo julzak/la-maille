@@ -4,7 +4,20 @@ import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getArticleBySlug, getAllArticles, articleLang, resolveInternalBlogHref } from "@/lib/blog-data";
 import { BlogInlineCta } from "@/components/BlogInlineCta";
+import { BlogInlineUploader } from "@/components/BlogInlineUploader";
 import type { Language } from "@/lib/i18n/detect";
+
+/**
+ * Articles EN a plus fort trafic ou le CTA texte inline (BlogInlineCta) est
+ * remplace par le dropzone d'upload reel (BlogInlineUploader) : sur 30 j,
+ * ces articles font 578 sessions pour seulement 10 clics CTA / 18
+ * generations, le lien vers la page produit ne suffit pas (sept. 2026).
+ */
+const INLINE_UPLOADER_SLUGS = new Set([
+  "knitting-neckline-shaping",
+  "raglan-vs-set-in-sleeves-which-to-choose",
+  "how-many-yards-of-yarn-for-a-sweater",
+]);
 
 const chrome: Record<
   Language,
@@ -353,7 +366,11 @@ export function BlogArticleView({ slug }: { slug: string }) {
       <article className="prose-custom">
         {renderMarkdown(
           article.content,
-          <BlogInlineCta lang={lang} slug={article.slug} />
+          INLINE_UPLOADER_SLUGS.has(article.slug) ? (
+            <BlogInlineUploader lang={lang} slug={article.slug} />
+          ) : (
+            <BlogInlineCta lang={lang} slug={article.slug} />
+          )
         )}
       </article>
 
