@@ -61,4 +61,4 @@ Décision de continuer prise (seuil atteint). Il faut une session de ~1 h dans t
 `BREVO_API_KEY` de `.env.local` est morte depuis août. Il faut la copier depuis Vercel (Settings > Environment Variables) pour tester D2 et le compteur du rapport hebdo en local.
 
 ## État
-- 2026-09-16 : lots A, B, C lancés.
+- 2026-09-16 : lot C mergé (PR #44, prod vérifiée), lot B mergé (PR #46), lot A mergé (PR #45, avec layouts JSON-LD FR en plus). Lots E et F en attente des décisions D1 et D2.
