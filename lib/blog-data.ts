@@ -553,7 +553,7 @@ Le point mousse tricot est bien plus qu'un simple point de départ pour les déb
   },
   {
     slug: "point-de-riz-tricot",
-    seoTitle: "Point de Riz au Tricot : Explications et Point de Riz Double",
+    seoTitle: "Point de riz au tricot : explications et point de riz double",
     seoDescription:
       "Comment tricoter le point de riz : technique, différence avec le point de riz double et le point de blé, échantillon. Explications gratuites et pas à pas.",
     title: "Point de riz au tricot : technique, usages et astuces",
@@ -1390,7 +1390,7 @@ Tricoter une layette de naissance, c'est maîtriser la précision dans un format
   },
   {
     slug: "gilet-cardigan-tricot",
-    seoTitle: "Modèle de Gilet à Tricoter Femme : Explications Gratuites",
+    seoTitle: "Modèle de gilet à tricoter femme : explications gratuites",
     seoDescription:
       "Modèle de gilet à tricoter pour femme avec explications gratuites : construction, échantillon, laine. Comment tricoter un gilet tricoté à votre taille.",
     title: "Modèle tricot gilet femme facile gratuit : guide complet",
@@ -1897,7 +1897,7 @@ Tricoter un premier pull est un projet structurant : il vous oblige à comprendr
   },
   {
     slug: "chaussons-a-tricoter",
-    seoTitle: "Chaussons Tricot Facile et Gratuit pour Adultes : Explications",
+    seoTitle: "Chaussons tricot facile et gratuit pour adultes : explications",
     seoDescription:
       "Patron gratuit de chaussons tricot pour adultes, avec explications claires : échantillon, construction, points. Idéal pour un tricoteur débutant.",
     title: "Chaussons tricot facile et gratuit pour adultes : guide complet",
