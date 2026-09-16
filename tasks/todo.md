@@ -9,7 +9,7 @@
 - [ ] Mesurer apres 2 semaines : blog_cta_click, generate_pattern par landing /blog/*, make_public, sign_up (doit coller aux profiles Supabase).
 - [x] Lot FR on-page + maillage vers gilet-cardigan, point-de-riz, chaussons (PR #46, 2026-09-16). Reste : suivre les positions GSC de ces 3 pages debut octobre.
 - [ ] Verifier sur le rapport hebdo du 2026-09-21 que sign_up GA rejoint les inscriptions Supabase (fix callback PR #44).
-- [ ] Julien : appliquer la migration relance J+3 (`supabase db push --linked` depuis le repo) puis injecter la cle service_role dans le job cron `relance-j3-daily` (SQL dans la migration 20260916120000_relance_j3.sql, utiliser cron.alter_job). Ensuite Claude fait le test curl en mode ferme.
+- [x] Relance J+3 : migration appliquee, job cron `relance-j3-daily` actif (8h UTC) avec le jeton dedie RELANCE_J3_TOKEN, chaine pg_net -> fonction testee depuis la base (200, dry_run, 1 destinataire, 0 envoi) le 2026-09-16.
 - [ ] Julien : valider le texte de la relance J+3 (tasks/relance-j3-copy.md) avant `supabase secrets set RELANCE_J3_ENABLED=true`.
 - [ ] Mesurer apres 2 semaines : blog_upload_start et generate_pattern par landing sur les 3 articles EN a dropzone (PR #48), blog_cta_click FR apres la nouvelle copy (PR #46).
 - [ ] D3 newsletter 51 contacts : en attente. D4 patrons publics : inchange.
