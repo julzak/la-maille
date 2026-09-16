@@ -1,13 +1,15 @@
 # TODO courant (2026-08-21)
 
 - [ ] Julien : Request Indexing GSC des 14 articles FR + de /blog/knitting-pattern-generators-compared (en attente depuis le chantier blog FR).
-- [ ] Julien : decision Pinterest le 2026-09-05 (seuil 50 sessions/mois, 2 sessions au 2026-08-20). Aucun effort d'ici la.
+- [x] Pinterest : seuil atteint (61 sessions au 2026-09-15, 53 sur le pin 4). Decision : continuer, mesure par pin (utm_content). Creneau de publication des 15 pins restants a caler avec Julien.
 - [ ] Julien : BREVO_API_KEY dans .env.local est morte. Le rapport hebdo affiche "n/d" pour les contacts Brevo tant qu'elle n'est pas remplacee.
 - [x] Bug SEO /fr rendue en anglais cote serveur : corrige (PR fix/i18n-ssr-client-store). Cause : zustand 5 sert getInitialState() comme snapshot SSR, le setState serveur etait ignore. useTranslation lit desormais la locale de la requete via SsrLanguageContext cote serveur.
-- [ ] Contenu FR manquant : /fr/knitting-pattern-generator et /fr/how-it-works ont des metadonnees FR mais un corps de page ecrit en dur en anglais (re-export de la page EN). Google voit un title FR et un contenu EN. A traduire via i18n (chantier contenu, ~150 lignes + FAQ).
-- [ ] Suivre l'erosion de /knitting-pattern-generator (GSC) apres le lot du 2026-08-21 : si les positions sur "image/photo to knitting pattern" ne remontent pas d'ici fin septembre, envisager de rediriger ou de reorienter photo-to-knitting-pattern-complete-guide.
+- [x] Contenu FR manquant : /fr/knitting-pattern-generator et /fr/how-it-works traduits via i18n + layouts JSON-LD FR (PR #45, 2026-09-16).
+- [x] Erosion de /knitting-pattern-generator inversee (GSC 28 j au 2026-09-11 : 145 clics, pos 7,3). Suivre l'erosion de /knitting-pattern-generator (GSC) apres le lot du 2026-08-21 : si les positions sur "image/photo to knitting pattern" ne remontent pas d'ici fin septembre, envisager de rediriger ou de reorienter photo-to-knitting-pattern-complete-guide.
 - [ ] Mesurer apres 2 semaines : blog_cta_click, generate_pattern par landing /blog/*, make_public, sign_up (doit coller aux profiles Supabase).
-- [ ] Prochain lot FR : maillage dense vers les 2 hubs a volume + contenu "modele gratuit".
+- [x] Lot FR on-page + maillage vers gilet-cardigan, point-de-riz, chaussons (PR #46, 2026-09-16). Reste : suivre les positions GSC de ces 3 pages debut octobre.
+- [ ] Verifier sur le rapport hebdo du 2026-09-21 que sign_up GA rejoint les inscriptions Supabase (fix callback PR #44).
+- [ ] Decisions D1 a D6 de tasks/plan-croissance-2026-09.md (widget blog EN, relance J+3, newsletter 51 contacts, patrons publics, creneau Pinterest, cle Brevo).
 
 ---
 
