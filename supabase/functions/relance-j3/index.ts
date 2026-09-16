@@ -5,6 +5,10 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const BREVO_API_KEY = Deno.env.get("BREVO_API_KEY");
 const RELANCE_J3_ENABLED = Deno.env.get("RELANCE_J3_ENABLED") === "true";
+// Jeton dedie pour l'appel par le job pg_cron (secret RELANCE_J3_TOKEN, valeur
+// aleatoire) : le job ne porte pas la cle service_role, et la comparaison ne
+// depend pas du format de cle injecte par la plateforme.
+const RELANCE_J3_TOKEN = Deno.env.get("RELANCE_J3_TOKEN") ?? "";
 
 const HOUR_MS = 60 * 60 * 1000;
 const WINDOW_MIN_HOURS = 72;
@@ -159,7 +163,8 @@ async function listRecentConfirmedUsers(
 
 const handler = async (req: Request): Promise<Response> => {
   const authHeader = req.headers.get("Authorization") ?? "";
-  if (authHeader !== `Bearer ${SERVICE_ROLE_KEY}`) {
+  const tokenOk = RELANCE_J3_TOKEN.length >= 32 && authHeader === `Bearer ${RELANCE_J3_TOKEN}`;
+  if (!tokenOk && authHeader !== `Bearer ${SERVICE_ROLE_KEY}`) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), {
       status: 401,
       headers: { "Content-Type": "application/json" },

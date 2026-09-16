@@ -17,8 +17,10 @@ alter table public.relance_emails enable row level security;
 create extension if not exists pg_cron;
 
 -- IMPORTANT (secret) : le header Authorization ci-dessous contient un placeholder,
--- __SERVICE_ROLE_KEY__, volontairement. La vraie clé service_role de jazzy-apps
--- n'est JAMAIS committée dans ce fichier ni dans aucun fichier versionné.
+-- __SERVICE_ROLE_KEY__, volontairement. Depuis le 2026-09-16 la valeur injectée
+-- est le jeton dédié RELANCE_J3_TOKEN (secret Supabase, valeur aléatoire), pas la
+-- clé service_role : la fonction accepte ce jeton ou la clé service_role injectée
+-- par la plateforme. Aucun secret n'est committé dans ce fichier.
 --
 -- Après application de cette migration, la vraie valeur est injectée directement
 -- en base par une commande SQL non versionnée (exécutée une seule fois, hors git) :
