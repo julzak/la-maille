@@ -10,7 +10,7 @@
 - [x] Lot FR on-page + maillage vers gilet-cardigan, point-de-riz, chaussons (PR #46, 2026-09-16). Reste : suivre les positions GSC de ces 3 pages debut octobre.
 - [ ] Verifier sur le rapport hebdo du 2026-09-21 que sign_up GA rejoint les inscriptions Supabase (fix callback PR #44).
 - [x] Relance J+3 : migration appliquee, job cron `relance-j3-daily` actif (8h UTC) avec le jeton dedie RELANCE_J3_TOKEN, chaine pg_net -> fonction testee depuis la base (200, dry_run, 1 destinataire, 0 envoi) le 2026-09-16.
-- [ ] Julien : valider le texte de la relance J+3 (tasks/relance-j3-copy.md) avant `supabase secrets set RELANCE_J3_ENABLED=true`.
+- [x] Relance J+3 ACTIVEE le 2026-09-16 (texte valide par Julien, RELANCE_J3_ENABLED=true). Premier envoi reel le 16/09 (1 destinataire, declenche par l'appel de verification). Suivre les reponses a contact@la-maille.com (desinscription = reponse a l'email) et le compteur relance_emails dans le rapport hebdo.
 - [ ] Mesurer apres 2 semaines : blog_upload_start et generate_pattern par landing sur les 3 articles EN a dropzone (PR #48), blog_cta_click FR apres la nouvelle copy (PR #46).
 - [ ] D3 newsletter 51 contacts : en attente. D4 patrons publics : inchange.
 
