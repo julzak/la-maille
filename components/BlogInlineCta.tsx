@@ -18,10 +18,10 @@ const copy: Record<
     href: "/knitting-pattern-generator",
   },
   fr: {
-    kicker: "Sans calculs",
-    title: "Transformez la photo d'un pull en votre propre patron",
-    text: "Importez une photo, indiquez votre échantillon et vos mesures, et recevez les explications rang par rang à votre taille. Gratuit, sans compte.",
-    button: "Générer mon patron",
+    kicker: "Modèle gratuit",
+    title: "Obtenez ce modèle à votre taille, gratuitement",
+    text: "Une photo du vêtement, votre échantillon et vos mesures : La Maille calcule les explications rang par rang pour vous. Sans compte, sans patron à acheter.",
+    button: "Créer mon modèle gratuit",
     href: "/fr",
   },
 };
