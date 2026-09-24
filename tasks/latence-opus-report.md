@@ -14,6 +14,8 @@ Généré par `scripts/diag-latence-opus.ts` sur les 4 images de `tasks/ab-kimi-
 | fast-effort-low | speed fast + effort low ($10/$50) | échec | - | - | - | 429 {"type":"error","error":{"type":"rate_limit_error","mess |
 | sonnet-5 | claude-sonnet-5, défauts (adaptatif, effort high) | 9.5 s | 7.7-13.8 s | 3581 / 624 | $0.0201 | 4/4 |
 | sonnet-5-low | claude-sonnet-5, effort low | 6.1 s | 5.4-6.5 s | 3581 / 524 | $0.0186 | 4/4 |
+| opus5-low-sept | claude-opus-5 effort low, rejoué le 2026-09-24 | 10.0 s | 7.1-15.1 s | 3989 / 503 | $0.0325 | 4/4 |
+| opus55-low | claude-opus-5-5 effort low ($4/$20) | 8.1 s | 7.1-9.4 s | 3991 / 619 | $0.0283 | 4/4 |
 
 ## Détail par appel
 
@@ -59,6 +61,14 @@ Généré par `scripts/diag-latence-opus.ts` sur les 4 images de `tasks/ab-kimi-
 | sonnet-5-low | pull-ecru-plie | 6.3 s | 3581/579 | $0.0194 | ok | insufficient | 10 |
 | sonnet-5-low | pull-irlandais-ecru | 5.4 s | 3581/483 | $0.0180 | ok | medium | 4 |
 | sonnet-5-low | pull-torsades-rouille | 6.5 s | 3581/532 | $0.0187 | ok | medium | 1 |
+| opus5-low-sept | layette-cardigan | 8.5 s | 3989/524 | $0.0330 | ok | medium | 0 |
+| opus5-low-sept | pull-ecru-plie | 9.2 s | 3989/512 | $0.0327 | ok | low | 9 |
+| opus5-low-sept | pull-irlandais-ecru | 15.1 s | 3989/452 | $0.0312 | ok | medium | 3 |
+| opus5-low-sept | pull-torsades-rouille | 7.1 s | 3989/522 | $0.0330 | ok | medium | 1 |
+| opus55-low | layette-cardigan | 7.1 s | 3991/603 | $0.0280 | ok | medium | 5 |
+| opus55-low | pull-ecru-plie | 9.4 s | 3991/707 | $0.0301 | ok | low | 7 |
+| opus55-low | pull-irlandais-ecru | 8.2 s | 3991/565 | $0.0273 | ok | medium | 3 |
+| opus55-low | pull-torsades-rouille | 7.9 s | 3991/601 | $0.0280 | ok | medium | 3 |
 
 ## Sorties complètes (pour jugement qualité)
 
@@ -283,6 +293,63 @@ Baseline = sortie du test A/B (`tasks/ab-kimi-results/`), identique prod.
     "La méthode de construction ne peut pas être confirmée sans voir l'intérieur ou le dos"
   ],
   "warnings": [],
+  "overallConfidence": "medium"
+}
+```
+
+#### opus55-low
+```json
+{
+  "analysable": true,
+  "rejectionReason": null,
+  "garment": {
+    "type": "cardigan",
+    "confidence": 0.9
+  },
+  "construction": {
+    "method": "unknown",
+    "confidence": 0.4,
+    "reasoning": "Le cardigan bébé est plié, ce qui masque une grande partie de la construction. Des lignes diagonales visibles vers l'encolure suggèrent des manches raglan, compatibles avec une construction top-down ou en pièces assemblées, sans pouvoir trancher."
+  },
+  "neckline": {
+    "type": "ras-du-cou",
+    "confidence": 0.6
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "basse",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0.3
+  },
+  "sleeves": {
+    "type": "raglan",
+    "length": "unknown",
+    "confidence": 0.65
+  },
+  "stitch": {
+    "mainPattern": "mousse",
+    "confidence": 0.85,
+    "notes": "Point mousse ou texture de type point de riz/grain sur l'ensemble. Bordures de boutonnage fines avec une lisière nette. Le bonnet et les chaussons de l'ensemble présentent des bordures en côtes."
+  },
+  "closure": {
+    "type": "boutons",
+    "buttonCountEstimate": 3,
+    "confidence": 0.85
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0.3
+  },
+  "limitations": [
+    "Vêtement plié : longueur des manches, forme générale et aisance non visibles",
+    "Détail de la bordure d'encolure difficile à observer",
+    "Méthode de construction non déterminable avec certitude",
+    "Nombre total de boutons possiblement supérieur (partie cachée par le pliage)"
+  ],
+  "warnings": [
+    "L'image contient plusieurs articles (bonnet, chaussons, cardigan) ; l'analyse porte sur le cardigan bébé"
+  ],
   "overallConfidence": "medium"
 }
 ```
@@ -518,6 +585,66 @@ Baseline = sortie du test A/B (`tasks/ab-kimi-results/`), identique prod.
 }
 ```
 
+#### opus55-low
+```json
+{
+  "analysable": true,
+  "rejectionReason": null,
+  "garment": {
+    "type": "pull",
+    "confidence": 0.65
+  },
+  "construction": {
+    "method": "unknown",
+    "confidence": 0.3,
+    "reasoning": "Le vêtement est plié et partiellement recouvert par un mètre ruban, ce qui empêche de voir les coutures latérales, les emmanchures et la jonction des manches. Le style (torsades et point de riz, type pull irlandais/Aran) est souvent tricoté en pièces assemblées, mais cela ne peut pas être confirmé."
+  },
+  "neckline": {
+    "type": "ras-du-cou",
+    "confidence": 0.5
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "unknown",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0.2
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "unknown",
+    "confidence": 0.2
+  },
+  "stitch": {
+    "mainPattern": "torsades",
+    "confidence": 0.9,
+    "notes": "Torsades en câble épais encadrant un panneau central en point de riz/point de graines texturé, avec des côtes torses ou colonnes en relief séparant les panneaux. Style Aran. Fil épais écru, probablement en laine."
+  },
+  "closure": {
+    "type": "aucune",
+    "buttonCountEstimate": 0,
+    "confidence": 0.55
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0.2
+  },
+  "limitations": [
+    "Vêtement plié : forme générale et coupe impossibles à évaluer",
+    "Manches non visibles : type et longueur indéterminables",
+    "Encolure à peine visible : construction, hauteur et point de la bordure indéterminables",
+    "Méthode de construction non identifiable",
+    "Présence ou absence de fermeture sur le devant non vérifiable avec certitude",
+    "Le mètre ruban masque une partie du vêtement"
+  ],
+  "warnings": [
+    "L'image semble être une photo d'ambiance mise en scène (possiblement générée), les détails de mailles peuvent ne pas être fidèles à un vrai tricot",
+    "Pour une analyse complète, photographier le vêtement à plat, déplié, de face et de dos"
+  ],
+  "overallConfidence": "low"
+}
+```
+
 ### pull-irlandais-ecru
 
 #### baseline (prod)
@@ -742,6 +869,64 @@ Baseline = sortie du test A/B (`tasks/ab-kimi-results/`), identique prod.
 }
 ```
 
+#### opus55-low
+```json
+{
+  "analysable": true,
+  "rejectionReason": null,
+  "garment": {
+    "type": "pull",
+    "confidence": 0.85
+  },
+  "construction": {
+    "method": "unknown",
+    "confidence": 0.4,
+    "reasoning": "Le pull est plié, ce qui masque les coutures latérales et la jonction des manches. Le style aran à torsades est traditionnellement tricoté en pièces assemblées, mais cela ne peut pas être confirmé sur cette photo."
+  },
+  "neckline": {
+    "type": "ras-du-cou",
+    "confidence": 0.85
+  },
+  "neckband": {
+    "construction": "picked-up",
+    "height": "moyenne",
+    "stitch": "cotes-1x1",
+    "doubled": null,
+    "confidence": 0.6
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "longues",
+    "confidence": 0.5
+  },
+  "stitch": {
+    "mainPattern": "torsades",
+    "confidence": 0.95,
+    "notes": "Motif de type aran : torsades en losanges et torsades tressées, séparées par des colonnes de côtes. Point de riz ou point de blé visible sur les côtés et sur les manches. Bordures en côtes."
+  },
+  "closure": {
+    "type": "aucune",
+    "buttonCountEstimate": 0,
+    "confidence": 0.85
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0.3
+  },
+  "limitations": [
+    "Vêtement plié : impossible de voir la jonction des manches et le type de manche",
+    "Méthode de construction non vérifiable",
+    "Coupe et ajustement non déterminables",
+    "Impossible de savoir si le col est doublé",
+    "Longueur des manches estimée d'après les parties repliées visibles"
+  ],
+  "warnings": [
+    "L'image semble être une mise en scène, peut-être générée ou retouchée"
+  ],
+  "overallConfidence": "medium"
+}
+```
+
 ### pull-torsades-rouille
 
 #### baseline (prod)
@@ -957,6 +1142,63 @@ Baseline = sortie du test A/B (`tasks/ab-kimi-results/`), identique prod.
     "La méthode de construction (top-down, bottom-up, etc.) n'est pas clairement visible"
   ],
   "warnings": [],
+  "overallConfidence": "medium"
+}
+```
+
+#### opus55-low
+```json
+{
+  "analysable": true,
+  "rejectionReason": null,
+  "garment": {
+    "type": "pull",
+    "confidence": 0.9
+  },
+  "construction": {
+    "method": "unknown",
+    "confidence": 0.4,
+    "reasoning": "Le pull est plié, ce qui masque les jonctions manches/corps et les coutures latérales. Aucun indice fiable ne permet de distinguer une construction en pièces assemblées, top-down ou bottom-up. Les torsades verticales continues sur le corps sont compatibles avec plusieurs méthodes."
+  },
+  "neckline": {
+    "type": "ras-du-cou",
+    "confidence": 0.9
+  },
+  "neckband": {
+    "construction": "picked-up",
+    "height": "moyenne",
+    "stitch": "cotes-1x1",
+    "doubled": null,
+    "confidence": 0.65
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "longues",
+    "confidence": 0.5
+  },
+  "stitch": {
+    "mainPattern": "torsades",
+    "confidence": 0.92,
+    "notes": "Torsades verticales multiples séparées par des colonnes de mailles envers, style aran. Poignets et bordure d'encolure en côtes."
+  },
+  "closure": {
+    "type": "aucune",
+    "buttonCountEstimate": 0,
+    "confidence": 0.9
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0.4
+  },
+  "limitations": [
+    "Le vêtement est plié : la jonction manche/corps n'est pas visible, le type de manche ne peut pas être déterminé",
+    "La méthode de construction ne peut pas être identifiée",
+    "L'aisance et la coupe ne sont pas évaluables sur un vêtement plié",
+    "Impossible de vérifier si le col est doublé"
+  ],
+  "warnings": [
+    "L'image semble être une mise en scène, possiblement générée ou retouchée, ce qui peut altérer la précision des détails de mailles"
+  ],
   "overallConfidence": "medium"
 }
 ```
