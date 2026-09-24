@@ -1,0 +1,13 @@
+{
+  "variant": "opus55-low",
+  "image": "pull-ecru-plie",
+  "ok": true,
+  "ms": 9438,
+  "inputTokens": 3991,
+  "outputTokens": 707,
+  "costUsd": 0.030104,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 7,
+  "raw": "{\"analysable\":true,\"rejectionReason\":null,\"garment\":{\"type\":\"pull\",\"confidence\":0.65},\"construction\":{\"method\":\"unknown\",\"confidence\":0.3,\"reasoning\":\"Le vêtement est plié et partiellement recouvert par un mètre ruban, ce qui empêche de voir les coutures latérales, les emmanchures et la jonction des manches. Le style (torsades et point de riz, type pull irlandais/Aran) est souvent tricoté en pièces assemblées, mais cela ne peut pas être confirmé.\"},\"neckline\":{\"type\":\"ras-du-cou\",\"confidence\":0.5},\"neckband\":{\"construction\":\"unknown\",\"height\":\"unknown\",\"stitch\":\"unknown\",\"doubled\":null,\"confidence\":0.2},\"sleeves\":{\"type\":\"unknown\",\"length\":\"unknown\",\"confidence\":0.2},\"stitch\":{\"mainPattern\":\"torsades\",\"confidence\":0.9,\"notes\":\"Torsades en câble épais encadrant un panneau central en point de riz/point de graines texturé, avec des côtes torses ou colonnes en relief séparant les panneaux. Style Aran. Fil épais écru, probablement en laine.\"},\"closure\":{\"type\":\"aucune\",\"buttonCountEstimate\":0,\"confidence\":0.55},\"fit\":{\"style\":\"unknown\",\"confidence\":0.2},\"limitations\":[\"Vêtement plié : forme générale et coupe impossibles à évaluer\",\"Manches non visibles : type et longueur indéterminables\",\"Encolure à peine visible : construction, hauteur et point de la bordure indéterminables\",\"Méthode de construction non identifiable\",\"Présence ou absence de fermeture sur le devant non vérifiable avec certitude\",\"Le mètre ruban masque une partie du vêtement\"],\"warnings\":[\"L'image semble être une photo d'ambiance mise en scène (possiblement générée), les détails de mailles peuvent ne pas être fidèles à un vrai tricot\",\"Pour une analyse complète, photographier le vêtement à plat, déplié, de face et de dos\"],\"overallConfidence\":\"low\"}"
+}

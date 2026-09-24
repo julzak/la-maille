@@ -1,0 +1,13 @@
+{
+  "variant": "opus55-low",
+  "image": "pull-irlandais-ecru",
+  "ok": true,
+  "ms": 8191,
+  "inputTokens": 3991,
+  "outputTokens": 565,
+  "costUsd": 0.027264,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 3,
+  "raw": "{\"analysable\":true,\"rejectionReason\":null,\"garment\":{\"type\":\"pull\",\"confidence\":0.85},\"construction\":{\"method\":\"unknown\",\"confidence\":0.4,\"reasoning\":\"Le pull est plié, ce qui masque les coutures latérales et la jonction des manches. Le style aran à torsades est traditionnellement tricoté en pièces assemblées, mais cela ne peut pas être confirmé sur cette photo.\"},\"neckline\":{\"type\":\"ras-du-cou\",\"confidence\":0.85},\"neckband\":{\"construction\":\"picked-up\",\"height\":\"moyenne\",\"stitch\":\"cotes-1x1\",\"doubled\":null,\"confidence\":0.6},\"sleeves\":{\"type\":\"unknown\",\"length\":\"longues\",\"confidence\":0.5},\"stitch\":{\"mainPattern\":\"torsades\",\"confidence\":0.95,\"notes\":\"Motif de type aran : torsades en losanges et torsades tressées, séparées par des colonnes de côtes. Point de riz ou point de blé visible sur les côtés et sur les manches. Bordures en côtes.\"},\"closure\":{\"type\":\"aucune\",\"buttonCountEstimate\":0,\"confidence\":0.85},\"fit\":{\"style\":\"unknown\",\"confidence\":0.3},\"limitations\":[\"Vêtement plié : impossible de voir la jonction des manches et le type de manche\",\"Méthode de construction non vérifiable\",\"Coupe et ajustement non déterminables\",\"Impossible de savoir si le col est doublé\",\"Longueur des manches estimée d'après les parties repliées visibles\"],\"warnings\":[\"L'image semble être une mise en scène, peut-être générée ou retouchée\"],\"overallConfidence\":\"medium\"}"
+}

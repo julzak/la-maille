@@ -1,0 +1,13 @@
+{
+  "variant": "opus5-low-sept",
+  "image": "pull-ecru-plie",
+  "ok": true,
+  "ms": 9209,
+  "inputTokens": 3989,
+  "outputTokens": 512,
+  "costUsd": 0.032745,
+  "jsonOk": true,
+  "overallConfidence": "low",
+  "unknowns": 9,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.5}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.2, \"reasoning\": \"Le vêtement est plié et enroulé d'un mètre ruban : aucune couture, emmanchure ou empiècement n'est visible pour déterminer la méthode de construction.\"}, \"neckline\": {\"type\": \"unknown\", \"confidence\": 0.1}, \"neckband\": {\"construction\": \"unknown\", \"height\": \"unknown\", \"stitch\": \"unknown\", \"doubled\": null, \"confidence\": 0.1}, \"sleeves\": {\"type\": \"unknown\", \"length\": \"unknown\", \"confidence\": 0.1}, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.85, \"notes\": \"Tricot type aran : torsades épaisses encadrant des panneaux de point de riz/point de blé, en laine écrue volumineuse.\"}, \"closure\": {\"type\": \"unknown\", \"buttonCountEstimate\": 0, \"confidence\": 0.3}, \"fit\": {\"style\": \"unknown\", \"confidence\": 0.2}, \"limitations\": [\"Vêtement plié : forme générale, encolure, manches et fermeture non visibles\", \"Impossible de confirmer s'il s'agit d'un pull ou d'un cardigan\", \"Aucune bordure d'encolure visible\"], \"warnings\": [\"Analyse limitée aux points de tricot visibles\"], \"overallConfidence\": \"low\"}"
+}

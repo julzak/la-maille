@@ -46,7 +46,7 @@ const MODEL = modelArg ? modelArg.slice("--model=".length) : "claude-opus-5";
 // Reproduction fidele de la prod de chaque ere : opus-5 = params actuels
 // (8192 tokens, effort low), autres modeles = params de l'ere opus-4-8
 // (4096 tokens, pas d'output_config).
-const IS_OPUS5 = MODEL === "claude-opus-5";
+const IS_OPUS5 = MODEL === "claude-opus-5" || MODEL === "claude-opus-5-5";
 const MAX_TOKENS = IS_OPUS5 ? 8192 : 4096;
 const RESULTS_DIR = new URL("../tasks/rejet-results/", import.meta.url).pathname;
 

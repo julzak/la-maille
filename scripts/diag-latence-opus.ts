@@ -85,10 +85,14 @@ const VARIANTS: Variant[] = [
   { key: "fast-effort-low", desc: "speed fast + effort low ($10/$50)", model: "claude-opus-5", pricing: [10, 50], extra: { speed: "fast", output_config: { effort: "low" } }, betas: ["fast-mode-2026-02-01"] },
   { key: "sonnet-5", desc: "claude-sonnet-5, défauts (adaptatif, effort high)", model: "claude-sonnet-5", pricing: [3, 15], extra: {}, needsRaw: true },
   { key: "sonnet-5-low", desc: "claude-sonnet-5, effort low", model: "claude-sonnet-5", pricing: [3, 15], extra: { output_config: { effort: "low" } }, needsRaw: true },
+  // 2026-09-24 : bascule Opus 5.5 ($4/$20). opus5-low-sept rejoue la prod actuelle
+  // le meme jour pour comparer des latences mesurees dans les memes conditions.
+  { key: "opus5-low-sept", desc: "claude-opus-5 effort low, rejoué le 2026-09-24", model: "claude-opus-5", pricing: [5, 25], extra: { output_config: { effort: "low" } }, needsRaw: true },
+  { key: "opus55-low", desc: "claude-opus-5-5 effort low ($4/$20)", model: "claude-opus-5-5", pricing: [4, 20], extra: { output_config: { effort: "low" } }, needsRaw: true },
 ];
 
 // Variantes dont la sortie complète est montrée dans la section qualité.
-const QUALITY_KEYS = ["effort-low", "compact-low", "sonnet-5-low"];
+const QUALITY_KEYS = ["effort-low", "compact-low", "sonnet-5-low", "opus55-low"];
 
 interface RunResult {
   variant: string;

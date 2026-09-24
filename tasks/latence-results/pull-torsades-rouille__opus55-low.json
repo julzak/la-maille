@@ -1,0 +1,13 @@
+{
+  "variant": "opus55-low",
+  "image": "pull-torsades-rouille",
+  "ok": true,
+  "ms": 7862,
+  "inputTokens": 3991,
+  "outputTokens": 601,
+  "costUsd": 0.027984,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 3,
+  "raw": "{\"analysable\":true,\"rejectionReason\":null,\"garment\":{\"type\":\"pull\",\"confidence\":0.9},\"construction\":{\"method\":\"unknown\",\"confidence\":0.4,\"reasoning\":\"Le pull est plié, ce qui masque les jonctions manches/corps et les coutures latérales. Aucun indice fiable ne permet de distinguer une construction en pièces assemblées, top-down ou bottom-up. Les torsades verticales continues sur le corps sont compatibles avec plusieurs méthodes.\"},\"neckline\":{\"type\":\"ras-du-cou\",\"confidence\":0.9},\"neckband\":{\"construction\":\"picked-up\",\"height\":\"moyenne\",\"stitch\":\"cotes-1x1\",\"doubled\":null,\"confidence\":0.65},\"sleeves\":{\"type\":\"unknown\",\"length\":\"longues\",\"confidence\":0.5},\"stitch\":{\"mainPattern\":\"torsades\",\"confidence\":0.92,\"notes\":\"Torsades verticales multiples séparées par des colonnes de mailles envers, style aran. Poignets et bordure d'encolure en côtes.\"},\"closure\":{\"type\":\"aucune\",\"buttonCountEstimate\":0,\"confidence\":0.9},\"fit\":{\"style\":\"unknown\",\"confidence\":0.4},\"limitations\":[\"Le vêtement est plié : la jonction manche/corps n'est pas visible, le type de manche ne peut pas être déterminé\",\"La méthode de construction ne peut pas être identifiée\",\"L'aisance et la coupe ne sont pas évaluables sur un vêtement plié\",\"Impossible de vérifier si le col est doublé\"],\"warnings\":[\"L'image semble être une mise en scène, possiblement générée ou retouchée, ce qui peut altérer la précision des détails de mailles\"],\"overallConfidence\":\"medium\"}"
+}

@@ -95,3 +95,24 @@ un corpus réel, il faudrait stocker les photos rejetées (décision produit + R
 Résultats en cache dans tasks/rejet-results/ (pas de re-facturation), `--force`
 pour rejouer. Images générées avec gemini-3.1-flash-image (prompts dans
 l'historique de session du 2026-08-06).
+
+## Bascule claude-opus-5-5 (2026-09-24)
+
+Bench rejoué avec `--model=claude-opus-5-5` (mêmes paramètres que la prod opus-5 :
+8192 tokens, effort low). Cas qui changent, chacun rejoué 3 fois par modèle,
+résultat stable 3/3 :
+
+| image | opus-5 | opus-5-5 |
+|---|---|---|
+| flou | OK (pull, low) | REJET "trop floue et trop sombre" |
+| crochet | OK (cardigan, medium) | REJET "crochet, pas du tricot" |
+| echarpe | REJET | OK (autre, low) |
+
+Les 8 autres images ne changent pas. Opus 5.5 applique plus littéralement la
+section "REJETTE UNIQUEMENT" (flou/illisible).
+
+Contexte prod (table generations, 04/08 au 24/09, 100 % claude-opus-5) : 711
+analyses, 199 rejets, dont 38 mentionnent le crochet et 9 le flou ou le manque
+de lumière. Opus 5 rejette donc déjà le crochet en prod : seul le flou est un
+vrai durcissement. À surveiller : part des rejets "flou/sombre" après la
+bascule, base 9/711 (1,3 %) sous opus-5.

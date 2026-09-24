@@ -9,7 +9,10 @@ const client = new Anthropic({
 });
 
 // Modele Claude utilise pour l'analyse d'image (vision). Exporte pour le tracking des generations.
-export const ANALYSIS_MODEL = "claude-opus-5";
+// claude-opus-5-5 depuis le 2026-09-24 ($4/$20 contre $5/$25) : latence 8,1s contre
+// 10,0s pour opus-5 le meme jour, JSON 4/4 (scripts/diag-latence-opus.ts). Plus strict
+// sur les photos floues (rejet stable 3/3 sur le bench scripts/diag-rejet.ts).
+export const ANALYSIS_MODEL = "claude-opus-5-5";
 
 const SYSTEM_PROMPT = `CRITICAL: Return ONLY valid JSON. No text before or after. No markdown code blocks. Just the raw JSON object starting with { and ending with }
 
@@ -380,7 +383,8 @@ export async function analyzeGarmentImage({
       output_config?: { effort: "low" | "medium" | "high" };
     } = {
       model: ANALYSIS_MODEL,
-      // Opus 5 : le thinking est actif par defaut et compte dans max_tokens.
+      // Opus 5 / 5.5 : le thinking est toujours actif et compte dans max_tokens
+      // (sur 5.5, thinking disabled renvoie une 400 : effort est le seul levier).
       // 8192 laisse la place au raisonnement + au JSON complet de l'analyse.
       max_tokens: 8192,
       // effort low : latence moyenne mesuree 8,3s contre 11,1s en effort high

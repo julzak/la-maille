@@ -1,0 +1,13 @@
+{
+  "variant": "opus5-low-sept",
+  "image": "pull-torsades-rouille",
+  "ok": true,
+  "ms": 7079,
+  "inputTokens": 3989,
+  "outputTokens": 522,
+  "costUsd": 0.032995,
+  "jsonOk": true,
+  "overallConfidence": "medium",
+  "unknowns": 1,
+  "raw": "{\"analysable\": true, \"rejectionReason\": null, \"garment\": {\"type\": \"pull\", \"confidence\": 0.92}, \"construction\": {\"method\": \"unknown\", \"confidence\": 0.35, \"reasoning\": \"Le pull est plié, les lignes de jonction manches/corps ne sont pas clairement visibles. Les torsades verticales et le col relevé évoquent une construction possible en pièces assemblées ou bottom-up, sans certitude.\"}, \"neckline\": {\"type\": \"ras-du-cou\", \"confidence\": 0.9}, \"neckband\": {\"construction\": \"picked-up\", \"height\": \"basse\", \"stitch\": \"cotes-1x1\", \"doubled\": false, \"confidence\": 0.7}, \"sleeves\": {\"type\": \"marteau\", \"confidence\": 0.4}, \"sleeves_note\": null, \"stitch\": {\"mainPattern\": \"torsades\", \"confidence\": 0.9, \"notes\": \"Torsades et nattes sur fond de jersey, bordures en côtes aux poignets et au bas du corps.\"}, \"closure\": {\"type\": \"aucune\", \"buttonCountEstimate\": 0, \"confidence\": 0.9}, \"fit\": {\"style\": \"regular\", \"confidence\": 0.5}, \"limitations\": [\"Vêtement plié : impossible de vérifier la forme des emmanchures et la longueur réelle des manches\", \"Méthode de construction non déterminable\", \"Impossible de confirmer si le col est doublé\"], \"warnings\": [\"Le type de manche est une estimation peu fiable\"], \"overallConfidence\": \"medium\"}"
+}
