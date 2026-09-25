@@ -31,6 +31,22 @@ BRIEF-05 test-pinterest           (indépendant, livrable contenu, pas de code a
 - BRIEF-04-seo-quick-wins — mergé (PR #13, correction : /photo-to-knitting-pattern retiré du sitemap, c'est un redirect 308)
 - BRIEF-05-test-pinterest — mergé (PR #17, kit dans tasks/pinterest-test/ ; publication des pins côté Julien)
 
+## Chantier accessoires (décidé 2026-09-25)
+
+```
+Lot 0 generations.analysis (PR #55) ─> BRIEF-06 bonnet + socle ─> BRIEF-07 écharpe
+                                                               └─> BRIEF-08 chaussettes
+```
+
+- Principe acté : le modèle analyse, le code calcule. Aucun chiffre de patron produit par le LLM.
+- BRIEF-07 et BRIEF-08 dépendent du socle de BRIEF-06, ordre entre eux selon la demande mesurée par le lot 0.
+- Pages SEO accessoires : lot à cadrer après BRIEF-08.
+
+- Lot 0 : PR #55 ouverte, migration `generations.analysis` à appliquer par Julien avant merge
+- BRIEF-06-bonnet : à faire
+- BRIEF-07-echarpe : à faire
+- BRIEF-08-chaussettes : à faire
+
 ## Blocages
 
 (aucun)
