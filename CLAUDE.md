@@ -140,3 +140,9 @@ EOF
 ### Follow-up UX (out of migration scope)
 - Template email "Confirm signup" Supabase = default moche → customiser dans jazzy-apps → Authentication → Email Templates
 - Ou **désactiver** la confirmation email native Supabase et implémenter un double-opt-in custom via le welcome email Brevo (token stocké en `profiles.confirmation_token` + route `/confirm-email?token=xxx` côté Next.js).
+
+## Leçon : enums Supabase générés = union types stricts
+
+`.eq("category", stringVar)` échoue quand la colonne est un enum Postgres : le type généré
+est une union stricte, pas `string`. Caster avec `as never` :
+`.eq("category", filters.category as never)`.
