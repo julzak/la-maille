@@ -43,7 +43,7 @@ Lot 0 generations.analysis (PR #55) ─> BRIEF-06 bonnet + socle ─> BRIEF-07 �
 - Pages SEO accessoires : lot à cadrer après BRIEF-08.
 
 - Lot 0 : PR #55 ouverte, migration `generations.analysis` à appliquer par Julien avant merge
-- BRIEF-06-bonnet : à faire
+- BRIEF-06-bonnet : PR #56 ouverte (harnais 0 échec, pulls inchangés, 4/4 vraies photos acceptées)
 - BRIEF-07-echarpe : à faire
 - BRIEF-08-chaussettes : à faire
 

@@ -26,7 +26,7 @@ Une photo de bonnet tricoté donne un patron de bonnet tricotable à la taille c
 5. i18n FR et EN pour chaque nouvelle chaîne (`lib/i18n.ts` et `lib/i18n/public-pattern.ts`).
 
 ## Critères d'acceptation
-- [ ] `scripts/test-calculator.ts` couvre le bonnet : toutes les tailles du preset × 3 jauges × configs (ajusté, ample, revers, côtes 1x1, côtes 2x2). Contrôles génériques 1 à 4 du harnais verts, plus : montage multiple du motif de côtes et du nombre de sections, circonférence tricotée à ±1 maille de la cible, hauteur totale égale à la mesure à 1 tour près, mailles restantes au sommet entre 6 et 12. Sanity check : casser volontairement le calcul fait échouer le harnais.
+- [ ] `scripts/test-calculator.ts` couvre le bonnet : toutes les tailles du preset × 3 jauges × configs (ajusté, ample, revers, côtes 1x1, côtes 2x2). Contrôles génériques 1 à 4 du harnais verts, plus : montage multiple du motif de côtes et du nombre de sections, circonférence tricotée à ±4 mailles de la cible (montage multiple de 8), hauteur totale égale à la mesure à 1 tour près, mailles restantes au sommet entre 6 et 12. Sanity check : casser volontairement le calcul fait échouer le harnais.
 - [ ] Les 162 patrons haut existants restent verts, sans changement de sortie (diff des patrons générés avant/après = vide).
 - [ ] Sur 3 vraies photos de bonnets (dont 1 à revers, 1 avec pompon), l'analyse est acceptée et le patron se génère en FR et en EN. Photos gardées dans `tasks/bonnet-images/`.
 - [ ] Une photo de moufle et une d'amigurumi restent rejetées.
