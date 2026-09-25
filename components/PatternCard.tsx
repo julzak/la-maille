@@ -118,7 +118,8 @@ export function PatternCard({ pattern, onDelete }: PatternCardProps) {
     }
   );
 
-  const garmentTypeKey = `garment.${pattern.garment_type}` as "garment.pull" | "garment.cardigan" | "garment.gilet" | "garment.autre" | "garment.unknown";
+  const knownTypes = ["pull", "cardigan", "gilet", "bonnet", "autre"];
+  const garmentTypeKey = `garment.${knownTypes.includes(pattern.garment_type) ? pattern.garment_type : "unknown"}` as "garment.pull" | "garment.cardigan" | "garment.gilet" | "garment.bonnet" | "garment.autre" | "garment.unknown";
   const garmentLabel = t(garmentTypeKey);
 
   const handleDelete = async () => {

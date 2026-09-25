@@ -16,10 +16,12 @@ interface Dimensions {
   neckline?: "crew" | "v";
   mirror?: boolean;
   buttonCount?: number;
+  brimHeight?: number; // bonnet
+  crownHeight?: number; // bonnet
 }
 
 interface SchematicSVGProps {
-  piece: "back" | "front" | "sleeve" | "cardigan-front" | "yoke" | "tube";
+  piece: "back" | "front" | "sleeve" | "cardigan-front" | "yoke" | "tube" | "hat";
   dimensions: Dimensions;
   showMeasurements?: boolean;
   className?: string;
@@ -76,6 +78,13 @@ export function SchematicSVG({
         />
       ) : piece === "yoke" ? (
         <YokeShape
+          startX={startX}
+          startY={startY}
+          dimensions={dimensions}
+          showMeasurements={showMeasurements}
+        />
+      ) : piece === "hat" ? (
+        <HatShape
           startX={startX}
           startY={startY}
           dimensions={dimensions}
@@ -515,6 +524,34 @@ function TubeShape({ startX, startY, dimensions, showMeasurements }: { startX: n
   );
 }
 
+// Bonnet à plat : bord en bas, corps droit, sommet arrondi (largeur = demi-tour)
+function HatShape({ startX, startY, dimensions, showMeasurements }: { startX: number; startY: number; dimensions: Dimensions; showMeasurements: boolean }) {
+  const width = dimensions.width * SCALE;
+  const length = dimensions.length * SCALE;
+  const crown = Math.min((dimensions.crownHeight ?? 0) * SCALE, length);
+  const brim = Math.min((dimensions.brimHeight ?? 0) * SCALE, length - crown);
+  const top = startY + crown;
+  const bottom = startY + length;
+  const path = `M ${startX} ${bottom} L ${startX} ${top} Q ${startX} ${startY} ${startX + width / 2} ${startY} Q ${startX + width} ${startY} ${startX + width} ${top} L ${startX + width} ${bottom} Z`;
+  return (
+    <g>
+      <path d={path} fill="none" stroke="#333" strokeWidth={STROKE_WIDTH} />
+      {brim > 0 && (
+        <line x1={startX} y1={bottom - brim} x2={startX + width} y2={bottom - brim} stroke="#666" strokeWidth={0.5} strokeDasharray="2,2" />
+      )}
+      {crown > 0 && (
+        <line x1={startX} y1={top} x2={startX + width} y2={top} stroke="#999" strokeWidth={0.5} strokeDasharray="1,3" />
+      )}
+      {showMeasurements && (
+        <>
+          <DimensionLine x1={startX} y1={bottom + DIMENSION_LINE_OFFSET} x2={startX + width} y2={bottom + DIMENSION_LINE_OFFSET} value={dimensions.width} unit="cm" position="below" />
+          <DimensionLine x1={startX + width + DIMENSION_LINE_OFFSET} y1={startY} x2={startX + width + DIMENSION_LINE_OFFSET} y2={bottom} value={dimensions.length} unit="cm" position="right" vertical />
+        </>
+      )}
+    </g>
+  );
+}
+
 // Composant pour ligne de cote
 function DimensionLine({
   x1,
@@ -647,6 +684,8 @@ export function getDimensionsFromPiece(
       neckline: schematic.neckline,
       mirror: schematic.mirror,
       buttonCount: schematic.buttonCount,
+      brimHeight: schematic.brimHeightCm,
+      crownHeight: schematic.crownHeightCm,
     };
     const piece: SchematicSVGProps["piece"] =
       schematic.kind === "panel" ? (schematic.isFront ? "front" : "back") : schematic.kind;

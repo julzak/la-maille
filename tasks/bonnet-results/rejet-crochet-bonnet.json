@@ -1,0 +1,51 @@
+{
+  "analysable": false,
+  "rejectionReason": "La photo montre un bonnet bleu réalisé au crochet (brides et mailles serrées en rangs concentriques partant du sommet), et non un ouvrage tricoté : on ne distingue pas de mailles en V ni de côtes. La Maille génère des patrons de pulls, cardigans, gilets et bonnets tricotés à partir d'une photo du vêtement entier.",
+  "garment": {
+    "type": "unknown",
+    "confidence": 0
+  },
+  "construction": {
+    "method": "unknown",
+    "confidence": 0,
+    "reasoning": "Ouvrage au crochet, hors du périmètre de La Maille."
+  },
+  "neckline": {
+    "type": "unknown",
+    "confidence": 0
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "unknown",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "sans",
+    "confidence": 0
+  },
+  "stitch": {
+    "mainPattern": "unknown",
+    "confidence": 0,
+    "notes": "Texture caractéristique du crochet (brides), pas de mailles tricotées visibles."
+  },
+  "closure": {
+    "type": "aucune",
+    "buttonCountEstimate": null,
+    "confidence": 0
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0
+  },
+  "hat": null,
+  "limitations": [
+    "Ouvrage identifié comme du crochet, non analysable comme tricot"
+  ],
+  "warnings": [
+    "Les ouvrages au crochet ne sont pas pris en charge"
+  ],
+  "overallConfidence": "insufficient"
+}

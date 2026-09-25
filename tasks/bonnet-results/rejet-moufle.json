@@ -1,0 +1,49 @@
+{
+  "analysable": false,
+  "rejectionReason": "La photo montre une moufle tricotée en jacquard multicolore (rouge, orange et bleu) avec un bord picot, et non un haut ou un bonnet. La Maille génère des patrons de pulls, cardigans, gilets et bonnets à partir d'une photo du vêtement entier.",
+  "garment": {
+    "type": "autre",
+    "confidence": 0.95
+  },
+  "construction": {
+    "method": "unknown",
+    "confidence": 0,
+    "reasoning": "Moufle : hors des catégories prises en charge."
+  },
+  "neckline": {
+    "type": "unknown",
+    "confidence": 0
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "unknown",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "unknown",
+    "confidence": 0
+  },
+  "stitch": {
+    "mainPattern": "jacquard",
+    "confidence": 0.9,
+    "notes": "Jacquard multicolore avec bord picot."
+  },
+  "closure": {
+    "type": "unknown",
+    "buttonCountEstimate": null,
+    "confidence": 0
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0
+  },
+  "hat": null,
+  "limitations": [
+    "L'objet photographié est une moufle, catégorie non prise en charge."
+  ],
+  "warnings": [],
+  "overallConfidence": "insufficient"
+}

@@ -1,0 +1,63 @@
+{
+  "analysable": true,
+  "rejectionReason": null,
+  "garment": {
+    "type": "bonnet",
+    "confidence": 0.92
+  },
+  "construction": {
+    "method": "bottom-up",
+    "confidence": 0.8,
+    "reasoning": "Le bord est en bas et le sommet présente des lignes de diminutions en étoile convergeant vers le centre, typique d'un bonnet tricoté en rond de bas en haut."
+  },
+  "neckline": {
+    "type": "unknown",
+    "confidence": 0
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "unknown",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "sans",
+    "confidence": 0
+  },
+  "stitch": {
+    "mainPattern": "jersey",
+    "confidence": 0.75,
+    "notes": "Jersey en fil fantaisie chiné (bordeaux avec mèches violettes et lilas), rayure blanche, puis sommet vert chiné. Le corps bordeaux pourrait comporter des côtes larges, difficile à distinguer à cause du fil texturé."
+  },
+  "closure": {
+    "type": "aucune",
+    "buttonCountEstimate": null,
+    "confidence": 0
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0
+  },
+  "hat": {
+    "brim": {
+      "type": "unknown",
+      "folded": false
+    },
+    "shape": "ajuste",
+    "crown": "quartiers",
+    "pompom": true,
+    "confidence": 0.7
+  },
+  "limitations": [
+    "Le bonnet est posé à plat, la forme portée est difficile à évaluer",
+    "Le point exact du bord n'est pas clairement visible à cause du fil fantaisie",
+    "Nombre exact de quartiers de diminution difficile à compter"
+  ],
+  "warnings": [
+    "Fil fantaisie texturé : l'échantillon devra être mesuré avec le fil choisi",
+    "Plusieurs couleurs utilisées (bordeaux, blanc, vert) en rayures"
+  ],
+  "overallConfidence": "medium"
+}

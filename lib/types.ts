@@ -8,7 +8,7 @@ export interface GarmentAnalysis {
   rejectionReason: string | null;
 
   garment: {
-    type: "pull" | "cardigan" | "gilet" | "autre" | "unknown";
+    type: "pull" | "cardigan" | "gilet" | "bonnet" | "autre" | "unknown";
     confidence: number;
   };
 
@@ -73,9 +73,34 @@ export interface GarmentAnalysis {
     confidence: number;
   };
 
+  // Spécifique bonnet (garment.type === "bonnet"). Absent pour les hauts.
+  hat?: HatAnalysis;
+
   limitations: string[];
   warnings: string[];
   overallConfidence: "high" | "medium" | "low" | "insufficient";
+}
+
+export interface HatAnalysis {
+  brim: {
+    type: "cotes-1x1" | "cotes-2x2" | "mousse" | "roule" | "unknown";
+    folded: boolean | null; // bord à revers (replié)
+  };
+  shape: "ajuste" | "ample" | "unknown"; // bonnet près de la tête ou bonnet ample (slouchy)
+  crown: "quartiers" | "spirale" | "fronce" | "unknown";
+  pompom: boolean | null;
+  confidence: number;
+}
+
+// ===========================================
+// Catégories de vêtements
+// ===========================================
+
+export type GarmentCategory = "top" | "hat";
+
+/** Aiguillage unique par catégorie : tout le code passe par ici, jamais par des comparaisons de type dispersées. */
+export function garmentCategory(type: GarmentAnalysis["garment"]["type"] | string | null | undefined): GarmentCategory {
+  return type === "bonnet" ? "hat" : "top";
 }
 
 // ===========================================
@@ -101,6 +126,27 @@ export interface Measurements {
   bicepCircumference: number;
   ease: number;
   hipCircumference?: number;
+}
+
+/** Mesures d'un bonnet (cm). ease en % de réduction du tour de tête (aisance négative). */
+export interface HatMeasurements {
+  kind: "hat";
+  headCircumference: number;
+  hatHeight: number; // hauteur totale du bonnet porté, bord déplié non compris
+  brimHeight: number; // hauteur du bord visible (le revers est tricoté 2 fois plus haut)
+  ease: number; // % d'aisance négative, ex. 12
+}
+
+export type AnyMeasurements = Measurements | HatMeasurements;
+
+export function isHatMeasurements(m: AnyMeasurements | null | undefined): m is HatMeasurements {
+  return !!m && (m as HatMeasurements).kind === "hat";
+}
+
+/** Tour fini affiché dans les résumés : poitrine + aisance (haut) ou tour du bonnet (tête moins aisance négative). */
+export function finishedSize(m: AnyMeasurements): { kind: "chest" | "hat"; cm: number } {
+  if (isHatMeasurements(m)) return { kind: "hat", cm: Math.round(m.headCircumference * (1 - m.ease / 100)) };
+  return { kind: "chest", cm: Math.round(m.chestCircumference + m.ease) };
 }
 
 // ===========================================
@@ -130,7 +176,7 @@ export interface CalculationStep {
 
 // Données du schéma coté d'une pièce (toutes les valeurs en cm, calculées par le générateur)
 export interface PieceSchematic {
-  kind: "panel" | "cardigan-front" | "sleeve" | "yoke" | "tube" | "none";
+  kind: "panel" | "cardigan-front" | "sleeve" | "yoke" | "tube" | "hat" | "none";
   widthCm: number;
   lengthCm: number;
   armholeDepthCm?: number;
@@ -144,6 +190,8 @@ export interface PieceSchematic {
   isFront?: boolean;
   mirror?: boolean; // devant droit : dessin en miroir
   buttonCount?: number;
+  brimHeightCm?: number; // bonnet : hauteur du bord
+  crownHeightCm?: number; // bonnet : hauteur des diminutions du sommet
 }
 
 export interface PatternPiece {
@@ -172,7 +220,7 @@ export interface GeneratedPattern {
   createdAt: Date;
   analysis: GarmentAnalysis;
   gauge: Gauge;
-  measurements: Measurements;
+  measurements: AnyMeasurements;
   yarn: YarnInfo;
   pieces: PatternPiece[];
   assembly: string[];
@@ -206,6 +254,7 @@ export const GARMENT_TYPE_LABELS: Record<GarmentAnalysis["garment"]["type"], str
   pull: "Pull",
   cardigan: "Cardigan",
   gilet: "Gilet",
+  bonnet: "Bonnet",
   autre: "Autre",
   unknown: "Non identifié",
 };

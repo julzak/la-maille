@@ -340,29 +340,57 @@ export default function AnalysePage() {
                         confidence={analysis.construction.confidence}
                       />
                     </div>
-                    <div className="animate-fade-in-up animate-delay-300">
-                      <AnalysisItem
-                        label={t("neckline")}
-                        value={t(`neckline.${analysis.neckline.type}` as const)}
-                        confidence={analysis.neckline.confidence}
-                      />
-                    </div>
-                    {analysis.neckband && (
-                      <div className="animate-fade-in-up animate-delay-350">
-                        <AnalysisItem
-                          label={t("neckbandLabel")}
-                          value={`${t(`neckband.${analysis.neckband.construction}` as const)} - ${t(`neckband.height.${analysis.neckband.height}` as const)}`}
-                          confidence={analysis.neckband.confidence}
-                        />
-                      </div>
+                    {analysis.hat ? (
+                      <>
+                        <div className="animate-fade-in-up animate-delay-300">
+                          <AnalysisItem
+                            label={t("hat.brim")}
+                            value={`${t(`hat.brim.${analysis.hat.brim.type}` as const)}${analysis.hat.brim.folded ? ` ${t("hat.folded")}` : ""}`}
+                            confidence={analysis.hat.confidence}
+                          />
+                        </div>
+                        <div className="animate-fade-in-up animate-delay-350">
+                          <AnalysisItem
+                            label={t("hat.shape")}
+                            value={t(`hat.shape.${analysis.hat.shape}` as const)}
+                            confidence={analysis.hat.confidence}
+                          />
+                        </div>
+                        <div className="animate-fade-in-up animate-delay-400">
+                          <AnalysisItem
+                            label={t("hat.crown")}
+                            value={t(`hat.crown.${analysis.hat.crown}` as const)}
+                            confidence={analysis.hat.confidence}
+                          />
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="animate-fade-in-up animate-delay-300">
+                          <AnalysisItem
+                            label={t("neckline")}
+                            value={t(`neckline.${analysis.neckline.type}` as const)}
+                            confidence={analysis.neckline.confidence}
+                          />
+                        </div>
+                        {analysis.neckband && (
+                          <div className="animate-fade-in-up animate-delay-350">
+                            <AnalysisItem
+                              label={t("neckbandLabel")}
+                              value={`${t(`neckband.${analysis.neckband.construction}` as const)} - ${t(`neckband.height.${analysis.neckband.height}` as const)}`}
+                              confidence={analysis.neckband.confidence}
+                            />
+                          </div>
+                        )}
+                        <div className="animate-fade-in-up animate-delay-400">
+                          <AnalysisItem
+                            label={t("sleeves")}
+                            value={`${t(`sleeve.${analysis.sleeves.type}` as const)} - ${t(`sleeve-length.${analysis.sleeves.length}` as const)}`}
+                            confidence={analysis.sleeves.confidence}
+                          />
+                        </div>
+                      </>
                     )}
-                    <div className="animate-fade-in-up animate-delay-400">
-                      <AnalysisItem
-                        label={t("sleeves")}
-                        value={`${t(`sleeve.${analysis.sleeves.type}` as const)} - ${t(`sleeve-length.${analysis.sleeves.length}` as const)}`}
-                        confidence={analysis.sleeves.confidence}
-                      />
-                    </div>
                     <div className="animate-fade-in-up animate-delay-500">
                       <AnalysisItem
                         label={t("stitch")}
@@ -370,13 +398,23 @@ export default function AnalysePage() {
                         confidence={analysis.stitch.confidence}
                       />
                     </div>
-                    <div className="animate-fade-in-up animate-delay-100">
-                      <AnalysisItem
-                        label={t("fit")}
-                        value={t(`fit.${analysis.fit.style}` as const)}
-                        confidence={analysis.fit.confidence}
-                      />
-                    </div>
+                    {analysis.hat ? (
+                      <div className="animate-fade-in-up animate-delay-100">
+                        <AnalysisItem
+                          label={t("hat.pompom")}
+                          value={t(analysis.hat.pompom === null ? "hat.pompom.unknown" : analysis.hat.pompom ? "hat.pompom.yes" : "hat.pompom.no")}
+                          confidence={analysis.hat.confidence}
+                        />
+                      </div>
+                    ) : (
+                      <div className="animate-fade-in-up animate-delay-100">
+                        <AnalysisItem
+                          label={t("fit")}
+                          value={t(`fit.${analysis.fit.style}` as const)}
+                          confidence={analysis.fit.confidence}
+                        />
+                      </div>
+                    )}
                   </div>
 
                   {analysis.stitch.notes && (

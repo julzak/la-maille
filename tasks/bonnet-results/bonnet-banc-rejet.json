@@ -1,0 +1,62 @@
+{
+  "analysable": true,
+  "rejectionReason": null,
+  "garment": {
+    "type": "bonnet",
+    "confidence": 0.97
+  },
+  "construction": {
+    "method": "bottom-up",
+    "confidence": 0.8,
+    "reasoning": "Bord en côtes replié en bas, corps en jersey puis diminutions vers le sommet surmonté d'un pompon : construction classique en rond du bas vers le haut."
+  },
+  "neckline": {
+    "type": "unknown",
+    "confidence": 0
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "unknown",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "sans",
+    "confidence": 0
+  },
+  "stitch": {
+    "mainPattern": "jersey",
+    "confidence": 0.9,
+    "notes": "Jersey endroit en fil très épais (grosse laine), mailles en V bien visibles. Couleur moutarde."
+  },
+  "closure": {
+    "type": "aucune",
+    "buttonCountEstimate": null,
+    "confidence": 0
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0
+  },
+  "hat": {
+    "brim": {
+      "type": "cotes-1x1",
+      "folded": true
+    },
+    "shape": "ajuste",
+    "crown": "unknown",
+    "pompom": true,
+    "confidence": 0.8
+  },
+  "limitations": [
+    "Le sommet est caché par le pompon : type de diminutions (quartiers, spirale ou froncé) impossible à déterminer",
+    "Le type exact de côtes du revers (1x1 ou 2x2) est difficile à confirmer à cette échelle",
+    "Dimensions réelles et jauge non mesurables sur la photo"
+  ],
+  "warnings": [
+    "Le bonnet est posé sur une table et non porté : la forme ajustée est estimée"
+  ],
+  "overallConfidence": "high"
+}

@@ -1,0 +1,51 @@
+{
+  "analysable": false,
+  "rejectionReason": "La photo montre un amigurumi (ourson en peluche) réalisé au crochet, avec un petit pull décoratif et une fleur au crochet. Ce n'est ni un haut ni un bonnet porté. La Maille génère des patrons de pulls, cardigans, gilets et bonnets à partir d'une photo du vêtement entier.",
+  "garment": {
+    "type": "autre",
+    "confidence": 0.95
+  },
+  "construction": {
+    "method": "unknown",
+    "confidence": 0,
+    "reasoning": "Jouet au crochet, non analysable comme vêtement."
+  },
+  "neckline": {
+    "type": "unknown",
+    "confidence": 0
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "unknown",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "unknown",
+    "confidence": 0
+  },
+  "stitch": {
+    "mainPattern": "unknown",
+    "confidence": 0,
+    "notes": "Mailles serrées au crochet, pas de tricot."
+  },
+  "closure": {
+    "type": "unknown",
+    "buttonCountEstimate": null,
+    "confidence": 0
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0
+  },
+  "hat": null,
+  "limitations": [
+    "Il s'agit d'un amigurumi au crochet, pas d'un vêtement tricoté."
+  ],
+  "warnings": [
+    "Ouvrage au crochet et jouet : hors du périmètre de La Maille."
+  ],
+  "overallConfidence": "insufficient"
+}

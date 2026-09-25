@@ -12,9 +12,12 @@ import type {
   PatternInstruction,
   GeneratedPattern,
   PieceSchematic,
+  AnyMeasurements,
 } from "./types";
+import { garmentCategory, isHatMeasurements } from "./types";
+import { generateHatPattern } from "./garments/hat";
 import { tp, type Language } from "./i18n";
-import { calculateYarnNeeded } from "./yarn-calculator";
+import { calculateYarnNeeded, calculateHatYarnNeeded, GRAMS_PER_METER } from "./yarn-calculator";
 import {
   computeDims, distribute, distributeEven, armholeShape, sleeveCapShape, neckPerimeterCm, crewFrontNeckShape,
   stsFor, rowsFor, cmForSts, cmForRows, even,
@@ -964,9 +967,25 @@ export function generateNeckline(measurements: Measurements, gauge: Gauge, analy
 export function generateFullPattern(
   analysis: GarmentAnalysis,
   gauge: Gauge,
-  measurements: Measurements,
+  measurements: AnyMeasurements,
   yarn: YarnInfo,
   lang: Language = "fr"
+): GeneratedPattern {
+  // Aiguillage par catégorie : un bonnet ne peut jamais tomber dans le calcul des hauts.
+  if (garmentCategory(analysis.garment.type) === "hat") {
+    if (!isHatMeasurements(measurements)) throw new Error("Mesures de bonnet attendues pour un bonnet");
+    return generateHatPattern(analysis, gauge, measurements, yarn, lang);
+  }
+  if (isHatMeasurements(measurements)) throw new Error("Mesures de bonnet fournies pour un vêtement haut");
+  return generateTopPattern(analysis, gauge, measurements, yarn, lang);
+}
+
+function generateTopPattern(
+  analysis: GarmentAnalysis,
+  gauge: Gauge,
+  measurements: Measurements,
+  yarn: YarnInfo,
+  lang: Language
 ): GeneratedPattern {
   log("=== Generating full pattern (v2) ===");
   const ctx = makeCtx(measurements, gauge, analysis, lang);
@@ -1087,21 +1106,18 @@ ${tp(lang, "pattern.disclaimerAdvice")}
 // ESTIMATION MÉTRAGE
 // ===========================================
 
-// Grammes par mètre selon la catégorie de fil (pelote de 50 g : lace ~400 m, fingering ~200 m,
-// sport ~150 m, DK ~115 m, worsted ~100 m, aran ~85 m, bulky ~60 m).
-const GRAMS_PER_METER: Record<YarnInfo["weight"], number> = {
-  lace: 0.125, fingering: 0.25, sport: 0.33, dk: 0.43, worsted: 0.5, aran: 0.6, bulky: 0.85,
-};
-
 export function estimateYardage(
-  measurements: Measurements,
+  measurements: AnyMeasurements,
   gauge: Gauge,
   yarn: YarnInfo,
   garmentType: string = "pull",
-  hasSleeves: boolean = true
+  hasSleeves: boolean = true,
+  hatFolded: boolean = false
 ): { meters: number; metersMin: number; metersMax: number; grams: number; skeinsEstimate: string } {
   // Une seule source pour le métrage : le modèle de surface de lib/yarn-calculator.ts.
-  const needed = calculateYarnNeeded(measurements, gauge, garmentType, hasSleeves);
+  const needed = isHatMeasurements(measurements)
+    ? calculateHatYarnNeeded(measurements, gauge, hatFolded)
+    : calculateYarnNeeded(measurements, gauge, garmentType, hasSleeves);
   const meters = needed.average;
   const grams = Math.round(meters * GRAMS_PER_METER[yarn.weight]);
   log(`Estimation: ${grams}g, ~${meters}m`);

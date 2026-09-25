@@ -17,6 +17,7 @@ export const ANALYSIS_MODEL = "claude-opus-5-5";
 const SYSTEM_PROMPT = `CRITICAL: Return ONLY valid JSON. No text before or after. No markdown code blocks. Just the raw JSON object starting with { and ending with }
 
 Tu es un expert en analyse de vêtements tricotés pour l'application La Maille.
+La Maille sait produire des patrons pour deux catégories : les HAUTS (pull, cardigan, gilet) et les BONNETS.
 IMPORTANT: les champs texte libres (reasoning, notes, limitations, warnings, rejectionReason) sont rédigés dans la langue demandée dans le message utilisateur (français par défaut).
 
 RECONNAISSANCE DU TRICOT:
@@ -24,7 +25,20 @@ Le tricot se reconnaît par des mailles visibles formant des V (jersey) ou des c
 Indices de tricot: texture en relief, élasticité visible, motifs de mailles réguliers.
 En cas de doute, considère que c'est du tricot et analyse-le (mets une confidence basse si incertain).
 
-ÉTAPE 1 - COMPTAGE DES BOUTONS (OBLIGATOIRE):
+ÉTAPE 0 - CATÉGORIE:
+- Un bonnet tricoté (bonnet ajusté, bonnet à revers, bonnet ample / slouchy, bonnet à pompon) → garment.type: "bonnet". Remplis le bloc "hat" et IGNORE les étapes 1 à 3 et l'analyse d'encolure : mets neckline.type "unknown", neckband tout à "unknown" (doubled null), sleeves.type "unknown" et sleeves.length "sans", closure.type "aucune", fit.style "unknown", toutes ces confidences à 0.
+- Un haut → étapes 1 à 3 ci-dessous, et "hat": null.
+
+ANALYSE D'UN BONNET (bloc "hat"):
+- brim.type : bord du bonnet. "cotes-1x1", "cotes-2x2", "mousse", "roule" (bord en jersey qui s'enroule), "unknown".
+- brim.folded : true si le bord est replié en revers (double épaisseur visible), false sinon, null si impossible à voir.
+- shape : "ajuste" (épouse la tête) ou "ample" (tombe à l'arrière, slouchy).
+- crown : sommet. "quartiers" (lignes de diminutions en étoile), "spirale" (diminutions qui tournent), "fronce" (sommet froncé / serré sans lignes), "unknown".
+- pompom : true si pompon, false sinon, null si le sommet n'est pas visible.
+- construction.method d'un bonnet : "bottom-up" si le bord est en bas et les diminutions au sommet (le plus courant), sinon ce que tu observes.
+- stitch.mainPattern : point principal du corps du bonnet (hors bord).
+
+ÉTAPE 1 - COMPTAGE DES BOUTONS (OBLIGATOIRE POUR UN HAUT):
 Avant toute analyse, compte les boutons visibles sur le vêtement.
 Cherche sur le centre vertical: petits cercles, points alignés verticalement, éléments de fermeture.
 Note ce nombre dans closure.buttonCountEstimate.
@@ -76,9 +90,9 @@ RÈGLES:
 
 REJETTE UNIQUEMENT si:
 - C'est clairement du tissu tissé (pas de mailles visibles du tout)
-- Ce n'est pas un vêtement
+- Ce n'est ni un haut ni un bonnet. En particulier, rejette : écharpes, châles, snoods, cols, chaussettes, chaussons, moufles, gants, couvertures, coussins, sacs, jouets et amigurumis, ouvrages au crochet, échantillons ou gros plans de tricot, grilles et diagrammes
 - L'image est floue/illisible
-Dans ce cas: analysable: false, rejectionReason dans la langue demandée par l'utilisateur
+Dans ce cas: analysable: false, rejectionReason dans la langue demandée par l'utilisateur. Le rejectionReason dit ce que montre la photo, puis rappelle que La Maille génère des patrons de pulls, cardigans, gilets et bonnets à partir d'une photo du vêtement entier.
 
 Retourne UNIQUEMENT un JSON valide avec cette structure exacte :
 {
@@ -92,13 +106,14 @@ Retourne UNIQUEMENT un JSON valide avec cette structure exacte :
   "stitch": { "mainPattern": string, "confidence": number, "notes": string | null },
   "closure": { "type": string, "buttonCountEstimate": number | null, "confidence": number },
   "fit": { "style": string, "confidence": number },
+  "hat": { "brim": { "type": string, "folded": boolean | null }, "shape": string, "crown": string, "pompom": boolean | null, "confidence": number } | null,
   "limitations": string[],
   "warnings": string[],
   "overallConfidence": "high" | "medium" | "low" | "insufficient"
 }
 
 Types valides pour chaque champ :
-- garment.type: "pull" | "cardigan" | "gilet" | "autre" | "unknown"
+- garment.type: "pull" | "cardigan" | "gilet" | "bonnet" | "autre" | "unknown"
 - construction.method: "pieces-assemblees" | "top-down" | "bottom-up" | "side-to-side" | "unknown"
 - neckline.type: "ras-du-cou" | "col-v" | "bateau" | "ouvert-cardigan" | "capuche" | "unknown"
 - neckband.construction: "picked-up" | "sewn-on" | "integrated" | "unknown"
@@ -110,6 +125,9 @@ Types valides pour chaque champ :
 - stitch.mainPattern: "jersey" | "mousse" | "cotes" | "torsades" | "jacquard" | "dentelle" | "autre" | "unknown"
 - closure.type: "aucune" | "boutons" | "zip" | "unknown"
 - fit.style: "ajuste" | "regular" | "oversized" | "unknown"
+- hat.brim.type: "cotes-1x1" | "cotes-2x2" | "mousse" | "roule" | "unknown"
+- hat.shape: "ajuste" | "ample" | "unknown"
+- hat.crown: "quartiers" | "spirale" | "fronce" | "unknown"
 
 Remember: Output ONLY the JSON object. Nothing else. No explanation, no markdown.`;
 
@@ -204,7 +222,22 @@ const VALUE_MAPPINGS: Record<string, Record<string, string>> = {
   "garment.type": {
     sweater: "pull", pullover: "pull", jumper: "pull",
     vest: "gilet", "sans-manches": "gilet",
+    hat: "bonnet", beanie: "bonnet", toque: "bonnet", tuque: "bonnet", cap: "bonnet", "knit-hat": "bonnet", "slouchy": "bonnet",
     other: "autre",
+  },
+  "hat.brim.type": {
+    "1x1": "cotes-1x1", "rib-1x1": "cotes-1x1", "1x1-rib": "cotes-1x1", "cotes": "cotes-1x1", rib: "cotes-1x1", ribbing: "cotes-1x1",
+    "2x2": "cotes-2x2", "rib-2x2": "cotes-2x2", "2x2-rib": "cotes-2x2",
+    garter: "mousse", rolled: "roule", "roulé": "roule", "rolled-brim": "roule", stockinette: "roule",
+  },
+  "hat.shape": {
+    fitted: "ajuste", "ajusté": "ajuste", beanie: "ajuste",
+    slouchy: "ample", slouch: "ample", loose: "ample", slouche: "ample",
+  },
+  "hat.crown": {
+    wedge: "quartiers", sections: "quartiers", star: "quartiers",
+    spiral: "spirale", swirl: "spirale",
+    gathered: "fronce", "froncé": "fronce", cinched: "fronce",
   },
   "neckline.type": {
     "crew-neck": "ras-du-cou", "crew": "ras-du-cou", "round": "ras-du-cou",
@@ -271,13 +304,46 @@ function mapValue(field: string, value: string): string {
 /**
  * Normalize the full analysis response from Claude
  */
+const GARMENT_TYPES: GarmentAnalysis["garment"]["type"][] = ["pull", "cardigan", "gilet", "bonnet", "autre", "unknown"];
+
+function oneOf<T extends string>(value: string, allowed: readonly T[]): T {
+  return (allowed as readonly string[]).includes(value) ? (value as T) : ("unknown" as T);
+}
+
+/** Bloc bonnet : valeurs hors liste ramenées à "unknown", champs haut neutralisés. */
+function normalizeHat(analysis: GarmentAnalysis): void {
+  const raw = (analysis.hat ?? {}) as Partial<NonNullable<GarmentAnalysis["hat"]>>;
+  analysis.hat = {
+    brim: {
+      type: oneOf(mapValue("hat.brim.type", raw.brim?.type ?? "unknown"), ["cotes-1x1", "cotes-2x2", "mousse", "roule", "unknown"] as const),
+      folded: typeof raw.brim?.folded === "boolean" ? raw.brim.folded : null,
+    },
+    shape: oneOf(mapValue("hat.shape", raw.shape ?? "unknown"), ["ajuste", "ample", "unknown"] as const),
+    crown: oneOf(mapValue("hat.crown", raw.crown ?? "unknown"), ["quartiers", "spirale", "fronce", "unknown"] as const),
+    pompom: typeof raw.pompom === "boolean" ? raw.pompom : null,
+    confidence: normalizeConfidence(raw.confidence ?? 0),
+  };
+  analysis.neckline = { type: "unknown", confidence: 0 };
+  analysis.neckband = { construction: "unknown", height: "unknown", stitch: "unknown", doubled: null, confidence: 0 };
+  analysis.sleeves = { type: "unknown", length: "sans", confidence: 0 };
+  analysis.closure = { type: "aucune", buttonCountEstimate: null, confidence: 0 };
+  analysis.fit = { style: "unknown", confidence: 0 };
+}
+
 function normalizeAnalysis(analysis: GarmentAnalysis): GarmentAnalysis {
   if (!analysis.analysable) return analysis;
 
-  // Normalize garment
+  // Normalize garment : tout type hors liste devient "autre" (jamais une valeur libre en aval)
   if (analysis.garment) {
-    analysis.garment.type = mapValue("garment.type", analysis.garment.type) as GarmentAnalysis["garment"]["type"];
+    const mapped = mapValue("garment.type", analysis.garment.type);
+    analysis.garment.type = (GARMENT_TYPES as string[]).includes(mapped) ? (mapped as GarmentAnalysis["garment"]["type"]) : "autre";
     analysis.garment.confidence = normalizeConfidence(analysis.garment.confidence);
+  }
+
+  if (analysis.garment?.type === "bonnet") {
+    normalizeHat(analysis);
+  } else {
+    delete analysis.hat;
   }
 
   // Normalize neckline

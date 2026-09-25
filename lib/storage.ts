@@ -4,7 +4,7 @@
 
 import type {
   GarmentAnalysis,
-  Measurements,
+  AnyMeasurements,
   Gauge,
   YarnInfo,
   GeneratedPattern,
@@ -25,7 +25,7 @@ export interface StoredProject {
   step: "analysis" | "measurements" | "pattern"; // Current step in workflow
   imagePreview: string; // base64 or URL
   analysis?: GarmentAnalysis;
-  measurements?: Measurements;
+  measurements?: AnyMeasurements;
   gauge?: Gauge;
   yarn?: YarnInfo;
   pattern?: GeneratedPattern;

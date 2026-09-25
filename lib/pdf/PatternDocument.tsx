@@ -5,6 +5,7 @@ import { MaterialsPage } from "./MaterialsPage";
 import { InstructionPage } from "./InstructionPage";
 import { FinishingPage } from "./FinishingPage";
 import type { GeneratedPattern, GarmentAnalysis } from "../types";
+import { finishedSize } from "../types";
 
 interface PatternDocumentProps {
   pattern: GeneratedPattern;
@@ -41,12 +42,13 @@ export function PatternDocument({
     return labels[level][language];
   };
 
-  // Taille affichée : le tour de poitrine fini (mesure + aisance), pas une lettre devinée.
+  // Taille affichée : le tour fini (poitrine + aisance, ou tour du bonnet), pas une lettre devinée.
   const getSize = () => {
-    const chest = (pattern.measurements?.chestCircumference || 0) + (pattern.measurements?.ease || 0);
-    return chest > 0
-      ? language === "fr" ? `poitrine ${chest} cm` : `chest ${chest} cm`
-      : language === "fr" ? "personnalisée" : "custom";
+    if (!pattern.measurements) return language === "fr" ? "personnalisée" : "custom";
+    const size = finishedSize(pattern.measurements);
+    if (size.cm <= 0) return language === "fr" ? "personnalisée" : "custom";
+    if (size.kind === "hat") return language === "fr" ? `tour ${size.cm} cm` : `circumference ${size.cm} cm`;
+    return language === "fr" ? `poitrine ${size.cm} cm` : `chest ${size.cm} cm`;
   };
 
   // Métrage : même modèle que l'écran (grammes et mètres cohérents)
@@ -55,7 +57,8 @@ export function PatternDocument({
     pattern.gauge,
     pattern.yarn,
     analysis.garment?.type || "pull",
-    analysis.sleeves?.length !== "sans"
+    analysis.sleeves?.length !== "sans",
+    analysis.hat?.brim.folded === true
   );
 
   // Génère les abréviations
@@ -89,6 +92,7 @@ export function PatternDocument({
       pull: { fr: "Pull", en: "Sweater" },
       cardigan: { fr: "Cardigan", en: "Cardigan" },
       gilet: { fr: "Gilet", en: "Vest" },
+      bonnet: { fr: "Bonnet", en: "Hat" },
       autre: { fr: "Vêtement tricoté", en: "Knitted garment" },
     };
     return names[type]?.[language] || names.pull[language];
@@ -161,7 +165,9 @@ export function PatternDocument({
           composition: pattern.yarn?.composition,
         }}
         needles={`${pattern.gauge?.needleSize || 5} mm ${
-          language === "fr" ? "circulaires 80 cm" : "circular 80 cm"
+          analysis.hat
+            ? language === "fr" ? "circulaire courte 40 cm ou doubles pointes" : "short 16 in / 40 cm circular or double-pointed"
+            : language === "fr" ? "circulaires 80 cm" : "circular 80 cm"
         }`}
         gauge={{
           stitches: pattern.gauge?.stitchesPer10cm || 18,
