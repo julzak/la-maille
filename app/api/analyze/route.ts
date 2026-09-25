@@ -28,7 +28,7 @@ async function logGeneration(
   try {
     if (!admin) return; // service_role non configuree -> on skip silencieusement
 
-    await admin.from("generations").insert({
+    const row = {
       user_id: userId,
       ip_hash: ipHash,
       analysable: analysis.analysable,
@@ -38,7 +38,13 @@ async function logGeneration(
       model: ANALYSIS_MODEL,
       cache_creation_input_tokens: usage.cacheCreationInputTokens,
       cache_read_input_tokens: usage.cacheReadInputTokens,
-    });
+    };
+    const { error } = await admin.from("generations").insert({ ...row, analysis });
+    if (error) {
+      // Colonne analysis pas encore migree (ou autre souci) : on garde au moins la ligne de base
+      console.error("Failed to log generation with analysis, retrying without:", error.message);
+      await admin.from("generations").insert(row);
+    }
   } catch (err) {
     console.error("Failed to log generation:", err);
   }
