@@ -43,7 +43,9 @@ import { useAutoSave } from "@/hooks/useAutoSave";
 import { trackEvent, getStoredUTMs } from "@/lib/analytics";
 import type { StoredProject } from "@/lib/storage";
 import type { YarnStock } from "@/lib/yarn-calculator";
-import type { Gauge, Measurements, YarnInfo } from "@/lib/types";
+import type { AnyMeasurements, Gauge, YarnInfo } from "@/lib/types";
+import { finishedSize, isHatMeasurements } from "@/lib/types";
+import { HatMeasurementsSection } from "@/components/measurements/HatMeasurementsSection";
 
 function PatronPageContent() {
   const router = useRouter();
@@ -65,7 +67,7 @@ function PatronPageContent() {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [refineOpen, setRefineOpen] = useState(false);
   const [refineGauge, setRefineGauge] = useState<Gauge | null>(null);
-  const [refineMeasurements, setRefineMeasurements] = useState<Measurements | null>(null);
+  const [refineMeasurements, setRefineMeasurements] = useState<AnyMeasurements | null>(null);
   const [refineYarn, setRefineYarn] = useState<YarnInfo | null>(null);
   const [refineSelectedSize, setRefineSelectedSize] = useState<SizeKey | "custom" | null>(null);
   const [refineTouched] = useState<Set<string>>(new Set());
@@ -419,9 +421,8 @@ function PatronPageContent() {
     );
   }
 
-  const calculatedWidth = Math.round(
-    pattern.measurements.chestCircumference + pattern.measurements.ease
-  );
+  const size = finishedSize(pattern.measurements);
+  const topMeasurements = isHatMeasurements(pattern.measurements) ? null : pattern.measurements;
 
   const garmentTypeLabel = t(`garment.${pattern.analysis.garment.type}` as const);
   const createdDate = new Date(pattern.createdAt).toLocaleDateString(language === "fr" ? "fr-FR" : "en-US", {
@@ -569,7 +570,7 @@ function PatronPageContent() {
                       {t("calculatedSize")}
                     </span>
                     <p className="font-medium mt-0.5">
-                      ~<span className="font-mono">{calculatedWidth}</span> {t("chestLabel")}
+                      ~<span className="font-mono">{size.cm}</span> {t(size.kind === "hat" ? "hatFinishedLabel" : "chestLabel")}
                     </p>
                   </div>
                 </div>
@@ -601,20 +602,27 @@ function PatronPageContent() {
                   touched={refineTouched}
                   onBlur={() => {}}
                 />
-                <BodyMeasurementsSection
-                  measurements={refineMeasurements}
-                  onChange={setRefineMeasurements}
-                  selectedSize={refineSelectedSize}
-                  onSizeSelect={(size) => {
-                    setRefineSelectedSize(size);
-                    if (size !== "custom") {
-                      setRefineMeasurements((m) => (m ? { ...m, ...SIZE_PRESETS[size].measurements } : m));
-                    }
-                  }}
-                  errors={refineErrors}
-                  touched={refineTouched}
-                  onBlur={() => {}}
-                />
+                {isHatMeasurements(refineMeasurements) ? (
+                  <HatMeasurementsSection
+                    measurements={refineMeasurements}
+                    onChange={setRefineMeasurements}
+                  />
+                ) : (
+                  <BodyMeasurementsSection
+                    measurements={refineMeasurements}
+                    onChange={setRefineMeasurements}
+                    selectedSize={refineSelectedSize}
+                    onSizeSelect={(size) => {
+                      setRefineSelectedSize(size);
+                      if (size !== "custom") {
+                        setRefineMeasurements((m) => (m && !isHatMeasurements(m) ? { ...m, ...SIZE_PRESETS[size].measurements } : m));
+                      }
+                    }}
+                    errors={refineErrors}
+                    touched={refineTouched}
+                    onBlur={() => {}}
+                  />
+                )}
                 <YarnSection
                   yarn={refineYarn}
                   onChange={setRefineYarn}
@@ -660,7 +668,7 @@ function PatronPageContent() {
                     <strong>
                       <span className="font-mono">{pattern.gauge.needleSize}</span> mm
                     </strong>
-                    {" - "}{t("circularMin")}
+                    {" - "}{t(size.kind === "hat" ? "hatNeedles" : "circularMin")}
                   </span>
                 </li>
 
@@ -687,24 +695,25 @@ function PatronPageContent() {
                   </li>
                 )}
 
-                {pattern.analysis.closure.type === "zip" && (
+                {pattern.analysis.closure.type === "zip" && topMeasurements && (
                   <li className="flex items-start gap-2">
                     <span className="text-muted-foreground w-16 sm:w-20 shrink-0">
                       {t("zipper")}
                     </span>
                     <span>
                       {t("zipperSeparable")} ~
-                      <span className="font-mono">{pattern.measurements.bodyLength}</span>{" "}
+                      <span className="font-mono">{topMeasurements.bodyLength}</span>{" "}
                       cm
                     </span>
                   </li>
                 )}
               </ul>
 
-              {/* Yarn calculator summary */}
+              {/* Yarn calculator summary (modèle de surface des hauts uniquement) */}
+              {topMeasurements && (
               <div className="border-t pt-4 mt-4">
                 <YarnCalculator
-                  measurements={pattern.measurements}
+                  measurements={topMeasurements}
                   gauge={pattern.gauge}
                   garmentType={pattern.analysis.garment.type}
                   hasLongSleeves={pattern.analysis.sleeves.length !== "sans"}
@@ -713,6 +722,7 @@ function PatronPageContent() {
                   onStockChange={setYarnStock}
                 />
               </div>
+              )}
             </CardContent>
           </Card>
 
@@ -733,11 +743,11 @@ function PatronPageContent() {
                     piece={piece}
                     defaultOpen={index === 0}
                     gauge={pattern.gauge}
-                    measurements={{
-                      armLength: pattern.measurements.armLength,
-                      wristCircumference: pattern.measurements.wristCircumference,
-                      bicepCircumference: pattern.measurements.bicepCircumference,
-                    }}
+                    measurements={topMeasurements ? {
+                      armLength: topMeasurements.armLength,
+                      wristCircumference: topMeasurements.wristCircumference,
+                      bicepCircumference: topMeasurements.bicepCircumference,
+                    } : undefined}
                   />
                 </div>
               ))}

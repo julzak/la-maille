@@ -1,0 +1,63 @@
+{
+  "analysable": true,
+  "rejectionReason": null,
+  "garment": {
+    "type": "bonnet",
+    "confidence": 0.95
+  },
+  "construction": {
+    "method": "bottom-up",
+    "confidence": 0.7,
+    "reasoning": "Bonnet porté avec le bord en bas et le sommet resserré sous un pompon, ce qui correspond à une construction classique du bas vers le haut avec diminutions au sommet."
+  },
+  "neckline": {
+    "type": "unknown",
+    "confidence": 0
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "unknown",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "sans",
+    "confidence": 0
+  },
+  "stitch": {
+    "mainPattern": "cotes",
+    "confidence": 0.6,
+    "notes": "Fil chiné vert et gris clair qui brouille la lecture des mailles ; des colonnes verticales semblent visibles, évoquant des côtes larges ou un point texturé. Le bord ne se distingue pas nettement du corps."
+  },
+  "closure": {
+    "type": "aucune",
+    "buttonCountEstimate": null,
+    "confidence": 0
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0
+  },
+  "hat": {
+    "brim": {
+      "type": "unknown",
+      "folded": false
+    },
+    "shape": "ajuste",
+    "crown": "fronce",
+    "pompom": true,
+    "confidence": 0.6
+  },
+  "limitations": [
+    "Le fil chiné rend difficile l'identification précise du point principal",
+    "Le type de bord n'est pas clairement distinct du corps",
+    "Le sommet est partiellement masqué par le pompon, les lignes de diminution ne sont pas visibles",
+    "Vue de profil arrière uniquement"
+  ],
+  "warnings": [
+    "Le point principal (côtes) est estimé avec une confiance modérée"
+  ],
+  "overallConfidence": "medium"
+}

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
+import { garmentCategory } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -98,13 +99,19 @@ export default async function PublicPatternPage({ params }: PageProps) {
     key: string
   ) => map[language][key] || map[language].unknown || key;
 
+  const isHat = garmentCategory(analysis.garment.type) === "hat";
   const characteristics: Array<[string, string]> = [
     [s.type, label(publicGarmentLabels, analysis.garment.type)],
     [s.construction, label(publicConstructionLabels, analysis.construction.method)],
-    [s.neckline, label(publicNecklineLabels, analysis.neckline.type)],
-    [s.sleeves, label(publicSleeveLabels, analysis.sleeves.type)],
+    // Encolure, manches et coupe n'ont pas de sens pour un bonnet
+    ...(isHat
+      ? []
+      : ([
+          [s.neckline, label(publicNecklineLabels, analysis.neckline.type)],
+          [s.sleeves, label(publicSleeveLabels, analysis.sleeves.type)],
+        ] as Array<[string, string]>)),
     [s.stitch, label(publicStitchLabels, analysis.stitch.mainPattern)],
-    [s.fit, label(publicFitLabels, analysis.fit.style)],
+    ...(isHat ? [] : ([[s.fit, label(publicFitLabels, analysis.fit.style)]] as Array<[string, string]>)),
     [
       s.gauge,
       `${pattern.gauge.stitchesPer10cm} ${s.gaugeUnit.replace(

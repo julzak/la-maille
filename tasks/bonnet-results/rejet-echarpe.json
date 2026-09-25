@@ -1,0 +1,51 @@
+{
+  "analysable": false,
+  "rejectionReason": "La photo montre une écharpe tricotée en côtes grises posée sur une chaise en bois, et non un haut ou un bonnet. La Maille génère des patrons de pulls, cardigans, gilets et bonnets à partir d'une photo du vêtement entier.",
+  "garment": {
+    "type": "autre",
+    "confidence": 0.9
+  },
+  "construction": {
+    "method": "unknown",
+    "confidence": 0,
+    "reasoning": "Il s'agit d'une écharpe, catégorie non prise en charge."
+  },
+  "neckline": {
+    "type": "unknown",
+    "confidence": 0
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "unknown",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "unknown",
+    "confidence": 0
+  },
+  "stitch": {
+    "mainPattern": "cotes",
+    "confidence": 0.8,
+    "notes": "Côtes régulières type côtes anglaises ou 2x2 en laine grise chinée."
+  },
+  "closure": {
+    "type": "unknown",
+    "buttonCountEstimate": null,
+    "confidence": 0
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0
+  },
+  "hat": null,
+  "limitations": [
+    "L'objet est une écharpe, pas un haut ni un bonnet."
+  ],
+  "warnings": [
+    "Catégorie de vêtement non prise en charge par La Maille."
+  ],
+  "overallConfidence": "insufficient"
+}

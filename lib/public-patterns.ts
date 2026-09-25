@@ -81,6 +81,7 @@ export function detectPatternLanguage(pattern: GeneratedPattern): Language {
     "sleeves",
     "left front",
     "right front",
+    "hat",
   ]);
   const firstPiece = pattern?.pieces?.[0]?.name?.toLowerCase() || "";
   if (enPieceNames.has(firstPiece)) return "en";

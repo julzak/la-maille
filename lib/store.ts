@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import type { GarmentAnalysis, Gauge, Measurements, YarnInfo, GeneratedPattern } from "./types";
+import type { GarmentAnalysis, Gauge, AnyMeasurements, YarnInfo, GeneratedPattern } from "./types";
 import type { Language } from "./i18n";
 
 interface LaMailleState {
@@ -26,9 +26,9 @@ interface LaMailleState {
 
   // Mesures
   gauge: Gauge | null;
-  measurements: Measurements | null;
+  measurements: AnyMeasurements | null;
   yarn: YarnInfo | null;
-  setFormData: (gauge: Gauge, measurements: Measurements, yarn: YarnInfo) => void;
+  setFormData: (gauge: Gauge, measurements: AnyMeasurements, yarn: YarnInfo) => void;
 
   // Patron
   pattern: GeneratedPattern | null;
@@ -143,7 +143,7 @@ export const useLaMailleStore = create<LaMailleState>()(
         }),
 
       // Form data actions
-      setFormData: (gauge: Gauge, measurements: Measurements, yarn: YarnInfo) =>
+      setFormData: (gauge: Gauge, measurements: AnyMeasurements, yarn: YarnInfo) =>
         set({
           gauge,
           measurements,

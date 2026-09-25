@@ -11,6 +11,7 @@ import {
   GARMENT_TYPE_LABELS,
   CONSTRUCTION_METHOD_LABELS,
   YARN_WEIGHT_LABELS,
+  finishedSize,
 } from "@/lib/types";
 import type { GeneratedPattern } from "@/lib/types";
 import { SchematicPDF, getDimensionsForPDF } from "./SchematicPDF";
@@ -203,9 +204,7 @@ export function PatternPDF({ pattern }: PatternPDFProps) {
     month: "long",
     day: "numeric",
   });
-  const calculatedWidth = Math.round(
-    pattern.measurements.chestCircumference + pattern.measurements.ease
-  );
+  const size = finishedSize(pattern.measurements);
 
   return (
     <Document>
@@ -221,8 +220,8 @@ export function PatternPDF({ pattern }: PatternPDFProps) {
 
         <View style={styles.infoTable}>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Tour de poitrine fini</Text>
-            <Text style={styles.infoValue}>{calculatedWidth} cm</Text>
+            <Text style={styles.infoLabel}>{size.kind === "hat" ? "Tour du bonnet fini" : "Tour de poitrine fini"}</Text>
+            <Text style={styles.infoValue}>{size.cm} cm</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Echantillon</Text>

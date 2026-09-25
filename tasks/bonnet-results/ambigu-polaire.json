@@ -1,0 +1,63 @@
+{
+  "analysable": true,
+  "rejectionReason": null,
+  "garment": {
+    "type": "bonnet",
+    "confidence": 0.9
+  },
+  "construction": {
+    "method": "bottom-up",
+    "confidence": 0.6,
+    "reasoning": "Bonnet tricoté en rond, probablement du bord vers le sommet avec diminutions au sommet, construction la plus courante. Le sommet n'est pas clairement lisible sur la photo de profil."
+  },
+  "neckline": {
+    "type": "unknown",
+    "confidence": 0
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "unknown",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "sans",
+    "confidence": 0
+  },
+  "stitch": {
+    "mainPattern": "jersey",
+    "confidence": 0.75,
+    "notes": "Jersey fin et régulier, aspect de tricot machine en fil fin. Le corps du bonnet est ample et forme des plis à l'arrière."
+  },
+  "closure": {
+    "type": "aucune",
+    "buttonCountEstimate": null,
+    "confidence": 0
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0
+  },
+  "hat": {
+    "brim": {
+      "type": "unknown",
+      "folded": true
+    },
+    "shape": "ample",
+    "crown": "unknown",
+    "pompom": false,
+    "confidence": 0.6
+  },
+  "limitations": [
+    "Le point exact du bord (côtes ou jersey) n'est pas distinguable",
+    "Le type de diminutions au sommet n'est pas visible",
+    "Le revers semble présent mais sa hauteur est difficile à estimer"
+  ],
+  "warnings": [
+    "Photo de profil avec forte surexposition : les détails de mailles sont peu lisibles",
+    "Tricot très fin, probablement réalisé en machine : un patron main nécessitera un fil fin ou une adaptation de jauge"
+  ],
+  "overallConfidence": "medium"
+}

@@ -9,6 +9,7 @@ import {
   GARMENT_TYPE_LABELS,
   CONSTRUCTION_METHOD_LABELS,
   YARN_WEIGHT_LABELS,
+  finishedSize,
 } from "@/lib/types";
 
 export default function PrintPatternPage() {
@@ -68,9 +69,7 @@ export default function PrintPatternPage() {
     month: "long",
     day: "numeric",
   });
-  const calculatedWidth = Math.round(
-    pattern.measurements.chestCircumference + pattern.measurements.ease
-  );
+  const size = finishedSize(pattern.measurements);
 
   return (
     <div className="print-document">
@@ -230,8 +229,8 @@ export default function PrintPatternPage() {
         <table style={{ maxWidth: "400px", margin: "0 auto" }}>
           <tbody>
             <tr>
-              <td className="muted">Tour de poitrine fini</td>
-              <td className="mono">{calculatedWidth} cm</td>
+              <td className="muted">{size.kind === "hat" ? "Tour du bonnet fini" : "Tour de poitrine fini"}</td>
+              <td className="mono">{size.cm} cm</td>
             </tr>
             <tr>
               <td className="muted">Echantillon</td>
@@ -291,7 +290,7 @@ export default function PrintPatternPage() {
               <th>Aiguilles</th>
               <td>
                 <strong className="mono">{pattern.gauge.needleSize} mm</strong> -
-                circulaires 80 cm minimum
+                {size.kind === "hat" ? " circulaire courte 40 cm ou doubles pointes" : " circulaires 80 cm minimum"}
               </td>
             </tr>
             <tr>

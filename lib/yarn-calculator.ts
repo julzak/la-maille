@@ -1,4 +1,4 @@
-import type { Measurements, Gauge } from "./types";
+import type { Measurements, HatMeasurements, Gauge, YarnInfo } from "./types";
 
 export interface YarnStock {
   skeinCount: number;
@@ -44,13 +44,7 @@ export function calculateYarnNeeded(
   // Ordre de grandeur mesuré : un carré de 10 x 10 cm en jersey DK (22 m x 30 rg) consomme 8 à 10 m de fil,
   // soit ~0,09 m/cm². Un pull adulte M en DK (~10 000 cm² de surface) donne ainsi ~900 à 1 000 m, conforme
   // aux métrages indiqués par les patrons du commerce (1 000 à 1 300 m).
-  const baseConsumptionPerCm2 = 0.09;
-
-  // Mise à l'échelle par l'échantillon : la longueur de fil d'une maille est proportionnelle à sa largeur
-  // (10 / mailles par 10 cm), donc fil par cm² = mailles/cm × rangs/cm × largeur ≈ k × rangs par 10 cm.
-  // Référence 30 rangs / 10 cm (DK).
-  const gaugeMultiplier = gauge.rowsPer10cm / 30;
-  const consumptionPerCm2 = baseConsumptionPerCm2 * gaugeMultiplier;
+  const consumptionPerCm2 = consumptionPerCm2For(gauge);
 
   // Calculate body dimensions
   const bodyWidth = measurements.chestCircumference + measurements.ease;
@@ -91,6 +85,40 @@ export function calculateYarnNeeded(
   const average = Math.round(metersNeeded);
 
   return { min, max, average };
+}
+
+/**
+ * Fil consommé par cm² de tricot.
+ * Ordre de grandeur mesuré : un carré de 10 x 10 cm en jersey DK (22 m x 30 rg) consomme 8 à 10 m de fil,
+ * soit ~0,09 m/cm². Mise à l'échelle par l'échantillon : la longueur de fil d'une maille est proportionnelle
+ * à sa largeur (10 / mailles par 10 cm), donc fil par cm² = mailles/cm × rangs/cm × largeur ≈ k × rangs
+ * par 10 cm. Référence 30 rangs / 10 cm (DK).
+ */
+export function consumptionPerCm2For(gauge: Gauge): number {
+  const baseConsumptionPerCm2 = 0.09;
+  const gaugeMultiplier = gauge.rowsPer10cm / 30;
+  return baseConsumptionPerCm2 * gaugeMultiplier;
+}
+
+/**
+ * Métrage d'un bonnet : tube tour fini x hauteur totale (le sommet est compté comme un tube,
+ * ce qui majore légèrement), + la partie repliée du bord si revers.
+ */
+export function calculateHatYarnNeeded(m: HatMeasurements, gauge: Gauge, folded: boolean): YarnEstimate {
+  const circ = m.headCircumference * (1 - m.ease / 100);
+  const surface = circ * m.hatHeight + (folded ? circ * m.brimHeight : 0);
+  const metersNeeded = surface * consumptionPerCm2For(gauge);
+  return { min: Math.round(metersNeeded * 0.9), max: Math.round(metersNeeded * 1.15), average: Math.round(metersNeeded) };
+}
+
+// Grammes par mètre selon la catégorie de fil (pelote de 50 g : lace ~400 m, fingering ~200 m,
+// sport ~150 m, DK ~115 m, worsted ~100 m, aran ~85 m, bulky ~60 m).
+export const GRAMS_PER_METER: Record<YarnInfo["weight"], number> = {
+  lace: 0.125, fingering: 0.25, sport: 0.33, dk: 0.43, worsted: 0.5, aran: 0.6, bulky: 0.85,
+};
+
+export function gramsForMeters(meters: number, weight: YarnInfo["weight"]): number {
+  return Math.round(meters * GRAMS_PER_METER[weight]);
 }
 
 function wristRibbingSurface(measurements: Measurements): number {

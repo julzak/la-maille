@@ -1,0 +1,62 @@
+{
+  "analysable": true,
+  "rejectionReason": null,
+  "garment": {
+    "type": "bonnet",
+    "confidence": 0.92
+  },
+  "construction": {
+    "method": "bottom-up",
+    "confidence": 0.7,
+    "reasoning": "Bord en côtes en bas du bonnet, corps texturé au-dessus ; construction classique du bord vers le sommet avec diminutions supposées au sommet."
+  },
+  "neckline": {
+    "type": "unknown",
+    "confidence": 0
+  },
+  "neckband": {
+    "construction": "unknown",
+    "height": "unknown",
+    "stitch": "unknown",
+    "doubled": null,
+    "confidence": 0
+  },
+  "sleeves": {
+    "type": "unknown",
+    "length": "sans",
+    "confidence": 0
+  },
+  "stitch": {
+    "mainPattern": "autre",
+    "confidence": 0.6,
+    "notes": "Point texturé en relief de type vannerie / nattes ou petites torsades en quinconce, tricoté en fil épais gris clair."
+  },
+  "closure": {
+    "type": "aucune",
+    "buttonCountEstimate": null,
+    "confidence": 0
+  },
+  "fit": {
+    "style": "unknown",
+    "confidence": 0
+  },
+  "hat": {
+    "brim": {
+      "type": "cotes-1x1",
+      "folded": false
+    },
+    "shape": "ajuste",
+    "crown": "unknown",
+    "pompom": false,
+    "confidence": 0.65
+  },
+  "limitations": [
+    "Le sommet du bonnet est peu visible : impossible de déterminer le type de diminutions",
+    "Le point principal texturé est difficile à identifier précisément (vannerie ou petites torsades)",
+    "Le type exact de côtes du bord (1x1 ou 2x2) est incertain"
+  ],
+  "warnings": [
+    "Photo prise de face uniquement, l'arrière du bonnet n'est pas visible"
+  ],
+  "overallConfidence": "medium"
+}
