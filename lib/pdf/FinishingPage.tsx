@@ -3,6 +3,7 @@ import { styles, colors } from "./styles";
 
 interface FinishingPageProps {
   assemblySteps: string[];
+  finishingSteps: string[];
   blockingTips: string[];
   careTips: string[];
   pageNumber: number;
@@ -11,6 +12,7 @@ interface FinishingPageProps {
 
 export function FinishingPage({
   assemblySteps,
+  finishingSteps,
   blockingTips,
   careTips,
   pageNumber,
@@ -21,6 +23,7 @@ export function FinishingPage({
       title: "FINITIONS",
       subtitle: "Assemblage & Entretien",
       assembly: "ASSEMBLAGE",
+      finishing: "DERNIÈRES ÉTAPES",
       blocking: "BLOCAGE",
       care: "ENTRETIEN",
       shareTitle: "Partagez votre création !",
@@ -31,6 +34,7 @@ export function FinishingPage({
       title: "FINISHING",
       subtitle: "Assembly & Care",
       assembly: "ASSEMBLY",
+      finishing: "FINAL STEPS",
       blocking: "BLOCKING",
       care: "CARE",
       shareTitle: "Share your creation!",
@@ -65,6 +69,21 @@ export function FinishingPage({
               </View>
             ))}
           </View>
+
+          {finishingSteps.length > 0 && (
+            <View style={styles.card}>
+              <Text
+                style={[styles.h3, { color: colors.primary, marginBottom: 10 }]}
+              >
+                {t.finishing}
+              </Text>
+              {finishingSteps.map((step, i) => (
+                <Text key={i} style={[styles.body, { marginBottom: 3 }]}>
+                  • {step.replace(/^-\s*/, "")}
+                </Text>
+              ))}
+            </View>
+          )}
         </View>
 
         {/* Blocage & Entretien */}
