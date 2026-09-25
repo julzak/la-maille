@@ -42,8 +42,8 @@ Lot 0 generations.analysis (PR #55) ─> BRIEF-06 bonnet + socle ─> BRIEF-07 �
 - BRIEF-07 et BRIEF-08 dépendent du socle de BRIEF-06, ordre entre eux selon la demande mesurée par le lot 0.
 - Pages SEO accessoires : lot à cadrer après BRIEF-08.
 
-- Lot 0 : PR #55 ouverte, migration `generations.analysis` à appliquer par Julien avant merge
-- BRIEF-06-bonnet : PR #56 ouverte (harnais 0 échec, pulls inchangés, 4/4 vraies photos acceptées)
+- Lot 0 : mergé (PR #55, migration `generations.analysis` appliquée par Julien le 2026-09-25, colonne vérifiée en prod)
+- BRIEF-06-bonnet : mergé et déployé (PR #56, 2026-09-25). Reste : recette Julien sur un vrai bonnet en prod, lire `generations.analysis` des premiers bonnets
 - BRIEF-07-echarpe : à faire
 - BRIEF-08-chaussettes : à faire
 
