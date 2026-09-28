@@ -3499,7 +3499,7 @@ Consider these factors when deciding:
 
 ![Drop shoulder sweater showing straight body edge where sleeve attaches](/images/blog/raglan-vs-set-in-sleeves-which-to-choose/drop-shoulder-construction.webp)
 
-Worth mentioning: drop shoulder construction is even simpler than raglan. The body is knit as a straight tube or flat rectangle, and the sleeves attach without any armhole shaping whatsoever. There are no decreases at the underarm and no sleeve cap. This makes drop shoulder construction very fast and entirely beginner-accessible, but it creates a boxy, oversized silhouette with extra fabric pooling at the shoulder point.
+Worth mentioning: drop shoulder construction is even simpler than raglan. The body is knit as a straight tube or flat rectangle, and the sleeves attach without any armhole shaping whatsoever. There are no decreases at the underarm and no sleeve cap. This makes drop shoulder construction very fast and entirely beginner-accessible, but it creates a boxy, oversized silhouette with extra fabric pooling at the shoulder point. You will also see this construction called a drop sleeve, especially in commercial patterns and yarn shop listings: a drop sleeve and a drop shoulder describe exactly the same thing, a sleeve attached to an unshaped body edge that falls below the natural shoulder.
 
 Drop shoulder sweaters have enjoyed a significant resurgence in recent years, particularly in chunky yarn weights and oversized silhouettes. They are ideal for textured stitch patterns like seed stitch or moss stitch across the entire body, since there are no shaping interruptions to navigate.
 
