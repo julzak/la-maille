@@ -14,7 +14,7 @@ import anthropic
 
 BLOG_DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../lib/blog-data.ts")
 MIN_WORDS = 1500
-MODEL = "claude-sonnet-4-6"
+MODEL = "claude-sonnet-5-5"
 
 SYSTEM_PROMPT = """You are a senior editorial SEO + GEO content writer specializing in knitting.
 You rewrite articles to be longer, richer, and optimized for both Google and AI engines (Perplexity, ChatGPT, etc.).
@@ -117,9 +117,11 @@ def restyle_article(article: dict, client: anthropic.Anthropic) -> str | None:
                 model=MODEL,
                 max_tokens=8192,
                 system=SYSTEM_PROMPT,
+                # Sonnet 5.5 : thinking actif par défaut ("disabled" = 400), between_tools le coupe.
+                thinking={"type": "between_tools"},
                 messages=[{"role": "user", "content": prompt}]
             )
-            new_content = resp.content[0].text.strip()
+            new_content = next(b.text for b in resp.content if b.type == "text").strip()
             # Remove any code fences
             new_content = re.sub(r'^```(?:markdown)?\s*\n?', '', new_content)
             new_content = re.sub(r'\n?```\s*$', '', new_content)
