@@ -218,6 +218,7 @@ export function PatternDocument({
       {/* Page Finitions */}
       <FinishingPage
         assemblySteps={pattern.assembly || []}
+        finishingSteps={pattern.finishing || []}
         blockingTips={blockingTips}
         careTips={careTips}
         pageNumber={pageNumber}
