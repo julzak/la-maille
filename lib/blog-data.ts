@@ -2923,7 +2923,7 @@ Knitters who swatch consistently make garments that fit consistently. The correl
 
 Once you have an accurate, post-blocking gauge measurement in hand, you can:
 - Follow pattern instructions with full confidence that your sizes will be accurate
-- Use a knitting gauge calculator to resize patterns for different measurements or sizes
+- Use a knitting gauge calculator to resize patterns for different measurements or sizes, or [adapt a knitting pattern to your size](/blog/how-to-adapt-knitting-pattern-to-your-size)
 - Substitute yarns confidently by matching gauge rather than relying on weight category alone
 - Generate fully custom patterns with tools like La Maille, which build every stitch count around your exact gauge
 - Work top-down or modular designs where gauge governs every proportion
@@ -3324,7 +3324,7 @@ Once you have your measurements, the path from numbers to stitches becomes clear
 
 **Calculate ease**: Ease is simply the difference between your body measurement and the finished garment measurement. 2–4 inches of positive ease at the bust gives a comfortable, everyday fit. 6 or more inches is deliberately oversized. 0–1 inch is close-fitting and will emphasize your shape. Negative ease (the garment is smaller than your body) is used in stretchy fabrics and fitted ribbing.
 
-**Plan your modifications**: If your body length is 26 inches but the pattern's medium is written for 24 inches, you know before you cast on that you'll need to add 2 inches to the body. Measurements make these decisions easy.
+**Plan your modifications**: If your body length is 26 inches but the pattern's medium is written for 24 inches, you know before you cast on that you'll need to add 2 inches to the body. Measurements make these decisions easy, and our guide on how to [adapt a knitting pattern to your size](/blog/how-to-adapt-knitting-pattern-to-your-size) walks through each adjustment.
 
 **Generate custom patterns**: Tools like La Maille use your exact measurements and gauge to create patterns built for your body from the ground up — no size chart, no size selection, no modification required.
 
