@@ -1,6 +1,7 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslation, type Language } from "@/lib/i18n";
 import { getPathLocale } from "@/lib/i18n/detect";
 
@@ -29,23 +30,14 @@ function equivalentPath(pathname: string, target: Language): string | null {
 export function LanguageSelector() {
   const { language, setLanguage } = useTranslation();
   const pathname = usePathname();
-  const router = useRouter();
+  const newLang: Language = language === "fr" ? "en" : "fr";
+  const target = equivalentPath(pathname, newLang);
 
-  const toggleLanguage = () => {
-    const newLang: Language = language === "fr" ? "en" : "fr";
-    setLanguage(newLang);
-    const target = equivalentPath(pathname, newLang);
-    if (target) {
-      router.push(target);
-    }
-  };
-
-  return (
-    <button
-      onClick={toggleLanguage}
-      className="flex items-center gap-1.5 text-xs font-medium px-2 h-8 rounded-md hover:bg-muted transition-colors"
-      aria-label={language === "fr" ? "Switch to English" : "Passer en francais"}
-    >
+  const className =
+    "flex items-center gap-1.5 text-xs font-medium px-2 h-8 rounded-md hover:bg-muted transition-colors";
+  const ariaLabel = language === "fr" ? "Switch to English" : "Passer en francais";
+  const content = (
+    <>
       <span aria-hidden="true">🌐</span>
       <span className={language === "en" ? "font-semibold text-foreground" : "text-muted-foreground"}>
         EN
@@ -54,6 +46,29 @@ export function LanguageSelector() {
       <span className={language === "fr" ? "font-semibold text-foreground" : "text-muted-foreground"}>
         FR
       </span>
+    </>
+  );
+
+  // Pages localisées par URL : vrai lien <a href>, crawlable par Google.
+  // Le clic pose aussi le cookie de préférence avant la navigation.
+  if (target) {
+    return (
+      <Link
+        href={target}
+        hrefLang={newLang}
+        onClick={() => setLanguage(newLang)}
+        className={className}
+        aria-label={ariaLabel}
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  // Routes applicatives (non localisées par URL) : on ne change que le cookie.
+  return (
+    <button onClick={() => setLanguage(newLang)} className={className} aria-label={ariaLabel}>
+      {content}
     </button>
   );
 }
