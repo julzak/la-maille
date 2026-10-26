@@ -3409,6 +3409,10 @@ Raglan sleeves are knit with diagonal shaping lines running from the underarm to
 
 ![Technical diagram comparing raglan diagonal seam lines with set-in sleeve curved armhole](/images/blog/raglan-vs-set-in-sleeves-which-to-choose/raglan-vs-setin-construction-diagram.webp)
 
+## What is a raglan sleeve?
+
+A raglan sleeve is a sleeve whose seam runs diagonally from the neckline down to the underarm, so the sleeve top forms part of the yoke instead of stopping at the shoulder. Because of this diagonal line, a raglan sweater has no shoulder seam: the sleeve and body meet along that slanted edge. A set-in sleeve, by contrast, is joined to the body along a curved armhole that sits at the natural shoulder point.
+
 ## What's the Difference?
 
 **Raglan sleeves** have diagonal seam lines that run from the underarm to the neckline. The sleeve and body are shaped together, usually knit seamlessly from the top down or bottom up. The four diagonal lines — two at the front and two at the back — define the entire yoke of the garment, creating a distinctive visual element that is as much a design feature as it is a construction method.
