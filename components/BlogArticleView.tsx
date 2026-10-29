@@ -5,6 +5,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getArticleBySlug, getAllArticles, articleLang, resolveInternalBlogHref } from "@/lib/blog-data";
 import { BlogInlineCta } from "@/components/BlogInlineCta";
 import { BlogInlineUploader } from "@/components/BlogInlineUploader";
+import { BlogPresetCta } from "@/components/BlogPresetCta";
+import { BLOG_PRESETS } from "@/lib/blog-presets";
 import type { Language } from "@/lib/i18n/detect";
 
 /**
@@ -366,7 +368,9 @@ export function BlogArticleView({ slug }: { slug: string }) {
       <article className="prose-custom">
         {renderMarkdown(
           article.content,
-          INLINE_UPLOADER_SLUGS.has(article.slug) ? (
+          BLOG_PRESETS[article.slug] ? (
+            <BlogPresetCta lang={lang} slug={article.slug} analysis={BLOG_PRESETS[article.slug]} />
+          ) : INLINE_UPLOADER_SLUGS.has(article.slug) ? (
             <BlogInlineUploader lang={lang} slug={article.slug} />
           ) : (
             <BlogInlineCta lang={lang} slug={article.slug} />

@@ -919,6 +919,13 @@ export const translations = {
     toastPatternGenerated: "Patron généré avec succès !",
     toastAnalysisDone: "Analyse terminée",
     toastAnalysisDoneDesc: "Choisissez une taille pour générer votre patron.",
+
+    // Modèle préréglé (blog FR)
+    blogPresetKicker: "Modèle gratuit, sans photo",
+    blogPresetTitle: "Tricotez ce modèle à votre taille",
+    blogPresetTextPull: "Un pull raglan top-down en jersey, col rond, manches longues. Choisissez votre taille et obtenez les explications rang par rang, calculées pour vous. Gratuit, sans compte.",
+    blogPresetTextCardigan: "Un gilet raglan top-down en jersey, à 5 boutons, manches longues. Choisissez votre taille et obtenez les explications rang par rang, calculées pour vous. Gratuit, sans compte.",
+    blogPresetButton: "Choisir ma taille",
     analysisErrorTitle: "Erreur d'analyse",
     dailyLimitTitle: "Limite quotidienne atteinte",
     toastRegenerated: "Patron mis à jour",
@@ -1855,6 +1862,13 @@ export const translations = {
     toastPatternGenerated: "Pattern generated!",
     toastAnalysisDone: "Analysis complete",
     toastAnalysisDoneDesc: "Pick a size to generate your pattern.",
+
+    // Preset pattern (FR blog)
+    blogPresetKicker: "Free pattern, no photo needed",
+    blogPresetTitle: "Knit this pattern in your size",
+    blogPresetTextPull: "A top-down raglan sweater in stockinette, crew neck, long sleeves. Pick your size and get row-by-row instructions calculated for you. Free, no account needed.",
+    blogPresetTextCardigan: "A top-down raglan cardigan in stockinette, 5 buttons, long sleeves. Pick your size and get row-by-row instructions calculated for you. Free, no account needed.",
+    blogPresetButton: "Pick my size",
     analysisErrorTitle: "Analysis error",
     dailyLimitTitle: "Daily limit reached",
     toastRegenerated: "Pattern updated",
