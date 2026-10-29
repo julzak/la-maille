@@ -80,11 +80,12 @@ export default function AnalysePage() {
       imagePreviewsFromHook: imagePreviews.length,
     });
 
-    if (isHydrated && state.imagePreviews.length === 0) {
+    // Sans photo, seule une analyse prechargee (modele preregle du blog) est valide
+    if (isHydrated && state.imagePreviews.length === 0 && !state.analysis) {
       console.log("[Analyse] Redirecting to home - no images");
       router.replace("/");
     }
-  }, [router, isHydrated, imagePreviews]);
+  }, [router, isHydrated, imagePreviews, analysis]);
 
   // Lancer l'analyse au montage si on a une image mais pas encore d'analyse
   const runAnalysis = useCallback(async () => {
@@ -174,7 +175,7 @@ export default function AnalysePage() {
   };
 
   // Loading state pendant l'hydratation
-  if (imagePreviews.length === 0) {
+  if (imagePreviews.length === 0 && !analysis) {
     return (
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
@@ -224,6 +225,7 @@ export default function AnalysePage() {
           {/* Colonne gauche - Image & Analyse (2/5) */}
           <div className="lg:col-span-2 space-y-4 md:space-y-6">
             {/* Aperçu image(s) */}
+            {imagePreviews.length > 0 && (
             <Card>
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
@@ -284,6 +286,7 @@ export default function AnalysePage() {
                 )}
               </CardContent>
             </Card>
+            )}
 
             {/* État de l'analyse - Loading */}
             {analysisLoading && (
