@@ -553,10 +553,10 @@ Le point mousse tricot est bien plus qu'un simple point de départ pour les déb
   },
   {
     slug: "point-de-riz-tricot",
-    seoTitle: "Point de riz au tricot : explications et point de riz double",
+    seoTitle: "Point de riz tricot : explications et point de riz double",
     seoDescription:
       "Comment tricoter le point de riz : technique, différence avec le point de riz double et le point de blé, échantillon. Explications gratuites et pas à pas.",
-    title: "Point de riz au tricot : technique, usages et astuces",
+    title: "Point de riz tricot : technique, usages et astuces",
     excerpt:
       "Apprenez le point de riz au tricot : comment le réaliser, pourquoi il ne gondole pas et dans quels projets l'utiliser. Guide complet avec exemples concrets.",
     keywords: [
