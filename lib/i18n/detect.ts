@@ -3,9 +3,6 @@ export type Language = "fr" | "en";
 export const LANG_COOKIE = "lamaille-lang";
 export const LANG_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
-/** Header interne posé par le middleware : locale déterminée par l'URL. */
-export const LOCALE_HEADER = "x-lamaille-locale";
-
 /**
  * Pages marketing localisées par URL : EN à la racine, FR sous /fr.
  * Les routes applicatives (/analyse, /patron, /tricot, /mes-patrons, ...)
