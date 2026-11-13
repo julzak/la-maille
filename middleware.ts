@@ -1,50 +1,26 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { type NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 import {
   LANG_COOKIE,
   LANG_COOKIE_MAX_AGE,
-  LOCALE_HEADER,
-  getPathLocale,
   isValidLanguage,
   parseAcceptLanguage,
 } from "@/lib/i18n/detect";
 
+/**
+ * Ne tourne QUE sur les routes applicatives, l'API et l'auth (voir matcher).
+ * Les pages vitrine et le blog sont statiques et servis par le CDN sans
+ * passer ici : leur langue vient de l'URL (lib/i18n/server.ts), le cookie de
+ * langue y est posé côté client (components/LocaleSync.tsx) et la redirection
+ * de confort / -> /fr est dans next.config.mjs.
+ */
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
   const existing = request.cookies.get(LANG_COOKIE)?.value;
 
-  // Redirection de confort (302, volontairement PAS 301) : un visiteur dont le
-  // cookie indique déjà une préférence FR et qui arrive sur la racine EN est
-  // renvoyé vers la home FR. Jamais basé sur Accept-Language seul : un crawler
-  // (Googlebot) sans cookie n'est jamais redirigé, la racine sert l'EN.
-  if (pathname === "/" && existing === "fr") {
-    const url = request.nextUrl.clone();
-    url.pathname = "/fr";
-    return NextResponse.redirect(url, 302);
-  }
-
-  const urlLocale = getPathLocale(pathname);
-
-  // La locale d'URL fait foi sur les pages marketing. Visiter /fr exprime une
-  // préférence explicite : on la persiste dans le cookie (UX des routes
-  // applicatives + redirection de confort ci-dessus). Les pages EN racine ne
-  // réécrivent PAS le cookie. Ailleurs, détection cookie/Accept-Language
-  // inchangée.
-  const detected =
-    urlLocale === "fr"
-      ? "fr"
-      : isValidLanguage(existing)
-        ? existing
-        : parseAcceptLanguage(request.headers.get("accept-language"));
-
-  // Propage la locale d'URL au rendu (layout racine, pages blog) via un
-  // header interne. On l'écrase/supprime systématiquement pour qu'un client
-  // ne puisse pas l'injecter.
-  if (urlLocale) {
-    request.headers.set(LOCALE_HEADER, urlLocale);
-  } else {
-    request.headers.delete(LOCALE_HEADER);
-  }
+  // Routes applicatives : langue pilotée par le cookie, sinon Accept-Language.
+  const detected = isValidLanguage(existing)
+    ? existing
+    : parseAcceptLanguage(request.headers.get("accept-language"));
 
   // Mutate request cookies so the rest of the chain (layout via cookies())
   // sees the resolved language on the very first request.
@@ -66,14 +42,14 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
+  // Liste explicite : toute nouvelle route qui a besoin de la session Supabase
+  // ou du cookie de langue côté serveur doit être ajoutée ici.
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
-     */
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/analyse/:path*",
+    "/patron/:path*",
+    "/mes-patrons/:path*",
+    "/tricot/:path*",
+    "/api/:path*",
+    "/auth/:path*",
   ],
 };
