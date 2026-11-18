@@ -46,7 +46,7 @@ const CONFIGS: Record<string, GarmentAnalysis> = {
   "cardigan raglan": A({ garment: cardigan, closure: { type: "boutons", buttonCountEstimate: 5, confidence: 0.9 } }),
   "pull marteau": A({ sleeves: { type: "marteau", length: "longues", confidence: 0.9 }, construction: pieces }),
   "gilet sans manches": A({ garment: { type: "gilet", confidence: 0.9 }, sleeves: { type: "sans-manches", length: "sans", confidence: 0.9 } }),
-  ...Object.fromEntries(Object.entries(BLOG_PRESETS).map(([slug, a]) => [`preset ${slug}`, a])),
+  ...Object.fromEntries(Object.entries(BLOG_PRESETS).filter(([, a]) => a.garment.type !== "bonnet").map(([slug, a]) => [`preset ${slug}`, a])),
 }
 const GAUGES: Record<string, Gauge> = {
   fin: { stitchesPer10cm: 28, rowsPer10cm: 36, needleSize: 2.5 },

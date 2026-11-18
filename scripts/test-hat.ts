@@ -16,6 +16,7 @@ import { HAT_SIZE_ORDER, hatMeasurementsForSize } from "../lib/garments/hat-size
 import { SIZE_PRESETS } from "../lib/size-presets"
 import { rowsFor, stsFor } from "../lib/shaping"
 import { parsePatternToPieces } from "../hooks/usePatternParsing"
+import { BLOG_PRESETS } from "../lib/blog-presets"
 import type { GarmentAnalysis, Gauge, GeneratedPattern, HatAnalysis, HatMeasurements } from "../lib/types"
 
 const hatBase: GarmentAnalysis = {
@@ -39,6 +40,7 @@ const CONFIGS: Record<string, GarmentAnalysis> = {
   "ample mousse": H({ shape: "ample", brim: { type: "mousse", folded: false } }),
   "bord roule": H({ brim: { type: "roule", folded: false } }),
   "bord inconnu torsades": H({ brim: { type: "unknown", folded: null } }, { stitch: { mainPattern: "torsades", confidence: 0.8, notes: null } }),
+  ...Object.fromEntries(Object.entries(BLOG_PRESETS).filter(([, a]) => a.garment.type === "bonnet").map(([slug, a]) => [`preset ${slug}`, a])),
 }
 const GAUGES: Record<string, Gauge> = {
   fin: { stitchesPer10cm: 28, rowsPer10cm: 36, needleSize: 2.5 },

@@ -5,7 +5,7 @@ import type { GarmentAnalysis } from "./types";
  * /api/analyze : le lecteur arrive sur /analyse avec le modele deja decrit et
  * choisit sa taille. Mesure oct. 2026 : le blog FR convertit a 0,9 % parce que
  * les lecteurs cherchent un modele gratuit et n'ont pas de photo.
- * Couvertes par scripts/test-calculator.ts.
+ * Couvertes par scripts/test-calculator.ts (hauts) et scripts/test-hat.ts (bonnets).
  */
 const raglanTopDown: GarmentAnalysis = {
   analysable: true,
@@ -23,8 +23,28 @@ const raglanTopDown: GarmentAnalysis = {
   overallConfidence: "high",
 };
 
+// Bonnet decrit dans bonnet-a-tricoter : bord en cotes, corps en jersey, sommet en 8 quartiers.
+const bonnetClassique: GarmentAnalysis = {
+  analysable: true,
+  rejectionReason: null,
+  garment: { type: "bonnet", confidence: 1 },
+  construction: { method: "bottom-up", confidence: 1, reasoning: "" },
+  neckline: { type: "unknown", confidence: 0 },
+  neckband: { construction: "unknown", height: "unknown", stitch: "unknown", doubled: null, confidence: 0 },
+  sleeves: { type: "unknown", length: "sans", confidence: 0 },
+  stitch: { mainPattern: "jersey", confidence: 1, notes: null },
+  closure: { type: "aucune", buttonCountEstimate: null, confidence: 0 },
+  fit: { style: "unknown", confidence: 0 },
+  hat: { brim: { type: "cotes-2x2", folded: false }, shape: "ajuste", crown: "quartiers", pompom: false, confidence: 1 },
+  limitations: [],
+  warnings: [],
+  overallConfidence: "high",
+};
+
 export const BLOG_PRESETS: Record<string, GarmentAnalysis> = {
   "comment-tricoter-un-pull": raglanTopDown,
+  "modele-pull-a-tricoter-gratuit": raglanTopDown,
+  "bonnet-a-tricoter": bonnetClassique,
   "gilet-cardigan-tricot": {
     ...raglanTopDown,
     garment: { type: "cardigan", confidence: 1 },

@@ -51,7 +51,13 @@ export function BlogPresetCta({
         {t("blogPresetTitle")}
       </p>
       <p className="text-sm text-muted-foreground mb-4">
-        {t(analysis.garment.type === "cardigan" ? "blogPresetTextCardigan" : "blogPresetTextPull")}
+        {t(
+          analysis.garment.type === "cardigan"
+            ? "blogPresetTextCardigan"
+            : analysis.garment.type === "bonnet"
+              ? "blogPresetTextBonnet"
+              : "blogPresetTextPull"
+        )}
       </p>
       <button
         type="button"
