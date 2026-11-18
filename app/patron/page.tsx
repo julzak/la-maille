@@ -41,6 +41,7 @@ import { YarnSection } from "@/components/measurements/YarnSection";
 import { SavePatternButton } from "@/components/SavePatternButton";
 import { useAutoSave } from "@/hooks/useAutoSave";
 import { trackEvent, getStoredUTMs } from "@/lib/analytics";
+import { PRESET_SESSION_KEY } from "@/lib/blog-presets";
 import type { StoredProject } from "@/lib/storage";
 import type { YarnStock } from "@/lib/yarn-calculator";
 import type { AnyMeasurements, Gauge, YarnInfo } from "@/lib/types";
@@ -54,6 +55,7 @@ function PatronPageContent() {
     pattern,
     patternLanguage,
     imagePreview,
+    imagePreviews,
     hasPattern,
     resetAll,
     analysis,
@@ -207,10 +209,36 @@ function PatronPageContent() {
   useEffect(() => {
     if (isHydrated && pattern && !generateTracked) {
       const utms = getStoredUTMs();
+      // Patron preregle du blog : pas de photo et cle posee par BlogPresetCta.
+      // preset_generate est un event dedie car GA4 n'a aucune dimension
+      // personnalisee : les parametres seuls ne sont pas interrogeables.
+      let presetSlug: string | null = null;
+      if (imagePreviews.length === 0) {
+        try {
+          presetSlug = sessionStorage.getItem(PRESET_SESSION_KEY);
+        } catch {
+          presetSlug = null;
+        }
+      }
       trackEvent('generate_pattern', {
         garment_type: pattern.analysis.garment.type,
+        source: presetSlug ? 'preset' : imagePreviews.length > 0 ? 'photo' : 'other',
+        ...(presetSlug ? { preset_slug: presetSlug } : {}),
         ...utms,
       });
+      if (presetSlug) {
+        trackEvent('preset_generate', {
+          preset_slug: presetSlug,
+          garment_type: pattern.analysis.garment.type,
+        });
+        // Un seul preset_generate par clic sur le CTA, et pas d'attribution
+        // a un patron charge plus tard dans le meme onglet.
+        try {
+          sessionStorage.removeItem(PRESET_SESSION_KEY);
+        } catch {
+          // ignore
+        }
+      }
       setGenerateTracked(true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
