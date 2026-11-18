@@ -1,6 +1,12 @@
 import type { GarmentAnalysis } from "./types";
 
 /**
+ * Cle sessionStorage posee au clic sur le CTA preregle (slug de l'article).
+ * Lue sur /patron pour distinguer un patron preregle d'un patron issu d'une photo.
+ */
+export const PRESET_SESSION_KEY = "lamaille-preset-slug";
+
+/**
  * Analyses fixes chargees depuis les articles de blog FR, sans photo ni appel
  * /api/analyze : le lecteur arrive sur /analyse avec le modele deja decrit et
  * choisit sa taille. Mesure oct. 2026 : le blog FR convertit a 0,9 % parce que
@@ -44,6 +50,9 @@ const bonnetClassique: GarmentAnalysis = {
 export const BLOG_PRESETS: Record<string, GarmentAnalysis> = {
   "comment-tricoter-un-pull": raglanTopDown,
   "modele-pull-a-tricoter-gratuit": raglanTopDown,
+  "modeles-tricot-gratuits": raglanTopDown,
+  "tricoter-en-rond": raglanTopDown,
+  "tricot-debutant": raglanTopDown,
   "bonnet-a-tricoter": bonnetClassique,
   "gilet-cardigan-tricot": {
     ...raglanTopDown,

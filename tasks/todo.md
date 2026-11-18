@@ -12,6 +12,7 @@
 - [x] Relance J+3 : migration appliquee, job cron `relance-j3-daily` actif (8h UTC) avec le jeton dedie RELANCE_J3_TOKEN, chaine pg_net -> fonction testee depuis la base (200, dry_run, 1 destinataire, 0 envoi) le 2026-09-16.
 - [x] Relance J+3 ACTIVEE le 2026-09-16 (texte valide par Julien, RELANCE_J3_ENABLED=true). Premier envoi reel le 16/09 (1 destinataire, declenche par l'appel de verification). Suivre les reponses a contact@la-maille.com (desinscription = reponse a l'email) et le compteur relance_emails dans le rapport hebdo.
 - [ ] Mesurer apres 2 semaines : blog_upload_start et generate_pattern par landing sur les 3 articles EN a dropzone (PR #48), blog_cta_click FR apres la nouvelle copy (PR #46).
+- [ ] Le 2026-12-02 (J+14) : mesurer le modèle préréglé du blog FR (PR #64, #67 et celle-ci). GA4 hors CN/SG : preset_start par pagePath (article) puis preset_generate par landingPage, taux preset_generate / preset_start par article, et part des patrons préréglés dans generate_pattern. Comparer à la base du 2026-11-17 : 68 utilisateurs preset_start en 19 jours sur gilet et pull, 72 utilisateurs qui génèrent depuis le blog FR. Les patrons préréglés n'apparaissent pas dans la table generations.
 - [ ] D3 newsletter 51 contacts : en attente. D4 patrons publics : inchange.
 
 ---

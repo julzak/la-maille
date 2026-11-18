@@ -7,6 +7,7 @@ import { clearProject } from "@/lib/storage";
 import { trackEvent } from "@/lib/analytics";
 import { getTranslation, type TranslationKey } from "@/lib/i18n";
 import type { GarmentAnalysis } from "@/lib/types";
+import { PRESET_SESSION_KEY } from "@/lib/blog-presets";
 import type { Language } from "@/lib/i18n/detect";
 
 /**
@@ -30,6 +31,11 @@ export function BlogPresetCta({
 
   const handleClick = async () => {
     trackEvent("preset_start", { slug, lang, garment_type: analysis.garment.type });
+    try {
+      sessionStorage.setItem(PRESET_SESSION_KEY, slug);
+    } catch {
+      // sessionStorage indisponible : le patron sera compte comme generate_pattern seul
+    }
     clearProject();
     const store = useLaMailleStore.getState();
     store.resetAll();
